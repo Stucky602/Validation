@@ -7365,6 +7365,1670 @@ const DATA = {
       ]
     }
   },
+  hplc: {
+    "name": "HPLC / UHPLC",
+    "domain": "GMP",
+    "sub": "Liquid chromatography systems (USP <1058>)",
+    "desc": "Qualification of HPLC/UHPLC systems under the USP <1058> Analytical Instrument Qualification (AIQ) framework. Modular OQ checks (pump, detector, autosampler, column oven) use NIST-traceable test standards; the example tolerances shown (e.g. flow ±1%, detector R² ≥ 0.999) are common acceptance criteria — confirm against your SOP and intended operating range, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"3\" y=\"4\" width=\"5\" height=\"16\" rx=\"1\"/><rect x=\"10\" y=\"4\" width=\"5\" height=\"16\" rx=\"1\"/><path d=\"M17 8h4M19 8v9a2 2 0 0 0 2 2\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify each module (pump, autosampler, column oven, detector, degasser) make/model/serial against the PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Each module identified and verified against the purchase order and URS; connectivity confirmed.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify utilities, bench/space, drainage, and environment are suitable per the data sheet.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Installation verified: power, space, waste handling, and a suitable environment.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm the data system/software is installed, with security, audit trail, and access controls configured.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058> + 21 CFR Part 11",
+            "issuer": "USP / FDA",
+            "covers": "Chromatography data system installation, security, and electronic-records controls.",
+            "crit": "CDS installed; audit trail, unique-user access, and electronic-records controls configured per Part 11.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Confirm the qualification test standards (NIST-traceable) and the prequalified test column are on hand and in date.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Availability of NIST-traceable AIQ test standards and a qualified test column.",
+            "crit": "AIQ reference standards (e.g. caffeine/holmium for wavelength, test mix) are NIST-traceable and in date; a prequalified test column is available.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Pump flow-rate accuracy: gravimetric/volumetric check at representative flow(s).",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Pump flow-rate accuracy verification across the operating range.",
+            "crit": "Flow accuracy within the SOP tolerance (commonly ±1% at the test flow — example; confirm) at the qualified flow rate(s).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Gradient/proportioning accuracy and dwell volume (gradient systems).",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Gradient composition accuracy and system dwell volume.",
+            "crit": "Gradient step accuracy within the SOP tolerance; dwell volume characterized for the system.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Detector wavelength accuracy (e.g. holmium/caffeine) and, for DAD/UV, photometric linearity.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Detector wavelength accuracy and photometric/detector linearity.",
+            "crit": "Wavelength accuracy within the SOP tolerance (commonly ±1–2 nm — example; confirm); detector linearity R² meets the SOP (commonly ≥ 0.999 — example).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Autosampler injection precision (repeatability) and volume linearity.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Autosampler injection-volume precision and linearity.",
+            "crit": "Injection precision %RSD within the SOP limit across replicate injections; volume linearity across the tested range.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Autosampler carryover.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Carryover between injections.",
+            "crit": "Carryover below the SOP limit (blank after a high-concentration injection).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Column oven temperature accuracy and (refrigerated autosampler) tray temperature accuracy.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Column-oven and autosampler-tray temperature accuracy.",
+            "crit": "Column oven within the SOP tolerance (commonly ±1 °C of setpoint — example; confirm); autosampler tray within its tolerance.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Calibration verification: confirm AIQ standards/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "AIQ standards and supporting instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic system suitability with a method/test mix: resolution, repeatability, tailing, and sensitivity/noise.",
+          "s": {
+            "status": "verified",
+            "id": "USP <621> System Suitability + <1058>",
+            "issuer": "United States Pharmacopeia",
+            "covers": "Holistic system-suitability performance against a method's SST criteria.",
+            "crit": "System-suitability parameters (resolution, %RSD, tailing, S/N) meet the method's <621> criteria — method/product-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <621>/<1058>"
+          }
+        },
+        {
+          "t": "Confirm performance is verified against the actual intended methods and operating range.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "PQ against the laboratory's intended methods and qualified range.",
+            "crit": "Performance demonstrated with the intended method(s) within the qualified operating range; do not operate outside the qualified range.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Define routine system-suitability, PM, and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine SST, preventive maintenance, and requalification intervals defined and risk-justified.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  gc: {
+    "name": "Gas Chromatography (GC)",
+    "domain": "GMP",
+    "sub": "Gas chromatographs (USP <1058>)",
+    "desc": "Qualification of gas chromatographs under USP <1058> AIQ. Modular OQ covers oven temperature, carrier/flow or pressure control, injector, and detector (FID/TCD/etc.) response. Setpoints and acceptance are method/SOP-driven — confirm against the intended operating range, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"3\" y=\"5\" width=\"12\" height=\"14\" rx=\"2\"/><circle cx=\"9\" cy=\"12\" r=\"3\"/><path d=\"M15 9h4M17 9v8a2 2 0 0 0 2 2\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify the GC, detector(s), injector, and gas supplies/regulators make/model/serial vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "GC, detector, injector, and gas supplies identified and verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify carrier/make-up/detector gas lines, traps, and purity meet the design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Gas lines, traps, and gas purity installed and verified per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm the data system/software is installed, with security, audit trail, and access controls.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058> + 21 CFR Part 11",
+            "issuer": "USP / FDA",
+            "covers": "Data system installation and electronic-records controls.",
+            "crit": "CDS installed; audit trail and access controls configured per Part 11.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Confirm AIQ test mixture/standards are on hand and in date.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Availability of in-date AIQ test standards.",
+            "crit": "AIQ test mixture/standards available, traceable, and in date.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Oven temperature accuracy and ramp/program performance.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Column-oven temperature accuracy and temperature-program performance.",
+            "crit": "Oven temperature within the SOP tolerance at setpoints; the temperature program executes within tolerance — setpoints method-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Carrier flow / pressure control accuracy.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Carrier flow or inlet-pressure control accuracy.",
+            "crit": "Flow/pressure control within the SOP tolerance across the operating range.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Injector performance (split/splitless, repeatability).",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Injector performance and repeatability.",
+            "crit": "Injection repeatability %RSD within the SOP limit; split ratio (if applicable) within tolerance.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Detector response: linearity/sensitivity and baseline noise (FID/TCD/ECD as fitted).",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "Detector linearity, sensitivity, and noise.",
+            "crit": "Detector linearity meets the SOP; sensitivity/noise within limits for the fitted detector.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Calibration verification: confirm AIQ standards/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "AIQ standards and instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic system suitability with a method/test mix: resolution, repeatability, tailing, sensitivity.",
+          "s": {
+            "status": "verified",
+            "id": "USP <621> System Suitability + <1058>",
+            "issuer": "United States Pharmacopeia",
+            "covers": "Holistic system-suitability performance against a method's SST criteria.",
+            "crit": "System-suitability parameters meet the method's <621> criteria — method/product-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <621>/<1058>"
+          }
+        },
+        {
+          "t": "Confirm performance against the actual intended methods and qualified operating range.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "PQ against intended methods and the qualified range.",
+            "crit": "Performance demonstrated with the intended method(s) within the qualified range.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Define routine system-suitability, PM, and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine SST, PM, and requalification intervals defined and risk-justified.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  dissolution: {
+    "name": "Dissolution Apparatus",
+    "domain": "GMP",
+    "sub": "USP <711> dissolution testers",
+    "desc": "Qualification of dissolution testers (USP Apparatus 1 basket / 2 paddle, etc.). Mechanical calibration verifies the physical setup against USP <711> tolerances (RPM, shaft centering ≤ 2 mm, paddle/basket height 25 ± 2 mm, vessel verticality, wobble), backed by a Performance Verification Test. The medium temperature is typically 37 ± 0.5 °C — confirm against the monograph.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><path d=\"M7 4v6a5 5 0 0 0 10 0V4\"/><path d=\"M12 4v10\"/><path d=\"M6 20h12\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify apparatus type (1 basket / 2 paddle / others), make/model/serial, and vessel set vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Apparatus type, identification, and vessel set verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify the water bath/heater-circulator (or dry heat), drive, and sampling system installed per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Bath/heater, drive, and sampling system installed per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm calibrated references (tachometer, thermometer, height gauge, wobble/centering tools) are available and traceable.",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> + ISO/IEC 17025",
+            "issuer": "USP / accredited cal",
+            "covers": "Reference instruments for dissolution mechanical calibration.",
+            "crit": "Tachometer, temperature reference, and mechanical-calibration tools (centering, height, wobble, verticality) calibrated and traceable.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Rotation speed (RPM) accuracy at representative setpoints.",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> mechanical calibration",
+            "issuer": "United States Pharmacopeia — Dissolution",
+            "covers": "Shaft rotation-speed accuracy.",
+            "crit": "RPM within USP <711> tolerance (commonly ±4% of setpoint — confirm) at the tested speeds.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Shaft centering / vessel centering (offset from the vertical axis).",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> mechanical calibration",
+            "issuer": "USP",
+            "covers": "Shaft and vessel centering.",
+            "crit": "Shaft centerline within USP <711> limit (commonly ≤ 2 mm at any point from the vessel axis — confirm).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Paddle/basket height above the vessel bottom.",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> mechanical calibration",
+            "issuer": "USP",
+            "covers": "Distance from paddle/basket to the vessel inner bottom.",
+            "crit": "Height within USP <711> tolerance (commonly 25 ± 2 mm — confirm).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Vessel verticality and shaft wobble.",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> mechanical calibration",
+            "issuer": "USP",
+            "covers": "Vessel verticality and shaft/paddle wobble.",
+            "crit": "Verticality and wobble within the USP <711> / Enhanced Mechanical Calibration limits (e.g. wobble small; verticality within tolerance — confirm).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Medium temperature accuracy and uniformity across vessels.",
+          "s": {
+            "status": "verified",
+            "id": "USP <711>",
+            "issuer": "USP",
+            "covers": "Dissolution medium temperature control across vessels.",
+            "crit": "Medium temperature within tolerance across all vessels (commonly 37 ± 0.5 °C — confirm per monograph).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Verify vibration is within limits and the sampling/timing functions operate.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (USP <711> / FDA MC)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "Vibration within the mechanical-calibration limit; sampling and timing functions operate correctly."
+          }
+        },
+        {
+          "t": "Calibration verification: confirm reference tools/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Reference tools and instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Performance Verification Test (PVT) with USP Reference Standard tablets (or an approved alternative).",
+          "s": {
+            "status": "verified",
+            "id": "USP <711> Performance Verification Test",
+            "issuer": "United States Pharmacopeia",
+            "covers": "Holistic performance via the PVT using USP RS tablets.",
+            "crit": "PVT results fall within the USP-published acceptance range for the reference standard — the holistic check that mechanical setup + operation perform together.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <711>"
+          }
+        },
+        {
+          "t": "Confirm method/monograph conditions (apparatus, RPM, medium, time points) are within the qualified range.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Intended monograph conditions fall within the qualified apparatus range.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Define routine mechanical-calibration / PVT and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine mechanical calibration / PVT and requalification intervals defined.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  uvvis: {
+    "name": "UV-Vis Spectrophotometers",
+    "domain": "GMP",
+    "sub": "UV-visible spectrophotometry (USP <857>)",
+    "desc": "Qualification of UV-visible spectrophotometers per USP <857> / Ph. Eur. 2.2.25. Core checks: wavelength accuracy (e.g. holmium oxide), photometric accuracy and linearity (e.g. potassium dichromate), stray light, and resolution. Acceptance is compendial but the operating wavelength range is method-driven — confirm, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><path d=\"M3 12h4l3-7 4 14 3-7h4\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify make/model/serial, lamp type(s), and wavelength range vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Instrument identification and wavelength range verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify the data system/software, security, audit trail, and access controls are installed.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058> + 21 CFR Part 11",
+            "issuer": "USP / FDA",
+            "covers": "Software installation and electronic-records controls.",
+            "crit": "Software installed; audit trail and access controls configured per Part 11.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Confirm certified reference materials (e.g. holmium oxide, potassium dichromate, stray-light filters) are on hand and in date.",
+          "s": {
+            "status": "verified",
+            "id": "USP <857>",
+            "issuer": "United States Pharmacopeia — Ultraviolet-Visible Spectroscopy",
+            "covers": "Availability of certified reference materials for UV-Vis qualification.",
+            "crit": "Certified wavelength (holmium), photometric (dichromate), and stray-light reference materials available, traceable, and in date.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Wavelength accuracy and repeatability (e.g. holmium oxide peaks).",
+          "s": {
+            "status": "verified",
+            "id": "USP <857> / Ph. Eur. 2.2.25",
+            "issuer": "USP / European Pharmacopoeia",
+            "covers": "Wavelength accuracy and repeatability against certified peaks.",
+            "crit": "Wavelength accuracy within the compendial tolerance (commonly ±1 nm UV / ±3 nm visible — example; confirm) at the certified peaks.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Photometric accuracy and linearity (e.g. potassium dichromate at defined wavelengths).",
+          "s": {
+            "status": "verified",
+            "id": "USP <857>",
+            "issuer": "USP",
+            "covers": "Photometric (absorbance) accuracy and linearity.",
+            "crit": "Photometric accuracy within the compendial tolerance across the absorbance range; linearity meets the SOP.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Stray light at the defined cut-off wavelength(s).",
+          "s": {
+            "status": "verified",
+            "id": "USP <857>",
+            "issuer": "USP",
+            "covers": "Stray-light measurement at cut-off wavelengths.",
+            "crit": "Stray light below the compendial limit at the specified cut-off wavelength(s).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Spectral resolution / bandwidth (e.g. toluene-in-hexane ratio where applicable).",
+          "s": {
+            "status": "verified",
+            "id": "USP <857> / Ph. Eur. 2.2.25",
+            "issuer": "USP / Ph. Eur.",
+            "covers": "Resolution / spectral bandwidth check.",
+            "crit": "Resolution meets the compendial requirement (e.g. toluene/hexane absorbance ratio where used).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Baseline flatness/noise and (scanning) wavelength scan check.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (data sheet / <857>)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "Baseline noise/flatness within the data-sheet limit; scan function operates correctly."
+          }
+        },
+        {
+          "t": "Calibration verification: confirm reference materials/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Reference materials and instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic check with a method/control: confirm a known standard reads within the method acceptance.",
+          "s": {
+            "status": "verified",
+            "id": "USP <857> + <1058>",
+            "issuer": "USP",
+            "covers": "Holistic performance against a method control.",
+            "crit": "A known control/standard reads within the method's acceptance — method/product-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <857>"
+          }
+        },
+        {
+          "t": "Confirm the intended method wavelength(s) fall within the qualified range.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "PQ against the intended method's wavelength range.",
+            "crit": "Method wavelength(s) within the qualified range; do not operate outside it.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Define routine performance-check and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine performance check and requalification intervals defined.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  ftir: {
+    "name": "FTIR Spectrometers",
+    "domain": "GMP",
+    "sub": "Fourier-transform infrared (Ph. Eur. 2.2.24)",
+    "desc": "Qualification of FTIR spectrometers per USP <854> / USP <1058> and Ph. Eur. 2.2.24. Core checks: wavenumber accuracy (e.g. polystyrene reference film), resolution, and signal-to-noise. Acceptance is compendial; the operating spectral range is method-driven — confirm, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><path d=\"M3 8c2 0 2 8 4 8s2-12 4-12 2 10 4 10 2-4 4-4\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify make/model/serial, source/detector, and spectral range vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Instrument identification and spectral range verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify the data system/software, security, audit trail, and access controls are installed.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058> + 21 CFR Part 11",
+            "issuer": "USP / FDA",
+            "covers": "Software installation and electronic-records controls.",
+            "crit": "Software installed; audit trail and access controls configured per Part 11.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Confirm the polystyrene reference film and any sampling accessories (ATR, etc.) are on hand and in date.",
+          "s": {
+            "status": "verified",
+            "id": "USP <854> / Ph. Eur. 2.2.24",
+            "issuer": "USP / European Pharmacopoeia",
+            "covers": "Availability of the polystyrene wavenumber reference and accessories.",
+            "crit": "Polystyrene reference film (and sampling accessories) available, traceable, and in date.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <854>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Wavenumber (frequency) accuracy using polystyrene reference bands.",
+          "s": {
+            "status": "verified",
+            "id": "USP <854> / Ph. Eur. 2.2.24",
+            "issuer": "USP / Ph. Eur.",
+            "covers": "Wavenumber accuracy against certified polystyrene bands.",
+            "crit": "Wavenumber accuracy within the compendial tolerance at the certified polystyrene bands (confirm tolerance per chapter).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <854>"
+          }
+        },
+        {
+          "t": "Resolution check (ability to separate defined polystyrene bands).",
+          "s": {
+            "status": "verified",
+            "id": "Ph. Eur. 2.2.24 / USP <854>",
+            "issuer": "Ph. Eur. / USP",
+            "covers": "Spectral resolution via defined band separation.",
+            "crit": "Resolution meets the compendial requirement (defined band separation/depth on polystyrene).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <854>"
+          }
+        },
+        {
+          "t": "Signal-to-noise ratio over a defined region.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (data sheet / <854>)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "Signal-to-noise meets the data-sheet/compendial requirement over the defined region."
+          }
+        },
+        {
+          "t": "Verify the sampling accessory (ATR/transmission) performs and the energy throughput is acceptable.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (data sheet)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "Sampling accessory performs and energy throughput is within the data-sheet expectation."
+          }
+        },
+        {
+          "t": "Calibration verification: confirm reference materials/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Reference materials and instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic identity check: confirm a known reference material's spectrum matches within the method acceptance.",
+          "s": {
+            "status": "verified",
+            "id": "USP <854>/<1058>",
+            "issuer": "USP",
+            "covers": "Holistic performance via a known reference-material spectrum.",
+            "crit": "A known reference material is correctly identified/matched within the method acceptance — method-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <854>"
+          }
+        },
+        {
+          "t": "Confirm the intended method spectral range falls within the qualified range.",
+          "s": {
+            "status": "verified",
+            "id": "USP <1058>",
+            "issuer": "United States Pharmacopeia — Analytical Instrument Qualification (AIQ)",
+            "covers": "PQ against the intended method's spectral range.",
+            "crit": "Method spectral range within the qualified range; do not operate outside it.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <1058>"
+          }
+        },
+        {
+          "t": "Define routine performance-check and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine performance check and requalification intervals defined.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  karlfischer: {
+    "name": "Karl Fischer Titrators",
+    "domain": "GMP",
+    "sub": "Water-content titrators (USP <921>)",
+    "desc": "Qualification of Karl Fischer titrators (volumetric or coulometric) for water determination per USP <921> / Ph. Eur. 2.5.12. Core checks: reagent titre standardization, accuracy against a certified water standard, and repeatability. The sample size and endpoint are method-driven — confirm, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><path d=\"M9 3h6M10 3v5l-4 9a2 2 0 0 0 2 3h8a2 2 0 0 0 2-3l-4-9V3\"/><path d=\"M7 15h10\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify titrator type (volumetric/coulometric), make/model/serial, and configuration vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Titrator type, identification, and configuration verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify the cell, electrodes, dosing/burette, drying, and (software) data system installed per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Cell, electrodes, dosing system, and software installed per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm certified water standards and reagents are on hand, in date, and stored correctly.",
+          "s": {
+            "status": "verified",
+            "id": "USP <921> / Ph. Eur. 2.5.12",
+            "issuer": "USP / European Pharmacopoeia",
+            "covers": "Availability of certified water standards and KF reagents.",
+            "crit": "Certified water standards and KF reagents available, traceable, in date, and stored to control moisture.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <921>"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Reagent titre standardization (volumetric): determine mg H₂O per mL of titrant.",
+          "s": {
+            "status": "verified",
+            "id": "USP <921>",
+            "issuer": "United States Pharmacopeia — Water Determination",
+            "covers": "Volumetric KF reagent standardization (titre).",
+            "crit": "Titre determined and within the expected range for the reagent; repeatability of standardization within the SOP limit.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <921>"
+          }
+        },
+        {
+          "t": "Accuracy against a certified water standard.",
+          "s": {
+            "status": "verified",
+            "id": "USP <921> / Ph. Eur. 2.5.12",
+            "issuer": "USP / Ph. Eur.",
+            "covers": "Accuracy via a certified water standard.",
+            "crit": "Measured water content within the SOP tolerance of the certified value (recovery within limits).",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <921>"
+          }
+        },
+        {
+          "t": "Repeatability (precision) across replicate determinations of a standard.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (method)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "%RSD across replicate determinations within the SOP limit."
+          }
+        },
+        {
+          "t": "Verify endpoint detection, drift/blank, and (oven sampler) oven temperature where fitted.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (data sheet / method)",
+            "issuer": "Site URS / analytical method / equipment data sheet",
+            "covers": "The acceptance limit for this check is defined by the site URS, the analytical method, or the equipment data sheet, not a single published standard.",
+            "crit": "Endpoint detection and drift/blank within limits; oven temperature accurate where an oven sampler is used (setpoint method-defined)."
+          }
+        },
+        {
+          "t": "Calibration verification: confirm standards/balance are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Water standards and the supporting balance within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic check with a representative sample/control: confirm recovery within the method acceptance.",
+          "s": {
+            "status": "verified",
+            "id": "USP <921>",
+            "issuer": "USP",
+            "covers": "Holistic performance via a representative control sample.",
+            "crit": "A representative control recovers within the method acceptance — sample size/endpoint method-defined, do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <921>"
+          }
+        },
+        {
+          "t": "Confirm the intended method (sample size, reagent, endpoint) is within the qualified range.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Intended method parameters within the qualified range.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Define routine standardization/verification and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine standardization/verification and requalification intervals defined.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  particlecounter: {
+    "name": "Particle Counters",
+    "domain": "GMP",
+    "sub": "Liquid (USP <788>) & airborne particle counters",
+    "desc": "Qualification of particle counters — liquid-borne for injectable particulates (USP <788> / <787> / <789>, light-obscuration) and airborne for cleanroom/EM (ISO 21501-4 calibration, used in ISO 14644 work). Size/count thresholds are compendial; which limits apply is product/area-driven — confirm, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><circle cx=\"8\" cy=\"9\" r=\"1.4\"/><circle cx=\"14\" cy=\"7\" r=\"1\"/><circle cx=\"16\" cy=\"13\" r=\"1.7\"/><circle cx=\"10\" cy=\"15\" r=\"1\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify counter type (liquid LO / airborne optical), make/model/serial, and size channels vs PO/URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Counter type, identification, and size channels verified vs PO/URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify the sampling system (sensor, pump/flow, sampler) and software/data system installed per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Sensor, flow/sampling system, and software installed per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm calibration is traceable: size via certified PSL latex spheres; counting efficiency and sample volume verified.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 21501-4 (airborne) / USP <788> (liquid)",
+            "issuer": "ISO / USP",
+            "covers": "Traceable size and count calibration of the particle counter.",
+            "crit": "Size calibration against certified PSL spheres; counting efficiency, sample-volume accuracy, and (airborne) ISO 21501-4 parameters verified and traceable.",
+            "link": "https://www.iso.org/standard/63367.html",
+            "linkLabel": "iso.org — ISO 21501-4"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation/manuals are filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Size accuracy / resolution using certified PSL latex spheres.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 21501-4 / USP <788>",
+            "issuer": "ISO / USP",
+            "covers": "Particle-size accuracy and resolution.",
+            "crit": "Reported sizes match the certified PSL spheres within the standard's tolerance; size resolution meets ISO 21501-4 (airborne).",
+            "link": "https://www.iso.org/standard/63367.html",
+            "linkLabel": "iso.org — ISO 21501-4"
+          }
+        },
+        {
+          "t": "Counting efficiency and false-count (zero-count) rate.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 21501-4",
+            "issuer": "International Organization for Standardization",
+            "covers": "Counting efficiency and false/zero-count rate.",
+            "crit": "Counting efficiency within the ISO 21501-4 range; false-count rate below the limit on filtered/clean fluid or air.",
+            "link": "https://www.iso.org/standard/63367.html",
+            "linkLabel": "iso.org — ISO 21501-4"
+          }
+        },
+        {
+          "t": "Sample flow rate / sample volume accuracy.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 21501-4 / USP <788>",
+            "issuer": "ISO / USP",
+            "covers": "Sampled flow/volume accuracy.",
+            "crit": "Sample flow rate / volume within tolerance so reported concentrations are accurate.",
+            "link": "https://www.iso.org/standard/63367.html",
+            "linkLabel": "iso.org — ISO 21501-4"
+          }
+        },
+        {
+          "t": "Liquid LO only: verify system suitability with a count-accuracy reference suspension per USP <788>.",
+          "s": {
+            "status": "verified",
+            "id": "USP <788>",
+            "issuer": "United States Pharmacopeia — Particulate Matter in Injections",
+            "covers": "Light-obscuration system suitability for liquid particulate counting.",
+            "crit": "Count-accuracy / system suitability meets USP <788> using the reference particle suspension.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <788>"
+          }
+        },
+        {
+          "t": "Calibration verification: confirm reference standards/instruments are within tolerance before testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Reference standards and instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Holistic check against the application: liquid → USP <788> ≥10 µm/≥25 µm limits; airborne → ISO 14644 class.",
+          "s": {
+            "status": "verified",
+            "id": "USP <788> (liquid) / ISO 14644-1 (air)",
+            "issuer": "USP / ISO",
+            "covers": "Application performance against the relevant particulate limits.",
+            "crit": "Liquid: counts at ≥10 µm and ≥25 µm meet the USP <788> limits for the product/volume. Airborne: supports the target ISO 14644-1 class. Which limits apply is product/area-defined — do not assume.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <788>"
+          }
+        },
+        {
+          "t": "Confirm the intended size channels and limits fall within the qualified range.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Intended size channels and limits within the qualified range.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Define routine calibration (annual per ISO 21501-4 typical) and requalification frequency.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine calibration and requalification intervals defined and risk-justified.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  pipette: {
+    "name": "Pipettes & Liquid Handling",
+    "domain": "ISO",
+    "sub": "Piston-operated pipettes (ISO 8655:2022)",
+    "desc": "Calibration/qualification of piston-operated volumetric apparatus (pipettes, dispensers, dilutors) per ISO 8655:2022. The gravimetric reference method weighs dispensed water to compute systematic error (accuracy) and random error (precision) at defined test volumes. The maximum permissible errors are tied to the nominal volume — confirm against the model and the volumes you actually use, do not assume.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#5aa9e6\" stroke-width=\"1.6\"><path d=\"M11 3h2v6l1 9a2 2 0 0 1-4 0l1-9z\"/><path d=\"M10 21h4\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Record make/model/serial, channel count, and nominal/volume range vs the purchase spec.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Pipette identification, channels, and volume range recorded vs spec.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm the calibration balance meets the ISO 8655-6 minimum resolution for the volume range, and an evaporation trap is available for low volumes.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-6:2022",
+            "issuer": "International Organization for Standardization — gravimetric reference procedure",
+            "covers": "Balance and accessory requirements for gravimetric pipette calibration.",
+            "crit": "Balance resolution meets ISO 8655-6 Table 1 for the nominal volume (e.g. finer balance required at low µL); evaporation trap available for volumes < 10 µL.",
+            "link": "https://www.iso.org/standard/74161.html",
+            "linkLabel": "iso.org — ISO 8655-6"
+          }
+        },
+        {
+          "t": "Confirm the controlled test environment (temperature, humidity, freedom from drafts/vibration) and water/balance references.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-6:2022",
+            "issuer": "ISO",
+            "covers": "Controlled environment for gravimetric calibration.",
+            "crit": "Test environment within ISO 8655 conditions (e.g. 15–30 °C, stable humidity, draft/vibration-free); water density and conditions recorded.",
+            "link": "https://www.iso.org/standard/74161.html",
+            "linkLabel": "iso.org — ISO 8655-6"
+          }
+        },
+        {
+          "t": "Build an instrument inventory and verify documentation is filed.",
+          "s": "gmp"
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Systematic error (accuracy) at the test volumes (e.g. 100 %, 50 %, 10 % of nominal).",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-2:2022",
+            "issuer": "International Organization for Standardization — Pipettes",
+            "covers": "Systematic error (accuracy) by gravimetric measurement at the defined test volumes.",
+            "crit": "Mean dispensed volume within the maximum permissible systematic error for the nominal volume at 100/50/10 % (errors doubled for multichannel) — limits are nominal-volume-defined, do not assume.",
+            "link": "https://www.iso.org/standard/74160.html",
+            "linkLabel": "iso.org — ISO 8655-2"
+          }
+        },
+        {
+          "t": "Random error (precision/repeatability) at the test volumes.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-2:2022",
+            "issuer": "ISO",
+            "covers": "Random error (precision) from replicate measurements.",
+            "crit": "Random error (SD/CV) within the maximum permissible random error for the nominal volume at each test volume.",
+            "link": "https://www.iso.org/standard/74160.html",
+            "linkLabel": "iso.org — ISO 8655-2"
+          }
+        },
+        {
+          "t": "Minimum ≥ 10 replicate measurements per test volume, with a fresh tip per measured volume.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-6:2022",
+            "issuer": "ISO",
+            "covers": "Replication and procedure requirements.",
+            "crit": "At least 10 measurements per test volume; tip changed per measured volume; pre-wetting and technique per ISO 8655.",
+            "link": "https://www.iso.org/standard/74161.html",
+            "linkLabel": "iso.org — ISO 8655-6"
+          }
+        },
+        {
+          "t": "Determine the evaporation rate / blank and apply the correction (especially < 10 µL).",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-6:2022",
+            "issuer": "ISO",
+            "covers": "Evaporation correction in the gravimetric procedure.",
+            "crit": "Evaporation rate determined and corrected so it doesn't bias low-volume results.",
+            "link": "https://www.iso.org/standard/74161.html",
+            "linkLabel": "iso.org — ISO 8655-6"
+          }
+        },
+        {
+          "t": "Confirm the balance is within calibration and report measurement uncertainty.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-6 + ISO/IEC 17025",
+            "issuer": "ISO",
+            "covers": "Balance status and measurement uncertainty.",
+            "crit": "Balance in calibration; measurement uncertainty estimated and reported per accredited practice.",
+            "link": "https://www.iso.org/standard/74161.html",
+            "linkLabel": "iso.org — ISO 8655-6"
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Confirm in-use performance with the actual tips/technique/operators for the intended volumes.",
+          "s": {
+            "status": "verified",
+            "id": "ISO 8655-7:2022",
+            "issuer": "ISO — alternative measurement procedures / in-use",
+            "covers": "In-use verification with the laboratory's tips, technique, and operators.",
+            "crit": "In-use accuracy and precision meet the application requirement with the actual tips/operators at the volumes used — application-defined.",
+            "link": "https://www.iso.org/standard/74162.html",
+            "linkLabel": "iso.org — ISO 8655-7"
+          }
+        },
+        {
+          "t": "Define routine recalibration frequency (risk/use-based; high-use QC pipettes more often) and intermediate checks.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Routine recalibration frequency and intermediate checks defined and risk-justified.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  depyrotunnel: {
+    "name": "Depyrogenation Tunnels",
+    "domain": "GMP",
+    "sub": "Continuous conveyor dry-heat depyrogenation tunnel",
+    "desc": "Qualification of a continuous conveyor (belt) dry-heat depyrogenation tunnel — distinct from the standalone batch depyrogenation oven. The defining requirement is demonstrated endotoxin reduction (≥ 3-log / 1000-fold), not just sterility. Belt speed, zone temperatures, and pressure cascade are process-driven — confirm, do not assume (cycles typically run ≥ 250 °C).",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"2\" y=\"7\" width=\"20\" height=\"8\" rx=\"1\"/><circle cx=\"6\" cy=\"18\" r=\"1.5\"/><circle cx=\"12\" cy=\"18\" r=\"1.5\"/><circle cx=\"18\" cy=\"18\" r=\"1.5\"/><path d=\"M6 7V5M12 7V5M18 7V5\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify power, HEPA-filtered airflow, and belt/zone (infeed–heating–cooling) configuration against the URS.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Tunnel installed per design: power, HEPA airflow, and belt/zone configuration verified vs URS.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm process thermocouples and reference standard are calibrated, traceable, and rated for ≥ 250 °C.",
+          "s": {
+            "status": "verified",
+            "id": "ISO/IEC 17025 + ASTM E220",
+            "issuer": "Accredited calibration / ASTM",
+            "covers": "Calibration of high-temperature process thermocouples for depyrogenation.",
+            "crit": "Process thermocouples and the reference standard calibrated, traceable, and rated for the depyrogenation temperature (≥ 250 °C typical — confirm cycle).",
+            "link": "https://www.iso.org/standard/66912.html",
+            "linkLabel": "iso.org — ISO/IEC 17025"
+          }
+        },
+        {
+          "t": "Verify airflow / pressure cascade between zones (infeed to sterile outfeed) is installed per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Inter-zone airflow / pressure cascade installed per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify power supply, leveling, and required clearances per nameplate.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Installation verified: power, leveling, and clearances.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm HEPA/airflow, belt drive, and zone configuration per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "HEPA/airflow, belt drive, and zones installed per design.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify high-temperature-rated thermocouples are calibrated and traceable.",
+          "s": {
+            "status": "verified",
+            "id": "ISO/IEC 17025",
+            "issuer": "Accredited calibration",
+            "covers": "Calibration of mapping/monitoring thermocouples.",
+            "crit": "Mapping/monitoring thermocouples calibrated, traceable, and rated for the operating temperature.",
+            "link": "https://www.iso.org/standard/66912.html",
+            "linkLabel": "iso.org — ISO/IEC 17025"
+          }
+        },
+        {
+          "t": "Build an instrument inventory: list controlling and recording instruments with cal ID, range, and due date.",
+          "s": "gmp"
+        },
+        {
+          "t": "Verify vendor documentation, manual, and warranty are received and filed.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Manuals, certificates, and warranty received and filed.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Empty-belt heat distribution through the heating zone; identify the cold position across the belt width.",
+          "s": {
+            "status": "verified",
+            "id": "PDA TR3-style dry-heat + general practice",
+            "issuer": "PDA / industry",
+            "covers": "Heat distribution across the belt and through the heating zone.",
+            "crit": "Setpoint/belt speed are process-defined — do not assume (≥ 250 °C typical). Distribution within the protocol band across the belt; coldest position identified for the endotoxin challenge.",
+            "link": "https://www.pda.org",
+            "linkLabel": "pda.org — PDA technical reports"
+          }
+        },
+        {
+          "t": "Verify belt speed / dwell time accuracy and cycle timer/controller functions.",
+          "s": {
+            "status": "verified",
+            "id": "PDA / industry dry-heat practice",
+            "issuer": "Industry practice",
+            "covers": "Belt-speed / dwell-time accuracy and controller function.",
+            "crit": "Belt speed within tolerance so dwell time at temperature meets the cycle requirement (belt speed/dwell is process-defined — do not assume).",
+            "link": "https://www.pda.org",
+            "linkLabel": "pda.org — PDA technical reports"
+          }
+        },
+        {
+          "t": "Calibration verification: confirm critical instruments are within tolerance before functional testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Critical instruments within tolerance before functional testing.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify control-system functions: setpoint entry, display accuracy vs reference, and security/access levels.",
+          "s": "gmp"
+        },
+        {
+          "t": "Verify zone-to-zone pressure cascade and door/interlock functions.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Pressure cascade and interlocks function as designed.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm recorder/printout captures critical parameters and matches the controller.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Record captures critical parameters and matches the controller.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Endotoxin challenge at the cold position: demonstrate ≥ 3-log (1000-fold) reduction of endotoxin.",
+          "s": {
+            "status": "verified",
+            "id": "USP <85> BET + dry-heat depyrogenation practice",
+            "issuer": "United States Pharmacopeia / PDA",
+            "covers": "Endotoxin-reduction (LRV) challenge at the coldest belt position.",
+            "crit": "≥ 3-log (1000-fold) reduction of a known endotoxin spike at the cold position across the required runs — the defining depyrogenation requirement.",
+            "link": "https://www.usp.org",
+            "linkLabel": "usp.org — USP <85> BET"
+          }
+        },
+        {
+          "t": "Loaded heat-penetration at production belt speed: confirm time-at-temperature at all positions and load types.",
+          "s": {
+            "status": "verified",
+            "id": "Dry-heat depyrogenation practice",
+            "issuer": "Industry / PDA",
+            "covers": "Loaded heat-penetration at production belt speed.",
+            "crit": "Time-at-temperature requirement (F_H / LRV basis) met at all belt positions and qualified load/container types — process-defined, do not assume.",
+            "link": "https://www.pda.org",
+            "linkLabel": "pda.org — PDA technical reports"
+          }
+        },
+        {
+          "t": "Define each container/load configuration and belt speed to be qualified.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Each load configuration and belt speed defined, justified, and approved.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Demonstrate reproducibility across the required number of consecutive successful runs.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Required consecutive runs all pass without intervention.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Define requalification trigger and periodic review frequency based on risk.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211 · EU Annex 15",
+            "issuer": "US FDA 21 CFR Part 211 · EU EudraLex Vol.4 Annex 15",
+            "covers": "General GMP qualification requirement: equipment/systems of appropriate design, installed/operated as intended, with calibration, records, and verification of operating limits and reproducibility.",
+            "crit": "Requalification triggers and review interval defined and risk-justified.",
+            "link": "https://www.ecfr.gov/current/title-21/part-211",
+            "linkLabel": "ecfr.gov — 21 CFR 211",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "EU Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+
 
 };
 
@@ -9635,6 +11299,344 @@ const HOWTO_bsc = {
     link: "https://www.nsf.org", linkLabel: "nsf.org — NSF/ANSI 49" }
 };
 
+const HOWTO_hplc = {
+  "IQ:0": { use: "iq-components", title: "Verify each module (pump, autosampler, oven, detector) vs PO/URS" },
+  "IQ:1": { use: "iq-utilities", title: "Verify utilities, bench space, drainage, and environment" },
+  "IQ:2": { title: "Install and secure the data system (CDS)",
+    steps: ["Install the chromatography data system and confirm version.","Configure unique-user accounts and access levels.","Enable and verify the audit trail (Part 11).","Confirm time/date sync and secure data storage."],
+    accept: "CDS installed; audit trail, unique-user access, and electronic-records controls configured per Part 11.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "IQ:3": { use: "iq-calibration-certs", title: "Confirm NIST-traceable AIQ standards and test column are in date",
+    accept: "AIQ reference standards (caffeine/holmium, test mix) are NIST-traceable and in date; a prequalified test column is available." },
+  "IQ:4": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Pump flow-rate accuracy",
+    steps: ["Set a representative flow rate with the test column/restrictor in place.","Collect and weigh (or volumetrically measure) the eluent over a timed interval.","Calculate the actual flow rate and compare to the setpoint.","Repeat at additional flows if the SOP requires."],
+    accept: "Flow accuracy within the SOP tolerance (commonly ±1% at the test flow — example; confirm) at the qualified flow rate(s).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:1": { title: "Gradient / proportioning accuracy and dwell volume",
+    steps: ["Run the prescribed step-gradient test method (e.g. tracer in mobile phase B).","Measure the actual composition at each step from the detector trace.","Determine the system dwell (delay) volume from the gradient onset.","Compare to the SOP tolerance."],
+    accept: "Gradient step accuracy within the SOP tolerance; dwell volume characterized for the system.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:2": { title: "Detector wavelength accuracy and linearity",
+    steps: ["Run a certified wavelength standard (e.g. caffeine/holmium) and confirm the peak wavelengths.","For DAD/UV, inject a linearity series and plot response vs concentration.","Compare wavelength error and R² to the SOP."],
+    accept: "Wavelength accuracy within the SOP tolerance (commonly ±1–2 nm — example; confirm); detector linearity R² meets the SOP (commonly ≥ 0.999 — example).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:3": { title: "Autosampler injection precision and volume linearity",
+    steps: ["Make replicate injections of a standard at a fixed volume.","Calculate the area %RSD (precision).","Inject across several volumes and confirm area vs volume linearity."],
+    accept: "Injection precision %RSD within the SOP limit across replicates; volume linearity across the tested range.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:4": { title: "Autosampler carryover",
+    steps: ["Inject a high-concentration standard.","Immediately inject a blank.","Measure any analyte response in the blank as a % of the standard."],
+    accept: "Carryover below the SOP limit (blank after a high-concentration injection).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:5": { title: "Column oven and autosampler tray temperature accuracy",
+    steps: ["Place a calibrated probe at the column oven setpoint and compare to display.","For a refrigerated autosampler, verify tray temperature against a reference.","Record deviations."],
+    accept: "Column oven within the SOP tolerance (commonly ±1 °C of setpoint — example; confirm); autosampler tray within its tolerance.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:6": { use: "cal-verify", title: "Confirm AIQ standards/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic system suitability (SST) with a method/test mix",
+    steps: ["Run the method's system-suitability injection sequence.","Evaluate resolution, repeatability (%RSD), tailing, and S/N.","Compare each to the method's <621> SST criteria."],
+    accept: "System-suitability parameters (resolution, %RSD, tailing, S/N) meet the method's <621> criteria — method/product-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <621>/<1058>" },
+  "PQ:1": { title: "Confirm performance against intended methods and qualified range",
+    steps: ["Run the laboratory's intended method(s).","Confirm performance within the qualified operating range (flow, wavelength, temperature).","Do not operate outside the qualified range."],
+    accept: "Performance demonstrated with the intended method(s) within the qualified range; do not operate outside it.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "PQ:2": { use: "requalification", title: "Define routine SST, PM, and requalification frequency" }
+};
+
+const HOWTO_gc = {
+  "IQ:0": { use: "iq-components", title: "Verify GC, detector(s), injector, and gas supplies vs PO/URS" },
+  "IQ:1": { use: "iq-utilities", title: "Verify carrier/make-up/detector gas lines, traps, and purity" },
+  "IQ:2": { title: "Install and secure the data system (CDS)",
+    steps: ["Install the data system and confirm version.","Configure access levels and enable the audit trail (Part 11).","Confirm secure data storage."],
+    accept: "CDS installed; audit trail and access controls configured per Part 11.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "IQ:3": { use: "iq-calibration-certs", title: "Confirm AIQ test mixture/standards are in date",
+    accept: "AIQ test mixture/standards available, traceable, and in date." },
+  "IQ:4": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Oven temperature accuracy and ramp/program performance",
+    steps: ["Compare the oven temperature to a calibrated reference at setpoints.","Run a temperature program and verify ramp rates and hold times.","Record deviations."],
+    accept: "Oven temperature within the SOP tolerance at setpoints; the temperature program executes within tolerance — setpoints method-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:1": { title: "Carrier flow / pressure control accuracy",
+    steps: ["Measure carrier flow (or inlet pressure) against a calibrated reference.","Compare across the operating range to the SOP."],
+    accept: "Flow/pressure control within the SOP tolerance across the operating range.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:2": { title: "Injector performance and repeatability",
+    steps: ["Make replicate injections of a standard.","Calculate area/height %RSD.","Confirm split ratio (if applicable) against the setpoint."],
+    accept: "Injection repeatability %RSD within the SOP limit; split ratio (if applicable) within tolerance.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:3": { title: "Detector response: linearity, sensitivity, and noise",
+    steps: ["Inject a linearity series for the fitted detector (FID/TCD/ECD).","Plot response vs amount and assess linearity.","Measure baseline noise/sensitivity."],
+    accept: "Detector linearity meets the SOP; sensitivity/noise within limits for the fitted detector.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "OQ:4": { use: "cal-verify", title: "Confirm AIQ standards/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic system suitability (SST) with a method/test mix",
+    steps: ["Run the method's SST sequence.","Evaluate resolution, repeatability, tailing, sensitivity.","Compare to the method's <621> criteria."],
+    accept: "System-suitability parameters meet the method's <621> criteria — method/product-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <621>/<1058>" },
+  "PQ:1": { title: "Confirm performance against intended methods and qualified range",
+    steps: ["Run the intended method(s).","Confirm performance within the qualified range.","Do not operate outside the qualified range."],
+    accept: "Performance demonstrated with the intended method(s) within the qualified range.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "PQ:2": { use: "requalification", title: "Define routine SST, PM, and requalification frequency" }
+};
+
+const HOWTO_dissolution = {
+  "IQ:0": { use: "iq-components", title: "Verify apparatus type, identification, and vessel set vs PO/URS" },
+  "IQ:1": { use: "iq-components", title: "Verify bath/heater, drive, and sampling system installed" },
+  "IQ:2": { use: "iq-calibration-certs", title: "Confirm tachometer, thermometer, and mechanical tools are traceable",
+    accept: "Tachometer, temperature reference, and mechanical-calibration tools (centering, height, wobble, verticality) calibrated and traceable." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Rotation speed (RPM) accuracy",
+    steps: ["Measure shaft RPM with a calibrated tachometer at each tested setpoint.","Compare to the setpoint.","Record the deviation."],
+    accept: "RPM within USP <711> tolerance (commonly ±4% of setpoint — confirm) at the tested speeds.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "OQ:1": { title: "Shaft / vessel centering",
+    steps: ["Use the centering gauge at each position.","Measure the shaft centerline offset from the vessel axis at multiple points.","Compare to the limit."],
+    accept: "Shaft centerline within USP <711> limit (commonly ≤ 2 mm at any point from the vessel axis — confirm).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "OQ:2": { title: "Paddle/basket height above the vessel bottom",
+    steps: ["Use the height gauge at each position.","Measure the distance from the paddle/basket to the inner vessel bottom.","Compare to the tolerance."],
+    accept: "Height within USP <711> tolerance (commonly 25 ± 2 mm — confirm).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "OQ:3": { title: "Vessel verticality and shaft wobble",
+    steps: ["Check vessel verticality with the level/gauge.","Measure shaft/paddle wobble with the wobble meter while rotating.","Compare both to the limits."],
+    accept: "Verticality and wobble within the USP <711> / Enhanced Mechanical Calibration limits (confirm).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "OQ:4": { title: "Medium temperature accuracy and uniformity across vessels",
+    steps: ["Bring the bath to the test temperature.","Measure the medium temperature in each vessel with a calibrated probe.","Confirm all vessels are within tolerance."],
+    accept: "Medium temperature within tolerance across all vessels (commonly 37 ± 0.5 °C — confirm per monograph).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "OQ:5": { title: "Vibration and sampling/timing function",
+    steps: ["Measure vibration at the vessel plate against the mechanical-calibration limit.","Confirm the sampling and timing functions operate correctly."],
+    accept: "Vibration within the mechanical-calibration limit; sampling and timing functions operate correctly." },
+  "OQ:6": { use: "cal-verify", title: "Confirm reference tools/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Performance Verification Test (PVT) with USP RS tablets",
+    steps: ["Set up per the USP RS instructions (apparatus, RPM, medium, time points).","Run the PVT with the USP Reference Standard tablets.","Compare results to the USP-published acceptance range."],
+    accept: "PVT results fall within the USP-published acceptance range for the reference standard — the holistic check that mechanical setup + operation perform together.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <711>" },
+  "PQ:1": { title: "Confirm intended monograph conditions are within the qualified range",
+    steps: ["List the intended monograph conditions (apparatus, RPM, medium, time).","Confirm each falls within the qualified apparatus range."],
+    accept: "Intended monograph conditions fall within the qualified apparatus range." },
+  "PQ:2": { use: "requalification", title: "Define routine mechanical-calibration / PVT and requalification frequency" }
+};
+
+const HOWTO_uvvis = {
+  "IQ:0": { use: "iq-components", title: "Verify identification, lamp type(s), and wavelength range vs PO/URS" },
+  "IQ:1": { title: "Install and secure the data system",
+    steps: ["Install software and confirm version.","Configure access levels and audit trail (Part 11)."],
+    accept: "Software installed; audit trail and access controls configured per Part 11.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "IQ:2": { use: "iq-calibration-certs", title: "Confirm holmium, dichromate, and stray-light references are in date",
+    accept: "Certified wavelength (holmium), photometric (dichromate), and stray-light reference materials available, traceable, and in date." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Wavelength accuracy and repeatability",
+    steps: ["Scan the holmium oxide reference.","Confirm the observed peak wavelengths against certified values.","Repeat to confirm repeatability."],
+    accept: "Wavelength accuracy within the compendial tolerance (commonly ±1 nm UV / ±3 nm visible — example; confirm) at the certified peaks.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <857>" },
+  "OQ:1": { title: "Photometric accuracy and linearity",
+    steps: ["Measure the potassium dichromate standard at the defined wavelengths.","Compare absorbance to certified values.","Confirm linearity across the absorbance range."],
+    accept: "Photometric accuracy within the compendial tolerance across the absorbance range; linearity meets the SOP.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <857>" },
+  "OQ:2": { title: "Stray light at the cut-off wavelength(s)",
+    steps: ["Place the stray-light reference (cut-off solution/filter) in the beam.","Measure the response at the specified cut-off wavelength(s).","Compare to the limit."],
+    accept: "Stray light below the compendial limit at the specified cut-off wavelength(s).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <857>" },
+  "OQ:3": { title: "Spectral resolution / bandwidth",
+    steps: ["Run the resolution check (e.g. toluene-in-hexane where applicable).","Compute the absorbance ratio / band separation.","Compare to the compendial requirement."],
+    accept: "Resolution meets the compendial requirement (e.g. toluene/hexane absorbance ratio where used).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <857>" },
+  "OQ:4": { title: "Baseline flatness/noise and scan function",
+    steps: ["Run a baseline/blank scan across the range.","Assess noise and flatness against the data-sheet limit.","Confirm the scan function operates."],
+    accept: "Baseline noise/flatness within the data-sheet limit; scan function operates correctly." },
+  "OQ:5": { use: "cal-verify", title: "Confirm reference materials/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic check with a method control",
+    steps: ["Measure a known control/standard with the intended method.","Confirm it reads within the method acceptance."],
+    accept: "A known control/standard reads within the method's acceptance — method/product-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <857>" },
+  "PQ:1": { title: "Confirm intended method wavelength(s) are within the qualified range",
+    steps: ["Identify the intended method wavelength(s).","Confirm each is within the qualified range."],
+    accept: "Method wavelength(s) within the qualified range; do not operate outside it." },
+  "PQ:2": { use: "requalification", title: "Define routine performance-check and requalification frequency" }
+};
+
+const HOWTO_ftir = {
+  "IQ:0": { use: "iq-components", title: "Verify identification, source/detector, and spectral range vs PO/URS" },
+  "IQ:1": { title: "Install and secure the data system",
+    steps: ["Install software and confirm version.","Configure access levels and audit trail (Part 11)."],
+    accept: "Software installed; audit trail and access controls configured per Part 11.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <1058>" },
+  "IQ:2": { use: "iq-calibration-certs", title: "Confirm the polystyrene reference film and accessories are in date",
+    accept: "Polystyrene reference film (and sampling accessories) available, traceable, and in date." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Wavenumber (frequency) accuracy",
+    steps: ["Acquire the spectrum of the certified polystyrene reference film.","Compare observed band positions to the certified wavenumbers.","Confirm within tolerance."],
+    accept: "Wavenumber accuracy within the compendial tolerance at the certified polystyrene bands (confirm tolerance per chapter).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <854>" },
+  "OQ:1": { title: "Resolution check",
+    steps: ["Acquire polystyrene at the working resolution.","Confirm the defined bands are separated/resolved to the required depth.","Compare to the requirement."],
+    accept: "Resolution meets the compendial requirement (defined band separation/depth on polystyrene).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <854>" },
+  "OQ:2": { title: "Signal-to-noise ratio",
+    steps: ["Acquire a background and a defined-region scan.","Compute the signal-to-noise over the defined region.","Compare to the requirement."],
+    accept: "Signal-to-noise meets the data-sheet/compendial requirement over the defined region." },
+  "OQ:3": { title: "Sampling accessory and energy throughput",
+    steps: ["Mount the sampling accessory (ATR/transmission).","Confirm it performs and the energy throughput is acceptable.","Record results."],
+    accept: "Sampling accessory performs and energy throughput is within the data-sheet expectation." },
+  "OQ:4": { use: "cal-verify", title: "Confirm reference materials/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic identity check with a known reference material",
+    steps: ["Acquire the spectrum of a known reference material.","Compare/match against the reference library or expected spectrum.","Confirm identification within the method acceptance."],
+    accept: "A known reference material is correctly identified/matched within the method acceptance — method-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <854>" },
+  "PQ:1": { title: "Confirm intended method spectral range is within the qualified range",
+    steps: ["Identify the intended method spectral range.","Confirm it is within the qualified range."],
+    accept: "Method spectral range within the qualified range; do not operate outside it." },
+  "PQ:2": { use: "requalification", title: "Define routine performance-check and requalification frequency" }
+};
+
+const HOWTO_karlfischer = {
+  "IQ:0": { use: "iq-components", title: "Verify titrator type, identification, and configuration vs PO/URS" },
+  "IQ:1": { use: "iq-components", title: "Verify cell, electrodes, dosing/burette, drying, and software installed" },
+  "IQ:2": { use: "iq-calibration-certs", title: "Confirm certified water standards and reagents are in date and stored",
+    accept: "Certified water standards and KF reagents available, traceable, in date, and stored to control moisture." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Reagent titre standardization (volumetric)",
+    steps: ["Standardize the titrant against a certified water standard (e.g. water-standard 1.0 or di-sodium tartrate).","Determine mg H₂O per mL of titrant.","Repeat to confirm repeatability of standardization."],
+    accept: "Titre determined and within the expected range for the reagent; repeatability within the SOP limit.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <921>" },
+  "OQ:1": { title: "Accuracy against a certified water standard",
+    steps: ["Analyze a certified water standard.","Compare the measured water content to the certified value.","Confirm recovery within tolerance."],
+    accept: "Measured water content within the SOP tolerance of the certified value (recovery within limits).",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <921>" },
+  "OQ:2": { title: "Repeatability (precision)",
+    steps: ["Run replicate determinations of a standard.","Compute the %RSD.","Compare to the SOP limit."],
+    accept: "%RSD across replicate determinations within the SOP limit." },
+  "OQ:3": { title: "Endpoint detection, drift/blank, and oven temperature (if fitted)",
+    steps: ["Confirm endpoint detection responds correctly.","Measure drift/blank and confirm within limits.","For an oven sampler, verify oven temperature against a reference."],
+    accept: "Endpoint detection and drift/blank within limits; oven temperature accurate where an oven sampler is used (setpoint method-defined)." },
+  "OQ:4": { use: "cal-verify", title: "Confirm standards/balance within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic check with a representative control sample",
+    steps: ["Analyze a representative control/sample with the intended method.","Confirm recovery within the method acceptance."],
+    accept: "A representative control recovers within the method acceptance — sample size/endpoint method-defined, do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <921>" },
+  "PQ:1": { title: "Confirm intended method is within the qualified range",
+    steps: ["List intended method parameters (sample size, reagent, endpoint).","Confirm each is within the qualified range."],
+    accept: "Intended method parameters within the qualified range." },
+  "PQ:2": { use: "requalification", title: "Define routine standardization/verification and requalification frequency" }
+};
+
+const HOWTO_particlecounter = {
+  "IQ:0": { use: "iq-components", title: "Verify counter type, identification, and size channels vs PO/URS" },
+  "IQ:1": { use: "iq-components", title: "Verify sensor, flow/sampling system, and software installed" },
+  "IQ:2": { use: "iq-calibration-certs", title: "Confirm traceable size (PSL) and count/volume calibration",
+    accept: "Size calibration against certified PSL spheres; counting efficiency, sample-volume accuracy, and (airborne) ISO 21501-4 parameters verified and traceable." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Size accuracy / resolution using certified PSL spheres",
+    steps: ["Sample certified PSL latex spheres of known size.","Confirm the reported size matches within tolerance.","Confirm size resolution (airborne) per ISO 21501-4."],
+    accept: "Reported sizes match the certified PSL spheres within the standard's tolerance; size resolution meets ISO 21501-4 (airborne).",
+    link: "https://www.iso.org/standard/63367.html", linkLabel: "iso.org — ISO 21501-4" },
+  "OQ:1": { title: "Counting efficiency and false-count (zero-count) rate",
+    steps: ["Determine counting efficiency against a reference at the smallest channel.","Run filtered/clean air or fluid and measure the false/zero-count rate.","Compare both to the limits."],
+    accept: "Counting efficiency within the ISO 21501-4 range; false-count rate below the limit on filtered/clean fluid or air.",
+    link: "https://www.iso.org/standard/63367.html", linkLabel: "iso.org — ISO 21501-4" },
+  "OQ:2": { title: "Sample flow rate / sample volume accuracy",
+    steps: ["Measure the sampled flow rate / volume against a reference.","Confirm within tolerance so reported concentrations are accurate."],
+    accept: "Sample flow rate / volume within tolerance so reported concentrations are accurate.",
+    link: "https://www.iso.org/standard/63367.html", linkLabel: "iso.org — ISO 21501-4" },
+  "OQ:3": { title: "Liquid LO: system suitability per USP <788>",
+    steps: ["For a light-obscuration liquid counter, run the count-accuracy / system-suitability reference suspension.","Confirm the result meets USP <788>."],
+    accept: "Count-accuracy / system suitability meets USP <788> using the reference particle suspension.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <788>" },
+  "OQ:4": { use: "cal-verify", title: "Confirm reference standards/instruments within tolerance before testing" },
+
+  "PQ:0": { title: "Holistic check against the application",
+    steps: ["Liquid: run a representative sample and evaluate ≥10 µm and ≥25 µm counts vs USP <788>.","Airborne: confirm it supports the target ISO 14644 class.","Confirm which limits apply from the product/area."],
+    accept: "Liquid: counts at ≥10 µm and ≥25 µm meet the USP <788> limits for the product/volume. Airborne: supports the target ISO 14644-1 class. Which limits apply is product/area-defined — do not assume.",
+    link: "https://www.usp.org", linkLabel: "usp.org — USP <788>" },
+  "PQ:1": { title: "Confirm intended size channels and limits are within the qualified range",
+    steps: ["Identify the intended size channels and limits.","Confirm each is within the qualified range."],
+    accept: "Intended size channels and limits within the qualified range." },
+  "PQ:2": { use: "requalification", title: "Define routine calibration (annual per ISO 21501-4 typical) and requalification" }
+};
+
+const HOWTO_pipette = {
+  "IQ:0": { use: "iq-components", title: "Record identification, channels, and volume range vs spec" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm the balance meets ISO 8655-6 minimum and an evaporation trap is available",
+    accept: "Balance resolution meets ISO 8655-6 Table 1 for the nominal volume; evaporation trap available for volumes < 10 µL." },
+  "IQ:2": { use: "iq-location", title: "Confirm the controlled test environment and water/balance references",
+    accept: "Test environment within ISO 8655 conditions (e.g. 15–30 °C, stable humidity, draft/vibration-free); water density and conditions recorded." },
+  "IQ:3": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { title: "Systematic error (accuracy) at the test volumes",
+    steps: ["Select the test volumes (e.g. 100%, 50%, 10% of nominal).","Gravimetrically dispense and weigh water, converting mass to volume via Z-factor.","Compute the mean dispensed volume and the systematic error at each test volume.","Compare to the maximum permissible systematic error for the nominal volume."],
+    accept: "Mean dispensed volume within the maximum permissible systematic error for the nominal volume at 100/50/10% (errors doubled for multichannel) — limits are nominal-volume-defined, do not assume.",
+    link: "https://www.iso.org/standard/74160.html", linkLabel: "iso.org — ISO 8655-2" },
+  "OQ:1": { title: "Random error (precision/repeatability)",
+    steps: ["From the replicate measurements at each test volume, compute the standard deviation / CV.","Compare to the maximum permissible random error for the nominal volume."],
+    accept: "Random error (SD/CV) within the maximum permissible random error for the nominal volume at each test volume.",
+    link: "https://www.iso.org/standard/74160.html", linkLabel: "iso.org — ISO 8655-2" },
+  "OQ:2": { title: "Replication and procedure",
+    steps: ["Make at least 10 measurements per test volume.","Change the tip per measured volume.","Pre-wet the tip and follow the ISO 8655 technique (angle, speed)."],
+    accept: "At least 10 measurements per test volume; tip changed per measured volume; pre-wetting and technique per ISO 8655.",
+    link: "https://www.iso.org/standard/74161.html", linkLabel: "iso.org — ISO 8655-6" },
+  "OQ:3": { title: "Evaporation correction",
+    steps: ["Determine the evaporation rate / blank for the setup.","Apply the correction, especially for volumes < 10 µL (use the evaporation trap)."],
+    accept: "Evaporation rate determined and corrected so it doesn't bias low-volume results.",
+    link: "https://www.iso.org/standard/74161.html", linkLabel: "iso.org — ISO 8655-6" },
+  "OQ:4": { title: "Balance status and measurement uncertainty",
+    steps: ["Confirm the balance is within calibration.","Estimate and report the measurement uncertainty per accredited practice."],
+    accept: "Balance in calibration; measurement uncertainty estimated and reported per accredited practice." },
+
+  "PQ:0": { title: "In-use verification with actual tips/operators",
+    steps: ["Verify performance with the laboratory's actual tips, technique, and operators.","Use the volumes actually used in the application.","Confirm accuracy and precision meet the application requirement."],
+    accept: "In-use accuracy and precision meet the application requirement with the actual tips/operators at the volumes used — application-defined.",
+    link: "https://www.iso.org/standard/74162.html", linkLabel: "iso.org — ISO 8655-7" },
+  "PQ:1": { use: "requalification", title: "Define routine recalibration frequency and intermediate checks" }
+};
+
+const HOWTO_depyrotunnel = {
+  "IQ:0": { use: "iq-components", title: "Verify power, HEPA airflow, and belt/zone configuration vs URS" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm process thermocouples and reference rated for ≥250 °C",
+    accept: "Process thermocouples and the reference standard calibrated, traceable, and rated for the depyrogenation temperature (≥250 °C typical — confirm cycle)." },
+  "IQ:2": { use: "iq-components", title: "Verify inter-zone airflow / pressure cascade installed" },
+  "IQ:3": { use: "iq-location" },
+  "IQ:4": { use: "iq-components", title: "Confirm HEPA/airflow, belt drive, and zone configuration installed" },
+  "IQ:5": { use: "iq-calibration-certs", title: "Verify high-temperature-rated thermocouples calibrated" },
+  "IQ:6": { use: "iq-instrument-inventory" },
+  "IQ:7": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "heat-distribution", title: "Empty-belt heat distribution through the heating zone",
+    accept: "Setpoint/belt speed are process-defined — do not assume (≥250 °C typical). Distribution within the protocol band across the belt; coldest position identified for the endotoxin challenge." },
+  "OQ:1": { use: "tunnel-belt-dwell" },
+  "OQ:2": { use: "cal-verify" },
+  "OQ:3": { use: "control-functions" },
+  "OQ:4": { use: "tunnel-pressure-cascade" },
+  "OQ:5": { use: "record-printout" },
+
+  "PQ:0": { use: "endotoxin-challenge", title: "Endotoxin challenge at the cold position (≥3-log reduction)",
+    accept: "≥ 3-log (1000-fold) reduction of a known endotoxin spike at the cold position across the required runs — the defining depyrogenation requirement." },
+  "PQ:1": { use: "heat-penetration-load", title: "Loaded heat-penetration at production belt speed",
+    accept: "Time-at-temperature requirement met at all belt positions and qualified load/container types at production belt speed — process-defined, do not assume." },
+  "PQ:2": { use: "loading-pattern", title: "Define each container/load configuration and belt speed to qualify" },
+  "PQ:3": { use: "reproducibility-runs" },
+  "PQ:4": { use: "requalification" }
+};
+
 const HOWTO = {
   autoclave: HOWTO_autoclave,
   incubator: HOWTO_incubator,
@@ -9665,7 +11667,16 @@ const HOWTO = {
   hvac: HOWTO_hvac,
   watersystem: HOWTO_watersystem,
   compressedair: HOWTO_compressedair,
-  bsc: HOWTO_bsc
+  bsc: HOWTO_bsc,
+  hplc: HOWTO_hplc,
+  gc: HOWTO_gc,
+  dissolution: HOWTO_dissolution,
+  uvvis: HOWTO_uvvis,
+  ftir: HOWTO_ftir,
+  karlfischer: HOWTO_karlfischer,
+  particlecounter: HOWTO_particlecounter,
+  pipette: HOWTO_pipette,
+  depyrotunnel: HOWTO_depyrotunnel
 };
 
 // Resolve a howto entry: if it references a shared procedure via {use}, merge shared + overrides.
@@ -9946,10 +11957,10 @@ let activeDomain = 'all';
 // Category grouping: section key -> {label, members in display order}
 const CATEGORIES = [
   { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","freezer","ult","coldroom","warehouse","stability"] },
-  { key: "ovens",      label: "Ovens & Furnaces",                     members: ["dryoven","depyrooven","vacuumoven","mufflefurnace"] },
+  { key: "ovens",      label: "Ovens & Furnaces",                     members: ["dryoven","depyrooven","depyrotunnel","vacuumoven","mufflefurnace"] },
   { key: "sterilizers",label: "Sterilizers",                          members: ["autoclave"] },
   { key: "cryo",       label: "Cryogenic",                            members: ["ln2","cryochamber"] },
-  { key: "analytical", label: "Analytical Instruments",               members: ["balance","ph","osmometer","refractometer"] },
+  { key: "analytical", label: "Analytical Instruments",               members: ["balance","ph","osmometer","refractometer","hplc","gc","dissolution","uvvis","ftir","karlfischer","particlecounter","pipette"] },
   { key: "lab",        label: "Lab Equipment",                        members: ["centrifuge","waterbath","hotplate","homogenizer","lyophilizer"] },
   { key: "bioreactor", label: "Bioreactors",                          members: ["bioreactor"] },
   { key: "utilities",  label: "Utilities & Facilities",               members: ["cleanroom","hvac","watersystem","compressedair","bsc"] },
@@ -10227,7 +12238,7 @@ renderList();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v10';
+    const C = 'cqv-v11';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
