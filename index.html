@@ -155,11 +155,65 @@
   .phase-label { font-size: 12px; color: var(--ink-dim); font-family: var(--mono); letter-spacing: 0.03em; }
 
   .test-row {
-    display: flex; align-items: flex-start; gap: 10px;
+    display: flex; flex-direction: column; gap: 8px;
     background: var(--panel); border: 1px solid var(--line);
     border-radius: 10px; padding: 12px 13px; margin-bottom: 7px;
+    transition: border-color 0.15s;
   }
+  .test-row.howto-open { border-color: rgba(88,230,168,0.35); }
+  .test-main { display: flex; align-items: flex-start; gap: 10px; }
   .test-txt { flex: 1; font-size: 14px; line-height: 1.45; }
+
+  .howto-chip {
+    align-self: flex-start; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 8px 4px 7px; border-radius: 6px; cursor: pointer;
+    border: 1px solid rgba(88,230,168,0.32); background: rgba(88,230,168,0.06);
+    color: var(--accent); display: inline-flex; align-items: center; gap: 5px;
+    transition: all 0.12s; -webkit-tap-highlight-color: transparent;
+  }
+  .howto-chip:active { transform: scale(0.96); }
+  .howto-chip .howto-tw { display: inline-flex; transition: transform 0.18s; }
+  .howto-chip[aria-expanded="true"] { background: rgba(88,230,168,0.12); }
+  .howto-chip[aria-expanded="true"] .howto-tw { transform: rotate(90deg); }
+
+  .howto-panel {
+    border: 1px solid var(--line); border-radius: 9px;
+    background: var(--bg); padding: 13px 14px 12px; margin-top: 1px;
+  }
+  .howto-title {
+    font-size: 13.5px; font-weight: 640; color: var(--ink);
+    margin-bottom: 11px; line-height: 1.35;
+  }
+  .howto-sub {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-faint); margin: 0 0 6px;
+  }
+  .howto-mats { margin: 0 0 12px; padding-left: 17px; }
+  .howto-mats li { font-size: 12.5px; line-height: 1.5; color: var(--ink-dim); }
+  .howto-steps { margin: 0 0 12px; padding-left: 19px; }
+  .howto-steps li { font-size: 13px; line-height: 1.55; color: var(--ink); margin-bottom: 7px; }
+  .howto-steps li:last-child { margin-bottom: 0; }
+  .howto-accept {
+    background: rgba(88,230,168,0.07); border: 1px solid rgba(88,230,168,0.22);
+    border-radius: 8px; padding: 9px 11px; font-size: 12.5px; line-height: 1.5;
+    color: var(--ink); margin-bottom: 10px;
+  }
+  .howto-accept-k {
+    display: block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 3px;
+  }
+  .howto-link {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 10px;
+    color: var(--accent); text-decoration: none; font-size: 12.5px; font-weight: 550;
+  }
+  .howto-link:active { background: var(--panel-2); }
+  .howto-disc {
+    font-size: 11px; line-height: 1.45; color: var(--ink-faint);
+    border-top: 1px solid var(--line); padding-top: 9px;
+  }
   .source-btn {
     flex-shrink: 0; font-family: var(--mono); font-size: 10px;
     letter-spacing: 0.05em; text-transform: uppercase;
@@ -5042,6 +5096,343 @@ const GMP_INFO = {
   link: null
 };
 
+/* ---------- HOW-TO PROCEDURE DATA (structured for future protocol generation) ---------- */
+// HOWTO_autoclave — structured procedure data keyed by "phase:index" for DATA.autoclave
+// Schema per entry: { title, steps:[...], materials?:[...], accept?:"", link?, linkLabel? }
+// steps/materials kept atomic + ordered so a future protocol generator can consume directly.
+const HOWTO_autoclave = {
+  // ---------- IQ ----------
+  "IQ:0": {
+    title: "Verify received unit against PO / URS",
+    steps: [
+      "Retrieve the approved purchase order and URS for the sterilizer.",
+      "Record the nameplate make, model, and serial number from the installed unit.",
+      "Measure or confirm chamber internal dimensions and rated capacity (L) against the spec.",
+      "Reconcile each attribute line-by-line; raise a deviation for any mismatch and resolve before proceeding."
+    ],
+    accept: "All identification and capacity attributes match the PO/URS; deviations closed.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — Autoclave IQ"
+  },
+  "IQ:1": {
+    title: "Confirm as-built drawings match installation",
+    steps: [
+      "Collect the current P&ID, general-arrangement, and electrical schematic drawings.",
+      "Walk the installed unit and verify piping runs, valves, and electrical terminations against each drawing.",
+      "Redline any field difference and route back to engineering for drawing update.",
+      "File the approved as-built set in the validation package."
+    ],
+    accept: "As-built drawings present, controlled, and matching the installed configuration.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — Autoclave IQ"
+  },
+  "IQ:2": {
+    title: "Verify utility connections against URS",
+    steps: [
+      "List each required utility from the URS: clean/pure steam, feed water, cooling water, drains, electrical, compressed air.",
+      "Confirm each connection is present, correctly sized, and labeled.",
+      "Record supplied values (steam pressure, supply voltage/phase, air pressure) and compare to the URS range.",
+      "Verify drains are open, trapped, and routed to a suitable discharge."
+    ],
+    materials: ["Calibrated pressure gauge", "Multimeter / phase rotation meter"],
+    accept: "Every utility present and within the URS-specified range.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — physical install verification"
+  },
+  "IQ:3": {
+    title: "Confirm major components installed and identified",
+    steps: [
+      "Inventory chamber, jacket, door(s), door interlock, gaskets, gauges, valves, and the printer/recorder.",
+      "Confirm each component is the specified part number and is tagged/identified.",
+      "Verify gaskets are seated and undamaged and gauges read on installation.",
+      "Photograph the installed arrangement for the record."
+    ],
+    accept: "All listed components installed, identified, and matching spec.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — Autoclave IQ"
+  },
+  "IQ:4": {
+    title: "Verify materials of construction",
+    steps: [
+      "Identify chamber and product-contact components from the design spec (typically SS316L for product contact).",
+      "Obtain material certificates (mill certs / 3.1 certs) for those components.",
+      "Confirm certificate alloy and finish match the specification.",
+      "File certificates in the IQ package."
+    ],
+    accept: "Materials of construction match spec; certificates on file where required.",
+    link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf", linkLabel: "EU Annex 15 (IQ)"
+  },
+  "IQ:5": {
+    title: "Confirm process sensors and reference standard calibrated",
+    steps: [
+      "List every process thermocouple/RTD and the chamber pressure transmitter.",
+      "Verify each carries a current calibration certificate traceable to national standards (ISO/IEC 17025 lab).",
+      "Confirm the independent reference standard used for validation is calibrated and within its due date.",
+      "Record cal ID, range, and due date for each."
+    ],
+    materials: ["Calibration certificates (17025-accredited)"],
+    accept: "All process instruments and the reference standard calibrated, traceable, and in-date.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — instrumentation verification"
+  },
+  "IQ:6": {
+    title: "Build the instrument / loop inventory",
+    steps: [
+      "Walk down every controlling and recording instrument on the unit.",
+      "For each, capture tag, function (control vs record), range, cal ID, and calibration due date.",
+      "Note the associated control loop for each sensor.",
+      "Compile into the master instrument list in the qualification package."
+    ],
+    accept: "Complete inventory of all controlling/recording instruments with cal data."
+  },
+  "IQ:7": {
+    title: "Capture control/recorder software config for CSV",
+    steps: [
+      "Record the controller and recorder software/firmware version.",
+      "Export or screenshot the configuration and cycle parameter set.",
+      "For GxP systems, confirm the audit-trail setting is enabled and capture the access/security configuration.",
+      "Attach the captured configuration to the CSV record."
+    ],
+    accept: "Software version, configuration, and audit-trail state documented for CSV.",
+    link: "https://health.ec.europa.eu/system/files/2016-11/2015-11_annex11_en_0.pdf", linkLabel: "EU Annex 11"
+  },
+  "IQ:8": {
+    title: "Confirm filters, traps, and drain installed and drainable",
+    steps: [
+      "Locate air and steam filters and confirm part numbers against spec.",
+      "Confirm steam traps are installed at the correct points and oriented for flow.",
+      "Verify the chamber drain is installed, unobstructed, and self-draining (no low-point pooling).",
+      "Record filter ratings and trap types."
+    ],
+    accept: "Filters, traps, and drain installed per design and chamber drains freely."
+  },
+  "IQ:9": {
+    title: "Verify safety features present and rated",
+    steps: [
+      "Confirm pressure relief valve(s) are installed with a rating/certification matching the design pressure.",
+      "Verify the door-open-under-pressure interlock hardware is present.",
+      "Confirm the emergency stop is installed and wired.",
+      "Record relief valve set pressure and certification reference. (Functional challenge occurs in OQ.)"
+    ],
+    accept: "Relief valve(s), door interlock, and E-stop installed and correctly rated.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — safety system verification"
+  },
+  "IQ:10": {
+    title: "Confirm chamber-contacting fluids/materials compatible",
+    steps: [
+      "List lubricants, gasket materials, and any fluids that contact the chamber or product zone.",
+      "Confirm each is rated for the temperature/steam environment and is the specified grade.",
+      "Collect compatibility/data-sheet documentation.",
+      "File documentation in the IQ package."
+    ],
+    accept: "All chamber-contacting materials documented as compatible."
+  },
+  "IQ:11": {
+    title: "Confirm vendor documentation package received",
+    steps: [
+      "Verify the spare-parts list, maintenance/O&M manual, and full vendor turnover package were received.",
+      "Confirm completeness against the PO documentation deliverables.",
+      "Log and index each document.",
+      "File in the controlled validation library."
+    ],
+    accept: "Spare-parts list, manuals, and vendor docs received and filed."
+  },
+
+  // ---------- OQ ----------
+  "OQ:0": {
+    title: "Calibration verification before functional testing",
+    steps: [
+      "Confirm all critical control and recording instruments hold current calibration.",
+      "Verify the independent validation sensors are calibrated against the traceable reference immediately before the study.",
+      "Document a pre-study and (after testing) a post-study calibration check on validation thermocouples.",
+      "Proceed only if all instruments are within tolerance."
+    ],
+    accept: "All critical instruments in tolerance pre-study; post-study check confirms no drift.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — instrumentation"
+  },
+  "OQ:1": {
+    title: "Verify control-system functions",
+    steps: [
+      "Exercise setpoint entry, cycle selection, and phase sequencing for each programmed cycle.",
+      "Confirm the unit moves through purge/charge, exposure, exhaust, and drying phases in the correct order.",
+      "Test each security/access level: confirm operator, supervisor, and maintenance privileges behave as defined.",
+      "Verify shared logins are not permitted and that parameter changes require the correct access level."
+    ],
+    accept: "All control functions and access levels behave per specification.",
+    link: "https://consteril.com/autoclave-operational-qualification/", linkLabel: "Consteril — Autoclave OQ"
+  },
+  "OQ:2": {
+    title: "Steam quality test (NCG, dryness, superheat) per EN 285",
+    steps: [
+      "Connect the steam-quality test rig to the sampling point closest to the chamber.",
+      "Non-condensable gases: cool a steam sample and collect released gas in a burette; calculate gas volume as % of condensate volume.",
+      "Dryness: feed steam into an insulated Dewar holding a known mass/temperature of water; use the weight gain with steam tables to compute dryness fraction.",
+      "Superheat: discharge steam in free expansion to ambient and record the maximum jet temperature; superheat = measured minus saturation temperature.",
+      "Confirm the steam header temperature is within 3°C of the superheat-test temperature."
+    ],
+    materials: ["EN 285 steam-quality test kit (Dewar/dryness kit, NCG burette set)", "Calibrated temperature probe"],
+    accept: "NCG ≤ 3.5% v/v · Dryness ≥ 0.95 (production) / ≥ 0.90 (lab) · Superheat ≤ 25°C above saturation.",
+    link: "https://www.ispeboston.org/steam-quality-testing-introduction-best-practices/", linkLabel: "ISPE Boston — Steam Quality Testing"
+  },
+  "OQ:3": {
+    title: "Chamber leak rate / vacuum hold test",
+    steps: [
+      "Run the unit's vacuum/leak-test cycle to evacuate the empty chamber.",
+      "Hold the vacuum for the defined dwell and record the pressure-rise rate.",
+      "Confirm the rise rate is within the manufacturer limit (commonly ≤1.3 mbar/min).",
+      "If failed, inspect door seals, valves, and piping for leaks, correct, and repeat."
+    ],
+    accept: "Pressure rise ≤ 1.3 mbar/min (or manufacturer spec).",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — vacuum leak testing"
+  },
+  "OQ:4": {
+    title: "Bowie-Dick air-removal test (pre-vacuum units)",
+    steps: [
+      "Place a standardized Bowie-Dick test pack flat in the chamber center, just above the drain, in an otherwise empty chamber.",
+      "Run a 134°C exposure for 3.5 minutes.",
+      "Recover the indicator sheet and inspect for uniform color change.",
+      "Repeat for three consecutive successful runs during OQ; streaking or pale areas = fail (air pocket / leak / NCG)."
+    ],
+    materials: ["Bowie-Dick standardized test pack with chemical indicator"],
+    accept: "Uniform color change, no pale areas/streaks; 3 consecutive passes.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — Bowie-Dick procedure"
+  },
+  "OQ:5": {
+    title: "Empty-chamber heat distribution study",
+    steps: [
+      "Distribute calibrated thermocouples through the empty chamber (chamber center, four corners, near door, near drain, near steam inlet).",
+      "Use ≥5 sensors for chambers up to 800 L (add one adjacent to the control sensor); 11+ per EN 285 for larger chambers.",
+      "Run three consecutive cycles at the sterilization setpoint.",
+      "Plot each sensor; identify the cold spot for PQ probe placement."
+    ],
+    materials: ["Calibrated thermocouple array + data logger"],
+    accept: "All sensors within ±2–3°C of mean during hold across 3 consecutive cycles; cold spot identified.",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
+  },
+  "OQ:6": {
+    title: "Verify equilibration time",
+    steps: [
+      "From the distribution-study data, mark the moment the chamber reaches the sterilization setpoint signal.",
+      "Identify the time for the slowest sensor to enter the sterilization band.",
+      "Record this equilibration time for each run.",
+      "Confirm it is within the protocol limit and repeatable across runs."
+    ],
+    accept: "Equilibration time within protocol limit and consistent across cycles."
+  },
+  "OQ:7": {
+    title: "Verify pressure/temperature tracks saturated steam",
+    steps: [
+      "Overlay logged chamber temperature and pressure across the cycle.",
+      "At hold, compare measured pressure to the saturated-steam value for the measured temperature (e.g. ~1.0 bar g at 121°C, ~2.0 bar g at 134°C).",
+      "Confirm the pair tracks the saturation curve throughout exposure.",
+      "Investigate any divergence as a non-condensable-gas or superheat indicator."
+    ],
+    accept: "Temperature/pressure follow saturated-steam relationship throughout the cycle."
+  },
+  "OQ:8": {
+    title: "Alarm and interlock challenge",
+    steps: [
+      "Door interlock: attempt to start a cycle with the door open/unlatched and confirm the cycle cannot initiate; attempt to open the door under pressure and confirm it is prevented. On double-door units, confirm both doors cannot open simultaneously.",
+      "Low-temperature: simulate failure to reach setpoint and confirm the low-temp alarm and/or cycle abort.",
+      "Low-steam / low-water: provoke the condition and confirm the corresponding alarm.",
+      "Cycle-abort / E-stop: trigger an abort and confirm the unit fails safe and logs the event. Document the method used to provoke each alarm; actual result must equal the expected result."
+    ],
+    accept: "Each alarm/interlock activates and the unit responds as designed; events logged.",
+    link: "https://consteril.com/autoclave-operational-qualification/", linkLabel: "Consteril — alarm/safety testing"
+  },
+  "OQ:9": {
+    title: "Power-failure / recovery test",
+    steps: [
+      "Mid-cycle, remove power to the unit.",
+      "Confirm the unit fails to a safe state (door remains locked while pressurized, no uncontrolled venting).",
+      "Restore power and confirm the controller reports the correct cycle status on recovery (no false 'complete').",
+      "Verify the event is captured in the cycle/alarm log."
+    ],
+    accept: "Unit fails safe on power loss and reports correct status on recovery; event logged."
+  },
+  "OQ:10": {
+    title: "Verify record / printout captures critical parameters",
+    steps: [
+      "Run a cycle and capture the printout/electronic record.",
+      "Confirm it records date, time, operator ID, cycle type, and the temperature/pressure/time profile.",
+      "Compare recorded values to the independent reference readings for the same cycle.",
+      "Confirm alarm events and deviations appear in the record."
+    ],
+    accept: "Record captures all critical parameters and matches controller/reference readings.",
+    link: "https://health.ec.europa.eu/system/files/2016-11/2015-11_annex11_en_0.pdf", linkLabel: "EU Annex 11 (records)"
+  },
+
+  // ---------- PQ ----------
+  "PQ:0": {
+    title: "Define and document each load pattern",
+    steps: [
+      "List every routine load to be qualified (item types, wrapping, orientation).",
+      "Define the minimum and maximum load by mass/volume and the densest packing permitted.",
+      "Justify worst-case loads using a bracketing rationale (most challenging = max mass/density, longest steam path, hollow/narrow items).",
+      "Document and approve each load configuration before execution."
+    ],
+    accept: "Each load pattern (min/max, worst-case) defined, justified, and approved.",
+    link: "https://tuttnauer.com/knowledge-center/sterile-processing/autoclave/autoclave-validation-iq-oq-pq", linkLabel: "Tuttnauer — worst-case loads"
+  },
+  "PQ:1": {
+    title: "Loaded heat-penetration study (F₀ at cold spot)",
+    steps: [
+      "Place 10–15 calibrated thermocouples through the load, concentrated at cold spots found in OQ, in intimate contact with the items (not just chamber air).",
+      "Run three consecutive cycles per load pattern.",
+      "Compute F₀ at each probe: F₀ = Σ 10^((T−121)/10) × Δt (Z = 10°C for G. stearothermophilus).",
+      "Take the minimum-F₀ probe as the cold spot; confirm it meets the requirement."
+    ],
+    materials: ["Calibrated thermocouple array + F₀-capable logger"],
+    accept: "Cold-spot F₀ ≥ 12 min at 121°C (overkill) or ≥ the bioburden-based target; 3 consecutive cycles.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — F₀ & heat penetration"
+  },
+  "PQ:2": {
+    title: "Confirm loaded-chamber temperature uniformity",
+    steps: [
+      "Using the heat-penetration data, calculate the maximum spread between sensors during the hold.",
+      "Confirm all load sensors remain within the protocol band (commonly within the sterilization setpoint +3°C; dwell setpoint often −1/+2°C).",
+      "Flag any sensor outside the band for investigation.",
+      "Record the spread for each cycle."
+    ],
+    accept: "Max sensor spread within protocol limit during hold across all qualifying cycles."
+  },
+  "PQ:3": {
+    title: "Biological indicator challenge",
+    steps: [
+      "Place G. stearothermophilus BIs (typically 10⁶ CFU) at the worst-case/cold-spot locations identified in heat penetration.",
+      "Include positive controls (unexposed) and run three consecutive cycles.",
+      "After each cycle, incubate exposed BIs and controls per manufacturer instructions (typically 7 days at 55–60°C) and read daily.",
+      "Confirm no growth in any exposed BI and growth in every positive control."
+    ],
+    materials: ["G. stearothermophilus biological indicators (10⁶)", "Incubator 55–60°C"],
+    accept: "No growth in exposed BIs across 3 cycles; positive controls grow.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — BI challenge"
+  },
+  "PQ:4": {
+    title: "Demonstrate reproducibility across consecutive runs",
+    steps: [
+      "Confirm the required number of consecutive successful runs (typically three) per qualified load.",
+      "Verify each run independently meets all PQ acceptance criteria (F₀, uniformity, BI, dryness).",
+      "Confirm no run required adjustment or re-run to pass.",
+      "Summarize the run set in the PQ report."
+    ],
+    accept: "Required number of consecutive runs per load all pass without intervention.",
+    link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf", linkLabel: "EU Annex 15 (PQ)"
+  },
+  "PQ:5": {
+    title: "Confirm post-cycle load dryness (porous loads)",
+    steps: [
+      "Weigh representative porous items immediately before the cycle.",
+      "Reweigh the same items immediately after the cycle and drying phase.",
+      "Calculate percent moisture gain and inspect for visible wetness.",
+      "Investigate wet packs (drying time, steam quality/NCG, wrapping, drainage) if criteria are not met."
+    ],
+    materials: ["Calibrated balance"],
+    accept: "≤ 1–2% moisture gain and no visible wetness.",
+    link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — load dryness"
+  }
+};
+
+// Registry keyed by equipment id -> { "PHASE:index": howto }
+const HOWTO = {
+  autoclave: HOWTO_autoclave
+};
+
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
 const listView = document.getElementById('listView');
@@ -5129,11 +5520,23 @@ function openDetail(id) {
       const src = test.s === 'gmp' ? GMP_INFO : test.s;
       const cls = src.status;
       const label = cls === 'gmp' ? 'GMP' : cls === 'regulation' ? 'CFR' : 'source';
-      return `<div class="test-row">
-        <span class="test-txt">${test.t}</span>
-        <button class="source-btn ${cls}" onclick="openSheet('${id}','${p}',${i})">
-          <span class="dot"></span>${label}
-        </button>
+      const ho = (HOWTO[id] || {})[p + ':' + i];
+      const hk = id + '|' + p + '|' + i;
+      const howtoChip = ho
+        ? `<button class="howto-chip" id="hc-${hk}" aria-expanded="false" onclick="toggleHowto('${id}','${p}',${i})">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>
+            How to<span class="howto-tw" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>`
+        : '';
+      return `<div class="test-row${ho ? ' has-howto' : ''}">
+        <div class="test-main">
+          <span class="test-txt">${test.t}</span>
+          <button class="source-btn ${cls}" onclick="openSheet('${id}','${p}',${i})">
+            <span class="dot"></span>${label}
+          </button>
+        </div>
+        ${howtoChip}
+        ${ho ? `<div class="howto-panel" id="hp-${hk}" hidden>${renderHowto(ho)}</div>` : ''}
       </div>`;
     }).join('');
     return `<section class="phase">
@@ -5158,6 +5561,41 @@ function backToList() {
 /* ---------- SOURCE SHEET ---------- */
 const sheet = document.getElementById('sheet');
 const backdrop = document.getElementById('backdrop');
+
+/* ---------- HOW-TO DROPDOWN ---------- */
+function renderHowto(ho) {
+  let h = '';
+  if (ho.title) h += `<div class="howto-title">${ho.title}</div>`;
+  if (ho.materials && ho.materials.length) {
+    h += `<div class="howto-sub">Materials</div><ul class="howto-mats">` +
+      ho.materials.map(m => `<li>${m}</li>`).join('') + `</ul>`;
+  }
+  h += `<div class="howto-sub">Steps</div><ol class="howto-steps">` +
+    ho.steps.map(s => `<li>${s}</li>`).join('') + `</ol>`;
+  if (ho.accept) h += `<div class="howto-accept"><span class="howto-accept-k">Acceptance</span>${ho.accept}</div>`;
+  if (ho.link) {
+    h += `<a class="howto-link" href="${ho.link}" target="_blank" rel="noopener">${ho.linkLabel || 'Reference guide'}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
+  }
+  h += `<div class="howto-disc">Procedure reference compiled from cited guidance. Adapt wording and acceptance limits to your own URS/SOP before use in a protocol.</div>`;
+  return h;
+}
+
+function toggleHowto(id, phase, i) {
+  const hk = id + '|' + phase + '|' + i;
+  const panel = document.getElementById('hp-' + hk);
+  const chip = document.getElementById('hc-' + hk);
+  if (!panel) return;
+  const open = !panel.hasAttribute('hidden');
+  if (open) {
+    panel.setAttribute('hidden', '');
+    chip.setAttribute('aria-expanded', 'false');
+    chip.closest('.test-row').classList.remove('howto-open');
+  } else {
+    panel.removeAttribute('hidden');
+    chip.setAttribute('aria-expanded', 'true');
+    chip.closest('.test-row').classList.add('howto-open');
+  }
+}
 
 function openSheet(id, phase, i) {
   const test = DATA[id].phases[phase][i];
@@ -5217,7 +5655,7 @@ renderList();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v1';
+    const C = 'cqv-v2';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
