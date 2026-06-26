@@ -328,6 +328,73 @@
     text-align: center; line-height: 1.6; margin-top: 30px; padding-top: 18px;
     border-top: 1px solid var(--line);
   }
+
+  /* Process pages */
+  #processList { margin-bottom: 18px; }
+  .proc-head {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint); margin: 2px 2px 10px;
+  }
+  .proc-card {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 3px solid var(--pc, var(--accent));
+    border-radius: 11px; padding: 13px 13px; margin-bottom: 8px;
+    cursor: pointer; text-align: left; transition: border-color 0.14s, background 0.14s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .proc-card:active { transform: scale(0.995); }
+  .proc-card:hover { background: var(--panel-2); }
+  .proc-icon {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 9px;
+    background: var(--panel-2); display: grid; place-items: center;
+  }
+  .proc-text { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .proc-name { font-size: 15px; font-weight: 660; letter-spacing: -0.01em; color: var(--ink); }
+  .proc-sub { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); }
+  .proc-chev { color: var(--ink-faint); flex-shrink: 0; }
+
+  .ps-suptitle {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-dim);
+    margin: 1px 0 12px; letter-spacing: 0.02em;
+  }
+  .ps-graph {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 10px; margin: 4px 0 22px; display: flex; justify-content: center;
+  }
+  .ps-graph svg { width: 100%; max-width: 340px; height: auto; }
+  .ps-sec { margin-bottom: 20px; }
+  .ps-title {
+    font-size: 14px; font-weight: 660; color: var(--ink);
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .ps-body { font-size: 14px; line-height: 1.55; color: var(--ink-dim); margin: 0; }
+  .ps-steps { margin: 4px 0 0; padding-left: 19px; }
+  .ps-steps li { font-size: 13.5px; line-height: 1.55; color: var(--ink); margin-bottom: 8px; }
+  .ps-steps li:last-child { margin-bottom: 0; }
+  .ps-note {
+    background: rgba(88,230,168,0.07); border: 1px solid rgba(88,230,168,0.22);
+    border-radius: 9px; padding: 10px 12px; margin-top: 11px;
+    font-size: 12.5px; line-height: 1.5; color: var(--ink);
+  }
+  .ps-refs {
+    margin-top: 24px; padding: 14px 14px 6px; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 12px;
+  }
+  .ps-refs-k {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-faint); margin-bottom: 11px;
+  }
+  .ps-ref {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel-2); border: 1px solid var(--line);
+    border-radius: 9px; padding: 11px 12px; margin-bottom: 8px;
+    color: var(--accent); text-decoration: none; font-size: 12.5px;
+    font-weight: 550; line-height: 1.4; gap: 10px;
+  }
+  .ps-ref:active { background: var(--bg); }
+  #processView { display: none; }
+  #processView.active { display: block; }
 </style>
 </head>
 <body>
@@ -344,6 +411,7 @@
 
 <main>
   <div class="list" id="listView">
+    <div id="processList"></div>
     <div class="domain-filter" id="domainFilter">
       <button data-domain="all" aria-pressed="true">All</button>
       <button data-domain="GMP" aria-pressed="false">GMP / USP</button>
@@ -373,6 +441,14 @@
       <p class="desc" id="dDesc"></p>
     </div>
     <div id="phases"></div>
+  </div>
+
+  <div class="detail" id="processView">
+    <button class="back-btn" id="procBackBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      HOME
+    </button>
+    <div id="processBody"></div>
   </div>
 </main>
 
@@ -2530,13 +2606,13 @@ const DATA = {
   depyrooven: {
     name: "Depyrogenation Ovens",
     domain: "GMP",
-    sub: "Dry-heat depyrogenation tunnels & ovens",
-    desc: "Qualification of dry-heat depyrogenation units. The defining requirement is demonstrated endotoxin reduction, not just sterility.",
+    sub: "Standalone batch dry-heat depyrogenation oven",
+    desc: "Qualification of a standalone countertop/batch dry-heat depyrogenation oven (not a conveyor tunnel). The defining requirement is demonstrated endotoxin reduction, not just sterility. Setpoint/time are process/product-driven (250 °C/30 min is a common cycle, but confirm).",
     icon: "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M8 13c0 1.5 1 1.5 1 3M12 13c0 1.5 1 1.5 1 3M16 13c0 1.5-1 1.5-1 3\"/></svg>",
     phases: {
       IQ: [
         {
-          t: "Verify power, HEPA-filtered airflow, and (for tunnels) belt/zone configuration against the URS.",
+          t: "Verify power, HEPA-filtered airflow/supply, and door seal integrity against the URS.",
           s: {
             status: "regulation",
             id: "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
@@ -2568,7 +2644,7 @@ const DATA = {
           }
         },
         {
-          t: "Verify airflow/pressure cascade between zones (tunnel) is installed per design.",
+          t: "Verify HEPA filtration and unidirectional/forced airflow configuration is installed per design.",
           s: {
             status: "regulation",
             id: "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
@@ -2600,7 +2676,7 @@ const DATA = {
           }
         },
         {
-          t: "Confirm HEPA/airflow, belt drive (tunnel) or shelving, and zone configuration per design.",
+          t: "Confirm HEPA/airflow, shelving/load racks, and door seal installed per design.",
           s: {
             status: "regulation",
             id: "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
@@ -2665,7 +2741,7 @@ const DATA = {
           }
         },
         {
-          t: "Verify belt speed / dwell time (tunnel) and cycle timer/controller functions.",
+          t: "Verify cycle timer / time-at-temperature control and over-temperature protection functions.",
           s: "gmp"
         },
         {
@@ -2689,7 +2765,7 @@ const DATA = {
           s: "gmp"
         },
         {
-          t: "Verify zone-to-zone pressure cascade (tunnel) and door interlocks.",
+          t: "Verify door interlock/safety and equilibration-recovery time to the operating band after door opening.",
           s: {
             status: "regulation",
             id: "21 CFR 211.68 / 211.100 · EU Annex 15",
@@ -6470,22 +6546,22 @@ const HOWTO_dryoven = {
 };
 
 const HOWTO_depyrooven = {
-  "IQ:0": { use: "iq-components", title: "Verify power, HEPA airflow, and (tunnel) belt/zone config vs URS" },
+  "IQ:0": { use: "iq-components", title: "Verify power, HEPA airflow/supply, and door seal integrity vs URS" },
   "IQ:1": { use: "iq-calibration-certs", title: "Confirm process thermocouples and reference rated for ≥250 °C",
     accept: "Process thermocouples and the reference standard calibrated, traceable, and rated for the depyrogenation temperature (≥250 °C typical — confirm cycle)." },
-  "IQ:2": { use: "iq-components", title: "Verify inter-zone airflow/pressure cascade (tunnel) installed" },
+  "IQ:2": { use: "iq-components", title: "Verify HEPA filtration and airflow configuration installed" },
   "IQ:3": { use: "iq-location" },
-  "IQ:4": { use: "iq-components", title: "Confirm HEPA/airflow, belt drive or shelving, zone config installed" },
+  "IQ:4": { use: "iq-components", title: "Confirm HEPA/airflow, shelving/load racks, and door seal installed" },
   "IQ:5": { use: "iq-calibration-certs", title: "Verify high-temperature-rated thermocouples calibrated" },
   "IQ:6": { use: "iq-instrument-inventory" },
   "IQ:7": { use: "iq-vendor-docs" },
 
   "OQ:0": { use: "heat-distribution", title: "Empty-chamber heat distribution at the depyrogenation setpoint",
     accept: "Setpoint is process/product-defined (250 °C/30 min is a common cycle; do not assume) — map at the qualified setpoint; all sensors within the protocol band; cold spot identified." },
-  "OQ:1": { use: "tunnel-belt-dwell" },
+  "OQ:1": { use: "over-temp-timer", title: "Verify cycle timer / time-at-temperature and over-temperature protection" },
   "OQ:2": { use: "cal-verify" },
   "OQ:3": { use: "control-functions" },
-  "OQ:4": { use: "tunnel-pressure-cascade", title: "Verify zone-to-zone pressure cascade (tunnel) and interlocks" },
+  "OQ:4": { use: "equilibration-recovery", title: "Verify door interlock/safety and equilibration-recovery after door opening" },
   "OQ:5": { use: "record-printout" },
 
   "PQ:0": { use: "endotoxin-challenge", title: "Endotoxin challenge at the cold spot (LRV target)" },
@@ -7249,6 +7325,259 @@ function resolveHowto(entry) {
   return merged;
 }
 
+/* ---------- PROCESS PAGES DATA ---------- */
+// ---- PROCESS pages (V-Model, URS, FAT, SAT) ----
+// Parallel to DATA but for processes, not equipment. No IQ/OQ/PQ phases.
+// Each: { name, sub, desc, accent, icon, svg?, sections:[{title, body?, steps?, note?}], refs:[{label, link}] }
+
+const PROCESS = {
+
+  vmodel: {
+    name: "The V-Model",
+    sub: "The lifecycle that drives all of this",
+    desc: "The V-Model is the framework behind every qualification in this app. It pairs each specification (left, descending) with a matching verification (right, ascending): you build the requirements down one side and prove them back up the other. URS sits at the top-left and is what PQ ultimately verifies at the top-right; everything in between traces across the V.",
+    accent: "#5aa9e6",
+    icon: "vmodel",
+    svg: `<svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="V-Model diagram"><line x1="92" y1="48" x2="288" y2="48" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/><line x1="112" y1="116" x2="268" y2="116" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/><line x1="132" y1="184" x2="248" y2="184" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 4"/><line x1="48" y1="64" x2="150" y2="278" stroke="var(--line)" stroke-width="1.5"/><line x1="332" y1="64" x2="230" y2="278" stroke="var(--line)" stroke-width="1.5"/><g><rect x="20" y="32" width="86" height="32" rx="7" fill="rgba(88,230,168,0.12)" stroke="var(--accent)" stroke-width="1.2"/><text x="63" y="52" text-anchor="middle" font-family="var(--mono)" font-size="13" font-weight="700" fill="var(--accent)">URS</text></g><g><rect x="40" y="100" width="86" height="32" rx="7" fill="var(--panel-2)" stroke="var(--line)" stroke-width="1"/><text x="83" y="120" text-anchor="middle" font-family="var(--mono)" font-size="12" font-weight="600" fill="var(--ink)">FS</text></g><g><rect x="60" y="168" width="86" height="32" rx="7" fill="var(--panel-2)" stroke="var(--line)" stroke-width="1"/><text x="103" y="188" text-anchor="middle" font-family="var(--mono)" font-size="12" font-weight="600" fill="var(--ink)">DS</text></g><g><rect x="274" y="32" width="86" height="32" rx="7" fill="rgba(230,136,90,0.12)" stroke="var(--pq)" stroke-width="1.2"/><text x="317" y="52" text-anchor="middle" font-family="var(--mono)" font-size="13" font-weight="700" fill="var(--pq)">PQ</text></g><g><rect x="254" y="100" width="86" height="32" rx="7" fill="var(--panel-2)" stroke="var(--oq)" stroke-width="1"/><text x="297" y="120" text-anchor="middle" font-family="var(--mono)" font-size="12" font-weight="600" fill="var(--oq)">OQ</text></g><g><rect x="234" y="168" width="86" height="32" rx="7" fill="var(--panel-2)" stroke="var(--iq)" stroke-width="1"/><text x="277" y="188" text-anchor="middle" font-family="var(--mono)" font-size="12" font-weight="600" fill="var(--iq)">IQ</text></g><g><rect x="214" y="226" width="96" height="30" rx="7" fill="var(--panel-2)" stroke="var(--line)" stroke-width="1"/><text x="262" y="245" text-anchor="middle" font-family="var(--mono)" font-size="11" font-weight="600" fill="var(--ink-dim)">FAT / SAT</text></g><g><rect x="148" y="280" width="84" height="32" rx="8" fill="var(--panel)" stroke="var(--ink-faint)" stroke-width="1"/><text x="190" y="300" text-anchor="middle" font-family="var(--mono)" font-size="10" font-weight="700" fill="var(--ink-dim)">BUILD</text></g><text x="20" y="338" font-family="var(--mono)" font-size="10" font-weight="600" fill="var(--accent)">SPECIFY ↓</text><text x="360" y="338" text-anchor="end" font-family="var(--mono)" font-size="10" font-weight="600" fill="var(--pq)">↑ VERIFY</text><text x="190" y="338" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="var(--ink-faint)">each spec verified across →</text><text x="190" y="352" text-anchor="middle" font-family="var(--mono)" font-size="9" fill="var(--ink-faint)">URS defines the numbers · process drives the URS</text></svg>`,
+    sections: [
+      { title: "What it is",
+        body: "A lifecycle diagram shaped like a V. The left arm captures specifications from the broadest to the most detailed; the bottom is the build/configure point; the right arm captures verification from the most detailed back up to the broadest. Each left-side document is verified by the test directly across from it on the right (the dashed links). This makes requirements traceable end to end and is the structure behind EU GMP Annex 15 and GAMP 5." },
+      { title: "Left arm — specifications (top to bottom)",
+        steps: [
+          "URS (User Requirements Specification): what the system must do, from the user/process. Top of the V.",
+          "FS (Functional Specification): how the system will meet each user requirement.",
+          "DS (Design Specification): the detailed hardware/software/build design that delivers the functions.",
+          "DQ (Design Qualification) sits at the transition: documented review that the proposed design satisfies the URS before anything is built."
+        ] },
+      { title: "Bottom — build / configure",
+        body: "The vendor fabricates, assembles, configures, and codes the system to the design specifications. This is the turn at the bottom of the V, where specification becomes a physical/configured system ready to be verified." },
+      { title: "Right arm — verification (bottom to top)",
+        steps: [
+          "FAT / SAT (commissioning): inspection and testing at the vendor (FAT) and after install at site (SAT) that the build matches the functional/design specs. The lower-right rungs.",
+          "IQ (Installation Qualification): verifies installation against the design specification.",
+          "OQ (Operational Qualification): verifies the system operates across its range against the functional specification.",
+          "PQ (Performance Qualification): verifies the system performs in real use against the URS. Top of the V — it closes the loop back to where you started."
+        ] },
+      { title: "Why each rung matters",
+        body: "A test on the right is only meaningful because it verifies a specific document on the left. PQ that doesn't trace to the URS proves nothing useful; IQ that doesn't trace to the design specification has no acceptance basis. The horizontal links are the point of the model — they force traceability, usually captured in a traceability matrix.",
+        note: "The setpoints, ranges, and acceptance limits at every rung come from the URS, which is itself driven by the process and the product. The V-Model tells you what to verify against; it never tells you the number. That always comes from your process." },
+      { title: "Risk scales the V",
+        body: "Per Annex 15 and ICH Q9, the depth of each stage is risk-based. A simple indirect-impact item may collapse several rungs; a complex direct-impact system (a bioreactor, a sterilizer) exercises the full V with extensive FAT/SAT and full IQ/OQ/PQ. Commissioning (FAT/SAT) can be leveraged to support qualification under a science- and risk-based approach (ASTM E2500, ISPE C&Q)." }
+    ],
+    refs: [
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ISPE GAMP 5 (2nd ed) — Risk-Based Compliant GxP Systems", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" },
+      { label: "ISPE Baseline Guide Vol 5 — Commissioning & Qualification", link: "https://ispe.org/publications/guidance-documents" }
+    ]
+  },
+
+  urs: {
+    name: "URS",
+    sub: "User Requirements Specification",
+    desc: "The URS defines what the equipment or system must do, in the user's terms, before any design or purchase. It sits at the top of the V-Model and is the document PQ ultimately verifies. Annex 15 calls it the point of reference throughout the validation lifecycle — every downstream spec, test, and acceptance criterion traces back to it.",
+    accent: "#58e6a8",
+    icon: "doc",
+    sections: [
+      { title: "When you write it",
+        body: "First — before design, before the purchase order, before any FAT. The URS captures the need; the vendor then designs to it. If a requirement is not in the URS, there is no basis to verify it later, and there is no defined qualified state to test against." },
+      { title: "What goes in it",
+        steps: [
+          "Intended use & scope: what the system is for, what it will and won't do, products/processes it serves.",
+          "Operational / performance requirements: the setpoints, ranges, capacity, throughput, uniformity and recovery the process needs. These are process- and product-driven — the URS is where the real numbers are defined, not assumed.",
+          "Control & monitoring: control system behaviour, alarms, data logging, recording intervals.",
+          "Compliance & data integrity: applicable regulations (21 CFR 210/211/820, Annex 15/11, Part 11), audit trail, access control, electronic records.",
+          "Safety: interlocks, relief devices, emergency stop, operator protection.",
+          "Utilities & environment: power, gases, water, drainage, ambient conditions, footprint/clearances.",
+          "Materials of construction: product-contact surface finish, alloys, hygienic/dead-leg requirements where relevant.",
+          "Documentation & service: manuals, drawings, spares, calibration certificates, maintenance support."
+        ] },
+      { title: "How to write each requirement",
+        steps: [
+          "Make it specific, measurable, and testable — each line should be verifiable by a later test (DQ/FAT/IQ/OQ/PQ).",
+          "Number every requirement so it can be carried into a traceability matrix.",
+          "State the requirement, not the solution — say what is needed, leave the how to the FS/design.",
+          "Tie performance numbers to the process/product requirement and cite the source (process need, product manufacturer's storage spec, pharmacopeial method).",
+          "Mark criticality / impact (direct vs indirect, critical vs non-critical) to drive risk-based qualification depth."
+        ] },
+      { title: "How it drives everything downstream",
+        body: "DQ verifies the design against the URS. FAT and SAT challenge the functional spec that was derived from the URS. IQ/OQ/PQ each verify their matching specification level, and PQ closes the loop by proving the URS is met in real use. A traceability matrix links every URS line to the test that verifies it.",
+        note: "ASTM E2500 and GAMP 5 both treat the URS (requirements) as the anchor of a science- and risk-based lifecycle. Keep it under change control — when the URS changes, the impact ripples across the whole V." }
+    ],
+    refs: [
+      { label: "EU GMP Annex 15 — URS as lifecycle reference", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ISPE GAMP 5 (2nd ed)", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" }
+    ]
+  },
+
+  fat: {
+    name: "FAT",
+    sub: "Factory Acceptance Test",
+    desc: "FAT is inspection and dynamic testing at the vendor's facility, before shipment, to confirm the equipment was built to the functional/design specification derived from the URS. It sits on the lower-right arm of the V-Model, between DQ and SAT. A good FAT catches design and build defects while they're cheapest to fix — at the vendor, before delivery.",
+    accent: "#c08bf0",
+    icon: "factory",
+    sections: [
+      { title: "When and where",
+        body: "At the equipment manufacturer's site, after build/assembly, before shipment. Witnessed by the end user (plus QA / validation, sometimes a third party). Successful, approved FAT authorizes shipment to site." },
+      { title: "Build the FAT protocol",
+        steps: [
+          "Purpose & scope: state that it confirms the equipment meets the URS, functional/design specs, and GMP before shipment; name the system and what's in/out of scope.",
+          "Responsibilities: vendor (executes, documents), client (witnesses, reviews, approves), and any third party.",
+          "Equipment description: make, model, serial, capacity, major specifications.",
+          "Reference documents: URS, FS, DS, P&ID, wiring diagrams, automation/software spec.",
+          "Test cases & acceptance criteria: each test traces to a URS/FS line with a measurable pass/fail.",
+          "Deviation handling & documentation: how findings are recorded, dispositioned, and closed."
+        ] },
+      { title: "What to test",
+        steps: [
+          "Mechanical: dimensions, weld/surface finish, component verification, materials of construction.",
+          "Electrical: wiring, power-on, safety/earthing checks.",
+          "Functional / dynamic: run the unit — power on/off, cycle sequencing, alarms, interlocks, emergency stop, restart-after-power-loss.",
+          "Automation / software: HMI displays, data logging, recipe/parameter management, access levels (per GAMP 5).",
+          "Instrument calibration: confirm measuring instruments used carry current calibration.",
+          "Documentation: drawings, certificates, manuals, spares list present and correct."
+        ] },
+      { title: "Run it well",
+        steps: [
+          "Prepare in advance — every requirement to be checked should already be in the URS.",
+          "Recreate site-like conditions and utilities as closely as possible to avoid surprises at SAT.",
+          "Use only calibrated instruments with current certificates.",
+          "Record everything — readings, photos/video, signatures of those present.",
+          "Manage deviations before shipment; resolve or formally disposition every punch-list item.",
+          "Use the FAT to train the operators who will run the unit on site."
+        ],
+        note: "FAT challenges the functional spec; acceptance numbers still come from the URS/process — do not assume them. FAT is best practice (not always mandatory) but effectively a must for complex/critical or modifiable off-the-shelf systems." }
+    ],
+    refs: [
+      { label: "ISPE C&Q — defines FAT/SAT inspection & testing", link: "https://ispe.org/publications/guidance-documents" },
+      { label: "EU GMP Annex 15", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ISPE GAMP 5 (software/automation testing)", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" }
+    ]
+  },
+
+  sat: {
+    name: "SAT",
+    sub: "Site Acceptance Test",
+    desc: "SAT repeats and extends the FAT after the equipment is installed and connected at the client's site, on real utilities, before IQ begins. It confirms that what passed at the vendor still meets the URS in the actual production environment. It sits just above FAT on the right arm of the V-Model and is the bridge from installation into formal qualification.",
+    accent: "#e6885a",
+    icon: "site",
+    sections: [
+      { title: "When and where",
+        body: "At the final installation site, once the unit is delivered, installed, and connected to site utilities — but before IQ/OQ execution. Written by the client; verifies that installed functionality meets or exceeds the URS under real site conditions." },
+      { title: "Build the SAT protocol",
+        steps: [
+          "Objective & scope: the system tested and the intent (confirm installed performance meets URS on site).",
+          "Responsibilities: vendor, engineering, validation, and QA roles.",
+          "Equipment description: make, model, serial, functional capability.",
+          "Reference documents: URS, the approved FAT report, P&IDs, wiring diagrams, software spec.",
+          "Test methodology: step-by-step execution of each test on site.",
+          "Acceptance criteria: pass/fail limit per test (traced to the URS).",
+          "Deviation management: how site findings are handled and closed."
+        ] },
+      { title: "What to test",
+        steps: [
+          "Installation vs drawings: confirm the unit is installed per the layout/design drawings.",
+          "Site utilities: verify correct operation on the real electrical supply, compressed air, water, gases, drainage.",
+          "Repeat key FAT functional tests: re-run the critical function, alarm, interlock, and safety checks now under site utilities.",
+          "Integrated/software checks: confirm site network, BMS/data integration, and access controls behave correctly.",
+          "Installation-specific items the FAT couldn't cover: anything dependent on the final environment."
+        ] },
+      { title: "Why it matters",
+        body: "FAT proves the build; SAT proves it survived shipment and works on your utilities. Differences between vendor and site utilities (power, air quality, water) are the classic source of post-delivery surprises, and SAT is where they surface — before qualification, when they're still cheap to fix. Completing SAT marks the link between installation and qualification.",
+        note: "SAT confirms the URS is still met on site; like FAT, the acceptance numbers come from the URS/process. A clean FAT makes SAT lighter; both reduce IQ/OQ rework. (ISPE-GAMP 5, Annex 15, 21 CFR 211 underpin both.)" }
+    ],
+    refs: [
+      { label: "ISPE C&Q — FAT/SAT definition & approach", link: "https://ispe.org/publications/guidance-documents" },
+      { label: "EU GMP Annex 15", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" }
+    ]
+  },
+
+  cots: {
+    name: "COTS",
+    sub: "Commercial Off-The-Shelf equipment",
+    desc: "COTS equipment is standard, catalogue, unmodified product — a benchtop balance, a pH meter, a standard lab incubator. It is built to the vendor's fixed specification, not designed to your URS, so the heavy commissioning steps that protect a custom build (FAT and SAT) usually don't apply. The qualification effort collapses toward the right-hand rungs of the V, scaled by risk.",
+    accent: "#8b98a9",
+    icon: "box",
+    sections: [
+      { title: "What makes it COTS",
+        body: "A standard, widely-available product used as supplied, with no custom design or modification to meet your specific requirements. GAMP 5 treats this as a low-complexity category. The key test: did the vendor build it to their own catalogue spec (COTS), or design and build it to your URS (custom / modifiable off-the-shelf)? Only the latter earns a full FAT/SAT." },
+      { title: "Why FAT and SAT usually don't apply",
+        steps: [
+          "FAT challenges the functional spec that was derived from your URS. A COTS unit has no URS-derived functional spec — it's the vendor's standard product — so there is nothing custom to witness-test at the factory.",
+          "SAT verifies that custom-built, site-installed functionality still meets the URS on your utilities. A plug-in benchtop unit has no complex site integration to re-verify.",
+          "The vendor's own design verification, type testing, and quality system stand in for what FAT/SAT would have proven on a custom build.",
+          "Result: for simple COTS you typically go straight from receipt to IQ/OQ (often a vendor IQ/OQ package), skipping FAT and SAT entirely."
+        ] },
+      { title: "What you still must do",
+        steps: [
+          "Still write a URS (even a short one): you need a defined, testable statement of what you require so there's a basis for acceptance — the setpoints, ranges, and accuracy your process needs.",
+          "Verification on receipt: confirm the delivered unit matches the purchase order and your URS (make, model, range, capacity).",
+          "IQ: installed correctly, on suitable utilities, calibrated, documented.",
+          "OQ: operates across the range your process uses; alarms and functions work. A vendor IQ/OQ protocol can often be leveraged if it covers your requirements.",
+          "PQ / ongoing: where the unit's performance is critical, confirm it performs in your actual use, then maintain it with routine calibration and checks.",
+          "Calibration and Part 11 / data integrity still apply if it records GxP data."
+        ] },
+      { title: "The judgment call (risk-based)",
+        body: "COTS is not an automatic skip — it's a risk decision. A simple, low-impact, indirect unit may need only receipt verification plus calibration. A COTS unit doing something critical (a balance weighing API, a controlled incubator holding product) still needs proper IQ/OQ/PQ, and a complex or configured COTS system may warrant a light SAT to prove site integration. Document the rationale for whatever you skip.",
+        note: "The simpler and lower-impact the item, the more you can lean on the vendor's documentation and collapse the V. The more critical the use, the more of the right-hand arm (IQ/OQ/PQ) you must still execute — and the acceptance numbers still come from your URS/process, never assumed from the vendor's brochure." }
+    ],
+    refs: [
+      { label: "ISPE GAMP 5 — COTS / category classification", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" },
+      { label: "EU GMP Annex 15 — risk-based qualification", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" }
+    ]
+  },
+
+  csv: {
+    name: "CSV",
+    sub: "Computer System Validation",
+    desc: "CSV is documented evidence that a computerized system does what it's supposed to, reliably and securely, throughout its life. It uses the same V-Model spine as equipment (requirements down, verification up) but is governed by GAMP 5, with the effort scaled to the system's GAMP software category and risk. The regulations (21 CFR Part 11, EU Annex 11) say a system must be validated; GAMP 5 is the practical 'how'.",
+    accent: "#5aa9e6",
+    icon: "chip",
+    sections: [
+      { title: "GAMP 5 — the framework",
+        body: "GAMP 5 (ISPE, 2nd edition 2022) is the de-facto standard for validating GxP computerized systems — MES, LIMS, eQMS, EBR, lab automation, and the control software embedded in equipment. It is guidance, not law: Part 11 and Annex 11 set the requirement to validate; GAMP 5 gives the risk-based, lifecycle method to meet it. Its core principles: scale effort to risk and complexity, leverage supplier documentation instead of duplicating it, build quality in across the lifecycle, and apply critical thinking over check-box testing.",
+        note: "The 2nd edition shifted emphasis from document-heavy CSV toward critical-thinking-based assurance, aligning with the FDA's Computer Software Assurance (CSA) — finalized Sep 2025, updated Feb 2026 to align with QMSR. CSA keeps the GAMP lifecycle but scales testing to process risk." },
+      { title: "GAMP software categories (drive the effort)",
+        steps: [
+          "Category 1 — Infrastructure software: operating systems, databases, middleware, IT services. Validated indirectly; qualify the platform.",
+          "Category 3 — Non-configured (used out of the box): standard products run with default settings. Lighter validation, lean on supplier evidence. (Old Category 2 was merged into 3.)",
+          "Category 4 — Configured: standard products tailored to your process (LIMS, MES, configured eQMS). More effort — verify the configuration against your requirements.",
+          "Category 5 — Custom / bespoke: software written for you. The most effort — design review, code review, unit testing, and full FAT/SAT before deployment.",
+          "Higher category = more rigour. The category plus a risk assessment sets how much of the V you execute."
+        ] },
+      { title: "The CSV lifecycle (4 phases)",
+        steps: [
+          "Concept: identify the need, list initial requirements, assess automation options and candidate suppliers.",
+          "Project: specify (URS → FS → DS), assess the supplier, configure or develop, then verify — the V-Model arm of CSV (see below).",
+          "Operation: the longest phase — run the system in a validated state with change control, access management, audit-trail review, backup/restore, and periodic review.",
+          "Retirement: decommission with controlled data migration/archiving so records stay retrievable and readable for their retention period."
+        ] },
+      { title: "The V-Model, applied to software",
+        steps: [
+          "URS: what the system must do (functions, data, security, Part 11 controls). Top-left of the V.",
+          "FS: how the software meets each user requirement — screen flows, calculations, audit trails, access control.",
+          "DS / configuration spec: the technical build — data model, logic, security design, interfaces, architecture.",
+          "Build / configure / code, then a supplier assessment to decide how much to leverage vendor testing.",
+          "IQ: the system and its infrastructure are installed and configured correctly (verifies the design/config spec).",
+          "OQ: functions, calculations, audit trails, and access controls work across the range (verifies the FS).",
+          "PQ / UAT: the system performs in real use with real users and data (verifies the URS). A traceability matrix links every URS line to the test that proves it."
+        ] },
+      { title: "Data integrity and Part 11 / Annex 11",
+        body: "CSV exists largely to protect electronic records. Records must be ALCOA+ — attributable, legible, contemporaneous, original, accurate, plus complete, consistent, enduring, and available. That means validating audit trails (who did what, when, why), unique-user access control and electronic-signature controls, secure time-stamped records, and backup/restore. These controls are written into the URS and proven in OQ.",
+        note: "Acceptance and configuration come from your URS and intended use — do not assume from the vendor's defaults. The same discipline as equipment: the framework tells you what to verify; your process and the regulations define the controls and limits." },
+      { title: "Maintaining the validated state",
+        body: "Validation isn't a one-time event. Across the operation phase you hold the system validated through change control (impact-assess and re-test changes), periodic review, audit-trail review, security/access management, and backup/restore testing. SaaS and AI/ML systems need this most — frequent vendor updates and adaptive models mean change control and re-assessment are continuous, not annual." }
+    ],
+    refs: [
+      { label: "ISPE GAMP 5 (2nd ed, 2022) — Risk-Based GxP Computerized Systems", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" },
+      { label: "EU GMP Annex 11 — Computerised Systems", link: "https://health.ec.europa.eu/system/files/2016-11/2015-11_annex11_en_0.pdf" },
+      { label: "FDA 21 CFR Part 11 — Electronic Records & Signatures", link: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" }
+    ]
+  }
+
+};
+
+const PROCESS_ORDER = ["vmodel", "urs", "fat", "sat", "cots", "csv"];
+
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
 const listView = document.getElementById('listView');
@@ -7273,8 +7602,75 @@ function eqArray() {
   return Object.entries(DATA).map(([id, d]) => ({ id, ...d }));
 }
 
+/* ---------- PROCESS PAGES RENDER ---------- */
+const processView = document.getElementById('processView');
+const PROC_ICONS = {
+  vmodel: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><path d="M4 4l8 16 8-16"/><path d="M7 4l5 10 5-10" opacity="0.45"/></svg>',
+  doc: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#58e6a8" stroke-width="1.7"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4M9 12h6M9 16h6"/></svg>',
+  factory: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c08bf0" stroke-width="1.7"><path d="M3 21h18M4 21V9l5 3V9l5 3V9l5 3v9"/><path d="M7 21v-4h2v4M15 21v-4h2v4"/></svg>',
+  site: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6885a" stroke-width="1.7"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 10h2M13 10h2"/></svg>',
+  box: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b98a9" stroke-width="1.7"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>',
+  chip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>'
+};
+
+function renderProcessCards() {
+  const el = document.getElementById('processList');
+  if (!el) return;
+  const cards = PROCESS_ORDER.map(id => {
+    const p = PROCESS[id];
+    return `<button class="proc-card" onclick="openProcess('${id}')" style="--pc:${p.accent}">
+      <span class="proc-icon">${PROC_ICONS[p.icon] || ''}</span>
+      <span class="proc-text">
+        <span class="proc-name">${p.name}</span>
+        <span class="proc-sub">${p.sub}</span>
+      </span>
+      <span class="proc-chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+    </button>`;
+  }).join('');
+  el.innerHTML = `<div class="proc-head">Process &amp; lifecycle</div>${cards}`;
+}
+
+function openProcess(id) {
+  const p = PROCESS[id];
+  if (!p) return;
+  const sections = (p.sections || []).map(s => {
+    let inner = '';
+    if (s.body) inner += `<p class="ps-body">${s.body}</p>`;
+    if (s.steps) inner += `<ol class="ps-steps">${s.steps.map(x => `<li>${x}</li>`).join('')}</ol>`;
+    if (s.note) inner += `<div class="ps-note">${s.note}</div>`;
+    return `<section class="ps-sec"><h3 class="ps-title">${s.title}</h3>${inner}</section>`;
+  }).join('');
+  const refs = (p.refs || []).length
+    ? `<div class="ps-refs"><div class="ps-refs-k">Governing standards</div>${p.refs.map(r =>
+        `<a class="ps-ref" href="${r.link}" target="_blank" rel="noopener">${r.label}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`).join('')}</div>`
+    : '';
+  const graph = p.svg ? `<div class="ps-graph">${p.svg}</div>` : '';
+  document.getElementById('processBody').innerHTML = `
+    <div class="detail-head">
+      <h2 style="color:${p.accent}">${p.name}</h2>
+      <p class="ps-suptitle">${p.sub}</p>
+      <p class="desc">${p.desc}</p>
+    </div>
+    ${graph}
+    ${sections}
+    ${refs}`;
+  listView.classList.add('hidden');
+  processView.classList.add('active');
+  document.querySelector('.search-wrap').style.display = 'none';
+  window.scrollTo(0,0);
+}
+
+function backFromProcess() {
+  processView.classList.remove('active');
+  listView.classList.remove('hidden');
+  document.querySelector('.search-wrap').style.display = '';
+  window.scrollTo(0,0);
+}
+
 function renderList() {
   const q = search.value.trim().toLowerCase();
+  const procEl = document.getElementById('processList');
+  if (procEl) procEl.style.display = q ? 'none' : '';
   const matches = id => {
     const e = DATA[id]; if (!e) return false;
     const domainOk = activeDomain === 'all' || e.domain === activeDomain;
@@ -7458,6 +7854,7 @@ function closeSheet() {
 
 backdrop.addEventListener('click', closeSheet);
 document.getElementById('backBtn').addEventListener('click', backToList);
+document.getElementById('procBackBtn').addEventListener('click', backFromProcess);
 search.addEventListener('input', renderList);
 domainFilter.addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
@@ -7466,12 +7863,13 @@ domainFilter.addEventListener('click', e => {
   renderList();
 });
 
+renderProcessCards();
 renderList();
 
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v6';
+    const C = 'cqv-v9';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
