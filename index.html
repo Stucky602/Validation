@@ -5968,6 +5968,221 @@ const HOWTO_shared = {
     accept: "Pull-down to setpoint band within the URS-defined time."
   },
 
+  "heat-distribution": {
+    title: "Empty-chamber heat distribution study",
+    materials: ["Calibrated thermocouple array + data logger"],
+    steps: [
+      "Set the chamber to the operating setpoint(s) defined by the process/product — do not assume the value; map at whatever setpoint(s) the unit is qualified to run.",
+      "Distribute thermocouples through the empty chamber (corners, center, near door, near the airflow path); scale count to chamber volume and add one adjacent to the control sensor.",
+      "Run to steady state and log at a fixed interval through the hold for the defined duration; repeat for the required number of consecutive runs.",
+      "Plot each sensor; assess uniformity and stability against the protocol limit and identify the cold/hot spot for PQ probe placement."
+    ],
+    accept: "Setpoint and tolerance are process/product-defined — do not assume. All sensors within the protocol's defined band during the hold across the required runs; cold/hot spot identified.",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
+  },
+
+  "heat-penetration-load": {
+    title: "Loaded heat-penetration study",
+    materials: ["Calibrated thermocouple array + logger", "Representative load"],
+    steps: [
+      "Load the chamber in the qualified pattern; place thermocouples in/against the load, concentrating on cold spots found in OQ.",
+      "Run the qualified cycle for the required number of consecutive runs.",
+      "Confirm every load location meets the cycle's time-at-temperature requirement (the requirement is set by the process/product — do not assume).",
+      "Identify the cold spot and confirm it meets the protocol limit."
+    ],
+    accept: "Process/product-defined cycle requirement met at every load location, including the cold spot, across the required runs."
+  },
+
+  "over-temp-timer": {
+    title: "Verify over-temperature protection and timer/controller",
+    steps: [
+      "Challenge the over-temperature cutoff by driving the sensed temperature toward the protection setpoint; confirm it trips and protects the load.",
+      "Verify the cycle timer against a calibrated reference at representative durations.",
+      "Confirm controller phase sequencing and setpoint control behave as specified.",
+      "Document the method used to provoke the cutoff; actual result must equal expected."
+    ],
+    accept: "Over-temperature cutoff trips at its setpoint; timer accurate within the URS limit."
+  },
+
+  "equilibration-recovery": {
+    title: "Verify equilibration / recovery time",
+    materials: ["Calibrated sensor array + timer"],
+    steps: [
+      "Stabilize at the operating setpoint with sensors logging.",
+      "Open the door for the defined interval (or start from the defined condition), then close.",
+      "Record the time for all points to return to the operating band.",
+      "Confirm equilibration/recovery time is within the URS limit and repeatable."
+    ],
+    accept: "Equilibration/recovery to the operating band within the URS-defined time."
+  },
+
+  "record-printout": {
+    title: "Verify recorder / printout vs controller",
+    steps: [
+      "Run a cycle and capture the printout/electronic record.",
+      "Confirm it records the critical parameters (temperature/time, and pressure/vacuum where applicable) plus date, time, and operator/cycle ID.",
+      "Compare recorded values against the independent calibrated reference for the same run.",
+      "Confirm alarm/deviation events appear in the record."
+    ],
+    accept: "Record captures all critical parameters and matches controller/reference readings."
+  },
+
+  "reproducibility-runs": {
+    title: "Demonstrate reproducibility across consecutive runs",
+    steps: [
+      "Confirm the required number of consecutive successful runs (commonly three) for each qualified configuration.",
+      "Verify each run independently meets all acceptance criteria.",
+      "Confirm no run required adjustment or a re-run to pass.",
+      "Summarize the run set in the report."
+    ],
+    accept: "Required number of consecutive runs all pass without intervention."
+  },
+
+  "vacuum-control": {
+    title: "Vacuum-level control and leak-up test",
+    materials: ["Calibrated vacuum gauge", "Timer"],
+    steps: [
+      "Run the pump-down and record the time to reach the target pressure (target is process-defined — do not assume).",
+      "Confirm the chamber holds the target pressure during the hold.",
+      "Isolate the pump and measure the leak-up (pressure-rise) rate over the defined interval.",
+      "Confirm pump-down time and leak-up rate meet the URS limits."
+    ],
+    accept: "Reaches and holds the process-defined target pressure; pump-down time and leak-up rate within URS limits."
+  },
+
+  "speed-verification": {
+    title: "Speed verification (tachometer)",
+    materials: ["Calibrated NIST-traceable tachometer"],
+    steps: [
+      "Select representative setpoints across the operating range.",
+      "At each, compare the displayed RPM against a calibrated tachometer reading.",
+      "Record the deviation at each setpoint.",
+      "Confirm deviation is within the manufacturer/URS tolerance (e.g. ±100 RPM is a common example — confirm against the data sheet)."
+    ],
+    accept: "Displayed speed within the data-sheet/URS tolerance at each setpoint.",
+    link: "https://www.transcat.com/calibration-resources", linkLabel: "Transcat — metrology"
+  },
+
+  "timer-verification": {
+    title: "Timer verification",
+    materials: ["Calibrated timer reference"],
+    steps: [
+      "Select representative durations.",
+      "Compare the set time against the measured elapsed time with a calibrated reference.",
+      "Record the deviation at each duration.",
+      "Confirm deviation is within the URS limit (e.g. ±2% is a common example — confirm per data sheet)."
+    ],
+    accept: "Timer accuracy within the data-sheet/URS tolerance at each duration."
+  },
+
+  "interlock-imbalance": {
+    title: "Verify lid interlock and imbalance detection",
+    steps: [
+      "Confirm the lid cannot be opened while the rotor is spinning.",
+      "Confirm a cycle cannot start with the lid open/unlatched.",
+      "Introduce a controlled rotor imbalance and confirm the unit detects it and halts/aborts the run.",
+      "Document the method used to provoke each condition; actual result must equal expected."
+    ],
+    accept: "Lid interlock prevents open-while-spinning and start-while-open; imbalance detection halts the run."
+  },
+
+  "endotoxin-challenge": {
+    title: "Endotoxin challenge (depyrogenation)",
+    materials: ["Endotoxin Challenge Vials / Indicators (≥1000 EU recoverable, RSE/CSE-spiked carrier)", "LAL assay kit (gel-clot, kinetic-turbidimetric, or chromogenic)", "Unbaked control vial"],
+    steps: [
+      "Place endotoxin indicators at the cold spot(s) identified by heat distribution, in a worst-case load; set one unbaked vial aside as the control.",
+      "Run the qualified depyrogenation cycle (do not remove vial seals/stoppers during baking).",
+      "After the cycle, assay the baked vial(s) and the control by LAL; calculate the log reduction (baked vs unbaked).",
+      "Confirm the reduction meets the protocol's target log-reduction value."
+    ],
+    accept: "Log reduction meets the protocol target. Note: ≥3-log (1000×) is the common benchmark, but per USP <1228>/<1228.5> the required value is product/process-driven — high-endotoxin materials may need more, washed glass less. Set the target from the process, do not assume 3-log.",
+    link: "https://doi.usp.org/USPNF/USPNF_M10256_01_01.html", linkLabel: "USP <1228.5> — Endotoxin Indicators"
+  },
+
+  "tunnel-belt-dwell": {
+    title: "Verify belt speed / dwell time (tunnel)",
+    materials: ["Calibrated timer / belt-speed reference"],
+    steps: [
+      "Set the belt to the qualified speed.",
+      "Measure the actual belt speed and the resulting dwell time in the heating zone against a calibrated reference.",
+      "Confirm dwell time delivers the required time-at-temperature (process-defined — do not assume).",
+      "Verify the controller holds belt speed across the run."
+    ],
+    accept: "Belt speed and dwell time deliver the process-defined time-at-temperature within the URS limit."
+  },
+
+  "tunnel-pressure-cascade": {
+    title: "Verify zone-to-zone pressure cascade (tunnel)",
+    materials: ["Calibrated differential-pressure gauge"],
+    steps: [
+      "Measure the differential pressure between adjacent zones (e.g. cooling zone positive to the surrounding room/filling line).",
+      "Confirm the cascade direction and magnitude match the design intent to protect the sterile/clean zone.",
+      "Verify HEPA-filtered airflow integrity feeding each zone.",
+      "Confirm any door interlocks between zones function."
+    ],
+    accept: "Pressure cascade direction and magnitude match design; HEPA airflow and interlocks function."
+  },
+
+  "vapor-gradient-map": {
+    title: "Vapor-phase temperature gradient mapping",
+    materials: ["Cryogenic-rated sensor array + logger"],
+    steps: [
+      "Place cryogenic-rated sensors at multiple heights from the liquid surface to the top of the storage space, plus at representative rack positions.",
+      "Log over a representative period including a normal fill cycle.",
+      "Characterize the vertical temperature gradient and identify the warmest occupied position.",
+      "Confirm the warmest occupied position stays within the storage limit (limit is product-driven, e.g. ≤ −150 °C for some cell products — do not assume; confirm per process)."
+    ],
+    accept: "Warmest occupied position within the product-defined storage limit; vertical gradient characterized.",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
+  },
+
+  "controlled-rate-profile": {
+    title: "Verify programmed cooling-rate profile (controlled-rate units)",
+    materials: ["Cryogenic-rated sensor array + logger"],
+    steps: [
+      "Load a thermally representative load (or dummy) with sensors in/against it.",
+      "Run the programmed cooling-rate profile.",
+      "Compare the measured chamber/load temperature trace against the programmed profile setpoints over time.",
+      "Confirm the unit tracks the profile within the protocol tolerance (the profile is product/process-defined — do not assume)."
+    ],
+    accept: "Measured trace follows the programmed, product-defined profile within the protocol tolerance."
+  },
+
+  "alarm-route-local-remote": {
+    title: "Confirm alarms route locally and remotely",
+    steps: [
+      "Provoke each configured alarm (e.g. low-level, high-temperature, fault).",
+      "Confirm the local audible/visual alarm activates.",
+      "Confirm the remote/BMS notification is received.",
+      "Document the method used to provoke each; actual result must equal expected."
+    ],
+    accept: "Each alarm activates locally and routes to the remote/BMS as specified."
+  },
+
+  "auto-fill": {
+    title: "Verify auto-fill activation/termination (LN₂)",
+    materials: ["Calibrated level reference"],
+    steps: [
+      "Confirm the configured low-level and high-level (fill-stop) setpoints.",
+      "Allow the level to fall and confirm auto-fill initiates at the low setpoint.",
+      "Confirm fill terminates at the high setpoint without overfill.",
+      "Confirm the low-level alarm activates if fill does not restore level."
+    ],
+    accept: "Auto-fill starts and stops at the configured setpoints; low-level alarm functions."
+  },
+
+  "o2-depletion": {
+    title: "O₂-depletion monitor verification (operator safety)",
+    materials: ["Calibrated O₂ monitor / bump-test gas"],
+    steps: [
+      "Confirm the O₂-depletion monitor is installed in the room/headspace and powered.",
+      "Bump-test or challenge the sensor to the alarm threshold per the manufacturer method.",
+      "Confirm the local audible/visual alarm and any remote notification activate.",
+      "Confirm operator-safety signage and PPE provisions are in place."
+    ],
+    accept: "O₂-depletion monitor alarms at the configured threshold; signage/PPE in place."
+  }
+
 };
 
 /* ---------- INCUBATOR HOW-TO (shared refs + overrides) ---------- */
@@ -6227,6 +6442,775 @@ const HOWTO_co2incubator = {
   "PQ:3": { use: "requalification" }
 };
 
+/* ---------- OVEN / CRYO / LAB HOW-TO MAPS ---------- */
+// ---- Ovens / Cryo / Lab how-to maps (shared refs + process-driven overrides) ----
+
+const HOWTO_dryoven = {
+  "IQ:0": { use: "iq-components", title: "Verify power, HEPA/airflow config, and door seal vs spec" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm controller and mapping thermocouples calibrated for the range" },
+  "IQ:2": { use: "iq-components", title: "Verify make/model/serial, max temperature, airflow type recorded" },
+  "IQ:3": { use: "iq-location" },
+  "IQ:4": { use: "iq-components", title: "Confirm HEPA/airflow, shelving, and door seal installed" },
+  "IQ:5": { use: "iq-calibration-certs", title: "Verify thermocouples, controller, and timer calibrated" },
+  "IQ:6": { use: "iq-instrument-inventory" },
+  "IQ:7": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "heat-distribution" },
+  "OQ:1": { use: "over-temp-timer" },
+  "OQ:2": { use: "cal-verify" },
+  "OQ:3": { use: "control-functions" },
+  "OQ:4": { use: "equilibration-recovery" },
+  "OQ:5": { use: "record-printout" },
+
+  "PQ:0": { use: "heat-penetration-load" },
+  "PQ:1": { use: "endotoxin-challenge", title: "Depyrogenation only: endotoxin log-reduction challenge" },
+  "PQ:2": { use: "loading-pattern", title: "Define each load pattern to be qualified" },
+  "PQ:3": { use: "reproducibility-runs" },
+  "PQ:4": { use: "requalification" }
+};
+
+const HOWTO_depyrooven = {
+  "IQ:0": { use: "iq-components", title: "Verify power, HEPA airflow, and (tunnel) belt/zone config vs URS" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm process thermocouples and reference rated for ≥250 °C",
+    accept: "Process thermocouples and the reference standard calibrated, traceable, and rated for the depyrogenation temperature (≥250 °C typical — confirm cycle)." },
+  "IQ:2": { use: "iq-components", title: "Verify inter-zone airflow/pressure cascade (tunnel) installed" },
+  "IQ:3": { use: "iq-location" },
+  "IQ:4": { use: "iq-components", title: "Confirm HEPA/airflow, belt drive or shelving, zone config installed" },
+  "IQ:5": { use: "iq-calibration-certs", title: "Verify high-temperature-rated thermocouples calibrated" },
+  "IQ:6": { use: "iq-instrument-inventory" },
+  "IQ:7": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "heat-distribution", title: "Empty-chamber heat distribution at the depyrogenation setpoint",
+    accept: "Setpoint is process/product-defined (250 °C/30 min is a common cycle; do not assume) — map at the qualified setpoint; all sensors within the protocol band; cold spot identified." },
+  "OQ:1": { use: "tunnel-belt-dwell" },
+  "OQ:2": { use: "cal-verify" },
+  "OQ:3": { use: "control-functions" },
+  "OQ:4": { use: "tunnel-pressure-cascade", title: "Verify zone-to-zone pressure cascade (tunnel) and interlocks" },
+  "OQ:5": { use: "record-printout" },
+
+  "PQ:0": { use: "endotoxin-challenge", title: "Endotoxin challenge at the cold spot (LRV target)" },
+  "PQ:1": { use: "heat-penetration-load", title: "Loaded heat-penetration: confirm time-at-temperature at all locations" },
+  "PQ:2": { use: "loading-pattern", title: "Define each load/configuration to be qualified" },
+  "PQ:3": { use: "reproducibility-runs" },
+  "PQ:4": { use: "requalification" }
+};
+
+const HOWTO_vacuumoven = {
+  "IQ:0": { use: "iq-components", title: "Verify power, vacuum pump, gauge, and seal integrity vs URS" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm thermocouples and vacuum gauge calibrated" },
+  "IQ:2": { use: "iq-location" },
+  "IQ:3": { use: "iq-components", title: "Confirm vacuum pump, cold trap, gauge, and seals installed" },
+  "IQ:4": { use: "iq-calibration-certs", title: "Verify thermocouples and vacuum gauge calibrated" },
+  "IQ:5": { use: "iq-instrument-inventory" },
+  "IQ:6": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "vacuum-control" },
+  "OQ:1": { use: "heat-distribution", title: "Heat distribution at setpoint under vacuum; identify cold spot" },
+  "OQ:2": { use: "over-temp-timer", title: "Verify over-temperature protection and controller functions" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "vacuum-control", title: "Verify pump-down time to target and chamber leak-up rate" },
+  "OQ:6": { use: "record-printout", title: "Confirm over-temperature protection and recorder/printout" },
+
+  "PQ:0": { use: "heat-penetration-load", title: "Loaded drying study; confirm uniformity and endpoint under load",
+    accept: "Process-defined drying endpoint met and uniformity within the protocol limit under the qualified load." },
+  "PQ:1": { use: "loading-pattern", title: "Define each load pattern to be qualified" },
+  "PQ:2": { use: "reproducibility-runs" },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_ln2 = {
+  "IQ:0": { use: "iq-components", title: "Verify vessel integrity, LN₂ supply/auto-fill, level sensors, O₂ monitor" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm cryogenic-rated mapping sensors calibrated across range" },
+  "IQ:2": { use: "iq-components", title: "Verify vessel/dewar integrity, auto-fill/transfer line, level sensors" },
+  "IQ:3": { use: "iq-backup-alarm", title: "Confirm O₂-depletion monitor and operator-safety signage/PPE",
+    steps: [
+      "Confirm the O₂-depletion monitor is installed and powered in the room/headspace.",
+      "Verify operator-safety signage is posted and PPE provisions (e.g. cryo gloves, face shield) are available.",
+      "Confirm low-level and high-temperature alarm contacts are wired (local + remote).",
+      "Record alarm setpoints (functional challenge occurs in OQ)."
+    ],
+    accept: "O₂ monitor, safety signage/PPE, and alarm contacts in place." },
+  "IQ:4": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:5": { use: "iq-components", title: "Confirm as-built drawings / datasheets match installed unit" },
+  "IQ:6": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { use: "vapor-gradient-map" },
+  "OQ:1": { use: "auto-fill", title: "Low-level alarm and auto-fill activation at configured setpoints" },
+  "OQ:2": { use: "o2-depletion" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "auto-fill", title: "Verify auto-fill activates and terminates at configured level setpoints" },
+  "OQ:6": { use: "alarm-route-local-remote", title: "Confirm low-level and high-temperature alarms route locally and remotely" },
+
+  "PQ:0": { use: "vapor-gradient-map", title: "Loaded performance at worst-case fill and access",
+    accept: "Warmest occupied sample position stays within the product-defined storage limit at worst-case fill and access." },
+  "PQ:1": { use: "loading-pattern", title: "Define rack/inventory loading pattern and access frequency" },
+  "PQ:2": { use: "monitor-sensor-placement", title: "Confirm warmest occupied position stays within limit over time",
+    steps: [
+      "Identify the warmest occupied position from vapor-phase mapping.",
+      "Place/confirm a monitoring sensor at that worst-case position.",
+      "Log over a representative period including routine access.",
+      "Confirm it stays within the product-defined storage limit."
+    ],
+    accept: "Warmest occupied position documented and held within the product-defined limit." },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_cryochamber = {
+  "IQ:0": { use: "iq-components", title: "Verify power, refrigeration/LN₂ assist, control system, probes vs URS" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm cryogenic-rated sensors calibrated across range" },
+  "IQ:2": { use: "iq-location" },
+  "IQ:3": { use: "iq-components", title: "Confirm refrigeration/LN₂-assist, control unit, probes installed" },
+  "IQ:4": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:5": { use: "iq-components", title: "Confirm as-built drawings / datasheets match installed unit" },
+  "IQ:6": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { use: "temp-map-empty", title: "Empty-chamber mapping at setpoint; pull-down to cryogenic target",
+    accept: "Setpoint/tolerance per process/product — do not assume. Map at the cryogenic setpoint; uniformity and pull-down within the URS band; hot/cold spots identified." },
+  "OQ:1": { use: "controlled-rate-profile" },
+  "OQ:2": { use: "alarm-challenge-tcu", title: "Verify high-temperature/fault alarms at configured setpoints",
+    accept: "High-temperature/fault alarms activate at configured setpoints." },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "pulldown", title: "Verify pull-down time from ambient to cryogenic setpoint" },
+  "OQ:6": { use: "alarm-route-local-remote", title: "Confirm fault/high-temperature alarms route locally and remotely" },
+
+  "PQ:0": { use: "controlled-rate-profile", title: "Loaded run reproducing the real freezing profile",
+    accept: "Process-defined freezing profile/rate met across the load in a loaded run." },
+  "PQ:1": { use: "loading-pattern", title: "Define the loaded run / profile with a thermally representative load" },
+  "PQ:2": { use: "reproducibility-runs" },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_centrifuge = {
+  "IQ:0": { use: "iq-components", title: "Verify power, leveling, rotor compatibility, lid-interlock install" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm calibrated tachometer and timer reference available",
+    accept: "A calibrated, traceable tachometer and timer reference are available for OQ checks." },
+  "IQ:2": { use: "iq-components", title: "Record make/model/serial, rotor type(s), max RCF vs spec" },
+  "IQ:3": { use: "iq-location" },
+  "IQ:4": { use: "iq-components", title: "Verify rotor(s), buckets, lid-interlock compatibility and install" },
+  "IQ:5": { use: "iq-instrument-inventory" },
+  "IQ:6": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "speed-verification" },
+  "OQ:1": { use: "timer-verification" },
+  "OQ:2": { use: "cal-verify", title: "Refrigerated units: temperature accuracy at setpoint during a run",
+    steps: [
+      "For refrigerated centrifuges, set the chamber to the working setpoint (process-defined — do not assume; e.g. 4 °C is common but confirm).",
+      "Run a representative protocol with a calibrated reference sensor in the chamber.",
+      "Compare measured chamber temperature against setpoint during the run.",
+      "Confirm it holds within the data-sheet/URS tolerance."
+    ],
+    accept: "Refrigerated chamber holds the process-defined setpoint within tolerance during a representative run." },
+  "OQ:3": { use: "interlock-imbalance", title: "Verify imbalance detection and lid interlock under fault" },
+  "OQ:4": { use: "cal-verify" },
+  "OQ:5": { use: "control-functions" },
+  "OQ:6": { use: "control-functions", title: "Verify accel/decel profiles and program recall (if programmable)",
+    steps: [
+      "Select representative acceleration and deceleration profiles.",
+      "Confirm the unit follows the selected profile.",
+      "For programmable units, store and recall a program and confirm it runs as saved.",
+      "Confirm access control over stored programs where applicable."
+    ],
+    accept: "Accel/decel profiles behave as selected; stored programs recall and run correctly." },
+  "OQ:7": { use: "interlock-imbalance", title: "Confirm lid cannot open while spinning; imbalance halts run" },
+
+  "PQ:0": { use: "reproducibility-runs", title: "Performance with representative load/protocol; trend speed/timer",
+    accept: "Representative load/protocol performs consistently over routine use; speed and timer checks trended within tolerance." },
+  "PQ:1": { use: "reproducibility-runs", title: "Confirm performance with representative load/protocol over routine use" },
+  "PQ:2": { use: "requalification", title: "Define routine speed/timer verification frequency and trend results",
+    accept: "Routine speed/timer verification frequency defined and results trended." }
+};
+
+const HOWTO_waterbath = {
+  "IQ:0": { use: "iq-components", title: "Verify power, fill level, lid, and (if circulated) pump install" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm mapping sensors calibrated for the working range" },
+  "IQ:2": { use: "iq-location" },
+  "IQ:3": { use: "iq-components", title: "Confirm lid, rack/tray, pump (if fitted), fill-level mark installed" },
+  "IQ:4": { use: "iq-calibration-certs", title: "Verify temperature controller/sensor calibrated" },
+  "IQ:5": { use: "iq-instrument-inventory" },
+  "IQ:6": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "temp-map-empty", title: "Temperature distribution at setpoint through the working volume",
+    steps: [
+      "Set the bath to the operating setpoint(s) defined by the process — do not assume the value; common bath setpoints include 37, 56, and 80 °C but confirm per use.",
+      "Distribute calibrated sensors through the working volume (e.g. 4 corners + center, or a 9-point pattern at the working depth).",
+      "Run to steady state and log at a fixed interval; assess uniformity (spread between sensors).",
+      "Repeat at each required setpoint; identify the cold/hot spot."
+    ],
+    accept: "Setpoint is process-defined — do not assume. Uniformity within the protocol limit at each required setpoint (±0.1–0.5 °C control is common but confirm per data sheet/process)." },
+  "OQ:1": { use: "temp-map-empty", title: "Stability over time at setpoint",
+    steps: [
+      "Hold the bath at the operating setpoint with a calibrated sensor logging.",
+      "Record temperature over a representative period.",
+      "Assess the fluctuation band at each measurement point.",
+      "Confirm the controller holds within the URS stability band."
+    ],
+    accept: "Controller holds within the URS-defined stability band over time (setpoint process-defined)." },
+  "OQ:2": { use: "over-temp-timer", title: "Verify over-temperature cutoff / low-level protection" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "equilibration-recovery", title: "Verify warm-up / recovery time to reach setpoint" },
+  "OQ:6": { use: "over-temp-timer", title: "Confirm over-temperature cutoff and low-level protection (if fitted)" },
+
+  "PQ:0": { use: "temp-map-loaded", title: "Performance under representative load (racks/vessels)",
+    accept: "Setpoint process-defined — do not assume. Holds within the URS band under representative racks/vessels over a routine run." },
+  "PQ:1": { use: "temp-map-loaded", title: "Confirm performance under representative load over a routine run" },
+  "PQ:2": { use: "requalification", title: "Define routine temperature-check frequency and tolerance",
+    accept: "Routine temperature-check frequency and tolerance defined." }
+};
+
+/* ---------- ANALYTICAL + BIOREACTOR HOW-TO MAPS ---------- */
+// ---- Analytical instruments + Bioreactor how-to maps (custom, standards-grounded) ----
+
+const HOWTO_balance = {
+  "IQ:0": { use: "iq-utilities", title: "Verify supply voltage/outlet vs nameplate before power-on" },
+  "IQ:1": { use: "iq-location", title: "Confirm stable, level, vibration-free surface away from drafts" },
+  "IQ:2": { use: "iq-components", title: "Confirm level indicator centered and adjustable feet functional",
+    steps: [
+      "Confirm the built-in bubble/level indicator is installed and visible.",
+      "Adjust the feet until the level indicator is centered.",
+      "Confirm the feet lock and the balance does not rock.",
+      "Record the leveled state."
+    ],
+    accept: "Level indicator centered; adjustable feet functional and stable." },
+  "IQ:3": { title: "Verify traceable calibration weights on hand",
+    materials: ["OIML/ASTM-class reference weights with current certificates"],
+    steps: [
+      "Identify the test weights needed (covering 5–100% of capacity for accuracy, ~half capacity for repeatability).",
+      "Confirm each weight carries a current certificate traceable to NIST/national standard.",
+      "Confirm each weight's mpe (or calibration uncertainty) is ≤ 1/3 of the applicable balance test tolerance.",
+      "Record weight class, value, and certificate IDs."
+    ],
+    accept: "Traceable weights on hand; mpe/uncertainty ≤ 1/3 of the test tolerance.",
+    link: "https://www.usp.org/frequently-asked-questions/balances-and-weighing-analytical-balance", linkLabel: "USP — Balances FAQ" },
+  "IQ:4": { use: "iq-components", title: "Document make/model/serial, capacity, readability vs spec" },
+  "IQ:5": { use: "iq-location", title: "Confirm anti-vibration table/draft shield and environment suitable" },
+  "IQ:6": { use: "iq-components", title: "Verify internal calibration function and bubble level installed" },
+  "IQ:7": { use: "iq-instrument-inventory" },
+  "IQ:8": { use: "iq-vendor-docs" },
+
+  "OQ:0": { title: "Repeatability (USP <41>)",
+    materials: ["One test weight (~half capacity)", "Tare vessel used in routine work"],
+    steps: [
+      "Weigh one test weight not less than 10 times under routine conditions.",
+      "Compute the standard deviation (SD) of the readings; if SD < 0.41d (d = scale interval), use 0.41d.",
+      "Repeatability is satisfactory if (2 × SD) ÷ smallest net weight to be weighed ≤ 0.10%.",
+      "Record SD and the calculation."
+    ],
+    accept: "(2 × SD) ÷ minimum sample weight ≤ 0.10% per USP <41>. (Feb 2026 revision: also evaluate/document measurement uncertainty.)",
+    link: "https://www.usp.org/frequently-asked-questions/balances-and-weighing-analytical-balance", linkLabel: "USP <41> — Balances" },
+  "OQ:1": { title: "Accuracy / trueness (USP <41>)",
+    materials: ["Calibrated test weight, 5–100% of capacity"],
+    steps: [
+      "Select a calibrated test weight between 5% and 100% of capacity (mpe ≤ 1/3 of the 0.10% test limit).",
+      "Weigh it and record the displayed value.",
+      "Compute the deviation from the certified test-weight value.",
+      "Repeat at additional points across the range if required by the protocol."
+    ],
+    accept: "Displayed value within 0.10% of the test-weight value (5–100% of capacity) per USP <41>." },
+  "OQ:2": { title: "Establish minimum weight / operating range",
+    steps: [
+      "Use the repeatability SD from OQ:0.",
+      "Calculate the minimum weight as the smallest net sample meeting (2 × SD) ÷ sample ≤ 0.10% (USP <41>).",
+      "Verify the minimum weight using the actual tare vessels used in routine work.",
+      "Document the operating range (minimum weight to capacity)."
+    ],
+    accept: "Minimum weight established from demonstrated repeatability and verified with routine tare vessels." },
+  "OQ:3": { title: "Eccentricity (corner-load) test",
+    materials: ["Single test weight (~1/3 to 1/2 capacity)"],
+    steps: [
+      "Place the weight at the center of the pan and record the reading.",
+      "Move it to each quadrant/corner of the pan in turn, recording each reading.",
+      "Compute the maximum deviation from the center reading.",
+      "Confirm it is within the data-sheet/OIML R76 limit (process/instrument-defined — confirm, do not assume)."
+    ],
+    accept: "Max corner-load deviation within the manufacturer/OIML limit.",
+    link: "https://www.usp.org/frequently-asked-questions/balances-and-weighing-analytical-balance", linkLabel: "USP — Balances FAQ" },
+  "OQ:4": { use: "cal-verify" },
+  "OQ:5": { title: "Off-center (eccentricity) load test",
+    materials: ["Single test weight"],
+    steps: [
+      "Repeat the corner-load test at center then each quadrant.",
+      "Record the maximum deviation.",
+      "Confirm within the manufacturer/OIML limit.",
+      "Document the result."
+    ],
+    accept: "Max eccentricity deviation within the manufacturer/OIML limit." },
+  "OQ:6": { title: "Warm-up / drift check",
+    steps: [
+      "Allow the balance the manufacturer-specified stabilization/warm-up time.",
+      "Place a stable weight and record the reading over the stabilization period.",
+      "Confirm the reading stabilizes and does not drift beyond tolerance.",
+      "Record the time to stable reading."
+    ],
+    accept: "Reading stable within tolerance after the specified warm-up time." },
+  "OQ:7": { title: "Tare and linearity check",
+    materials: ["Reference weights spanning the range"],
+    steps: [
+      "Tare a vessel and confirm zero.",
+      "Add reference weights stepwise across the range, recording each reading.",
+      "Assess linearity of displayed vs reference across the points.",
+      "Confirm deviations within tolerance at each point."
+    ],
+    accept: "Tare functions and linearity within tolerance across the range." },
+
+  "PQ:0": { title: "Routine accuracy/repeatability over real workload",
+    steps: [
+      "Run the defined routine accuracy/repeatability checks at the set intervals.",
+      "Perform under the actual operating location and workflow.",
+      "Trend the results over a representative period.",
+      "Confirm continued conformance to the OQ acceptance."
+    ],
+    accept: "Routine checks remain within tolerance over the representative period." },
+  "PQ:1": { title: "Daily user check-weighing in place and trended",
+    steps: [
+      "Confirm a daily single-tolerance-weight check procedure is defined.",
+      "Confirm operators perform and log it before use.",
+      "Trend the logged results.",
+      "Confirm action limits trigger investigation."
+    ],
+    accept: "Daily check-weighing performed, logged, and trended." },
+  "PQ:2": { title: "Define routine daily check-weighing procedure and tolerance",
+    steps: [
+      "Select the daily check weight (representative of routine work).",
+      "Define the acceptance tolerance from the process requirement (do not assume; tie to the smallest routine sample).",
+      "Document the procedure, frequency, and action limits.",
+      "Approve under the QMS."
+    ],
+    accept: "Daily check procedure, weight, frequency, and tolerance defined and approved." },
+  "PQ:3": { use: "requalification", title: "Confirm performance under actual location/workflow over time" }
+};
+
+const HOWTO_ph = {
+  "IQ:0": { use: "iq-utilities", title: "Verify supply/battery and stable power-on display" },
+  "IQ:1": { title: "Confirm electrode, ATC probe, and buffer set present and in date",
+    steps: [
+      "Confirm the pH electrode and temperature (ATC) probe are present and connected.",
+      "Confirm the standardization buffer set is on hand and within shelf life.",
+      "Inspect the electrode (fill level, junction, no cracks).",
+      "Record electrode type and buffer lot/expiry."
+    ],
+    accept: "Electrode, ATC probe, and in-date buffers present and serviceable." },
+  "IQ:2": { title: "Verify NIST-traceable standardization buffers on hand",
+    steps: [
+      "Confirm the buffers are NIST-traceable with stated accuracy.",
+      "Confirm lot numbers and expiry.",
+      "Confirm storage conditions were maintained.",
+      "Record buffer details."
+    ],
+    accept: "NIST-traceable buffers on hand, in date, with stated accuracy." },
+  "IQ:3": { use: "iq-components", title: "Record make/model/serial, resolution, electrode type vs spec" },
+  "IQ:4": { use: "iq-components", title: "Verify electrode storage solution, condition, service life" },
+  "IQ:5": { use: "iq-instrument-inventory" },
+  "IQ:6": { use: "iq-vendor-docs" },
+
+  "OQ:0": { title: "Two-point standardization (USP <791>)",
+    materials: ["Two NIST-traceable buffers bracketing the sample pH (≤4 units apart)"],
+    steps: [
+      "Select two buffers that bracket the expected sample pH, no more than 4 pH units apart.",
+      "Standardize at 25 ± 2 °C (or with ATC correcting to it), rinsing the electrode between buffers.",
+      "Confirm the meter accepts both calibration points.",
+      "Record the buffer values and measured readings."
+    ],
+    accept: "Two-point standardization completes with bracketing buffers ≤4 units apart, at 25 ± 2 °C per USP <791>.",
+    link: "https://www.usp.org/", linkLabel: "USP <791> — pH" },
+  "OQ:1": { title: "Verify second buffer reads within tolerance",
+    steps: [
+      "After standardization, measure the second (check) buffer.",
+      "Compare the reading to its tabulated value at the measurement temperature.",
+      "Confirm the reading is within the acceptance tolerance (commonly ±0.05; instrument able to reproduce to 0.02 pH per USP <791> — confirm protocol).",
+      "Record the deviation."
+    ],
+    accept: "Check buffer reads within the protocol tolerance of its tabulated value." },
+  "OQ:2": { title: "Confirm resolution / reproducibility",
+    steps: [
+      "Make replicate measurements of a stable buffer.",
+      "Confirm the instrument reproduces pH values to 0.02 pH unit (USP <791> definition).",
+      "Confirm the displayed resolution meets the compendial requirement.",
+      "Record the spread."
+    ],
+    accept: "Instrument reproduces pH to 0.02 unit per USP <791>." },
+  "OQ:3": { title: "Verify temperature compensation",
+    steps: [
+      "Confirm measurements are made at 25 ± 2 °C, or that ATC corrects readings to 25 °C.",
+      "Compare an ATC-corrected reading against a reading at controlled 25 °C.",
+      "Confirm agreement within tolerance.",
+      "Record the method used."
+    ],
+    accept: "Measurements at 25 ± 2 °C or ATC correctly compensating to it." },
+  "OQ:4": { title: "Check electrode slope",
+    steps: [
+      "Read the slope reported after two-point standardization.",
+      "Confirm it falls within the acceptable range (commonly 95–105%; Nernstian ~59.16 mV/pH at 25 °C — confirm per data sheet).",
+      "Replace the electrode if below the manufacturer limit (~90%).",
+      "Record the slope."
+    ],
+    accept: "Electrode slope within the acceptable range (e.g. 95–105%; confirm per data sheet)." },
+  "OQ:5": { use: "cal-verify" },
+  "OQ:6": { title: "Electrode response-time check",
+    steps: [
+      "Move the electrode from one buffer to another.",
+      "Record the time to a stable reading.",
+      "Confirm it is within the specified response time.",
+      "Repeat to confirm consistency."
+    ],
+    accept: "Stable reading reached within the specified response time." },
+  "OQ:7": { title: "Verify ATC temperature reading vs reference",
+    steps: [
+      "Place the ATC probe alongside an independent calibrated thermometer.",
+      "Compare readings at a stable temperature.",
+      "Confirm agreement within tolerance.",
+      "Record the deviation."
+    ],
+    accept: "ATC temperature reading agrees with the reference within tolerance." },
+
+  "PQ:0": { title: "Daily check-buffer verification before use",
+    steps: [
+      "Before use, measure a check buffer (e.g. pH 7.00).",
+      "Confirm it reads within tolerance.",
+      "Log and trend the result.",
+      "Re-standardize or investigate if out of tolerance."
+    ],
+    accept: "Daily check buffer within tolerance, logged and trended." },
+  "PQ:1": { title: "Confirm electrode maintenance/storage/replacement procedure",
+    steps: [
+      "Confirm the electrode storage solution and conditions are defined.",
+      "Confirm cleaning and conditioning steps are documented.",
+      "Confirm replacement criteria (slope/response) are defined.",
+      "Confirm operators follow the procedure."
+    ],
+    accept: "Electrode maintenance, storage, and replacement procedure defined and followed." },
+  "PQ:2": { title: "Define pre-use verification procedure, frequency, tolerance",
+    steps: [
+      "Select the pre-use check buffer.",
+      "Define the acceptance tolerance from the measurement requirement (do not assume).",
+      "Document frequency and action on failure.",
+      "Approve under the QMS."
+    ],
+    accept: "Pre-use verification procedure, frequency, and tolerance defined and approved." },
+  "PQ:3": { use: "requalification", title: "Confirm performance over routine sample measurement" }
+};
+
+const HOWTO_osmometer = {
+  "IQ:0": { use: "iq-components", title: "Verify power and cooling/probe assembly reaches operating range" },
+  "IQ:1": { title: "Confirm traceable osmolality calibrators on hand",
+    steps: [
+      "Confirm osmolality reference standards bracketing the working range are available.",
+      "Confirm each is traceable and within shelf life.",
+      "Confirm storage conditions were maintained.",
+      "Record standard values and lot/expiry."
+    ],
+    accept: "Traceable osmolality calibrators on hand, in date, bracketing the working range." },
+  "IQ:2": { use: "iq-location" },
+  "IQ:3": { use: "iq-components", title: "Verify sample probe/cooling assembly and reagents installed" },
+  "IQ:4": { use: "iq-instrument-inventory" },
+  "IQ:5": { use: "iq-vendor-docs" },
+
+  "OQ:0": { title: "Calibrate and verify (freezing-point depression, USP <785>)",
+    materials: ["Osmolality standards bracketing the working range", "Independent verification standard"],
+    steps: [
+      "Calibrate using standards that bracket the working range per the instrument method.",
+      "Measure an independent standard not used in calibration.",
+      "Confirm the result is within the acceptance (USP <785>: freezing-point depression; ~±5% cal is a common reference — confirm protocol).",
+      "Record calibration and verification values."
+    ],
+    accept: "Verification standard within the protocol acceptance after calibration (USP <785>).",
+    link: "https://www.usp.org/", linkLabel: "USP <785> — Osmolality" },
+  "OQ:1": { title: "Repeatability",
+    steps: [
+      "Make replicate measurements of a single standard.",
+      "Compute the spread/SD.",
+      "Confirm within the protocol repeatability limit.",
+      "Record the result."
+    ],
+    accept: "Replicate spread within the protocol repeatability limit." },
+  "OQ:2": { title: "Context note: plasma reference range",
+    steps: [
+      "Note that human plasma is ~285–310 mOsmol/kg — a physiological reference point, not a compendial acceptance limit.",
+      "Set actual acceptance from the product/process requirement, not from this reference.",
+      "Document the working range applicable to the samples measured.",
+      "Confirm calibrators bracket that working range."
+    ],
+    accept: "Working range and acceptance are process/product-defined — do not use the plasma reference as a limit." },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { title: "Verify measurement cycle completes within time",
+    steps: [
+      "Run the freezing/measurement cycle on a sample.",
+      "Record the time to a reported result.",
+      "Confirm it completes and reports within the specified time.",
+      "Repeat to confirm consistency."
+    ],
+    accept: "Freezing/measurement cycle completes and reports within the specified time." },
+  "OQ:6": { title: "Cleaning / carryover check",
+    steps: [
+      "Measure a high-osmolality sample, then a low blank/standard.",
+      "Confirm the blank result shows no significant carryover.",
+      "Confirm the cleaning step between samples is effective.",
+      "Record the carryover result."
+    ],
+    accept: "Carryover within the protocol acceptance after the cleaning step." },
+
+  "PQ:0": { title: "Ongoing standard checks under routine use",
+    steps: [
+      "Run daily/periodic standard checks under routine conditions.",
+      "Confirm each within tolerance.",
+      "Trend the results.",
+      "Investigate out-of-tolerance results."
+    ],
+    accept: "Routine standard checks remain within tolerance; results trended." },
+  "PQ:1": { title: "Define routine standard-check frequency and tolerance",
+    steps: [
+      "Select the routine check standard(s).",
+      "Define the tolerance from the measurement requirement (do not assume).",
+      "Document frequency and action on failure.",
+      "Approve under the QMS."
+    ],
+    accept: "Standard-check frequency and tolerance defined and approved." },
+  "PQ:2": { use: "requalification", title: "Confirm performance over routine measurement" }
+};
+
+const HOWTO_refractometer = {
+  "IQ:0": { use: "iq-components", title: "Verify power, light source/prism, temp-control connection vs spec" },
+  "IQ:1": { title: "Confirm certified RI standards / distilled water available",
+    steps: [
+      "Confirm certified refractive-index standards (or freshly distilled water) are available.",
+      "Confirm any RI standards are traceable and in date.",
+      "Confirm storage conditions were maintained.",
+      "Record standard values and lot/expiry."
+    ],
+    accept: "Certified RI standards (or distilled water) available and traceable." },
+  "IQ:2": { use: "iq-location" },
+  "IQ:3": { use: "iq-components", title: "Verify prism/light source, temp-control connection, sample stage installed" },
+  "IQ:4": { use: "iq-instrument-inventory" },
+  "IQ:5": { use: "iq-vendor-docs" },
+
+  "OQ:0": { title: "Accuracy with distilled water (USP <831>)",
+    materials: ["Freshly distilled water", "Stage temperature control"],
+    steps: [
+      "Bring the sample stage to the controlled reference temperature (commonly 20 °C; sodium D-line 589 nm per USP <831>).",
+      "Measure distilled water and read the refractive index.",
+      "Compare to the tabulated value (n ≈ 1.3330 at 20 °C; acceptance commonly ±0.0001 — confirm protocol).",
+      "Record the reading and deviation."
+    ],
+    accept: "Water reads the tabulated n within the protocol tolerance at the controlled temperature (USP <831>).",
+    link: "https://www.usp.org/", linkLabel: "USP <831> — Refractive Index" },
+  "OQ:1": { title: "Temperature-control check",
+    steps: [
+      "Set the stage to the specified measurement temperature (20 °C or 25 °C per method — do not assume; confirm).",
+      "Verify the stage holds that temperature with an independent reference.",
+      "Confirm stability within tolerance.",
+      "Record the held temperature."
+    ],
+    accept: "Stage holds the specified measurement temperature within tolerance." },
+  "OQ:2": { title: "Linearity (digital units)",
+    materials: ["RI standards across the range"],
+    steps: [
+      "Measure certified RI standards spanning the working range.",
+      "Compare each reading to its assigned value.",
+      "Assess linearity across the range.",
+      "Confirm deviations within tolerance."
+    ],
+    accept: "Readings track assigned values across the range within tolerance." },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { title: "Verify temperature equilibration time",
+    steps: [
+      "Apply a sample at a different temperature to the stage.",
+      "Record the time for the stage/sample to reach the measurement temperature.",
+      "Confirm it is within the specified equilibration time.",
+      "Record the result."
+    ],
+    accept: "Sample reaches measurement temperature within the specified equilibration time." },
+  "OQ:6": { title: "Prism cleaning / water baseline check",
+    steps: [
+      "Measure a sample, then clean the prism per procedure.",
+      "Measure distilled water and confirm a stable baseline reading.",
+      "Confirm no residue/carryover affects the baseline.",
+      "Record the baseline result."
+    ],
+    accept: "Stable water baseline restored after cleaning; no carryover." },
+
+  "PQ:0": { title: "Daily water/standard check before use",
+    steps: [
+      "Before use, measure distilled water or an RI standard at the controlled temperature.",
+      "Confirm within tolerance.",
+      "Log and trend the result.",
+      "Recalibrate/investigate if out of tolerance."
+    ],
+    accept: "Daily water/standard check within tolerance, logged and trended." },
+  "PQ:1": { title: "Define routine water/standard-check frequency and tolerance",
+    steps: [
+      "Select the routine check (water or RI standard).",
+      "Define the tolerance from the measurement requirement (do not assume).",
+      "Document frequency and action on failure.",
+      "Approve under the QMS."
+    ],
+    accept: "Water/standard-check frequency and tolerance defined and approved." },
+  "PQ:2": { use: "requalification", title: "Confirm performance over routine measurement" }
+};
+
+const HOWTO_bioreactor = {
+  "IQ:0": { title: "Verify hygienic finish and dead-leg requirements (ASME BPE)",
+    steps: [
+      "Confirm product-contact surface finish meets the design basis (ASME BPE commonly specifies Ra ≤ 0.5 µm for product contact — confirm the design spec).",
+      "Verify dead-leg elimination / L/D limits on product-contact piping per the design.",
+      "Confirm drainability and slope of product-contact lines.",
+      "Record finish and dead-leg verification against the design basis."
+    ],
+    accept: "Product-contact finish and dead-leg requirements meet the design basis (e.g. ASME BPE).",
+    link: "https://www.asme.org/codes-standards/find-codes-standards/asme-bpe-bioprocessing-equipment", linkLabel: "ASME BPE" },
+  "IQ:1": { use: "iq-vendor-docs", title: "Verify material certificates/traceability for wetted components",
+    steps: [
+      "Identify all wetted components (vessel, piping, seals, single-use bag).",
+      "Obtain material certificates (e.g. SS316L mill certs, single-use bag film/extractables documentation).",
+      "Confirm alloy/film and finish match the design spec.",
+      "File certificates and traceability records."
+    ],
+    accept: "Material certificates/traceability on file for all wetted components." },
+  "IQ:2": { use: "iq-utilities", title: "Verify utilities: steam, WFI, process gases, CIP per URS",
+    steps: [
+      "List required utilities from the URS: clean/process steam, WFI, process gases (air, O₂, CO₂, N₂), CIP supply.",
+      "Confirm each is connected, correctly sized, and labeled.",
+      "Record supplied values (pressures, gas purity) against the URS.",
+      "Confirm point-of-use filters/regulators where required."
+    ],
+    accept: "All utilities connected and within URS spec." },
+  "IQ:3": { use: "iq-components", title: "Verify vessel volume, config, single-use vs multi-use vs PO/URS" },
+  "IQ:4": { use: "iq-components", title: "Confirm as-built drawings (P&ID, GA) and datasheets match install" },
+  "IQ:5": { use: "iq-instrument-inventory", title: "Confirm temp/pH/DO/pressure/level/foam/agitation/gas loops calibrated",
+    accept: "All control/recording loops (temp, pH, DO, pressure, level, foam, agitation, gas flow) identified and calibrated traceable." },
+  "IQ:6": { use: "iq-components", title: "Verify impeller/agitator, shaft seal, sparger config per design" },
+  "IQ:7": { use: "iq-components", title: "Confirm jacket / temperature-control system connected and rated" },
+  "IQ:8": { title: "Verify safety features (relief/rupture disc, interlock, E-stop)",
+    steps: [
+      "Confirm pressure relief / rupture disc rating matches the design pressure.",
+      "Verify the over-pressure interlock hardware is present.",
+      "Confirm the emergency stop is installed and wired.",
+      "Record relief set pressure and certification (functional challenge in OQ)."
+    ],
+    accept: "Relief/rupture disc, over-pressure interlock, and E-stop installed and correctly rated." },
+  "IQ:9": { use: "iq-components", title: "Confirm exhaust/vent filter and condenser installed; integrity-test connections" },
+  "IQ:10": { use: "iq-instrument-inventory", title: "Verify control system/automation installed, I/O checked, software recorded (CSV)",
+    accept: "Automation installed, I/O verified, software version and config recorded for CSV." },
+  "IQ:11": { title: "Confirm lubricants / non-contact fluids documented and compatible",
+    steps: [
+      "List lubricants and non-product-contact fluids.",
+      "Confirm each is the specified grade and compatible with the duty.",
+      "Collect documentation.",
+      "File in the IQ package."
+    ],
+    accept: "Non-contact fluids documented as compatible." },
+  "IQ:12": { use: "iq-vendor-docs", title: "Verify spare parts, manuals, turnover package received" },
+
+  "OQ:0": { title: "Temperature loop",
+    materials: ["Calibrated reference temperature sensor"],
+    steps: [
+      "Set the jacket/TCU to setpoints across the operating range (setpoints are process-defined — do not assume; e.g. ~37 °C for mammalian, but confirm).",
+      "Confirm the loop drives to and holds each setpoint against a calibrated reference.",
+      "Verify ramp rates meet the process requirement.",
+      "Record control stability and offset."
+    ],
+    accept: "Temperature loop holds the process-defined setpoints across the range and meets ramp requirements." },
+  "OQ:1": { title: "pH loop",
+    materials: ["NIST-traceable buffers", "Acid/base/CO₂ control"],
+    steps: [
+      "Standardize the pH probe with bioprocess buffers (commonly 7.00 + 4.00 or 7.00 + 9.21 — confirm method).",
+      "Confirm probe accuracy against the standardized buffers.",
+      "Challenge pH control (acid/base/CO₂) and confirm it drives to and holds the setpoint (process-defined — do not assume).",
+      "Record control response and offset."
+    ],
+    accept: "pH probe accurate after standardization; control holds the process-defined setpoint." },
+  "OQ:2": { title: "Dissolved oxygen (DO) loop (two-point)",
+    materials: ["N₂ (or sulfite) for zero", "Air for span"],
+    steps: [
+      "Zero the DO probe: sparge with N₂ (or use sodium sulfite) until the reading stabilizes at 0% (~10–30 min).",
+      "Span at 100%: sparge with air-saturated medium until stable (Hamilton/Mettler method).",
+      "Challenge the DO cascade (gas flow, agitation, O₂ enrichment) and confirm it holds the setpoint band (process-defined, commonly 30–40% — do not assume).",
+      "Record both calibration points and control response."
+    ],
+    accept: "DO two-point calibration (0% / 100%) valid; cascade holds the process-defined DO setpoint.",
+    link: "https://www.hamiltoncompany.com/process-analytics", linkLabel: "Hamilton — DO calibration" },
+  "OQ:3": { use: "speed-verification", title: "Agitation: RPM accuracy and motor direction",
+    steps: [
+      "Compare displayed agitation RPM against a calibrated tachometer across the range.",
+      "Confirm motor direction is correct.",
+      "Record deviation at each setpoint.",
+      "Confirm within the data-sheet/URS tolerance."
+    ],
+    accept: "Agitation RPM within tolerance across the range; correct motor direction." },
+  "OQ:4": { title: "Gas delivery (mass-flow controllers)",
+    materials: ["Calibrated flow reference"],
+    steps: [
+      "For each gas (air, O₂, CO₂, N₂), set representative flows.",
+      "Compare set vs actual flow against a calibrated reference.",
+      "Confirm each MFC is within tolerance.",
+      "Record deviations."
+    ],
+    accept: "Each gas MFC delivers set vs actual flow within tolerance." },
+  "OQ:5": { title: "Pressure and level / foam",
+    steps: [
+      "Verify pressure control and relief operate at configured setpoints.",
+      "Verify level sensing reports correctly across the range.",
+      "Challenge foam sensing/antifoam response.",
+      "Confirm each operates at its configured setpoint."
+    ],
+    accept: "Pressure control/relief, level, and foam sensing operate at configured setpoints." },
+  "OQ:6": { title: "Alarms and interlocks",
+    steps: [
+      "Provoke high/low alarms on the critical loops (temp, pH, DO, pressure).",
+      "Challenge safety interlocks (over-pressure, agitation fault).",
+      "Confirm each activates and the unit responds as designed.",
+      "Document the method used; actual result must equal expected."
+    ],
+    accept: "All configured alarms and safety interlocks activate and respond as designed." },
+  "OQ:7": { title: "Vessel integrity (pressure/leak or single-use pre-use test)",
+    steps: [
+      "Multi-use: run a pressure/leak test on the assembled vessel per the design basis.",
+      "Single-use: run the pre-use integrity test on the installed bag/assembly.",
+      "Confirm the result meets the leak/integrity acceptance.",
+      "Record the test conditions and result."
+    ],
+    accept: "Vessel pressure/leak (multi-use) or pre-use integrity (single-use) test passes per the design basis." },
+
+  "PQ:0": { title: "SIP (multi-use): sterilize-in-place cycle",
+    materials: ["Calibrated thermocouples", "BIs (G. stearothermophilus) per protocol"],
+    steps: [
+      "Place thermocouples (and BIs where used) at identified cold spots (e.g. drain, dip tubes, dead legs).",
+      "Run the SIP cycle.",
+      "Confirm all cold spots reach the sterilization conditions / F₀ target (process-defined — do not assume).",
+      "Confirm BI kill where biological challenge is used; repeat for the required consecutive runs."
+    ],
+    accept: "All cold spots meet the process-defined sterilization conditions; BI kill (if used) across required runs.",
+    link: "https://www.pda.org/", linkLabel: "PDA TR1 — moist heat" },
+  "PQ:1": { title: "Mixing / mass-transfer (blend time, kLa)",
+    steps: [
+      "Measure blend/mixing time using a tracer or conductivity step at representative conditions.",
+      "Measure the oxygen mass-transfer coefficient (kLa) by the gassing-out (or dynamic) method.",
+      "Confirm blend time and kLa meet the process requirement (process-defined — do not assume).",
+      "Record conditions (agitation, gas flow) and results."
+    ],
+    accept: "Blend time and kLa meet the process-defined requirement at the qualified conditions." },
+  "PQ:2": { title: "Process simulation / media run",
+    steps: [
+      "Operate a representative batch (media run or process simulation) under load.",
+      "Confirm all loops (temp, pH, DO, pressure, agitation, gas) hold setpoint under realistic demand.",
+      "Confirm control performance and any excursions are within acceptance.",
+      "Run the required number of consecutive qualifying runs."
+    ],
+    accept: "All loops hold the process-defined setpoints under representative load across the required runs." },
+  "PQ:3": { title: "Cleaning (CIP) performance where applicable",
+    steps: [
+      "Run the CIP cycle on the soiled vessel/system.",
+      "Sample by swab/rinse at worst-case locations.",
+      "Confirm residue/cleaning results meet the validated acceptance (MACO/visual/analytical — process-defined).",
+      "Confirm reproducibility across the required runs."
+    ],
+    accept: "CIP meets the validated cleaning acceptance at worst-case locations across required runs." }
+};
+
 // Registry keyed by equipment id -> { "PHASE:index": howto-or-ref }
 const HOWTO = {
   autoclave: HOWTO_autoclave,
@@ -6236,7 +7220,19 @@ const HOWTO = {
   freezer: HOWTO_freezer,
   ult: HOWTO_ult,
   coldroom: HOWTO_coldroom,
-  warehouse: HOWTO_warehouse
+  warehouse: HOWTO_warehouse,
+  dryoven: HOWTO_dryoven,
+  depyrooven: HOWTO_depyrooven,
+  vacuumoven: HOWTO_vacuumoven,
+  ln2: HOWTO_ln2,
+  cryochamber: HOWTO_cryochamber,
+  centrifuge: HOWTO_centrifuge,
+  waterbath: HOWTO_waterbath,
+  balance: HOWTO_balance,
+  ph: HOWTO_ph,
+  osmometer: HOWTO_osmometer,
+  refractometer: HOWTO_refractometer,
+  bioreactor: HOWTO_bioreactor
 };
 
 // Resolve a howto entry: if it references a shared procedure via {use}, merge shared + overrides.
@@ -6475,7 +7471,7 @@ renderList();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v5';
+    const C = 'cqv-v6';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
