@@ -1120,10 +1120,10 @@ const DATA = {
     }
   },
   fridge: {
-    name: "Refrigerators & Freezers",
+    name: "Refrigerators (2–8 °C)",
     domain: "GMP",
-    sub: "2–8 °C fridges and freezers",
-    desc: "Qualification of pharmaceutical refrigerators and freezers. Mapping and monitoring approach verified against the ISPE Controlled Temperature Chambers guide.",
+    sub: "Pharmaceutical 2–8 °C cold storage",
+    desc: "Qualification of pharmaceutical refrigerators for 2–8 °C storage. Setpoint and tolerance follow the URS / stored-product requirement. Mapping and monitoring approach verified against the ISPE Controlled Temperature Chambers guide.",
     icon: "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"2\"/><path d=\"M6 10h12M10 5v2M10 13v3\"/></svg>",
     phases: {
       IQ: [
@@ -1383,6 +1383,276 @@ const DATA = {
             eu: {
               link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
               label: "ec.europa.eu — Annex 15"
+            }
+          }
+        }
+      ]
+    }
+  },
+  freezer: {
+    "name": "Freezers (standard, typ. −20 °C)",
+    "domain": "GMP",
+    "sub": "Standard pharmaceutical freezer storage",
+    "desc": "Qualification of standard pharmaceutical freezers. Setpoint is typically −20 °C but is process/product-driven (−15 °C and −30 °C are also seen) — confirm against the URS and stored-product requirement. Distinct from ultra-low (−80 °C) units. Mapping/monitoring approach per the ISPE Controlled Temperature Chambers guide.",
+    "icon": "<svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#58e6a8\" stroke-width=\"1.6\"><rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"2\"/><path d=\"M6 10h12\"/><path d=\"M12 13v6M10 15l2-2 2 2M10 17l2-2 2 2\"/></svg>",
+    "phases": {
+      "IQ": [
+        {
+          "t": "Verify equipment matches PO/URS: make, model, serial, temperature range, capacity, interior configuration.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.105 · EU Annex 15",
+            "issuer": "US FDA 21 CFR 211.105 / 820.72 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.105 requires major equipment to carry a distinctive identification number/code recorded in the batch record. The device QSR (820.72) requires inspection/measuring/test equipment to be identified and controlled. EU equivalent: Annex 15 includes collection of supplier operating/maintenance documentation and equipment identification within IQ.",
+            "crit": "Equipment uniquely identified (ID/asset number) and the make/model/serial recorded against the PO/URS. 211.105(b): the ID is recorded in the batch production record.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.105",
+            "linkLabel": "ecfr.gov — 21 CFR 211.105",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify supply voltage / dedicated outlet, leveling, clearances for heat rejection, and door seal integrity.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
+            "issuer": "US FDA 21 CFR 211.63 / 820.70 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.63 requires equipment to be of appropriate design, adequate size, and suitably located for its intended use and for cleaning/maintenance. 820.70 covers production/process equipment controls for devices. EU equivalent: EudraLex Vol.4 Annex 15 requires IQ to verify installation of equipment, piping, services, and instrumentation against current engineering drawings and specifications, and verification of materials of construction.",
+            "crit": "Verify the unit is installed per design: correct location, utilities, leveling, clearances, and environment suitable for intended use and maintenance access.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.63",
+            "linkLabel": "ecfr.gov — 21 CFR 211.63",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm controller display sensor and all mapping sensors carry current traceable calibration.",
+          "s": {
+            "status": "verified",
+            "id": "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            "issuer": "International Society for Pharmaceutical Engineering",
+            "covers": "Calibration of mapping and monitoring sensors for cold-storage units (fridges, freezers, ULT all in scope).",
+            "crit": "Sensors calibrated traceable to national standard; pre/post-study verification of sensor drift.",
+            "link": "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
+            "linkLabel": "ispe.org — CTC Good Practice Guide"
+          }
+        },
+        {
+          "t": "Verify backup power connection, alarm contacts (local + remote/BMS), and chart or electronic logging are installed.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.67 · EU Annex 15 / Ch.4",
+            "issuer": "US FDA 21 CFR 211.67 / 211.180 · EU EudraLex Vol.4 (Annex 15, Chapter 4)",
+            "covers": "211.67 requires equipment cleaning, maintenance, and use to be recorded in individual equipment logs (date, time, product, lot). 211.180 covers general records retention. EU equivalent: Annex 15 calls for cleaning, operating and maintenance procedures to be finalised after OQ; EudraLex Chapter 4 (Documentation) governs records and retention.",
+            "crit": "Equipment log / records in place capturing cleaning, maintenance, and use. Records retained per 211.180.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.67",
+            "linkLabel": "ecfr.gov — 21 CFR 211.67",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm shelving, air-circulation fans, and any internal lighting are installed per design.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
+            "issuer": "US FDA 21 CFR 211.63 / 820.70 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.63 requires equipment to be of appropriate design, adequate size, and suitably located for its intended use and for cleaning/maintenance. 820.70 covers production/process equipment controls for devices. EU equivalent: EudraLex Vol.4 Annex 15 requires IQ to verify installation of equipment, piping, services, and instrumentation against current engineering drawings and specifications, and verification of materials of construction.",
+            "crit": "Verify the unit is installed per design: correct location, utilities, leveling, clearances, and environment suitable for intended use and maintenance access.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.63",
+            "linkLabel": "ecfr.gov — 21 CFR 211.63",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify defrost system type and configuration; confirm condensate drain is functional.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.63 · EU Annex 15 (3.x IQ)",
+            "issuer": "US FDA 21 CFR 211.63 / 820.70 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.63 requires equipment to be of appropriate design, adequate size, and suitably located for its intended use and for cleaning/maintenance. 820.70 covers production/process equipment controls for devices. EU equivalent: EudraLex Vol.4 Annex 15 requires IQ to verify installation of equipment, piping, services, and instrumentation against current engineering drawings and specifications, and verification of materials of construction.",
+            "crit": "Verify the unit is installed per design: correct location, utilities, leveling, clearances, and environment suitable for intended use and maintenance access.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.63",
+            "linkLabel": "ecfr.gov — 21 CFR 211.63",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Record controller setpoint, alarm setpoints, and any access/security configuration.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.68 / 211.100 · EU Annex 15",
+            "issuer": "US FDA 21 CFR 211.68 / 211.100 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.68 requires equipment used in manufacture to perform its function satisfactorily and be checked to assure proper performance. 211.100 requires written production/process control procedures. Alarms/interlocks are part of demonstrating reliable control. EU equivalent: Annex 15 OQ includes tests of operating limits and worst-case conditions, and verification that control/monitoring and alarm functions perform as intended.",
+            "crit": "Verify alarms, interlocks, and safety/monitoring functions activate at configured setpoints and are recorded; supports the written process-control requirement.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.68",
+            "linkLabel": "ecfr.gov — 21 CFR 211.68",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Confirm vendor documentation, manual, and warranty are received and filed.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.67 · EU Annex 15 / Ch.4",
+            "issuer": "US FDA 21 CFR 211.67 / 211.180 · EU EudraLex Vol.4 (Annex 15, Chapter 4)",
+            "covers": "211.67 requires equipment cleaning, maintenance, and use to be recorded in individual equipment logs (date, time, product, lot). 211.180 covers general records retention. EU equivalent: Annex 15 calls for cleaning, operating and maintenance procedures to be finalised after OQ; EudraLex Chapter 4 (Documentation) governs records and retention.",
+            "crit": "Equipment log / records in place capturing cleaning, maintenance, and use. Records retained per 211.180.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.67",
+            "linkLabel": "ecfr.gov — 21 CFR 211.67",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        }
+      ],
+      "OQ": [
+        {
+          "t": "Calibration verification of critical sensors before functional testing.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.68 · EU Annex 15 (calibration)",
+            "issuer": "US FDA 21 CFR 211.68 / 820.72 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.68 requires automatic/mechanical/electronic equipment to be routinely calibrated, inspected, or checked per a written program, with records maintained. 820.72(b) requires calibration procedures with accuracy/precision limits and corrective action when exceeded. EU equivalent: Annex 15 requires calibration of instrumentation to be finalised on completion of OQ, with traceable standards; instruments controlling or recording critical parameters must be calibrated. Metrology basis: accredited calibration labs work to ISO/IEC 17025; ANSI/NCSL Z540.3 sets the common 4:1 test uncertainty ratio (reference uncertainty ≤25% of the instrument tolerance), with NIST-traceable standards (corroborated by Transcat).",
+            "crit": "Critical instruments calibrated against NIST-traceable standards with current certificates; written calibration program and records maintained. Out-of-tolerance triggers corrective action (820.72(b)).",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.68",
+            "linkLabel": "ecfr.gov — 21 CFR 211.68",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Verify controller functions: setpoint control, display accuracy vs reference, and defrost cycle operation.",
+          "s": "gmp"
+        },
+        {
+          "t": "Empty-chamber temperature mapping at the freezer setpoint; assess uniformity, stability, and pull-down from ambient to setpoint.",
+          "s": {
+            "status": "verified",
+            "id": "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            "issuer": "International Society for Pharmaceutical Engineering",
+            "covers": "Mapping method, sensor placement, and worst-case identification for cold-storage units.",
+            "crit": "Distributed array including door and corners. Per USP <1079>, WHO Tech Supplement 8, and ISPE (as compiled by Ellab/Vaisala): 9 sensors for units < 2 m³, ~15–16 for 2–20 m³, plus one at the control/monitoring probe; mapped ~24 h. Setpoint and tolerance are process/product-driven — do not assume: a standard freezer is typically −20 °C, though −15 °C and −30 °C are also seen. Acceptance is protocol-defined against the storage requirement.",
+            "link": "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
+            "linkLabel": "ispe.org — CTC Good Practice Guide"
+          }
+        },
+        {
+          "t": "Verify high/low temperature alarms activate at configured limits, with correct delay, audible/visual and remote signal.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.68 / 211.100 · EU Annex 15",
+            "issuer": "US FDA 21 CFR 211.68 / 211.100 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.68 requires equipment used in manufacture to perform its function satisfactorily and be checked to assure proper performance. 211.100 requires written production/process control procedures. Alarms/interlocks are part of demonstrating reliable control. EU equivalent: Annex 15 OQ includes tests of operating limits and worst-case conditions, and verification that control/monitoring and alarm functions perform as intended.",
+            "crit": "Verify alarms, interlocks, and safety/monitoring functions activate at configured setpoints and are recorded; supports the written process-control requirement.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.68",
+            "linkLabel": "ecfr.gov — 21 CFR 211.68",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        },
+        {
+          "t": "Door-open excursion test: time to exceed limit and recovery time after a defined open interval.",
+          "s": "gmp"
+        },
+        {
+          "t": "Defrost excursion: confirm temperature stays within limit (or recovers acceptably) through a defrost cycle.",
+          "s": "gmp"
+        },
+        {
+          "t": "Power-loss / recovery test: temperature rise rate and time to recover after a defined outage.",
+          "s": {
+            "status": "flagged",
+            "id": "Site-defined (URS / risk assessment)",
+            "issuer": "Site requirements",
+            "covers": "Power-failure ride-through and recovery is a common cold-storage OQ challenge but the duration and acceptable excursion are site/product driven.",
+            "crit": "Confirm the outage duration to simulate and the maximum allowable excursion against your URS and product stability data.",
+            "link": null
+          }
+        },
+        {
+          "t": "Verify the monitoring/logging system records at the required interval and data matches the reference.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.67 · EU Annex 15 / Ch.4",
+            "issuer": "US FDA 21 CFR 211.67 / 211.180 · EU EudraLex Vol.4 (Annex 15, Chapter 4)",
+            "covers": "211.67 requires equipment cleaning, maintenance, and use to be recorded in individual equipment logs (date, time, product, lot). 211.180 covers general records retention. EU equivalent: Annex 15 calls for cleaning, operating and maintenance procedures to be finalised after OQ; EudraLex Chapter 4 (Documentation) governs records and retention.",
+            "crit": "Equipment log / records in place capturing cleaning, maintenance, and use. Records retained per 211.180.",
+            "link": "https://www.ecfr.gov/current/title-21/section-211.67",
+            "linkLabel": "ecfr.gov — 21 CFR 211.67",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
+            }
+          }
+        }
+      ],
+      "PQ": [
+        {
+          "t": "Define the loading pattern (min/max load, product placement) to be qualified.",
+          "s": "gmp"
+        },
+        {
+          "t": "Loaded mapping over a representative period under normal access to confirm in-use performance.",
+          "s": {
+            "status": "verified",
+            "id": "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            "issuer": "International Society for Pharmaceutical Engineering",
+            "covers": "Loaded performance qualification and impact of load and routine door openings.",
+            "crit": "Worst-case load over representative duration; product locations stay within the storage spec including MKT where applied. Limits protocol-defined.",
+            "link": "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
+            "linkLabel": "ispe.org — CTC Good Practice Guide"
+          }
+        },
+        {
+          "t": "Confirm performance under routine door-opening pattern reflecting actual use.",
+          "s": "gmp"
+        },
+        {
+          "t": "Place routine monitoring probe at the worst-case location identified during mapping.",
+          "s": {
+            "status": "verified",
+            "id": "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            "issuer": "International Society for Pharmaceutical Engineering",
+            "covers": "Monitoring sensor placement driven by mapping results.",
+            "crit": "Monitoring probe at worst-case location; periodic review frequency set by risk of failure and product criticality.",
+            "link": "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
+            "linkLabel": "ispe.org — CTC Good Practice Guide"
+          }
+        },
+        {
+          "t": "Define requalification trigger and periodic review frequency based on risk and product criticality.",
+          "s": {
+            "status": "regulation",
+            "id": "21 CFR 211.100 / 820.75 · EU Annex 15 (PQ/PV)",
+            "issuer": "US FDA 21 CFR 211.100 / 820.75 · EU EudraLex Vol.4 Annex 15",
+            "covers": "211.100 requires written, validated process-control procedures. 820.75 requires process validation where output can't be fully verified by later inspection, including consecutive successful runs and ongoing monitoring of process parameters. EU equivalent: Annex 15 requires PQ using production materials or qualified/simulated substitutes under normal operating conditions with worst-case batch sizes, plus ongoing process verification and periodic review. Requalification is risk-based (ICH Q9): commonly annually for critical equipment, every 2–3 years for major, every 3–5 years for minor, plus on significant change or adverse trend.",
+            "crit": "Demonstrate consistency across the required number of consecutive successful runs (commonly 3); process parameters controlled and monitored per the validated process.",
+            "link": "https://www.ecfr.gov/current/title-21/section-820.75",
+            "linkLabel": "ecfr.gov — 21 CFR 820.75",
+            "eu": {
+              "link": "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf",
+              "label": "ec.europa.eu — Annex 15"
             }
           }
         }
@@ -5297,11 +5567,11 @@ const HOWTO_autoclave = {
     steps: [
       "Distribute calibrated thermocouples through the empty chamber (chamber center, four corners, near door, near drain, near steam inlet).",
       "Use ≥5 sensors for chambers up to 800 L (add one adjacent to the control sensor); 11+ per EN 285 for larger chambers.",
-      "Run three consecutive cycles at the sterilization setpoint.",
+      "Run three consecutive cycles at the sterilization setpoint defined by the qualified cycle (commonly 121 °C or 134 °C, but set by the product/process cycle design — do not assume).",
       "Plot each sensor; identify the cold spot for PQ probe placement."
     ],
     materials: ["Calibrated thermocouple array + data logger"],
-    accept: "All sensors within ±2–3°C of mean during hold across 3 consecutive cycles; cold spot identified.",
+    accept: "All sensors hold within the protocol's defined band of the mean during exposure across 3 consecutive cycles (±2–3 °C is a common example; confirm per protocol); cold spot identified.",
     link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
   },
   "OQ:6": {
@@ -5378,7 +5648,7 @@ const HOWTO_autoclave = {
       "Take the minimum-F₀ probe as the cold spot; confirm it meets the requirement."
     ],
     materials: ["Calibrated thermocouple array + F₀-capable logger"],
-    accept: "Cold-spot F₀ ≥ 12 min at 121°C (overkill) or ≥ the bioburden-based target; 3 consecutive cycles.",
+    accept: "Cycle, setpoint, exposure time, and the F₀ target are product/process-defined (from the cycle design, bioburden, and load) — do not assume; 121/134 °C and F₀ ≥ 12 min overkill are common examples. Cold-spot F₀ meets the protocol's defined requirement across 3 consecutive cycles.",
     link: "https://eupry.com/iq-oq-pq/autoclaves/", linkLabel: "Eupry — F₀ & heat penetration"
   },
   "PQ:2": {
@@ -5428,10 +5698,560 @@ const HOWTO_autoclave = {
   }
 };
 
-// Registry keyed by equipment id -> { "PHASE:index": howto }
-const HOWTO = {
-  autoclave: HOWTO_autoclave
+/* ---------- SHARED HOW-TO LIBRARY ---------- */
+// HOWTO_shared — generic procedures reused across equipment types.
+// An equipment howto entry can reference one of these via { use:"id", ...overrides }.
+// Overrides supported: title, accept, link, linkLabel, materials, steps, extraSteps[].
+// Resolver (resolveHowto) merges shared base + overrides; extraSteps append to steps.
+const HOWTO_shared = {
+
+  "cal-verify": {
+    title: "Calibration verification before functional testing",
+    steps: [
+      "Confirm all critical control and recording instruments hold current, traceable calibration.",
+      "Calibrate the independent mapping/validation sensors against the traceable reference immediately before the study.",
+      "Record a pre-study calibration check; after the study, repeat the check to confirm no drift.",
+      "Proceed only if every instrument is within tolerance."
+    ],
+    accept: "All critical instruments in tolerance pre-study; post-study check confirms no drift.",
+    link: "https://eupry.com/iq-oq-pq/incubators/", linkLabel: "Eupry — calibration evidence"
+  },
+
+  "temp-map-empty": {
+    title: "Empty-chamber temperature mapping",
+    materials: ["Calibrated sensor array + data logger", "Placement diagram"],
+    steps: [
+      "Set the mapping setpoint to the unit's intended operating condition as defined by the client's process and/or the requirements of whatever will be stored or incubated (these vary widely, e.g. 37 °C for cell culture, 20–25 °C for other incubations, +2/+8 °C for cold storage).",
+      "Design the sensor grid from chamber volume; small chambers commonly use a 9-point 3×3 grid (min 9 sensors), with one sensor adjacent to the control probe.",
+      "Secure each sensor at its mapped position; record sensor IDs against the placement diagram.",
+      "Log at a fixed interval for the defined duration (commonly ≥24 h for chambers).",
+      "Analyze uniformity (spread between sensors) and stability (fluctuation at each point) against the URS limit; identify the cold/hot spots for PQ probe placement."
+    ],
+    accept: "Setpoint and tolerance come from the URS / process / product manufacturer's requirement — do not assume. All sensors stay within that defined band for the full duration; hot/cold spots identified. (Common examples only: 37 ± 1 °C or ± 0.5 °C — confirm the real limit per process.)",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
+  },
+
+  "temp-map-loaded": {
+    title: "Loaded-chamber mapping (performance)",
+    materials: ["Calibrated sensor array + data logger", "Representative load / simulants"],
+    steps: [
+      "Load the chamber with representative product or thermal-mass simulants in the qualified pattern.",
+      "Place sensors using the same grid as the empty study, concentrating on cold/hot spots found in OQ.",
+      "Run over an extended period with routine door cycles (often ≥24 h, 7+ days for some applications).",
+      "Confirm temperature stays within acceptance throughout, including during and after access events."
+    ],
+    accept: "Setpoint and tolerance come from the URS / process / stored-product requirement — do not assume. All locations stay within that defined band over the full loaded study including routine access.",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — Temperature mapping"
+  },
+
+  "door-open-recovery": {
+    title: "Door-open recovery study",
+    materials: ["Calibrated sensor array + timer"],
+    steps: [
+      "Stabilize the chamber at setpoint with sensors logging.",
+      "Open the door for the defined interval (per URS/SOP), then close.",
+      "Record the time for all monitored points to return to the setpoint band.",
+      "Repeat to establish an average recovery time; confirm it is within the URS limit."
+    ],
+    accept: "Recovery to setpoint band within the URS-defined time.",
+    link: "https://reesscientific.com/incubator-monitoring-best-practices", linkLabel: "Rees — recovery studies"
+  },
+
+  "power-recovery": {
+    title: "Power-failure / recovery study",
+    materials: ["Calibrated sensor array + timer"],
+    steps: [
+      "Stabilize at setpoint with sensors logging.",
+      "Simulate a power interruption and record temperatures until one point leaves the specified range.",
+      "Restore power and confirm safe automatic restart and data continuity (no gap or false 'in-range').",
+      "Record hold time before excursion and full-recovery time; confirm both meet limits."
+    ],
+    accept: "Unit restarts safely, data continuous; hold and recovery times within limits.",
+    link: "https://www.unitylabservices.com/content/dam/uls/instrument-services/BN20201046-0621-Flyer-CO2-Incubator-Qualification-FINAL-V2.pdf", linkLabel: "Thermo — power-failure test"
+  },
+
+  "alarm-challenge-tcu": {
+    title: "Alarm challenge (high/low temperature, door, power)",
+    steps: [
+      "Document the method used to provoke each alarm (it should simulate the real fault).",
+      "High/low temperature: drive the sensed condition above/below the configured thresholds and confirm local and remote alarm activation.",
+      "Door-left-open: hold the door past the configured delay and confirm the alarm.",
+      "Power-loss: confirm the alarm/notification on outage. The actual result must equal the expected result for each."
+    ],
+    accept: "Every alarm activates at its configured setpoint and notifies as specified.",
+    link: "https://eupry.com/iq-oq-pq/tcus/", linkLabel: "Eupry — TCU alarm testing"
+  },
+
+  "co2-control": {
+    title: "CO₂ concentration control and recovery (CO₂ units)",
+    materials: ["Calibrated CO₂ reference analyzer"],
+    steps: [
+      "Verify the CO₂ reading against a calibrated reference analyzer at the working setpoint (commonly 5%).",
+      "Confirm control holds CO₂ within the stability band during steady state.",
+      "Open the door for the defined interval, then record the time to recover CO₂ to the setpoint band.",
+      "Challenge the CO₂ out-of-range alarm by simulating high and low CO₂."
+    ],
+    accept: "CO₂ setpoint and stability band come from the process / URS — do not assume (5% is a common culture target, ±0.5% a common band, but confirm per process). CO₂ recovers within the URS limit; CO₂ alarm activates correctly.",
+    link: "https://eupry.com/iq-oq-pq/incubators/", linkLabel: "Eupry — CO₂ incubator OQ"
+  },
+
+  "monitoring-record": {
+    title: "Verify monitoring / logging system",
+    steps: [
+      "Confirm the monitoring system logs at the required interval.",
+      "Compare logged values against the independent calibrated reference over the same window.",
+      "Verify time synchronization, audit trail, and user access control are active.",
+      "Confirm secure data export reproduces the record faithfully."
+    ],
+    accept: "Logged data matches reference at the required interval; audit trail and access control function.",
+    link: "https://eupry.com/iq-oq-pq/incubators/", linkLabel: "Eupry — data integrity checks"
+  },
+
+  "control-functions": {
+    title: "Verify control-system functions",
+    steps: [
+      "Test setpoint entry and confirm the unit drives to and holds the entered value.",
+      "Compare the unit display against the calibrated reference at setpoint.",
+      "Exercise each security/access level (operator, supervisor, maintenance) and confirm privileges behave as defined.",
+      "Confirm parameter changes require the correct access level and are recorded."
+    ],
+    accept: "Controls, display accuracy, and access levels all behave per specification."
+  },
+
+  "loading-pattern": {
+    title: "Define the loading pattern to qualify",
+    steps: [
+      "Identify routine load types (vessel/culture-ware, containers) and their placement.",
+      "Define minimum and maximum load and the densest packing permitted.",
+      "Justify the worst-case pattern (thermal mass, airflow restriction).",
+      "Document and approve each pattern before PQ execution."
+    ],
+    accept: "Loading pattern(s) defined, justified, and approved before PQ."
+  },
+
+  "monitor-sensor-placement": {
+    title: "Place routine monitoring sensor at worst-case location",
+    steps: [
+      "Take the cold/hot spot(s) identified during mapping.",
+      "Position the permanent routine monitoring sensor(s) at that worst-case location.",
+      "Record the placement with a diagram and rationale linking it to the mapping result.",
+      "Confirm the monitoring sensor reads consistently with mapping data at that point."
+    ],
+    accept: "Routine sensor located at the mapped worst-case point, documented with rationale.",
+    link: "https://eupry.com/temperature-mapping/", linkLabel: "Eupry — mapping & monitoring"
+  },
+
+  "requalification": {
+    title: "Define requalification trigger and periodic review",
+    steps: [
+      "Set risk-based requalification triggers: significant change, repeated deviation, or adverse trend.",
+      "Define the periodic review interval (risk-based; not automatically annual).",
+      "Specify what a requalification includes (empty + loaded mapping, recovery, alarm verification).",
+      "Document the justification under change control."
+    ],
+    accept: "Requalification triggers and review interval defined and risk-justified.",
+    link: "https://reesscientific.com/incubator-monitoring-best-practices", linkLabel: "Rees — requalification scope"
+  },
+
+  // generic IQ checks reusable across most equipment
+  "iq-utilities": {
+    title: "Verify utility / supply connections",
+    steps: [
+      "List required supplies from the URS (electrical, and any gas/water lines).",
+      "Confirm each connection is present, correctly sized, earthed, and labeled.",
+      "Record supplied values (voltage/phase, gas pressure/purity) and compare to the nameplate and URS.",
+      "Leak-check gas lines and confirm regulators where applicable."
+    ],
+    materials: ["Multimeter", "Calibrated pressure gauge (gas units)"],
+    accept: "All supplies present, within spec, and leak-tight."
+  },
+
+  "iq-location": {
+    title: "Verify location, leveling, and clearances",
+    steps: [
+      "Confirm the unit is level and sited per the installation drawing.",
+      "Verify required clearances for airflow, service access, and door swing.",
+      "Confirm the location is away from HVAC drafts, direct sun, and other thermal disturbances.",
+      "Record the environment (ambient range) against the unit's rated operating environment."
+    ],
+    accept: "Location, leveling, and clearances meet the installation spec."
+  },
+
+  "iq-components": {
+    title: "Confirm components installed and identified",
+    steps: [
+      "Inventory the controller/display, sensors, shelving, circulation fan, and any reservoir/regulator.",
+      "Confirm each is the specified part and is tagged/identified.",
+      "Verify door gasket/seal integrity and (gas units) line and regulator installation.",
+      "Photograph the installed arrangement for the record."
+    ],
+    accept: "All components installed, identified, and matching spec."
+  },
+
+  "iq-instrument-inventory": {
+    title: "Build the instrument inventory",
+    steps: [
+      "List every controlling and recording instrument on the unit.",
+      "Capture tag, function, range, cal ID, and calibration due date for each.",
+      "Note the control loop each sensor serves.",
+      "Compile into the qualification package."
+    ],
+    accept: "Complete inventory of controlling/recording instruments with cal data."
+  },
+
+  "iq-vendor-docs": {
+    title: "Confirm vendor documentation received",
+    steps: [
+      "Verify manuals, wiring/installation diagrams, warranty, and any certificates (e.g. gas purity, filter specs) were received.",
+      "Confirm completeness against the PO documentation deliverables.",
+      "Index and log each document.",
+      "File in the controlled validation library."
+    ],
+    accept: "Manuals, diagrams, warranty, and certificates received and filed."
+  },
+
+  "iq-calibration-certs": {
+    title: "Confirm sensor calibration certificates",
+    steps: [
+      "Identify the controller sensor(s) and the reference mapping sensors.",
+      "Confirm each holds a current certificate traceable to national standards (ISO/IEC 17025 lab).",
+      "Verify certificate ranges cover the operating setpoint(s) — for sub-zero units, confirm sensors are rated and calibrated for the low range.",
+      "Record cal IDs and due dates."
+    ],
+    accept: "All controller and reference sensors calibrated, traceable, in-date, and range-appropriate."
+  },
+
+  "iq-backup-alarm": {
+    title: "Verify backup power and alarm contacts installed",
+    steps: [
+      "Confirm backup power connection (and any CO₂/LN₂ backup cooling, if fitted) is installed per design.",
+      "Verify local alarm and remote/BMS alarm contacts are wired.",
+      "Confirm chart or electronic logging is installed and connected.",
+      "Record alarm setpoints and notification paths (functional challenge occurs in OQ)."
+    ],
+    accept: "Backup power, local + remote alarm contacts, and logging installed."
+  },
+
+  "iq-defrost-drain": {
+    title: "Verify defrost system and condensate drain",
+    steps: [
+      "Identify the defrost system type and configuration from the design.",
+      "Confirm it is installed as specified.",
+      "Verify the condensate drain is present, routed, and unobstructed.",
+      "Record the defrost configuration for the OQ defrost-excursion test."
+    ],
+    accept: "Defrost system installed per design; condensate drain functional."
+  },
+
+  "defrost-excursion": {
+    title: "Defrost excursion test",
+    materials: ["Calibrated sensor array + logger"],
+    steps: [
+      "Stabilize the unit at setpoint with sensors logging.",
+      "Allow a defrost cycle to run (or initiate one per the unit's schedule).",
+      "Record the peak temperature excursion at each monitored point and the time to recover to the setpoint band.",
+      "Confirm the excursion stays within the URS limit, or recovers within the URS-defined time."
+    ],
+    accept: "Defrost excursion stays within the URS limit (or recovers within the URS-defined time).",
+    link: "https://eupry.com/iq-oq-pq/tcus/", linkLabel: "Eupry — TCU OQ"
+  },
+
+  "pulldown": {
+    title: "Pull-down from ambient",
+    materials: ["Calibrated sensor array + timer"],
+    steps: [
+      "Start with the chamber at ambient temperature, sensors logging.",
+      "Power the unit and record the time for all monitored points to reach the setpoint band.",
+      "Confirm pull-down time is within the URS limit.",
+      "Note any point that lags as a candidate cold/warm spot."
+    ],
+    accept: "Pull-down to setpoint band within the URS-defined time."
+  },
+
 };
+
+/* ---------- INCUBATOR HOW-TO (shared refs + overrides) ---------- */
+// HOWTO_incubator — references shared procedures with incubator-specific overrides.
+// { use:"shared-id", ...overrides } resolves via resolveHowto(); plain objects are custom.
+const HOWTO_incubator = {
+  // ---------- IQ ----------
+  "IQ:0": { use: "iq-utilities",
+    title: "Verify supply voltage and gas (CO₂) connections",
+    accept: "Electrical supply and any CO₂ line match nameplate/URS; lines leak-tight, gas purity certified." },
+  "IQ:1": { use: "iq-location" },
+  "IQ:2": { use: "iq-components",
+    title: "Verify controller, display, and CO₂ sensor installed and identified" },
+  "IQ:3": { use: "iq-calibration-certs" },
+  "IQ:4": { use: "iq-location",
+    title: "Verify power/outlet, leveling, and required clearances" },
+  "IQ:5": { use: "iq-components",
+    title: "Confirm shelving, circulation fan, and humidity reservoir installed" },
+  "IQ:6": { use: "iq-components",
+    title: "Verify door gasket/seal and (CO₂) gas line + regulator",
+    accept: "Door seal intact; CO₂ line and regulator installed and leak-checked." },
+  "IQ:7": { use: "iq-instrument-inventory" },
+  "IQ:8": { use: "iq-vendor-docs" },
+
+  // ---------- OQ ----------
+  "OQ:0": { use: "temp-map-empty",
+    accept: "Setpoint and tolerance per the client's process / cells / stored-product requirement — do not assume. Map at that setpoint and confirm uniformity and stability stay within the URS-defined band over ≥24 h; identify hot/cold spots. (Recommended examples only: 37 °C for cell culture, or 20–25 °C incubations; tolerances like ± 1 °C or ± 0.5 °C are common but must be confirmed per process.)" },
+  "OQ:1": { use: "alarm-challenge-tcu",
+    title: "Verify over-temperature, door, and CO₂ alarms",
+    accept: "Over-temp, door-open, and CO₂ alarms activate at configured setpoints and notify as specified." },
+  "OQ:2": { use: "co2-control" },
+  "OQ:3": { use: "door-open-recovery" },
+  "OQ:4": { use: "cal-verify" },
+  "OQ:5": { use: "control-functions",
+    title: "Verify control functions, display accuracy, and access levels" },
+  "OQ:6": { use: "door-open-recovery" },
+  "OQ:7": { use: "monitoring-record" },
+
+  // ---------- PQ ----------
+  "PQ:0": { use: "temp-map-loaded",
+    accept: "Setpoint and tolerance per the client's process / stored-product requirement — do not assume. Loaded chamber holds within the URS-defined temperature band (and CO₂ band for CO₂ units) over the study including routine door cycles. (Recommended example bands only — confirm the real limit per process.)" },
+  "PQ:1": { use: "monitor-sensor-placement" },
+  "PQ:2": { use: "loading-pattern" },
+  "PQ:3": { use: "temp-map-loaded",
+    title: "Confirm performance under representative load and routine access",
+    accept: "Set ranges maintained with representative load and routine access over the defined period." },
+  "PQ:4": { use: "requalification" }
+};
+
+/* ---------- TCU HOW-TO MAPS (shared refs + example overrides) ---------- */
+// ---- TCU how-to maps (shared refs + process-appropriate EXAMPLE overrides) ----
+// Setpoints/tolerances are always framed as recommended examples; the real limit comes
+// from the URS / process / stored-product requirement.
+
+const HOWTO_fridge = {
+  "IQ:0": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:1": { use: "iq-location", title: "Verify supply, leveling, heat-rejection clearance, door seal" },
+  "IQ:2": { use: "iq-calibration-certs" },
+  "IQ:3": { use: "iq-backup-alarm" },
+  "IQ:4": { use: "iq-components", title: "Confirm shelving, circulation fans, internal lighting installed" },
+  "IQ:5": { use: "iq-defrost-drain" },
+  "IQ:6": { use: "control-functions", title: "Record controller setpoint, alarm setpoints, access config",
+    steps: [
+      "Record the controller setpoint and all alarm setpoints as configured.",
+      "Capture the access/security configuration and user roles.",
+      "Confirm settings match the URS.",
+      "File the configuration baseline in the IQ package."
+    ],
+    accept: "Setpoint, alarm setpoints, and access config recorded and matching URS." },
+  "IQ:7": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "cal-verify" },
+  "OQ:1": { use: "control-functions", title: "Verify controller, display accuracy, and defrost operation" },
+  "OQ:2": { use: "temp-map-empty",
+    accept: "Setpoint/tolerance per URS / stored-product requirement — do not assume (2–8 °C is the common pharmaceutical fridge range; confirm). Map at that setpoint; uniformity, stability, and pull-down within the URS band over ≥24 h; hot/cold spots identified." },
+  "OQ:3": { use: "alarm-challenge-tcu", title: "Verify high/low temperature alarms",
+    accept: "High and low temperature alarms activate at configured limits with correct delay, audible/visual, and remote signal." },
+  "OQ:4": { use: "door-open-recovery", title: "Door-open excursion and recovery test" },
+  "OQ:5": { use: "defrost-excursion" },
+  "OQ:6": { use: "power-recovery" },
+  "OQ:7": { use: "monitoring-record" },
+
+  "PQ:0": { use: "loading-pattern" },
+  "PQ:1": { use: "temp-map-loaded",
+    accept: "Setpoint/tolerance per URS / stored-product requirement — do not assume (2–8 °C common; confirm). Loaded chamber holds within that band over a representative period under normal access." },
+  "PQ:2": { use: "temp-map-loaded", title: "Confirm performance under routine door-opening pattern",
+    accept: "Set ranges maintained under the routine door-opening pattern reflecting actual use." },
+  "PQ:3": { use: "monitor-sensor-placement" },
+  "PQ:4": { use: "requalification" }
+};
+
+const HOWTO_freezer = {
+  "IQ:0": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:1": { use: "iq-location", title: "Verify supply, leveling, heat-rejection clearance, door seal" },
+  "IQ:2": { use: "iq-calibration-certs",
+    accept: "Controller and reference sensors calibrated, traceable, in-date, and rated for the sub-zero freezer range." },
+  "IQ:3": { use: "iq-backup-alarm" },
+  "IQ:4": { use: "iq-components", title: "Confirm shelving, circulation fans, internal lighting installed" },
+  "IQ:5": { use: "iq-defrost-drain" },
+  "IQ:6": { use: "control-functions", title: "Record controller setpoint, alarm setpoints, access config",
+    steps: [
+      "Record the controller setpoint and all alarm setpoints as configured.",
+      "Capture the access/security configuration and user roles.",
+      "Confirm settings match the URS.",
+      "File the configuration baseline in the IQ package."
+    ],
+    accept: "Setpoint, alarm setpoints, and access config recorded and matching URS." },
+  "IQ:7": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "cal-verify" },
+  "OQ:1": { use: "control-functions", title: "Verify controller, display accuracy, and defrost operation" },
+  "OQ:2": { use: "temp-map-empty",
+    accept: "Setpoint/tolerance per URS / stored-product requirement — do not assume. A standard freezer is typically −20 °C, but −15 °C and −30 °C are also seen; confirm per process. Map at the chosen setpoint; uniformity, stability, and pull-down within the URS band over ≥24 h; hot/cold spots identified." },
+  "OQ:3": { use: "alarm-challenge-tcu", title: "Verify high/low temperature alarms",
+    accept: "High and low temperature alarms activate at configured limits with correct delay, audible/visual, and remote signal." },
+  "OQ:4": { use: "door-open-recovery", title: "Door-open excursion and recovery test" },
+  "OQ:5": { use: "defrost-excursion" },
+  "OQ:6": { use: "power-recovery" },
+  "OQ:7": { use: "monitoring-record" },
+
+  "PQ:0": { use: "loading-pattern" },
+  "PQ:1": { use: "temp-map-loaded",
+    accept: "Setpoint/tolerance per URS / stored-product requirement — do not assume (typically −20 °C; −15/−30 °C also seen). Loaded chamber holds within that band over a representative period under normal access." },
+  "PQ:2": { use: "temp-map-loaded", title: "Confirm performance under routine door-opening pattern",
+    accept: "Set ranges maintained under the routine door-opening pattern reflecting actual use." },
+  "PQ:3": { use: "monitor-sensor-placement" },
+  "PQ:4": { use: "requalification" }
+};
+
+const HOWTO_ult = {
+  "IQ:0": { use: "iq-location", title: "Verify dedicated circuit, voltage, heat-rejection clearance" },
+  "IQ:1": { use: "iq-backup-alarm", title: "Confirm CO₂/LN₂ backup (if fitted) and high-temp alarm contacts" },
+  "IQ:2": { use: "iq-calibration-certs",
+    accept: "Mapping sensors rated and calibrated for the −80 °C range, traceable and in-date." },
+  "IQ:3": { use: "iq-components", title: "Confirm condenser clearance, ambient rating, backup system installed" },
+  "IQ:4": { use: "iq-components", title: "Verify door/lid gasket integrity and inner-compartment config" },
+  "IQ:5": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:6": { use: "iq-components", title: "Confirm as-built drawings / datasheets match installed unit" },
+  "IQ:7": { use: "iq-instrument-inventory" },
+
+  "OQ:0": { use: "temp-map-empty",
+    accept: "Setpoint/tolerance per URS / stored-product requirement — do not assume. ULT units commonly run at −80 °C (sometimes −70 °C); confirm per process. Map at the chosen setpoint; uniformity and pull-down within the URS band; hot/cold spots identified." },
+  "OQ:1": { use: "alarm-challenge-tcu", title: "Verify high-temperature alarm and backup activation",
+    accept: "High-temp alarm and backup-cooling system activate at the configured setpoint." },
+  "OQ:2": { use: "door-open-recovery", title: "Door/lid-open excursion and recovery test" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "alarm-challenge-tcu", title: "Verify high-temperature alarm and backup activation",
+    accept: "High-temp alarm and backup-cooling system activate at the configured setpoint." },
+  "OQ:6": { use: "monitoring-record" },
+
+  "PQ:0": { use: "temp-map-loaded", title: "Loaded performance incl. routine sample-retrieval openings",
+    accept: "Setpoint/tolerance per URS — do not assume (commonly −80 °C). Loaded unit holds within band over a representative period including routine sample-retrieval openings." },
+  "PQ:1": { use: "loading-pattern", title: "Define the sample loading / inventory pattern to qualify" },
+  "PQ:2": { use: "monitor-sensor-placement" },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_coldroom = {
+  "IQ:0": { use: "iq-components", title: "Verify refrigeration plant, power (incl. backup), door seals, air handling" },
+  "IQ:1": { use: "iq-calibration-certs",
+    accept: "Mapping and monitoring sensors calibrated, traceable, in-date, and range-appropriate." },
+  "IQ:2": { use: "iq-components", title: "Verify refrigeration plant, condensing unit, backup power" },
+  "IQ:3": { use: "iq-components", title: "Confirm door seals, strip curtains, air handling, lighting installed" },
+  "IQ:4": { use: "iq-backup-alarm", title: "Verify monitoring/alarm infrastructure (local + remote/BMS)" },
+  "IQ:5": { use: "iq-instrument-inventory" },
+  "IQ:6": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "temp-map-empty", title: "Empty-room mapping (3-D array: corners, center, door, return air)",
+    steps: [
+      "Set the mapping setpoint to the room's intended operating condition per the URS / stored-product requirement (do not assume; cold rooms are commonly 2–8 °C but confirm).",
+      "Design a 3-D sensor array: corners (high and low), center, near the door, and at the return air; for rooms 2–20 m³ use ~15–16 sensors plus one at the control/monitoring probe.",
+      "Secure sensors and record IDs against the placement diagram.",
+      "Log over ≥24 h (longer if seasonal extremes matter); analyze uniformity, stratification, and stability against the URS limit; identify hot/cold zones."
+    ],
+    accept: "Setpoint/tolerance per URS — do not assume. All sensors within the defined band over the study; hot/cold zones and stratification identified." },
+  "OQ:1": { use: "door-open-recovery", title: "Door-open and defrost-cycle excursion; assess recovery" },
+  "OQ:2": { use: "power-recovery" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "defrost-excursion", title: "Confirm defrost cycle operates and condensate drains" },
+  "OQ:6": { use: "alarm-challenge-tcu", title: "Verify high/low temp and door-ajar alarms",
+    accept: "High/low temperature and door-ajar alarms activate at configured limits with correct signal routing." },
+
+  "PQ:0": { use: "temp-map-loaded", title: "Loaded mapping incl. routine traffic and door openings",
+    accept: "Setpoint/tolerance per URS — do not assume. Loaded room holds within band over a representative period including routine traffic and door openings." },
+  "PQ:1": { use: "loading-pattern", title: "Define storage loading pattern and traffic profile" },
+  "PQ:2": { use: "monitor-sensor-placement" },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_warehouse = {
+  "IQ:0": { use: "iq-components", title: "Verify HVAC, power, monitoring infrastructure, zone layout vs URS" },
+  "IQ:1": { use: "iq-calibration-certs",
+    accept: "Mapping sensors calibrated, traceable, in-date, and sufficient in number for the volume." },
+  "IQ:2": { use: "iq-components", title: "Verify HVAC units, make-up air, monitoring infrastructure installed" },
+  "IQ:3": { use: "iq-components", title: "Confirm rack layout, dock-door seals, zone definitions match design" },
+  "IQ:4": { use: "iq-instrument-inventory" },
+  "IQ:5": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "temp-map-empty", title: "Empty-warehouse mapping across seasons/extremes",
+    steps: [
+      "Set acceptance to the storage condition required by the URS / stored product (do not assume; ambient/controlled-room-temperature ranges vary — confirm).",
+      "Distribute sensors across the full volume and height to capture stratification: floor to top-of-rack, near dock doors, near HVAC supply/return, and dead zones. Scale sensor count to volume (large spaces need many sensors, ≥1 per defined zone).",
+      "Map in both hot and cold seasons (or the documented worst-case extremes), logging over an extended period (often ≥7 days per season).",
+      "Identify hot/cold zones and vertical stratification; define zones for routine monitoring."
+    ],
+    accept: "Setpoint/tolerance per URS — do not assume. All zones within the defined band across seasonal extremes; hot/cold zones and stratification identified." },
+  "OQ:1": { use: "alarm-challenge-tcu", title: "Verify zone-level monitoring/alarm activation",
+    accept: "Zone-level alarms activate at configured limits and notify as specified." },
+  "OQ:2": { use: "door-open-recovery", title: "Assess dock-door / HVAC-failure impact on near-door zones" },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "monitoring-record", title: "Verify zone-level alarms and monitoring log at configured limits" },
+  "OQ:6": { use: "power-recovery", title: "Assess HVAC recovery after simulated failure or dock-door-open" },
+
+  "PQ:0": { use: "temp-map-loaded", title: "Mapping under representative stock load (often seasonal)",
+    accept: "Setpoint/tolerance per URS — do not assume. Stocked warehouse holds within band over the defined period (often seasonal) in use." },
+  "PQ:1": { use: "loading-pattern", title: "Define representative stock-load and seasonal conditions" },
+  "PQ:2": { use: "monitor-sensor-placement", title: "Place permanent monitoring sensors at worst-case zones" },
+  "PQ:3": { use: "requalification" }
+};
+
+const HOWTO_co2incubator = {
+  "IQ:0": { use: "iq-utilities", title: "Verify power, CO₂ supply/regulator, water reservoir vs URS" },
+  "IQ:1": { use: "iq-calibration-certs", title: "Confirm temp, CO₂, and humidity sensors installed and calibrated" },
+  "IQ:2": { use: "iq-location", title: "Verify power/outlet, leveling, and clearances" },
+  "IQ:3": { use: "iq-components", title: "Confirm CO₂ regulator, water tray, HEPA filter, shelving installed" },
+  "IQ:4": { use: "iq-components", title: "Verify door seal and inner-door (if fitted) configuration" },
+  "IQ:5": { use: "iq-components", title: "Verify make/model/serial, range, capacity vs PO/URS" },
+  "IQ:6": { use: "iq-components", title: "Confirm as-built drawings / datasheets match installed unit" },
+  "IQ:7": { use: "iq-instrument-inventory" },
+  "IQ:8": { use: "iq-vendor-docs" },
+
+  "OQ:0": { use: "temp-map-empty",
+    accept: "Setpoint/tolerance per the client's process / cells — do not assume (37 °C is a common culture target; 20–25 °C and others are seen). Map at that setpoint; uniformity and stability within the URS band over ≥24 h; hot/cold spots identified." },
+  "OQ:1": { use: "co2-control" },
+  "OQ:2": { use: "alarm-challenge-tcu", title: "Verify high/low temp, CO₂, and door alarms",
+    accept: "High/low temperature, CO₂ out-of-range, and door alarms activate at configured setpoints." },
+  "OQ:3": { use: "cal-verify" },
+  "OQ:4": { use: "control-functions" },
+  "OQ:5": { use: "control-functions", title: "Verify humidity reaches and holds the required range",
+    steps: [
+      "Confirm the humidity reservoir/tray is filled and the system is running.",
+      "Measure relative humidity against a calibrated reference at the working condition.",
+      "Confirm RH reaches and holds the URS-defined range (do not assume a value; high humidity ~90%+ RH is common for cell culture but confirm per process).",
+      "Record steady-state RH and any recovery after a door event."
+    ],
+    accept: "Humidity reaches and holds the URS-defined range (process-driven; confirm)." },
+  "OQ:6": { use: "monitoring-record", title: "Confirm temp, CO₂, door alarms and logging at configured setpoints" },
+
+  "PQ:0": { use: "temp-map-loaded", title: "Loaded performance under normal access patterns",
+    accept: "Setpoint/tolerance per process/cells — do not assume. Temp, CO₂, and humidity hold within the URS bands under representative load and access." },
+  "PQ:1": { use: "loading-pattern", title: "Define the cell-culture loading pattern to qualify" },
+  "PQ:2": { use: "temp-map-loaded", title: "Confirm temp, CO₂, humidity hold under representative load",
+    accept: "Temp, CO₂, and humidity all within URS bands under representative load and routine access." },
+  "PQ:3": { use: "requalification" }
+};
+
+// Registry keyed by equipment id -> { "PHASE:index": howto-or-ref }
+const HOWTO = {
+  autoclave: HOWTO_autoclave,
+  incubator: HOWTO_incubator,
+  co2incubator: HOWTO_co2incubator,
+  fridge: HOWTO_fridge,
+  freezer: HOWTO_freezer,
+  ult: HOWTO_ult,
+  coldroom: HOWTO_coldroom,
+  warehouse: HOWTO_warehouse
+};
+
+// Resolve a howto entry: if it references a shared procedure via {use}, merge shared + overrides.
+function resolveHowto(entry) {
+  if (!entry) return null;
+  if (!entry.use) return entry;
+  const base = HOWTO_shared[entry.use];
+  if (!base) return entry;
+  const merged = Object.assign({}, base);
+  ['title','accept','link','linkLabel','materials','steps'].forEach(k => {
+    if (entry[k] !== undefined) merged[k] = entry[k];
+  });
+  if (entry.extraSteps) merged.steps = (merged.steps || []).concat(entry.extraSteps);
+  return merged;
+}
 
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
@@ -5443,7 +6263,7 @@ let activeDomain = 'all';
 
 // Category grouping: section key -> {label, members in display order}
 const CATEGORIES = [
-  { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","ult","coldroom","warehouse"] },
+  { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","freezer","ult","coldroom","warehouse"] },
   { key: "ovens",      label: "Ovens",                                members: ["dryoven","depyrooven","vacuumoven"] },
   { key: "sterilizers",label: "Sterilizers",                          members: ["autoclave"] },
   { key: "cryo",       label: "Cryogenic",                            members: ["ln2","cryochamber"] },
@@ -5520,7 +6340,7 @@ function openDetail(id) {
       const src = test.s === 'gmp' ? GMP_INFO : test.s;
       const cls = src.status;
       const label = cls === 'gmp' ? 'GMP' : cls === 'regulation' ? 'CFR' : 'source';
-      const ho = (HOWTO[id] || {})[p + ':' + i];
+      const ho = resolveHowto((HOWTO[id] || {})[p + ':' + i]);
       const hk = id + '|' + p + '|' + i;
       const howtoChip = ho
         ? `<button class="howto-chip" id="hc-${hk}" aria-expanded="false" onclick="toggleHowto('${id}','${p}',${i})">
@@ -5655,7 +6475,7 @@ renderList();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v2';
+    const C = 'cqv-v5';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
