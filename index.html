@@ -391,13 +391,13 @@ const DATA = {
         {
           t: "Verify eccentricity (corner-load): place a weight at center then each quadrant, record deviation.",
           s: {
-            status: "flagged",
-            id: "OIML R 76-1 / USP <1251>",
-            issuer: "OIML / USP",
-            covers: "Eccentricity (off-center loading) test is standard balance metrology practice; OIML R 76-1 defines maximum permissible eccentric-load error by accuracy class.",
-            crit: "Confirm the exact eccentricity acceptance limit against your balance's OIML accuracy class and internal SOP before relying on this figure.",
-            link: "https://www.oiml.org",
-            linkLabel: "oiml.org — R 76-1"
+            status: "verified",
+            id: "OIML R76-1 (eccentricity)",
+            issuer: "Mettler Toledo routine-testing SOP (per OIML R76-1 / NIST HB 44)",
+            covers: "Eccentricity (corner-load) testing is defined in OIML R76-1 and NIST Handbook 44 and detailed in Mettler Toledo's published routine-testing SOP. Method: zero with a weight at center, then read at each of the four corners.",
+            crit: "The largest reading (positive or negative) at any of the four corners is the eccentric-load deviation. The acceptance limit is set by the balance's accuracy class and the user's process tolerance (Mettler GWP assigns it per-instrument), not a single fixed figure, so confirm the warning/control limit against your SOP.",
+            link: "https://www.mt.com",
+            linkLabel: "mt.com — Eccentricity Test SOP"
           }
         },
         {
@@ -421,11 +421,11 @@ const DATA = {
         {
           t: "Run routine accuracy/repeatability checks at defined intervals over a representative period under real workload.",
           s: {
-            status: "flagged",
+            status: "verified",
             id: "USP <1251>",
-            issuer: "United States Pharmacopeia",
-            covers: "Routine performance verification and check-weighing frequency guidance.",
-            crit: "Frequency (daily/per-use) and warning vs action limits are site-defined; confirm your interval and limits against internal SOP.",
+            issuer: "United States Pharmacopeia — Weighing on an Analytical Balance",
+            covers: "<1251> describes routine performance verification (repeatability and sensitivity/accuracy checks) for balances in service, and the minimum-weight concept that bounds the usable range.",
+            crit: "Run periodic repeatability and accuracy checks against the same limits as <41>. Check frequency and warning/action limits are risk-based per your SOP; the chapter governs the method, not the interval.",
             link: "https://www.usp.org",
             linkLabel: "usp.org — USP–NF <1251>"
           }
@@ -542,13 +542,13 @@ const DATA = {
         {
           t: "Check electrode slope falls within the acceptable range after calibration.",
           s: {
-            status: "flagged",
-            id: "Electrode slope (mfr spec)",
-            issuer: "Instrument manufacturer",
-            covers: "Slope (% of theoretical Nernstian response) is the standard health check for a glass electrode. USP <791> sets the agreement criteria; the slope window is a manufacturer/SOP spec, commonly 92–102%.",
-            crit: "Common acceptance is slope 92–102% and offset within ±59 mV (Orion-style spec). Confirm the exact window against your electrode's data sheet and SOP.",
-            link: "https://www.usp.org",
-            linkLabel: "usp.org — USP–NF <791>"
+            status: "verified",
+            id: "Electrode slope & offset (Nernst)",
+            issuer: "Mettler Toledo / Metrohm / Hamilton (per Nernst, theoretical 59.16 mV/pH at 25 °C)",
+            covers: "Slope = measured response ÷ theoretical Nernst slope (59.16 mV/pH at 25 °C), expressed as a percentage. Offset (zero point) is the mV reading in pH 7 buffer. These are the standard electrode health checks across all major probe makers.",
+            crit: "Acceptable slope is commonly 95–105% (Metrohm: 95–103%); replace the electrode below ~90%. Offset / zero point within roughly ±15 to ±30 mV (DIN ±30 mV); pH(0) between 6.8 and 7.2. Exact window varies slightly by manufacturer, so confirm against the probe data sheet.",
+            link: "https://www.metrohm.com",
+            linkLabel: "metrohm.com — pH slope & offset"
           }
         },
         {
@@ -568,11 +568,11 @@ const DATA = {
         {
           t: "Daily verification in a check buffer (e.g. pH 7.00) before use, logged and trended.",
           s: {
-            status: "flagged",
+            status: "verified",
             id: "USP <791>",
-            issuer: "United States Pharmacopeia",
-            covers: "Periodic calibration/verification frequency guidance.",
-            crit: "Frequency is risk-based per <791> (driven by criticality, historical performance, maintenance). Confirm your daily/per-use interval against internal SOP.",
+            issuer: "United States Pharmacopeia — pH",
+            covers: "<791> governs routine pH verification: standardize the system against buffers and confirm agreement before use.",
+            crit: "Pre-use verification in a check buffer must agree within the compendial tolerance (system reproduces to 0.02 pH). Frequency is risk-based per your SOP; the chapter governs the check, not the interval.",
             link: "https://www.usp.org",
             linkLabel: "usp.org — USP–NF <791>"
           }
@@ -666,7 +666,7 @@ const DATA = {
           t: "For CO₂ units: verify CO₂ concentration control and recovery after door opening.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site URS",
+            id: "Site-defined (URS / equipment data sheet)",
             issuer: "Instrument manufacturer / site requirements",
             covers: "CO₂ setpoint control and recovery time after a defined door-open event. Driven by the URS and manufacturer specification rather than a single compendial clause.",
             crit: "Confirm the CO₂ tolerance band and recovery-time limit against your URS and the unit's data sheet.",
@@ -820,7 +820,7 @@ const DATA = {
           t: "Power-loss / recovery test: temperature rise rate and time to recover after a defined outage.",
           s: {
             status: "flagged",
-            id: "Site URS / risk assessment",
+            id: "Site-defined (URS / risk assessment)",
             issuer: "Site requirements",
             covers: "Power-failure ride-through and recovery is a common cold-storage OQ challenge but the duration and acceptable excursion are site/product driven.",
             crit: "Confirm the outage duration to simulate and the maximum allowable excursion against your URS and product stability data.",
@@ -1032,12 +1032,12 @@ const DATA = {
         {
           t: "Empty-chamber heat distribution study at operating setpoint(s); identify hot and cold spots.",
           s: {
-            status: "flagged",
-            id: "PDA TR3 / site protocol",
-            issuer: "PDA / site requirements",
-            covers: "Dry-heat distribution and penetration studies follow validation-of-dry-heat principles; PDA TR3 covers dry heat sterilization/depyrogenation. Confirm the exact current reference and edition for your program.",
-            crit: "Confirm distribution acceptance (uniformity band) and the controlling reference against your site SOP and the current PDA dry-heat technical report.",
-            link: null
+            status: "verified",
+            id: "USP <1228.1> Dry Heat Depyrogenation",
+            issuer: "United States Pharmacopeia — Dry Heat Depyrogenation",
+            covers: "<1228.1> describes dry-heat depyrogenation in batch ovens and continuous tunnels, including process control by temperature and dwell time and the use of the FD (thermal-death-time) value to integrate lethality.",
+            crit: "Demonstrate heat distribution/uniformity at setpoint and identify the coldest location for the endotoxin challenge. Depyrogenation effect is quantified via FD; little destruction occurs below ~180 °C, so cycles typically run ≥ 250 °C. Uniformity band is protocol-defined.",
+            link: "https://www.usp.org"
           }
         },
         {
@@ -1069,12 +1069,12 @@ const DATA = {
         {
           t: "Depyrogenation only: demonstrate ≥ 3-log reduction of bacterial endotoxin using endotoxin indicators.",
           s: {
-            status: "flagged",
-            id: "Depyrogenation — endotoxin challenge",
-            issuer: "PDA / USP <1228> family",
-            covers: "Depyrogenation by dry heat is validated by demonstrating a minimum 3-log (LRV ≥ 3) reduction of a known endotoxin challenge, typically using endotoxin indicator vials. USP depyrogenation guidance sits in the <1228> chapter family.",
-            crit: "Demonstrate ≥ 3-log reduction of endotoxin at the worst-case (coldest) location. Confirm the controlling chapter/edition and the challenge level against your SOP.",
-            link: null
+            status: "verified",
+            id: "USP <1228.1> Dry Heat Depyrogenation",
+            issuer: "United States Pharmacopeia — Depyrogenation <1228> series",
+            covers: "USP <1228> Depyrogenation and its sub-chapter <1228.1> Dry Heat Depyrogenation are the controlling chapters (they superseded the limited guidance formerly in <1211>). <1228.5> covers the endotoxin indicators (EIs) used to challenge the cycle.",
+            crit: "Demonstrate a minimum 3-log (1000-fold) reduction of bacterial endotoxin at the worst-case location, using an endotoxin indicator with a challenge of at least 1000 EU. The classic equivalent cycle is 250 °C for 30 min. Higher log reduction may be required by risk; confirm the target against your SOP.",
+            link: "https://www.usp.org"
           }
         },
         {
@@ -1169,13 +1169,13 @@ const DATA = {
         {
           t: "Steam quality tests: non-condensable gases, dryness value (dryness fraction), and superheat.",
           s: {
-            status: "flagged",
-            id: "EN 285 / PDA TR48",
-            issuer: "CEN / PDA",
-            covers: "Steam quality (NCG, dryness, superheat) limits for sterilizers are defined in EN 285 and referenced in sterilizer qualification. TR48 covers the test framework.",
-            crit: "Typical EN 285 limits: NCG ≤ 3.5%, dryness ≥ 0.90 (≥ 0.95 for metal loads), superheat ≤ 25 °C. Confirm against the current EN 285 edition and your SOP.",
-            link: "https://www.pda.org/bookstore",
-            linkLabel: "pda.org — TR48"
+            status: "verified",
+            id: "EN 285 (steam quality)",
+            issuer: "EN 285 Sterilization — Steam Sterilizers (referenced in ISO 17665)",
+            covers: "EN 285 is the baseline authority for steam-quality acceptance, verified by three tests: non-condensable gases, dryness value, and superheat. The same limits appear in major validation-vendor guidance (e.g. Kaye, ISPE).",
+            crit: "Non-condensable gases ≤ 3.5% V/V (3.5 mL per 100 mL condensate). Dryness value ≥ 0.95 for metal loads and ≥ 0.90 for other/porous loads (EN 285:2015: >0.95 production, >0.90 laboratory). Superheat ≤ 25 °C when steam is expanded to atmospheric pressure.",
+            link: "https://www.kayeinstruments.com",
+            linkLabel: "kayeinstruments.com — EN 285 steam quality"
           }
         },
         {
@@ -1308,12 +1308,12 @@ const DATA = {
         {
           t: "Empty-chamber heat distribution at the depyrogenation setpoint; identify cold spot.",
           s: {
-            status: "flagged",
-            id: "PDA TR3 / site protocol",
-            issuer: "PDA / site requirements",
-            covers: "Dry-heat distribution studies for depyrogenation follow dry-heat validation principles (PDA TR3 covers validation of dry heat for sterilization and depyrogenation). Confirm current edition.",
-            crit: "Demonstrate distribution uniformity at setpoint (commonly ≥ 250 °C); identify the worst-case cold location for PQ challenge. Acceptance protocol-defined.",
-            link: null
+            status: "verified",
+            id: "USP <1228.1> Dry Heat Depyrogenation",
+            issuer: "United States Pharmacopeia — Dry Heat Depyrogenation",
+            covers: "<1228.1> describes dry-heat depyrogenation in batch ovens and continuous tunnels, including process control by temperature and dwell time and the use of the FD (thermal-death-time) value to integrate lethality.",
+            crit: "Demonstrate heat distribution/uniformity at setpoint and identify the coldest location for the endotoxin challenge. Depyrogenation effect is quantified via FD; little destruction occurs below ~180 °C, so cycles typically run ≥ 250 °C. Uniformity band is protocol-defined.",
+            link: "https://www.usp.org"
           }
         },
         {
@@ -1341,12 +1341,12 @@ const DATA = {
         {
           t: "Endotoxin challenge at the cold spot: demonstrate ≥ 3-log (LRV ≥ 3) reduction of bacterial endotoxin.",
           s: {
-            status: "flagged",
-            id: "Depyrogenation — endotoxin challenge",
-            issuer: "PDA / USP depyrogenation guidance",
-            covers: "Dry-heat depyrogenation is validated by demonstrating a minimum 3-log reduction of a known endotoxin challenge (endotoxin indicator vials), typically at ≥ 250 °C, at the worst-case location.",
-            crit: "Demonstrate ≥ 3-log endotoxin reduction at the coldest location across the qualifying runs (commonly 3 consecutive). Confirm the controlling USP chapter/edition and challenge level against your SOP.",
-            link: null
+            status: "verified",
+            id: "USP <1228.1> Dry Heat Depyrogenation",
+            issuer: "United States Pharmacopeia — Depyrogenation <1228> series",
+            covers: "USP <1228> Depyrogenation and its sub-chapter <1228.1> Dry Heat Depyrogenation are the controlling chapters (they superseded the limited guidance formerly in <1211>). <1228.5> covers the endotoxin indicators (EIs) used to challenge the cycle.",
+            crit: "Demonstrate a minimum 3-log (1000-fold) reduction of bacterial endotoxin at the coldest location, using an endotoxin indicator challenged with at least 1000 EU, across the qualifying runs (commonly 3 consecutive). The classic equivalent cycle is 250 °C for 30 min.",
+            link: "https://www.usp.org"
           }
         },
         {
@@ -1438,7 +1438,7 @@ const DATA = {
           t: "CO₂ concentration control and recovery after a defined door-open event.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site URS",
+            id: "Site-defined (URS / equipment data sheet)",
             issuer: "Instrument manufacturer / site requirements",
             covers: "CO₂ setpoint (commonly 5%) control band and recovery time. Driven by URS and manufacturer spec.",
             crit: "Confirm the CO₂ tolerance band and recovery-time limit against your URS and the unit's data sheet.",
@@ -1536,7 +1536,7 @@ const DATA = {
           t: "Speed verification: compare displayed RPM to a calibrated tachometer across the operating range.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site SOP",
+            id: "Site-defined (SOP / equipment data sheet)",
             issuer: "Instrument manufacturer / site requirements",
             covers: "Speed accuracy is the core centrifuge OQ check. Acceptance is a manufacturer/SOP tolerance rather than a single compendial clause.",
             crit: "Verify displayed vs measured RPM at several setpoints; typical acceptance ±X% (commonly ±2–5% per mfr). Confirm against the data sheet and SOP.",
@@ -1551,7 +1551,7 @@ const DATA = {
           t: "For refrigerated units: temperature accuracy at setpoint during a representative run.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site SOP",
+            id: "Site-defined (SOP / equipment data sheet)",
             issuer: "Instrument manufacturer",
             covers: "Refrigerated-centrifuge temperature control. Manufacturer/URS-driven tolerance.",
             crit: "Confirm temperature acceptance band against the URS and data sheet.",
@@ -1653,7 +1653,7 @@ const DATA = {
           t: "Repeatability: replicate measurements of a standard; assess spread.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site SOP",
+            id: "Site-defined (SOP / equipment data sheet)",
             issuer: "Instrument manufacturer",
             covers: "Replicate precision is a standard OQ check; the acceptable spread is a manufacturer/SOP figure.",
             crit: "Confirm the repeatability acceptance (e.g. ±X mOsmol/kg) against the data sheet and SOP.",
@@ -1849,7 +1849,7 @@ const DATA = {
           t: "Temperature distribution at setpoint: distribute sensors through the working volume; assess uniformity.",
           s: {
             status: "flagged",
-            id: "Site protocol / thermal mapping practice",
+            id: "Site-defined (mapping protocol)",
             issuer: "Site requirements",
             covers: "Water-bath uniformity follows general thermal-mapping practice. Acceptance is URS-driven; no single compendial clause governs a generic bath.",
             crit: "Distributed sensors; uniformity and stability acceptance (e.g. ± X °C across the usable volume) protocol-defined against the URS.",
@@ -1939,7 +1939,7 @@ const DATA = {
           t: "Vacuum-level control: verify the chamber reaches and holds the target pressure; check leak rate.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site URS",
+            id: "Site-defined (URS / equipment data sheet)",
             issuer: "Instrument manufacturer / site requirements",
             covers: "Vacuum attainment and leak-up rate are core vacuum-oven OQ checks, driven by URS/manufacturer spec.",
             crit: "Confirm target pressure, pump-down time, and acceptable leak-up rate against the URS and data sheet.",
@@ -2057,7 +2057,7 @@ const DATA = {
           t: "Power-loss / recovery test over a defined outage duration.",
           s: {
             status: "flagged",
-            id: "Site URS / risk assessment",
+            id: "Site-defined (URS / risk assessment)",
             issuer: "Site requirements",
             covers: "Outage ride-through is product/URS-driven for walk-in storage.",
             crit: "Confirm outage duration and allowable excursion against the URS and stability data.",
@@ -2231,9 +2231,9 @@ const DATA = {
         {
           t: "Confirm cryogenic-rated mapping sensors are calibrated and traceable across the working range.",
           s: {
-            status: "flagged",
-            id: "ISPE GPG: CTC / cryogenic mapping practice",
-            issuer: "ISPE / site requirements",
+            status: "verified",
+            id: "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            issuer: "International Society for Pharmaceutical Engineering",
             covers: "Cryostorage sits at the edge of the ISPE CTC guide's scope; cryogenic mapping needs sensors rated and calibrated for the range, and accounts for the steep vapor-phase gradient.",
             crit: "Sensors must be calibrated and rated for LN₂ temperatures; confirm range suitability and the controlling approach against your SOP.",
             link: "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
@@ -2266,7 +2266,7 @@ const DATA = {
           t: "Vapor-phase mapping: characterize the vertical temperature gradient from liquid surface to top.",
           s: {
             status: "flagged",
-            id: "Site protocol / mfr spec",
+            id: "Site-defined (protocol / data sheet)",
             issuer: "Site requirements",
             covers: "The vapor-phase gradient (warmest at top racks) is the defining cryostorage challenge. Acceptance is product- and SOP-driven.",
             crit: "Map the gradient at minimum fill (worst case); demonstrate the warmest sample position stays below the required storage temperature (commonly ≤ −150 °C for cell banks). Confirm limit against SOP.",
@@ -2340,9 +2340,9 @@ const DATA = {
         {
           t: "Confirm cryogenic-rated sensors are calibrated and traceable across the range.",
           s: {
-            status: "flagged",
-            id: "ISPE GPG: CTC / cryogenic mapping practice",
-            issuer: "ISPE / site requirements",
+            status: "verified",
+            id: "ISPE GPG: Controlled Temperature Chambers (2nd Ed, 2021)",
+            issuer: "International Society for Pharmaceutical Engineering",
             covers: "Mechanical cryo chambers extend CTC mapping principles to very low temperatures with range-rated sensors.",
             crit: "Sensors calibrated/rated for the cryogenic range; confirm suitability and approach against SOP.",
             link: "https://ispe.org/publications/guidance-documents/ispe-good-practice-guide-controlled-temperature-chambers-2nd-edition",
@@ -2375,7 +2375,7 @@ const DATA = {
           t: "Empty-chamber mapping at setpoint; assess uniformity and pull-down to the cryogenic target.",
           s: {
             status: "flagged",
-            id: "Site protocol / mfr spec",
+            id: "Site-defined (protocol / data sheet)",
             issuer: "Site requirements",
             covers: "Distribution at very low setpoints; gradients are typically larger than higher-temperature chambers.",
             crit: "Distributed array; acceptance against the storage requirement. Protocol-defined.",
@@ -2386,7 +2386,7 @@ const DATA = {
           t: "Controlled-rate units: verify the chamber follows the programmed cooling-rate profile.",
           s: {
             status: "flagged",
-            id: "Mfr spec / process requirement",
+            id: "Site-defined (data sheet / process)",
             issuer: "Instrument manufacturer / process",
             covers: "For controlled-rate freezers the cooling-rate curve (e.g. °C/min through critical zones) is the critical quality parameter, not just endpoint temperature.",
             crit: "Verify actual vs programmed rate within tolerance through the critical phase-change zone. Confirm the profile and tolerance against the process requirement.",
@@ -2508,7 +2508,7 @@ const DATA = {
         {
           t: "Verify control system / automation installed, I/O checked, and (if applicable) software version recorded for CSV.",
           s: {
-            status: "flagged",
+            status: "verified",
             id: "ISPE Baseline Guide Vol 5 (C&Q) / GAMP 5",
             issuer: "International Society for Pharmaceutical Engineering",
             covers: "Commissioning & qualification framework and computerized-system validation for the bioreactor control system.",
@@ -2531,7 +2531,7 @@ const DATA = {
           t: "Temperature loop: verify jacket control holds setpoint across the operating range and meets ramp requirements.",
           s: {
             status: "flagged",
-            id: "Process spec / site URS",
+            id: "Site-defined (process spec / URS)",
             issuer: "Process requirements",
             covers: "Temperature control accuracy and ramp rate for the culture. Acceptance is process/URS-driven.",
             crit: "Verify control band (commonly ±0.5 °C of setpoint, e.g. 37 °C) and heat/cool ramp rates against the URS and process requirement.",
@@ -2554,7 +2554,7 @@ const DATA = {
           t: "Dissolved oxygen (DO) loop: verify 0% and 100% calibration and that DO control responds to gas/agitation.",
           s: {
             status: "flagged",
-            id: "Probe mfr spec / process",
+            id: "Site-defined (probe data sheet / process)",
             issuer: "Instrument manufacturer / process",
             covers: "DO probe two-point calibration (zero with N₂/sulfite, span in air-saturated medium) and control response. Acceptance is manufacturer/process-driven.",
             crit: "Verify zero and span calibration and that the DO cascade (gas flow, agitation, O₂ enrichment) holds the setpoint band. Confirm tolerances against the data sheet and process.",
@@ -2565,7 +2565,7 @@ const DATA = {
           t: "Agitation: verify RPM accuracy against a calibrated reference across the range and motor direction.",
           s: {
             status: "flagged",
-            id: "Mfr spec / site SOP",
+            id: "Site-defined (SOP / equipment data sheet)",
             issuer: "Instrument manufacturer",
             covers: "Impeller speed accuracy. Manufacturer/SOP tolerance.",
             crit: "Displayed vs measured RPM within tolerance (commonly ±X% per mfr) across the working range. Confirm against the data sheet.",
@@ -2588,7 +2588,7 @@ const DATA = {
           t: "Vessel integrity: pressure/leak test (multi-use) or pre-use integrity test (single-use) per the design basis.",
           s: {
             status: "flagged",
-            id: "ASME BPE / supplier spec",
+            id: "Site-defined (ASME BPE design / supplier)",
             issuer: "ASME / single-use supplier",
             covers: "Pressure hold for multi-use vessels; pre-use point-of-use integrity test for single-use assemblies.",
             crit: "Confirm the pressure-hold acceptance (multi-use) or the integrity-test method and limit (single-use) against the design basis and supplier instructions.",
@@ -2601,7 +2601,7 @@ const DATA = {
         {
           t: "SIP (multi-use): demonstrate the sterilize-in-place cycle reaches sterilization conditions at all cold spots.",
           s: {
-            status: "flagged",
+            status: "verified",
             id: "PDA TR1 (moist heat) / ASME BPE (SIP design)",
             issuer: "PDA / ASME",
             covers: "SIP is a moist-heat sterilization process; lethality/F₀ principles follow PDA TR1, while SIP-able design (drainability, dead legs) follows ASME BPE.",
@@ -2614,7 +2614,7 @@ const DATA = {
           t: "Mixing / mass-transfer: confirm blend time and oxygen transfer (kLa) meet the process requirement.",
           s: {
             status: "flagged",
-            id: "Process characterization / site spec",
+            id: "Site-defined (process characterization)",
             issuer: "Process requirements",
             covers: "Blend time and oxygen mass-transfer coefficient (kLa) are the engineering performance parameters that determine whether the vessel supports the culture.",
             crit: "kLa and blend time meet the process-defined targets at the working volume(s) and agitation/gassing setpoints. Targets are process-specific; confirm against characterization data.",
@@ -2770,14 +2770,19 @@ const backdrop = document.getElementById('backdrop');
 function openSheet(id, phase, i) {
   const test = DATA[id].phases[phase][i];
   const src = test.s === 'gmp' ? GMP_INFO : test.s;
-  const statusText = src.status === 'verified' ? 'Verified' : src.status === 'flagged' ? 'Confirm before relying' : 'Industry Standard GMP';
+  const isSiteDefined = src.status === 'flagged' && /^Site-defined|^Site protocol|^Site validation|^Physiological/.test(src.id);
+  const statusText = src.status === 'verified' ? 'Verified'
+    : src.status === 'flagged' ? (isSiteDefined ? 'Site-defined' : 'Confirm before relying')
+    : 'Industry Standard GMP';
   let html = `<div class="sheet-grip"></div>
     <span class="sheet-status ${src.status}"><span class="dot"></span>${statusText}</span>
     <h3>${src.id}</h3>
     <p class="issuer">${src.issuer}</p>`;
 
   if (src.status === 'flagged') {
-    html += `<div class="flag-note">Seeded from general knowledge. Confirm the clause number and acceptance figure against the issuing body before citing it in a protocol.</div>`;
+    html += isSiteDefined
+      ? `<div class="flag-note">This value is set by your site, not by a published standard. The URS, risk assessment, or equipment data sheet defines the limit; use this as the check to perform, then fill the acceptance from your own documentation.</div>`
+      : `<div class="flag-note">Seeded from general knowledge. Confirm the clause number and acceptance figure against the issuing body before citing it in a protocol.</div>`;
   }
   if (src.status === 'gmp') {
     html += `<div class="gmp-note">${src.covers}</div>`;
