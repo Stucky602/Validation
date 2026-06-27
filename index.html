@@ -22201,6 +22201,133 @@ function resolveHowto(entry) {
 
 const PROCESS = {
 
+  e2500: {
+    name: "ASTM E2500",
+    sub: "Science- & risk-based verification",
+    desc: "The standard guide that reframed qualification. First issued 2007 (E2500-07), with updates in 2013 and 2020 and a substantive revision in 2025, it sets out how to specify, design, and verify manufacturing systems as fit for their intended use — driven by product/process understanding and Quality Risk Management, and focused on the Critical Aspects that actually protect the product. It is a guide of principles, not a step-by-step procedure.",
+    accent: "#4fd1c5",
+    icon: "verify",
+    sections: [
+      { title: "What it is",
+        body: "ASTM E2500 — Standard Guide for Specification, Design, and Verification of Pharmaceutical and Biopharmaceutical Manufacturing Systems and Equipment. It replaces the traditional document-and-test-everything mindset with verification: demonstrating, through risk- and science-based effort, that a system is suitable for its intended use across its design–verification–operation lifecycle. Testing normally thought of as IQ/OQ becomes verification, concentrated where it matters." },
+      { title: "Core principles",
+        bullets: [
+          "Risk-based: Quality Risk Management (ICH Q9) drives where effort goes.",
+          "Science-based: decisions rest on real product and process understanding (QbD).",
+          "Critical Aspects: focus on the functions and features that ensure product quality and patient safety.",
+          "Good Engineering Practice applied throughout specification, design, and verification.",
+          "Subject Matter Experts (SMEs) lead the technical verification.",
+          "Vendor documentation and commissioning can be leveraged as evidence.",
+          "Continual improvement and disciplined change management over the lifecycle."
+        ] },
+      { title: "Critical Aspects",
+        body: "The pivot of the whole approach. A Critical Aspect is a function, feature, ability, or performance characteristic a system must have to ensure consistent product quality and patient safety. You identify the Critical Aspects from product/process knowledge first, then design for them and verify them — everything else is handled by good engineering, not formal qualification.",
+        note: "If a check doesn't trace to a Critical Aspect, E2500's logic asks why it's in the qualification scope at all. That is the mechanism that cuts redundant testing." },
+      { title: "The verification lifecycle",
+        steps: [
+          "Requirements: define what the system must do, from product/process understanding plus regulatory and company requirements.",
+          "Specification & Design: design to meet the requirements, with a documented design review against the Critical Aspects.",
+          "Verification: risk-based testing that the built system meets requirements — concentrated on Critical Aspects, leveraging commissioning, GEP, and vendor data where justified.",
+          "Acceptance & Release: the Quality Unit accepts the system as fit for GMP use, focusing its approval on the Critical Aspects.",
+          "Operation: change management and continual improvement keep it fit over the lifecycle."
+        ] },
+      { title: "Who does what",
+        cols: [
+          { kind: "pro", h: "SMEs", items: [
+            "Develop and approve verification plans.",
+            "Run risk assessments and judge technical acceptability.",
+            "Handle changes that don't touch Critical Aspects."
+          ] },
+          { kind: "con", h: "Quality Unit", items: [
+            "Approves acceptance criteria for Critical Aspects.",
+            "Approves verification plans for systems with Critical Aspects.",
+            "Oversight focused on what affects product quality — not everything."
+          ] } ] },
+      { title: "How it changes the testing",
+        bullets: [
+          "IQ/OQ-type checks become verification activities tied to requirements.",
+          "Effort concentrates on Critical Aspects; non-critical features go to GEP/commissioning.",
+          "Commissioning and assessed vendor documentation can serve as qualification evidence — stop re-testing what good engineering already proved.",
+          "Quality Unit review is targeted at Critical Aspects, not every page of every protocol."
+        ],
+        note: "E2500 is a guide, not a procedure — it tells you the principles, not the exact steps. That's deliberate, and it's why ISPE Baseline Guide 5 exists: to turn these principles into an executable workflow. The 2025 revision aligns E2500 with ICH Q9(R1), Q10, and EU GMP Annex 1 & 15." }
+    ],
+    refs: [
+      { label: "ASTM E2500 — Specification, Design & Verification", link: "https://www.astm.org/e2500-13r20.html" },
+      { label: "ICH Q9(R1) — Quality Risk Management", link: "https://www.ich.org/page/quality-guidelines" },
+      { label: "ICH Q8 / Q10 — Pharmaceutical Development / Quality System", link: "https://www.ich.org/page/quality-guidelines" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" }
+    ]
+  },
+
+  bg5: {
+    name: "ISPE Baseline Guide 5",
+    sub: "Commissioning & Qualification (2nd ed)",
+    desc: "The practical how-to that implements the E2500 paradigm. The 2nd Edition (2019) defines a single, integrated, science- and risk-based Commissioning & Qualification process — replacing the 2001 guide and the two 2011 guides. It adds the System Classification and Critical Design Element machinery that turns E2500's principles into an executable workflow, and a 2025 QRM addendum refines the delivery process.",
+    accent: "#b48be6",
+    icon: "guide",
+    sections: [
+      { title: "What it is",
+        body: "ISPE Baseline Guide Vol 5: Commissioning and Qualification (2nd Edition). Where E2500 sets the principles, BG5 gives the working manual: how to classify systems, run the risk assessment, identify what to verify, and integrate commissioning with qualification so you produce fewer, combined deliverables. It is the guide most modern projects actually follow." },
+      { title: "The integrated C&Q process",
+        steps: [
+          "URS — user requirements, driven by the process and product.",
+          "System Classification — Direct Impact vs Not Direct Impact.",
+          "System Risk Assessment — for direct-impact systems, identify the Critical Design Elements.",
+          "Design Review & Design Qualification — review the design against the CDEs.",
+          "C&Q Planning — plan integrated commissioning and qualification testing.",
+          "C&Q Testing & Documentation — execute, leveraging GEP commissioning and vendor data.",
+          "Acceptance & Release — accept the system for GMP use.",
+          "Periodic Review — keep it qualified over the lifecycle."
+        ] },
+      { title: "System Classification",
+        body: "The first filter, and where most of the efficiency comes from. Classify each system before writing a single protocol:",
+        cols: [
+          { kind: "pro", h: "Direct impact", items: [
+            "Has a direct effect on product quality.",
+            "Commissioned and qualified (typically IQ/OQ).",
+            "The focus of the System Risk Assessment."
+          ] },
+          { kind: "con", h: "Not direct impact", items: [
+            "No direct product-quality effect.",
+            "Commissioned only — no formal qualification.",
+            "Shrinks the qualifiable population up front."
+          ] } ] },
+      { title: "Critical Aspects vs Critical Design Elements",
+        body: "BG5's key addition over E2500. A Critical Aspect says what matters; a Critical Design Element is the specific design feature engineered to deliver and control it — and the CDEs are what you actually verify.",
+        table: {
+          cols: ["", "What it is", "Used for"],
+          rows: [
+            ["Critical Aspect (CA)", "A function/feature/characteristic needed to ensure product quality & patient safety (from E2500)", "Frames what must be controlled"],
+            ["Critical Design Element (CDE)", "The design function/feature engineered to deliver a CA (e.g. an alarm, a data-management function)", "Reviewed at DQ; verified through C&Q"]
+          ] },
+        note: "CDEs are identified from the product CQAs, process CPPs, and the equipment/automation design — by SMEs who understand the science of the process running on the system." },
+      { title: "Support programs that make it work",
+        bullets: [
+          "Vendor Assessment for C&Q documentation — so vendor data can be leveraged.",
+          "Engineering Quality Process — the quality-managed engineering that lets commissioning count.",
+          "Change Management — controlled changes over the lifecycle.",
+          "Good Documentation Practice for C&Q — defensible records.",
+          "Good Engineering Practice — the foundation under all of it."
+        ] },
+      { title: "How it changes the testing",
+        bullets: [
+          "Classify first: not-direct-impact systems are commissioned only — no qualification testing.",
+          "Verify the CDEs, not everything: the System Risk Assessment pins them down; testing concentrates there.",
+          "Leverage commissioning and assessed vendor data as qualification evidence.",
+          "Integrate the documents: one combined C&Q set instead of separate DQ/IQ/OQ/PQ packages.",
+          "Periodic review replaces re-qualifying on a fixed calendar where risk allows."
+        ],
+        note: "The efficiency is real but conditional: it depends on a robust Engineering Quality Process and documented vendor assessment. Weak classification or a thin risk assessment turns 'leveraging' into an audit finding. The 2025 QRM addendum further refines the delivery process and notes that changes not affecting CAs/CDEs may use engineering change rather than full GMP change control." }
+    ],
+    refs: [
+      { label: "ISPE Baseline Guide Vol 5 — Commissioning & Qualification (2nd ed)", link: "https://ispe.org/publications/guidance-documents/baseline-guide-vol-5-commissioning-qualification-2nd-edition" },
+      { label: "ASTM E2500 — Specification, Design & Verification", link: "https://www.astm.org/e2500-13r20.html" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ICH Q9(R1) — Quality Risk Management", link: "https://www.ich.org/page/quality-guidelines" }
+    ]
+  },
+
   risk: {
     name: "Approaching Risk",
     sub: "Quality risk management for qualification (ICH Q9)",
@@ -22615,7 +22742,7 @@ const PROCESS = {
 
 };
 
-const PROCESS_ORDER = ["vmodel", "cq", "risk", "urs", "fat", "sat", "cots", "csv"];
+const PROCESS_ORDER = ["vmodel", "e2500", "bg5", "cq", "risk", "urs", "fat", "sat", "cots", "csv"];
 
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
@@ -22911,7 +23038,12 @@ const JA = {
   "Contamination-control utility / area": "汚染管理ユーティリティ／区域",
   "Inspection / detection": "検査／検出",
   "Cold-chain / distribution": "コールドチェーン／流通",
-  "Process analytical (PAT)": "プロセス分析（PAT）"
+  "Process analytical (PAT)": "プロセス分析（PAT）",
+  // --- E2500 / BG5 dedicated card chrome ---
+  "ASTM E2500": "ASTM E2500",
+  "Science- & risk-based verification": "サイエンス・リスクベース検証",
+  "ISPE Baseline Guide 5": "ISPE ベースラインガイド5",
+  "Commissioning & Qualification (2nd ed)": "コミッショニング＆クオリフィケーション（第2版）"
 };
 
 let LANG = 'en';
@@ -23094,7 +23226,9 @@ const PROC_ICONS = {
   site: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6885a" stroke-width="1.7"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 10h2M13 10h2"/></svg>',
   box: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b98a9" stroke-width="1.7"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>',
   chip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>',
-  scale: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6c45a" stroke-width="1.7"><path d="M12 3v18M7 21h10M5 7h14l-3.5 6a3 3 0 0 1-7 0z" opacity="0.5"/><path d="M12 3v18M7 21h10M3 7l3.5 7a3 3 0 0 0 5 0L8 7M16 7l3.5 7a3 3 0 0 0 5 0L21 7M5 7h14" transform="translate(-1,0)"/></svg>'
+  scale: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6c45a" stroke-width="1.7"><path d="M12 3v18M7 21h10M5 7h14l-3.5 6a3 3 0 0 1-7 0z" opacity="0.5"/><path d="M12 3v18M7 21h10M3 7l3.5 7a3 3 0 0 0 5 0L8 7M16 7l3.5 7a3 3 0 0 0 5 0L21 7M5 7h14" transform="translate(-1,0)"/></svg>',
+  verify: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4fd1c5" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+  guide: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b48be6" stroke-width="1.7"><path d="M12 6C9.5 4.2 5.5 4.2 3 5v14c2.5-0.8 6.5-0.8 9 1 2.5-1.8 6.5-1.8 9-1V5c-2.5-0.8-6.5-0.8-9 1z"/><path d="M12 6v14"/></svg>'
 };
 
 function renderProcessCards() {
@@ -23393,7 +23527,7 @@ applyStaticI18n();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v21';
+    const C = 'cqv-v22';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
