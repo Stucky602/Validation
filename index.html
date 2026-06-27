@@ -46,7 +46,7 @@
     border-bottom: 1px solid var(--line);
     padding: 14px 16px 12px;
   }
-  .brand { display: flex; align-items: baseline; gap: 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
   .brand h1 {
     font-size: 17px; font-weight: 650; letter-spacing: -0.01em; margin: 0;
   }
@@ -67,6 +67,9 @@
   /* Equipment list */
   main { padding: 12px 16px 80px; max-width: 720px; margin: 0 auto; }
   .domain-filter { display: flex; gap: 8px; margin-bottom: 14px; }
+  .lang-toggle { margin-left: auto; display: inline-flex; gap: 2px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 2px; }
+  .lang-toggle button { font: inherit; font-size: 11px; font-weight: 600; padding: 4px 9px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-dim); cursor: pointer; }
+  .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: #04140c; }
   .domain-filter button {
     flex: 1; background: var(--panel); border: 1px solid var(--line);
     color: var(--ink-dim); font-family: var(--mono); font-size: 11px;
@@ -404,6 +407,10 @@
   <div class="brand">
     <h1>CQV Field Reference</h1>
     <span class="tag">IQ · OQ · PQ</span>
+    <div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+      <button data-lang="en" aria-pressed="true" onclick="setLang('en')">EN</button>
+      <button data-lang="ja" aria-pressed="false" onclick="setLang('ja')">日本語</button>
+    </div>
   </div>
   <div class="search-wrap list-only">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -415,28 +422,28 @@
   <div class="list" id="listView">
     <div id="processList"></div>
     <div class="domain-filter" id="domainFilter">
-      <button data-domain="all" aria-pressed="true">All</button>
-      <button data-domain="GMP" aria-pressed="false">GMP / USP</button>
-      <button data-domain="ISO" aria-pressed="false">ISO / Lab</button>
+      <button data-domain="all" data-label="All" aria-pressed="true">All</button>
+      <button data-domain="GMP" data-label="GMP / USP" aria-pressed="false">GMP / USP</button>
+      <button data-domain="ISO" data-label="ISO / Lab" aria-pressed="false">ISO / Lab</button>
     </div>
     <div id="eqList"></div>
     <div class="legend">
-      <div class="legend-title">Source badges</div>
-      <div class="legend-row"><span class="lg-dot verified"></span><span><b>Verified</b> — primary standard (USP, ISPE, PDA, EN, ASME) or OEM, confirmed against the issuing body.</span></div>
-      <div class="legend-row"><span class="lg-dot corroborated"></span><span><b>Corroborated</b> — industry-supported figure from reputable validation/calibration sources, agreed across more than one.</span></div>
-      <div class="legend-row"><span class="lg-dot regulation"></span><span><b>Regulation (CFR)</b> — required by US FDA 21 CFR (211 drug GMP / 820 device QSR) and its EU equivalent (EudraLex Annex 15 / Annex 11).</span></div>
-      <div class="legend-row"><span class="lg-dot flagged"></span><span><b>Site-defined</b> — the limit is set by your URS, risk assessment, or data sheet, not a published standard.</span></div>
-      <div class="legend-row"><span class="lg-dot gmp"></span><span><b>Industry GMP</b> — general good practice with no single specific citation.</span></div>
+      <div class="legend-title" data-i18n="Source badges">Source badges</div>
+      <div class="legend-row"><span class="lg-dot verified"></span><span data-i18n-html data-i18n="<b>Verified</b> — primary standard (USP, ISPE, PDA, EN, ASME) or OEM, confirmed against the issuing body."><b>Verified</b> — primary standard (USP, ISPE, PDA, EN, ASME) or OEM, confirmed against the issuing body.</span></div>
+      <div class="legend-row"><span class="lg-dot corroborated"></span><span data-i18n-html data-i18n="<b>Corroborated</b> — industry-supported figure from reputable validation/calibration sources, agreed across more than one."><b>Corroborated</b> — industry-supported figure from reputable validation/calibration sources, agreed across more than one.</span></div>
+      <div class="legend-row"><span class="lg-dot regulation"></span><span data-i18n-html data-i18n="<b>Regulation (CFR)</b> — required by US FDA 21 CFR (211 drug GMP / 820 device QSR) and its EU equivalent (EudraLex Annex 15 / Annex 11)."><b>Regulation (CFR)</b> — required by US FDA 21 CFR (211 drug GMP / 820 device QSR) and its EU equivalent (EudraLex Annex 15 / Annex 11).</span></div>
+      <div class="legend-row"><span class="lg-dot flagged"></span><span data-i18n-html data-i18n="<b>Site-defined</b> — the limit is set by your URS, risk assessment, or data sheet, not a published standard."><b>Site-defined</b> — the limit is set by your URS, risk assessment, or data sheet, not a published standard.</span></div>
+      <div class="legend-row"><span class="lg-dot gmp"></span><span data-i18n-html data-i18n="<b>Industry GMP</b> — general good practice with no single specific citation."><b>Industry GMP</b> — general good practice with no single specific citation.</span></div>
     </div>
     <div class="install-hint">
-      Add to Home Screen for offline field use.<br>Share → Add to Home Screen.
+      <span data-i18n="Add to Home Screen for offline field use.">Add to Home Screen for offline field use.</span><br><span data-i18n="Share → Add to Home Screen.">Share → Add to Home Screen.</span>
     </div>
   </div>
 
   <div class="detail" id="detailView">
     <button class="back-btn" id="backBtn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-      ALL EQUIPMENT
+      <span data-i18n="ALL EQUIPMENT">ALL EQUIPMENT</span>
     </button>
     <div class="detail-head">
       <h2 id="dName"></h2>
@@ -448,7 +455,7 @@
   <div class="detail" id="processView">
     <button class="back-btn" id="procBackBtn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-      HOME
+      <span data-i18n="HOME">HOME</span>
     </button>
     <div id="processBody"></div>
   </div>
@@ -22399,6 +22406,305 @@ const domainFilter = document.getElementById('domainFilter');
 let activeDomain = 'all';
 
 // Category grouping: section key -> {label, members in display order}
+/* ---------- i18n (EN / 日本語) ----------
+   String-keyed JA dictionary. Anything not present falls back to English,
+   so the app never breaks. Technical test strings, equipment descriptions,
+   how-to detail, citation prose, and process-page bodies are EN-fallback
+   for now (pending native pharma-QA translation). */
+const JA = {
+  // --- UI chrome ---
+  "Search equipment": "機器を検索",
+  "ALL EQUIPMENT": "機器一覧へ",
+  "HOME": "ホーム",
+  "How to": "手順",
+  "Materials": "必要物",
+  "Steps": "手順",
+  "Acceptance": "合格基準",
+  "Reference guide": "参考ガイド",
+  "Source badges": "出典バッジ",
+  "Process & lifecycle": "プロセスとライフサイクル",
+  "No equipment matches.": "該当する機器がありません。",
+  "Try a different term.": "別の語句でお試しください。",
+  "source": "出典",
+  "Procedure reference compiled from cited guidance. Adapt wording and acceptance limits to your own URS/SOP before use in a protocol.":
+    "引用ガイダンスに基づく手順参考。プロトコルで使用する前に、文言と合格基準を自社のURS／SOPに合わせて調整してください。",
+  // --- phases ---
+  "Installation Qualification": "据付時適格性確認（IQ）",
+  "Operational Qualification": "運転時適格性確認（OQ）",
+  "Performance Qualification": "性能適格性確認（PQ）",
+  // --- status / tiers ---
+  "Verified": "検証済み",
+  "Corroborated": "裏付けあり",
+  "Regulation (21 CFR)": "規制（21 CFR）",
+  "Site-defined": "サイト規定",
+  "Confirm before relying": "依拠前に要確認",
+  "Industry Standard GMP": "業界標準GMP",
+  // --- domain filter ---
+  "All": "すべて",
+  "GMP / USP": "GMP / USP",
+  "ISO / Lab": "ISO / ラボ",
+  // --- categories ---
+  "Temperature-Controlled Units (TCUs)": "温度管理機器（TCU）",
+  "Ovens & Furnaces": "オーブン・炉",
+  "Sterilizers": "滅菌器",
+  "Cryogenic": "極低温",
+  "Analytical Instruments": "分析機器",
+  "Lab Equipment": "ラボ機器",
+  "Bioprocess / Downstream": "バイオプロセス／ダウンストリーム",
+  "Solid-Dose Manufacturing": "固形製剤製造",
+  "Sterile / Liquid Manufacturing": "無菌・液剤製造",
+  "Inspection & Packaging": "検査・包装",
+  "Automation & Control Systems": "自動化・制御システム",
+  "Process Analytical (PAT)": "プロセス分析（PAT）",
+  "API / Chemical Synthesis": "原薬／化学合成",
+  "Lab Informatics": "ラボインフォマティクス",
+  "Cold Chain & Distribution": "コールドチェーン・流通",
+  "Utilities & Facilities": "ユーティリティ・設備",
+  // --- process cards ---
+  "The V-Model": "V字モデル",
+  "The lifecycle that drives all of this": "全体を貫くライフサイクル",
+  "User Requirements Specification": "ユーザー要求仕様",
+  "Factory Acceptance Test": "工場受入試験",
+  "Site Acceptance Test": "現地受入試験",
+  "Commercial Off-The-Shelf equipment": "市販既製機器",
+  "Computer System Validation": "コンピュータ化システムバリデーション",
+  // --- legend (with bold tags preserved) ---
+  "<b>Verified</b> — primary standard (USP, ISPE, PDA, EN, ASME) or OEM, confirmed against the issuing body.":
+    "<b>検証済み</b> — 主要規格（USP、ISPE、PDA、EN、ASME）またはOEMで、発行元に照合済み。",
+  "<b>Corroborated</b> — industry-supported figure from reputable validation/calibration sources, agreed across more than one.":
+    "<b>裏付けあり</b> — 信頼できるバリデーション／校正情報源による業界裏付け値で、複数で一致。",
+  "<b>Regulation (CFR)</b> — required by US FDA 21 CFR (211 drug GMP / 820 device QSR) and its EU equivalent (EudraLex Annex 15 / Annex 11).":
+    "<b>規制（CFR）</b> — 米国FDA 21 CFR（211 医薬品GMP／820 機器QSR）およびEU相当（EudraLex Annex 15／Annex 11）で要求。",
+  "<b>Site-defined</b> — the limit is set by your URS, risk assessment, or data sheet, not a published standard.":
+    "<b>サイト規定</b> — 限度値は公開規格ではなくURS、リスクアセスメント、データシートで設定。",
+  "<b>Industry GMP</b> — general good practice with no single specific citation.":
+    "<b>業界GMP</b> — 単一の特定引用がない一般的なグッドプラクティス。",
+  "Add to Home Screen for offline field use.": "オフラインでの現場利用にはホーム画面に追加してください。",
+  "Share → Add to Home Screen.": "共有 → ホーム画面に追加。",
+  // --- equipment names ---
+  "Balances / Analytical Scales": "天びん／分析天びん",
+  "pH Meters": "pHメーター",
+  "Incubators": "インキュベーター",
+  "Refrigerators (2–8 °C)": "冷蔵庫（2〜8℃）",
+  "Freezers (standard, typ. −20 °C)": "冷凍庫（標準、約−20℃）",
+  "Ultra-Low Freezers (−80 °C)": "超低温フリーザー（−80℃）",
+  "Dry Heat Ovens": "乾熱オーブン",
+  "Autoclaves / Steam Sterilizers": "オートクレーブ／蒸気滅菌器",
+  "Depyrogenation Ovens": "脱パイロジェンオーブン",
+  "CO₂ Incubators": "CO₂インキュベーター",
+  "Centrifuges": "遠心機",
+  "Osmometers": "浸透圧計",
+  "Refractometers": "屈折計",
+  "Water Baths": "恒温水槽",
+  "Vacuum Ovens": "真空オーブン",
+  "Cold Rooms": "低温室",
+  "Warehouses": "倉庫",
+  "Liquid Nitrogen Vessels": "液体窒素容器",
+  "Cryogenic Chambers": "極低温チャンバー",
+  "Bioreactors": "バイオリアクター",
+  "Stability Chambers": "安定性チャンバー",
+  "Muffle Furnaces": "マッフル炉",
+  "Hot Plates & Stirrers": "ホットプレート・撹拌機",
+  "Homogenizers & Mixers": "ホモジナイザー・ミキサー",
+  "Lyophilizers (Freeze Dryers)": "凍結乾燥機",
+  "Cleanrooms": "クリーンルーム",
+  "HVAC Systems": "空調（HVAC）システム",
+  "Water Systems (PW / WFI)": "製薬用水システム（PW／WFI）",
+  "Compressed Air & Gases": "圧縮空気・ガス",
+  "Biosafety Cabinets & LAF Hoods": "安全キャビネット・LAFフード",
+  "HPLC / UHPLC": "HPLC／UHPLC",
+  "Gas Chromatography (GC)": "ガスクロマトグラフィー（GC）",
+  "Dissolution Apparatus": "溶出試験器",
+  "UV-Vis Spectrophotometers": "紫外可視分光光度計",
+  "FTIR Spectrometers": "FTIR分光計",
+  "Karl Fischer Titrators": "カールフィッシャー水分計",
+  "Particle Counters": "微粒子計",
+  "Pipettes & Liquid Handling": "ピペット・分注",
+  "Depyrogenation Tunnels": "脱パイロジェントンネル",
+  "Ethylene Oxide Sterilizers": "酸化エチレン滅菌器",
+  "Gamma / Radiation Sterilizers": "ガンマ線／放射線滅菌器",
+  "Water Cascade Sterilizers": "熱水カスケード滅菌器",
+  "Conductivity & TOC Meters": "導電率・TOC計",
+  "Elemental Impurities (ICP-OES/MS)": "元素不純物（ICP-OES/MS）",
+  "Tablet Hardness / Friability / Disintegration": "錠剤硬度／摩損度／崩壊",
+  "Photostability Chambers": "光安定性チャンバー",
+  "Isolators & RABS": "アイソレーター・RABS",
+  "High-Shear Granulators": "高せん断造粒機",
+  "Fluid Bed Dryers / Processors": "流動層乾燥機／処理機",
+  "Blenders (V / Bin / Tumble)": "混合機（V型／ビン／タンブル）",
+  "Tablet Presses": "打錠機",
+  "Tablet Coaters": "コーティング機",
+  "Capsule Fillers": "カプセル充填機",
+  "Mills & Sizing Equipment": "粉砕・整粒機",
+  "Mixing / Formulation Vessels": "混合／調製タンク",
+  "Aseptic Filling Lines": "無菌充填ライン",
+  "Vial & Component Washers": "バイアル・部品洗浄機",
+  "Blister & Packaging Lines": "ブリスター・包装ライン",
+  "CIP / SIP Systems": "CIP／SIPシステム",
+  "Pure Steam Generators": "純蒸気発生器",
+  "Chromatography Skids": "クロマトグラフィースキッド",
+  "TFF / UF-DF Skids": "TFF／UF-DFスキッド",
+  "Sterile Filtration & Integrity Testers": "無菌濾過・完全性試験器",
+  "Single-Use Systems": "シングルユースシステム",
+  "Automated Visual Inspection": "自動外観検査",
+  "Leak / CCIT Testers": "リーク／CCIT試験器",
+  "Checkweighers & Metal Detectors": "重量チェッカー・金属検出機",
+  "Dispensing / Weighing Booths": "秤量／調剤ブース",
+  "Glassware & Parts Washers": "ガラス器具・部品洗浄機",
+  "RO / EDI Water Pretreatment": "RO／EDI水前処理",
+  "PLC / Automation Systems": "PLC／自動化システム",
+  "SCADA / DCS Systems": "SCADA／DCSシステム",
+  "BMS / EMS Monitoring": "BMS／EMS監視",
+  "MES / Electronic Batch Records": "MES／電子バッチ記録",
+  "Data Historians & Loggers": "データヒストリアン・ロガー",
+  "NIR / Raman PAT Analyzers": "NIR／ラマン PAT分析計",
+  "In-line Process Probes": "インラインプロセスプローブ",
+  "Online TOC Analyzers": "オンラインTOC分析計",
+  "Mass Flow / Coriolis Controllers": "質量流量／コリオリ制御器",
+  "Chemical Reactors": "化学反応器",
+  "Filter-Dryers (ANFD)": "濾過乾燥機（ANFD）",
+  "Process Centrifuges": "プロセス遠心機",
+  "Jet Mills / Micronizers": "ジェットミル／微粉砕機",
+  "Spray Dryers": "噴霧乾燥機",
+  "Insulated Shippers": "保冷輸送容器",
+  "Transport Lanes (GDP)": "輸送レーン（GDP）",
+  "Temp-Controlled Vehicles": "温度管理車両",
+  "LIMS": "LIMS",
+  "Chromatography Data Systems": "クロマトグラフィーデータシステム",
+  "DeltaV DCS (Emerson)": "DeltaV DCS（エマソン）",
+  // --- equipment subs ---
+  "Benchtop & large-scale weighing": "卓上・大型計量",
+  "Potentiometric pH measurement systems": "電位差式pH測定システム",
+  "Ambient & CO₂ incubators": "常温・CO₂インキュベーター",
+  "Pharmaceutical 2–8 °C cold storage": "医薬品用2〜8℃冷蔵保管",
+  "Standard pharmaceutical freezer storage": "標準的な医薬品冷凍保管",
+  "ULT / −80 °C storage": "ULT／−80℃保管",
+  "Drying & depyrogenation ovens": "乾燥・脱パイロジェンオーブン",
+  "Moist-heat sterilizers": "湿熱滅菌器",
+  "Standalone batch dry-heat depyrogenation oven": "バッチ式乾熱脱パイロジェンオーブン",
+  "Cell-culture CO₂ incubators": "細胞培養用CO₂インキュベーター",
+  "Benchtop & floor centrifuges": "卓上・床置き遠心機",
+  "Freezing-point depression osmometry": "氷点降下式浸透圧測定",
+  "Abbé & digital refractometers": "アッベ式・デジタル屈折計",
+  "Heated & circulating baths": "加温・循環水槽",
+  "Vacuum drying ovens": "真空乾燥オーブン",
+  "Walk-in cold rooms & warm rooms": "ウォークイン低温室・恒温室",
+  "Controlled / ambient storage areas": "管理・常温保管区域",
+  "LN₂ cryostorage (vapor / liquid phase)": "LN₂凍結保管（気相／液相）",
+  "Mechanical cryo / controlled-rate freezers": "機械式極低温／プログラムフリーザー",
+  "Stirred-tank & single-use systems": "撹拌槽・シングルユースシステム",
+  "ICH stability storage (e.g. 25 °C/60 %RH)": "ICH安定性保管（例：25℃/60%RH）",
+  "High-temperature ashing / ignition furnaces": "高温灰化・強熱炉",
+  "Heating / magnetic-stirring plates": "加熱・マグネチック撹拌プレート",
+  "Lab homogenizers, overhead & high-shear mixers": "ラボ用ホモジナイザー・上部撹拌・高せん断ミキサー",
+  "Freeze-drying / lyophilization systems": "凍結乾燥システム",
+  "Classified cleanrooms (ISO 14644 / Annex 1)": "清浄度区分クリーンルーム（ISO 14644／Annex 1）",
+  "Cleanroom air-handling systems": "クリーンルーム空調システム",
+  "Purified Water & Water for Injection systems": "精製水・注射用水システム",
+  "Clean compressed air / process gas systems": "清浄圧縮空気／プロセスガスシステム",
+  "BSCs (NSF/ANSI 49) & laminar-flow hoods": "安全キャビネット（NSF/ANSI 49）・層流フード",
+  "Liquid chromatography systems (USP <1058>)": "液体クロマトグラフィーシステム（USP <1058>）",
+  "Gas chromatographs (USP <1058>)": "ガスクロマトグラフ（USP <1058>）",
+  "USP <711> dissolution testers": "USP <711>溶出試験器",
+  "UV-visible spectrophotometry (USP <857>)": "紫外可視分光測定（USP <857>）",
+  "Fourier-transform infrared (Ph. Eur. 2.2.24)": "フーリエ変換赤外（Ph. Eur. 2.2.24）",
+  "Water-content titrators (USP <921>)": "水分滴定装置（USP <921>）",
+  "Liquid (USP <788>) & airborne particle counters": "液中（USP <788>）・浮遊微粒子計",
+  "Piston-operated pipettes (ISO 8655:2022)": "ピストン式ピペット（ISO 8655:2022）",
+  "Continuous conveyor dry-heat depyrogenation tunnel": "連続コンベア式乾熱脱パイロジェントンネル",
+  "EtO gas sterilization (ISO 11135)": "EtOガス滅菌（ISO 11135）",
+  "Irradiation sterilization (ISO 11137)": "放射線滅菌（ISO 11137）",
+  "Superheated-water (cascade/spray) moist-heat sterilizer": "過熱水（カスケード／スプレー）式湿熱滅菌器",
+  "Benchtop conductivity & TOC analyzers (USP <645>/<643>)": "卓上導電率・TOC分析計（USP <645>/<643>）",
+  "ICP-OES / ICP-MS for elemental impurities (USP <233>)": "元素不純物用ICP-OES／ICP-MS（USP <233>）",
+  "Solid-dose physical testers (USP <1217>/<1216>/<701>)": "固形製剤物性試験器（USP <1217>/<1216>/<701>）",
+  "ICH Q1B photostability testing chambers": "ICH Q1B光安定性試験チャンバー",
+  "Aseptic isolators & restricted-access barrier systems": "無菌アイソレーター・アクセス制限バリアシステム",
+  "Wet high-shear granulation (CPP-driven)": "湿式高せん断造粒（CPP依存）",
+  "FBD drying / granulation / coating (CPP-driven)": "流動層乾燥／造粒／コーティング（CPP依存）",
+  "Powder blending — blend uniformity (CPP-driven)": "粉体混合—混合均一性（CPP依存）",
+  "Rotary tablet compression (CPP-driven)": "ロータリー打錠（CPP依存）",
+  "Perforated-pan film coating (CPP-driven)": "有孔パンフィルムコーティング（CPP依存）",
+  "Automatic capsule filling (CPP-driven)": "自動カプセル充填（CPP依存）",
+  "Milling / sizing (oscillating, conical, hammer)": "粉砕／整粒（オシレーティング・コニカル・ハンマー）",
+  "Jacketed liquid mixing / formulation tanks": "ジャケット付液体混合／調製タンク",
+  "Sterile fill-finish (vials/syringes) — media fill PQ": "無菌充填仕上げ（バイアル／シリンジ）—培地充填PQ",
+  "Container/component washing (particulate & endotoxin)": "容器／部品洗浄（微粒子・エンドトキシン）",
+  "Blister/strip packing, cartoning, serialization": "ブリスター／ストリップ包装・カートニング・シリアライゼーション",
+  "Clean-in-place / steam-in-place skids": "定置洗浄／定置滅菌スキッド",
+  "Clean/pure steam systems (EN 285 condensate)": "清浄／純蒸気システム（EN 285 ドレン）",
+  "Process chromatography systems (bioprocess downstream)": "プロセスクロマトグラフィー（バイオダウンストリーム）",
+  "Tangential-flow filtration (concentration / diafiltration)": "タンジェンシャルフロー濾過（濃縮／ダイアフィルトレーション）",
+  "Sterilizing-grade filtration & filter integrity testing": "除菌グレード濾過・フィルター完全性試験",
+  "Disposable bags, assemblies & manifolds": "使い捨てバッグ・アセンブリ・マニホールド",
+  "Particle / cosmetic inspection of filled units": "充填品の異物／外観検査",
+  "Container-closure integrity testing instruments": "容器施栓系完全性試験装置",
+  "In-line weight check & contaminant detection": "インライン重量確認・異物検出",
+  "LAF dispensing booths & sampling booths": "LAF秤量ブース・サンプリングブース",
+  "Automated lab/parts washer-disinfectors": "自動ラボ／部品洗浄消毒機",
+  "Reverse osmosis / electrodeionization pretreatment": "逆浸透／電気脱イオン前処理",
+  "Programmable logic controllers (GAMP 5 / Part 11)": "プログラマブルロジックコントローラ（GAMP 5／Part 11）",
+  "Supervisory control & distributed control (GAMP 5)": "監視制御・分散制御（GAMP 5）",
+  "Building / environmental monitoring systems": "建物／環境モニタリングシステム",
+  "Manufacturing execution systems (GAMP 5 / Part 11)": "製造実行システム（GAMP 5／Part 11）",
+  "Process historians & electronic data loggers": "プロセスヒストリアン・電子データロガー",
+  "Process analytical technology (in-line spectroscopy)": "プロセス分析技術（インライン分光）",
+  "In-line pH / conductivity / dissolved-oxygen probes": "インラインpH／導電率／溶存酸素プローブ",
+  "Continuous TOC monitoring (water systems / CIP)": "連続TOCモニタリング（製薬用水／CIP）",
+  "Mass-flow meters & controllers (PLC-integrated)": "質量流量計・制御器（PLC統合）",
+  "Jacketed agitated reactors (API synthesis)": "ジャケット付撹拌反応器（原薬合成）",
+  "Agitated Nutsche filter-dryers (API isolation)": "撹拌型ヌッチェ濾過乾燥機（原薬単離）",
+  "Solid-liquid separation centrifuges (API)": "固液分離遠心機（原薬）",
+  "Fluid-energy micronization (fine particle size)": "流体エネルギー微粉砕（微小粒子径）",
+  "Spray drying (powders, amorphous dispersions)": "噴霧乾燥（粉末・非晶質分散体）",
+  "Thermal shipping containers (ISTA 20 / 7E)": "温度管理輸送容器（ISTA 20／7E）",
+  "Shipping-lane qualification (Good Distribution Practice)": "輸送レーン適格性確認（適正流通基準）",
+  "Refrigerated trucks / trailers / reefers (GDP)": "冷蔵トラック／トレーラー／リーファー（GDP）",
+  "Laboratory information management systems (GAMP 5)": "ラボ情報管理システム（GAMP 5）",
+  "CDS software (Empower/Chromeleon-class, GAMP 5)": "CDSソフトウェア（Empower／Chromeleon相当、GAMP 5）",
+  "Emerson DeltaV distributed control system (GAMP 5)": "エマソン DeltaV 分散制御システム（GAMP 5）",
+  // --- source sheet chrome ---
+  "Covers": "対象",
+  "Acceptance criteria": "合格基準",
+  "Find the standard": "規格を探す",
+  "EU equivalent": "EU相当",
+  "Governing standards": "適用規格"
+};
+
+let LANG = 'en';
+try { const _l = localStorage.getItem('cqv-lang'); if (_l === 'ja' || _l === 'en') LANG = _l; } catch (e) {}
+function TR(s) { if (LANG === 'en' || !s) return s; return Object.prototype.hasOwnProperty.call(JA, s) ? JA[s] : s; }
+
+function applyStaticI18n() {
+  document.documentElement.lang = LANG;
+  const sIn = document.getElementById('search');
+  if (sIn) sIn.placeholder = TR('Search equipment');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (el.hasAttribute('data-i18n-html')) el.innerHTML = TR(key); else el.textContent = TR(key);
+  });
+  document.querySelectorAll('#domainFilter button').forEach(b => {
+    const k = b.getAttribute('data-label'); if (k) b.textContent = TR(k);
+  });
+  const lt = document.getElementById('langToggle');
+  if (lt) lt.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === LANG ? 'true' : 'false'));
+}
+
+function setLang(l) {
+  LANG = l;
+  try { localStorage.setItem('cqv-lang', l); } catch (e) {}
+  applyStaticI18n();
+  // re-render whatever view is active
+  if (typeof renderProcessCards === 'function') renderProcessCards();
+  if (typeof renderList === 'function') renderList();
+  if (detailView.classList.contains('active') && currentDetailId) openDetail(currentDetailId);
+  if (processView.classList.contains('active') && currentProcessId) openProcess(currentProcessId);
+}
+
+let currentDetailId = null;
+let currentProcessId = null;
+
+
 const CATEGORIES = [
   { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","freezer","ult","coldroom","warehouse","stability","photostability"] },
   { key: "ovens",      label: "Ovens & Furnaces",                     members: ["dryoven","depyrooven","depyrotunnel","vacuumoven","mufflefurnace"] },
@@ -22442,8 +22748,8 @@ function renderProcessCards() {
     return `<button class="proc-card" onclick="openProcess('${id}')" style="--pc:${p.accent}">
       <span class="proc-icon">${PROC_ICONS[p.icon] || ''}</span>
       <span class="proc-text">
-        <span class="proc-name">${p.name}</span>
-        <span class="proc-sub">${p.sub}</span>
+        <span class="proc-name">${TR(p.name)}</span>
+        <span class="proc-sub">${TR(p.sub)}</span>
       </span>
       <span class="proc-chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
     </button>`;
@@ -22453,30 +22759,33 @@ function renderProcessCards() {
   for (const k of Object.keys(DATA)) for (const ph of Object.values(DATA[k].phases)) nTests += ph.length;
   const nEquip = Object.keys(DATA).length;
   const nCats = (typeof CATEGORIES !== 'undefined') ? CATEGORIES.length : 0;
-  const summary = `<div class="cov-summary">${nEquip} equipment types · ${nTests} IQ/OQ/PQ tests · ${nCats} categories<br><span class="cov-sub">storage · sterilization · analytical/QC · solid-dose · sterile fill · bioprocess · API · packaging · utilities · automation/PLC · PAT · informatics · cold chain</span></div>`;
-  el.innerHTML = `${summary}<div class="proc-head">Process &amp; lifecycle</div>${cards}`;
+  const covMain = LANG==='ja' ? `機器 ${nEquip} 種 ・ IQ/OQ/PQ テスト ${nTests} 件 ・ カテゴリ ${nCats}` : `${nEquip} equipment types · ${nTests} IQ/OQ/PQ tests · ${nCats} categories`;
+  const covSub = LANG==='ja' ? '保管・滅菌・分析/QC・固形製剤・無菌充填・バイオプロセス・原薬・包装・ユーティリティ・自動化/PLC・PAT・インフォマティクス・コールドチェーン' : 'storage · sterilization · analytical/QC · solid-dose · sterile fill · bioprocess · API · packaging · utilities · automation/PLC · PAT · informatics · cold chain';
+  const summary = `<div class="cov-summary">${covMain}<br><span class="cov-sub">${covSub}</span></div>`;
+  el.innerHTML = `${summary}<div class="proc-head">${TR('Process & lifecycle')}</div>${cards}`;
 }
 
 function openProcess(id) {
   const p = PROCESS[id];
   if (!p) return;
+  currentProcessId = id;
   const sections = (p.sections || []).map(s => {
     let inner = '';
-    if (s.body) inner += `<p class="ps-body">${s.body}</p>`;
-    if (s.steps) inner += `<ol class="ps-steps">${s.steps.map(x => `<li>${x}</li>`).join('')}</ol>`;
-    if (s.note) inner += `<div class="ps-note">${s.note}</div>`;
-    return `<section class="ps-sec"><h3 class="ps-title">${s.title}</h3>${inner}</section>`;
+    if (s.body) inner += `<p class="ps-body">${TR(s.body)}</p>`;
+    if (s.steps) inner += `<ol class="ps-steps">${s.steps.map(x => `<li>${TR(x)}</li>`).join('')}</ol>`;
+    if (s.note) inner += `<div class="ps-note">${TR(s.note)}</div>`;
+    return `<section class="ps-sec"><h3 class="ps-title">${TR(s.title)}</h3>${inner}</section>`;
   }).join('');
   const refs = (p.refs || []).length
-    ? `<div class="ps-refs"><div class="ps-refs-k">Governing standards</div>${p.refs.map(r =>
+    ? `<div class="ps-refs"><div class="ps-refs-k">${TR('Governing standards')}</div>${p.refs.map(r =>
         `<a class="ps-ref" href="${r.link}" target="_blank" rel="noopener">${r.label}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`).join('')}</div>`
     : '';
   const graph = p.svg ? `<div class="ps-graph">${p.svg}</div>` : '';
   document.getElementById('processBody').innerHTML = `
     <div class="detail-head">
-      <h2 style="color:${p.accent}">${p.name}</h2>
-      <p class="ps-suptitle">${p.sub}</p>
-      <p class="desc">${p.desc}</p>
+      <h2 style="color:${p.accent}">${TR(p.name)}</h2>
+      <p class="ps-suptitle">${TR(p.sub)}</p>
+      <p class="desc">${TR(p.desc)}</p>
     </div>
     ${graph}
     ${sections}
@@ -22510,7 +22819,7 @@ function renderList() {
     .filter(c => c.hits.length);
 
   if (!visibleSections.length) {
-    eqList.innerHTML = '<div class="empty">No equipment matches.<br>Try a different term.</div>';
+    eqList.innerHTML = `<div class="empty">${TR('No equipment matches.')}<br>${TR('Try a different term.')}</div>`;
     return;
   }
 
@@ -22522,8 +22831,8 @@ function renderList() {
       return `<button class="eq-card" onclick="openDetail('${id}')">
         <span class="eq-icon">${e.icon}</span>
         <span class="eq-meta">
-          <span class="eq-name">${e.name}<span class="domain-pill">${e.domain}</span></span>
-          <span class="eq-sub">${e.sub}</span>
+          <span class="eq-name">${TR(e.name)}<span class="domain-pill">${e.domain}</span></span>
+          <span class="eq-sub">${TR(e.sub)}</span>
         </span>
         <span class="eq-chev"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
       </button>`;
@@ -22531,7 +22840,7 @@ function renderList() {
     return `<section class="cat${open ? ' open' : ''}">
       <button class="cat-head" onclick="toggleCat('${c.key}')">
         <span class="cat-twist"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></span>
-        <span class="cat-label">${c.label}</span>
+        <span class="cat-label">${TR(c.label)}</span>
         <span class="cat-count">${c.hits.length}</span>
       </button>
       <div class="cat-body">${cards}</div>
@@ -22549,8 +22858,9 @@ const PHASE_LABELS = { IQ: "Installation Qualification", OQ: "Operational Qualif
 
 function openDetail(id) {
   const e = DATA[id];
-  document.getElementById('dName').textContent = e.name;
-  document.getElementById('dDesc').textContent = e.desc;
+  currentDetailId = id;
+  document.getElementById('dName').textContent = TR(e.name);
+  document.getElementById('dDesc').textContent = TR(e.desc);
   const phasesEl = document.getElementById('phases');
   phasesEl.innerHTML = ['IQ','OQ','PQ'].map(p => {
     const tests = e.phases[p] || [];
@@ -22558,7 +22868,7 @@ function openDetail(id) {
     const rows = tests.map((test, i) => {
       const src = test.s === 'gmp' ? GMP_INFO : test.s;
       const cls = src.status;
-      const label = cls === 'gmp' ? 'GMP' : cls === 'regulation' ? 'CFR' : 'source';
+      const label = cls === 'gmp' ? 'GMP' : cls === 'regulation' ? 'CFR' : TR('source');
       const ho = resolveHowto((HOWTO[id] || {})[p + ':' + i]);
       const hk = id + '|' + p + '|' + i;
       const howtoChip = ho
@@ -22569,7 +22879,7 @@ function openDetail(id) {
         : '';
       return `<div class="test-row${ho ? ' has-howto' : ''}">
         <div class="test-main">
-          <span class="test-txt">${test.t}</span>
+          <span class="test-txt">${TR(test.t)}</span>
           <button class="source-btn ${cls}" onclick="openSheet('${id}','${p}',${i})">
             <span class="dot"></span>${label}
           </button>
@@ -22581,7 +22891,7 @@ function openDetail(id) {
     return `<section class="phase">
       <div class="phase-head">
         <span class="phase-tag ${p.toLowerCase()}">${p}</span>
-        <span class="phase-label">${PHASE_LABELS[p]}</span>
+        <span class="phase-label">${TR(PHASE_LABELS[p])}</span>
       </div>${rows}</section>`;
   }).join('');
   listView.classList.add('hidden');
@@ -22604,18 +22914,18 @@ const backdrop = document.getElementById('backdrop');
 /* ---------- HOW-TO DROPDOWN ---------- */
 function renderHowto(ho) {
   let h = '';
-  if (ho.title) h += `<div class="howto-title">${ho.title}</div>`;
+  if (ho.title) h += `<div class="howto-title">${TR(ho.title)}</div>`;
   if (ho.materials && ho.materials.length) {
-    h += `<div class="howto-sub">Materials</div><ul class="howto-mats">` +
-      ho.materials.map(m => `<li>${m}</li>`).join('') + `</ul>`;
+    h += `<div class="howto-sub">${TR('Materials')}</div><ul class="howto-mats">` +
+      ho.materials.map(m => `<li>${TR(m)}</li>`).join('') + `</ul>`;
   }
-  h += `<div class="howto-sub">Steps</div><ol class="howto-steps">` +
-    ho.steps.map(s => `<li>${s}</li>`).join('') + `</ol>`;
-  if (ho.accept) h += `<div class="howto-accept"><span class="howto-accept-k">Acceptance</span>${ho.accept}</div>`;
+  h += `<div class="howto-sub">${TR('Steps')}</div><ol class="howto-steps">` +
+    ho.steps.map(s => `<li>${TR(s)}</li>`).join('') + `</ol>`;
+  if (ho.accept) h += `<div class="howto-accept"><span class="howto-accept-k">${TR('Acceptance')}</span>${TR(ho.accept)}</div>`;
   if (ho.link) {
-    h += `<a class="howto-link" href="${ho.link}" target="_blank" rel="noopener">${ho.linkLabel || 'Reference guide'}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
+    h += `<a class="howto-link" href="${ho.link}" target="_blank" rel="noopener">${TR(ho.linkLabel || 'Reference guide')}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
   }
-  h += `<div class="howto-disc">Procedure reference compiled from cited guidance. Adapt wording and acceptance limits to your own URS/SOP before use in a protocol.</div>`;
+  h += `<div class="howto-disc">${TR('Procedure reference compiled from cited guidance. Adapt wording and acceptance limits to your own URS/SOP before use in a protocol.')}</div>`;
   return h;
 }
 
@@ -22646,9 +22956,9 @@ function openSheet(id, phase, i) {
     : src.status === 'flagged' ? (isSiteDefined ? 'Site-defined' : 'Confirm before relying')
     : 'Industry Standard GMP';
   let html = `<div class="sheet-grip"></div>
-    <span class="sheet-status ${src.status}"><span class="dot"></span>${statusText}</span>
+    <span class="sheet-status ${src.status}"><span class="dot"></span>${TR(statusText)}</span>
     <h3>${src.id}</h3>
-    <p class="issuer">${src.issuer}</p>`;
+    <p class="issuer">${TR(src.issuer)}</p>`;
 
   if (src.status === 'regulation') {
     html += `<div class="reg-note">This check satisfies a requirement of US FDA regulation (21 CFR) and its EU equivalent (EudraLex Vol.4 Annex 15, or Annex 11 for computerised systems). The regulation sets the requirement (the "what"); the specific check here is the standard way to demonstrate it. These are framework rules, not step-by-step, so phrase protocol wording to your own SOP.</div>`;
@@ -22662,12 +22972,12 @@ function openSheet(id, phase, i) {
       : `<div class="flag-note">Seeded from general knowledge. Confirm the clause number and acceptance figure against the issuing body before citing it in a protocol.</div>`;
   }
   if (src.status === 'gmp') {
-    html += `<div class="gmp-note">${src.covers}</div>`;
+    html += `<div class="gmp-note">${TR(src.covers)}</div>`;
   } else {
-    html += `<div class="sheet-field"><div class="k">Covers</div><div class="v">${src.covers}</div></div>`;
-    if (src.crit) html += `<div class="sheet-field"><div class="k">Acceptance criteria</div><div class="v crit">${src.crit}</div></div>`;
-    if (src.link) html += `<a class="sheet-link" href="${src.link}" target="_blank" rel="noopener">${src.linkLabel || 'Find the standard'}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
-    if (src.eu && src.eu.link) html += `<a class="sheet-link" href="${src.eu.link}" target="_blank" rel="noopener">${src.eu.label || 'EU equivalent'}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
+    html += `<div class="sheet-field"><div class="k">${TR('Covers')}</div><div class="v">${TR(src.covers)}</div></div>`;
+    if (src.crit) html += `<div class="sheet-field"><div class="k">${TR('Acceptance criteria')}</div><div class="v crit">${TR(src.crit)}</div></div>`;
+    if (src.link) html += `<a class="sheet-link" href="${src.link}" target="_blank" rel="noopener">${TR(src.linkLabel || 'Find the standard')}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
+    if (src.eu && src.eu.link) html += `<a class="sheet-link" href="${src.eu.link}" target="_blank" rel="noopener">${TR(src.eu.label || 'EU equivalent')}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;
   }
   sheet.innerHTML = html;
   backdrop.classList.add('open');
@@ -22692,11 +23002,12 @@ domainFilter.addEventListener('click', e => {
 
 renderProcessCards();
 renderList();
+applyStaticI18n();
 
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v18';
+    const C = 'cqv-v19';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
