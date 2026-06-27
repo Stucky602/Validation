@@ -382,6 +382,55 @@
     border-radius: 9px; padding: 10px 12px; margin-top: 11px;
     font-size: 12.5px; line-height: 1.5; color: var(--ink);
   }
+  .ps-bullets { margin: 4px 0 0; padding-left: 19px; }
+  .ps-bullets li { font-size: 13.5px; line-height: 1.55; color: var(--ink-dim); margin-bottom: 7px; }
+  .ps-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 8px 0 0; }
+  .ps-col { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; }
+  .ps-col-h { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; color: var(--ink-dim); }
+  .ps-col.pro .ps-col-h { color: var(--accent); }
+  .ps-col.con .ps-col-h { color: var(--pq); }
+  .ps-col ul { margin: 0; padding-left: 15px; }
+  .ps-col li { font-size: 12px; color: var(--ink-dim); margin: 5px 0; line-height: 1.45; }
+  .ps-tablewrap { overflow-x: auto; margin: 8px 0 0; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 10px; }
+  .ps-table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 11.5px; }
+  .ps-table th, .ps-table td { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; line-height: 1.45; }
+  .ps-table tr:last-child th, .ps-table tr:last-child td { border-bottom: 0; }
+  .ps-table th:last-child, .ps-table td:last-child { border-right: 0; }
+  .ps-table thead th { background: var(--panel-2); color: var(--ink); font-weight: 700; }
+  .ps-table tbody th { background: var(--panel); color: var(--ink); font-weight: 600; width: 30%; }
+  .ps-table td { color: var(--ink-dim); }
+  .ps-matrix td { text-align: center; font-weight: 700; }
+  .ps-matrix tbody th { width: auto; white-space: nowrap; }
+  .m-low { background: rgba(88,230,168,0.16); color: #bfe9d4; }
+  .m-med { background: rgba(230,196,90,0.18); color: #ecdca6; }
+  .m-high { background: rgba(230,96,96,0.20); color: #f0b3b3; }
+  /* equipment-page risk block */
+  #riskBlock { margin-bottom: 18px; }
+  .cand-note {
+    font-size: 12px; line-height: 1.5; color: var(--ink-dim);
+    background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 8px; padding: 9px 12px; margin: 0 0 10px;
+  }
+  .risk-card { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); overflow: hidden; }
+  .risk-card summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    padding: 11px 13px; font-size: 13px; font-weight: 600; color: var(--ink);
+  }
+  .risk-card summary::-webkit-details-marker { display: none; }
+  .risk-ico { color: #e69a5a; display: inline-flex; }
+  .risk-tw { margin-left: auto; color: var(--ink-faint); transition: transform 0.18s; display: inline-flex; }
+  .risk-card[open] .risk-tw { transform: rotate(90deg); }
+  .risk-body { padding: 0 13px 13px; }
+  .risk-sub {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 8px 0 6px;
+  }
+  .risk-q { margin: 0; padding-left: 17px; }
+  .risk-q li { font-size: 12.5px; line-height: 1.5; color: var(--ink-dim); margin-bottom: 7px; }
+  .risk-link {
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 6px;
+    font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none;
+  }
   .ps-refs {
     margin-top: 24px; padding: 14px 14px 6px; background: var(--panel);
     border: 1px solid var(--line); border-radius: 12px;
@@ -449,6 +498,7 @@
       <h2 id="dName"></h2>
       <p class="desc" id="dDesc"></p>
     </div>
+    <div id="riskBlock"></div>
     <div id="phases"></div>
   </div>
 
@@ -22151,6 +22201,176 @@ function resolveHowto(entry) {
 
 const PROCESS = {
 
+  risk: {
+    name: "Approaching Risk",
+    sub: "Quality risk management for qualification (ICH Q9)",
+    desc: "Risk is what decides how much of the test menu you actually run. Under ICH Q9(R1) the question is always the same: if this fails, what is the harm to product quality, patient safety, or data integrity — how likely is it, and would we catch it in time? You then concentrate effort where that answer is worst. This page is the method and the tables; each equipment page carries the questions to ask for that type.",
+    accent: "#e69a5a",
+    icon: "scale",
+    sections: [
+      { title: "How to approach it",
+        body: "Quality Risk Management (ICH Q9, revised 2023 as Q9(R1)) runs in three moves: identify what could go wrong, analyze it (severity × probability, and in many tools detectability), and evaluate it against criteria you set in advance. Risk is the combination of the severity of a harm and the probability it occurs; detectability adjusts the priority. Effort is proportionate — formal and deep where harm is high, light where it is not. The output drives both the C&Q approach (does this even get qualified?) and the depth of each IQ/OQ/PQ test.",
+        note: "Q9(R1) specifically targets two failure modes it saw in practice: unclear formality (how rigorous the assessment should be) and subjectivity (hand-wavy scoring). Tie scores to real product/process understanding, not opinion." },
+      { title: "The questions every assessment answers",
+        bullets: [
+          "Identify: what can fail, and what harm does that cause downstream?",
+          "Severity: how bad is the harm to product quality / patient safety / data integrity?",
+          "Probability: how likely is the failure given the design and existing controls?",
+          "Detectability: would we catch it before the product is affected or released?",
+          "Evaluate: does the combined risk exceed the criteria — and what do we do about it?"
+        ] },
+      { title: "Pick a tool to match the question",
+        table: {
+          cols: ["Tool", "Best for"],
+          rows: [
+            ["FMEA / FMECA", "Ranking failure modes of a system or process; adds criticality (S×P×D) to a score (IEC 60812)"],
+            ["Risk ranking & filtering", "Comparing and prioritising many systems/parameters against set criteria"],
+            ["HACCP", "Identifying and controlling critical control points in a process"],
+            ["FTA", "Tracing a defined failure back to root causes / combinations (IEC 61025)"],
+            ["PHA / risk question", "A quick, documented assessment when full FMEA is disproportionate"]
+          ] } },
+      { title: "Severity — how bad is the harm",
+        table: { cols: ["Level", "Meaning"], rows: [
+          ["High", "Direct impact on product quality or patient safety (sterility, dose, identity, critical data)"],
+          ["Medium", "Indirect or recoverable impact; could affect quality if left uncontrolled"],
+          ["Low", "No credible product-quality, safety, or data-integrity impact"]
+        ] } },
+      { title: "Probability — how likely",
+        table: { cols: ["Level", "Meaning"], rows: [
+          ["High", "Expected to occur without controls; a known weak point"],
+          ["Medium", "Could occur occasionally"],
+          ["Low", "Unlikely given the design and controls in place"]
+        ] } },
+      { title: "Detectability — would we catch it",
+        table: { cols: ["Level", "Meaning"], rows: [
+          ["Low (worse)", "Failure can reach the product undetected"],
+          ["Medium", "Detected by routine checks before release"],
+          ["High (better)", "Detected immediately / automatically (alarm, interlock, in-line check)"]
+        ] } },
+      { title: "Risk rating — severity × probability",
+        matrix: {
+          cols: ["Prob Low", "Prob Med", "Prob High"],
+          rows: [
+            { label: "Sev High", cells: [ {v:"Med", lvl:"med"}, {v:"High", lvl:"high"}, {v:"High", lvl:"high"} ] },
+            { label: "Sev Med",  cells: [ {v:"Low", lvl:"low"}, {v:"Med", lvl:"med"}, {v:"High", lvl:"high"} ] },
+            { label: "Sev Low",  cells: [ {v:"Low", lvl:"low"}, {v:"Low", lvl:"low"}, {v:"Med", lvl:"med"} ] }
+          ] },
+        note: "Read the cell for your severity/probability pair, then shift the priority for detectability: poor detectability pushes a borderline case up; strong automatic detection can pull it down. This is the relative score, not an acceptance limit." },
+      { title: "Turning the rating into action",
+        cols: [
+          { kind: "pro", h: "Lower risk", items: [
+            "Commission under Good Engineering Practice; little or no formal qualification.",
+            "Leverage vendor data where a documented assessment supports it.",
+            "Record the rationale — low risk still needs to be justified."
+          ] },
+          { kind: "con", h: "Higher risk", items: [
+            "Qualify the Critical Aspects deeply; challenge worst case.",
+            "Add controls, alarms, or redundancy to lower severity or probability.",
+            "Tighten detection (in-line check, alarm, second review) and re-rate."
+          ] } ] },
+      { title: "Tie it back to the test menu",
+        body: "The IQ/OQ/PQ entries on each equipment page are the candidate verifications. The risk rating tells you which of them to execute as formal qualification, how deep to push each, and which to leave to commissioning. The test definitions don't change with risk — the selection, depth, and evidence source do.",
+        note: "Risk-based does not mean test-less by default. You reduce or leverage only where a documented rationale and a robust engineering/quality process support it; a thin risk assessment turns 'leveraging' into an audit finding." }
+    ],
+    refs: [
+      { label: "ICH Q9(R1) — Quality Risk Management (2023)", link: "https://www.ich.org/page/quality-guidelines" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ISPE Baseline Guide Vol 5 — Commissioning & Qualification", link: "https://ispe.org/publications/guidance-documents/baseline-guide-vol-5-commissioning-qualification-2nd-edition" },
+      { label: "ASTM E2500 — Specification, Design & Verification", link: "https://www.astm.org/e2500-13r20.html" }
+    ]
+  },
+
+  cq: {
+    name: "C&Q Approaches Compared",
+    sub: "V-Model vs ASTM E2500 vs ISPE Baseline Guide 5",
+    desc: "Three ways the industry gets to a qualified system — and the choice changes how much you test, what you call it, and what you can lean on as evidence. The traditional V-Model is the prescriptive baseline. ASTM E2500 (2007) introduced the science- and risk-based paradigm it calls verification. ISPE Baseline Guide Vol 5, 2nd Edition (2019) turns that paradigm into a practical, integrated C&Q process. E2500 and BG5 are complementary, not rivals: E2500 sets the principles, BG5 is the how-to. The real contrast is traditional qualification vs the modern risk-based approach the two jointly define.",
+    accent: "#e6c45a",
+    icon: "scale",
+    sections: [
+      { title: "The three, in one line",
+        cols: [
+          { kind: "pro", h: "Lineage", items: [
+            "V-Model: traditional prescriptive qualification (DQ/IQ/OQ/PQ).",
+            "ASTM E2500 (2007; rev. 2013, 2020, 2025): the paradigm shift — verify fit for intended use via Quality Risk Management.",
+            "ISPE BG5, 2nd ed (2019): operationalizes E2500 into an integrated C&Q lifecycle."
+          ] },
+          { kind: "con", h: "Don't confuse", items: [
+            "BG5 = the C&Q Baseline Guide for facilities, systems, utilities, equipment.",
+            "GAMP 5 = a different guide, for computerised systems (see the CSV card).",
+            "Both are ISPE; both are 'risk-based'; they cover different scope."
+          ] } ] },
+      { title: "Side by side",
+        table: {
+          cols: ["", "Traditional V-Model", "ASTM E2500", "ISPE BG5 (2nd ed)"],
+          rows: [
+            ["Core idea", "Prescriptive qualification; document and test everything", "Risk-based verification of fitness for intended use", "Integrated, risk-based C&Q delivery process"],
+            ["Term used", "Qualification (DQ/IQ/OQ/PQ)", "Verification", "Commissioning & Qualification (integrated)"],
+            ["Effort allocation", "Broadly uniform across systems and parameters", "Concentrated on Critical Aspects (CAs)", "System Risk Assessment → CAs / Critical Design Elements"],
+            ["Scope filter", "Most systems get the full set", "Risk drives what is verified", "System Classification: only direct-impact systems are qualified"],
+            ["Commissioning", "Often separate from / duplicated by qualification", "Good Engineering Practice can support verification", "GEP commissioning leveraged as qualification evidence"],
+            ["Vendor docs", "Limited reliance", "Leverage permitted with justification", "Leveraged via documented vendor assessment"],
+            ["Deliverables", "Many discrete protocols (DQ/IQ/OQ/PQ)", "Verification deliverables vs. design", "Fewer, combined C&Q deliverables"],
+            ["Best fit", "Simple/legacy systems; auditor comfort", "Setting the principles / regulatory rationale", "Modern projects wanting efficiency + compliance"]
+          ] } },
+      { title: "Traditional V-Model",
+        body: "Specify down one arm, verify back up the other, with DQ/IQ/OQ/PQ as discrete documented stages. Well understood and easy to defend in an audit, but it tends to test every system to a similar depth regardless of risk, and commissioning and qualification often repeat the same checks.",
+        cols: [
+          { kind: "pro", h: "Strengths", items: [
+            "Familiar; auditors and teams know it cold.",
+            "Clear traceability via the spec↔test rungs.",
+            "Low interpretation risk — the structure is explicit."
+          ] },
+          { kind: "con", h: "Trade-offs", items: [
+            "Over-qualifies low-risk systems; high volume of testing.",
+            "Commissioning effort frequently duplicated in IQ/OQ.",
+            "Document-heavy; slow and costly; weakly tied to risk."
+          ] } ] },
+      { title: "ASTM E2500",
+        body: "A standard guide that reframes the goal as verification that a system is fit for its intended use, driven by product/process understanding and Quality Risk Management. It introduces Critical Aspects — the features and functions that actually matter to product quality and patient safety — and focuses effort there. It sets principles rather than a step-by-step recipe.",
+        cols: [
+          { kind: "pro", h: "Strengths", items: [
+            "Effort follows risk; less testing of what doesn't matter.",
+            "Lets Good Engineering Practice and vendor work count.",
+            "Aligns with ICH Q9 / QbD; regulator-recognised rationale."
+          ] },
+          { kind: "con", h: "Trade-offs", items: [
+            "Principles, not a procedure — needs interpretation.",
+            "Demands real product/process understanding up front.",
+            "Weak QRM or GEP undermines the whole justification."
+          ] } ] },
+      { title: "ISPE Baseline Guide 5 (2nd ed)",
+        body: "The practical implementation of the E2500 paradigm: a single integrated C&Q process with System Classification (direct-impact vs not direct-impact), a System Risk Assessment that pins down Critical Aspects and Critical Design Elements, design review/DQ, integrated C&Q testing and documentation, acceptance and release, and periodic review. It is the working manual most modern projects actually follow.",
+        cols: [
+          { kind: "pro", h: "Strengths", items: [
+            "Turns E2500 principles into an executable workflow.",
+            "Integrated C&Q removes duplicate testing/documents.",
+            "Classification narrows qualification to direct-impact systems."
+          ] },
+          { kind: "con", h: "Trade-offs", items: [
+            "Requires a strong quality-managed engineering process.",
+            "Vendor-doc leverage needs documented assessment to hold.",
+            "Mis-classification or thin risk rationale is the main failure mode."
+          ] } ] },
+      { title: "How this changes the testing required",
+        body: "The regulatory requirement does not change — under any approach you must still demonstrate the system is fit for its intended use (EU GMP Annex 15, 21 CFR). What changes is how you target, source, and document the evidence:",
+        bullets: [
+          "Classify first. Not-direct-impact systems are commissioned only — no qualification testing — so the qualifiable population shrinks before any protocol is written.",
+          "Test the Critical Aspects, not everything. The System Risk Assessment identifies the CAs / Critical Design Elements; verification concentrates there. Low-risk parameters drop out of the qualification scope (still commissioned under GEP).",
+          "Leverage commissioning and vendor data. Well-executed, quality-managed commissioning and assessed vendor documentation can serve as qualification evidence, so you stop re-running checks good commissioning already proved.",
+          "Combine the documents. Integrated C&Q merges what the V-Model splits into DQ/IQ/OQ/PQ, cutting protocol count and review cycles.",
+          "Net effect: less redundant testing, effort concentrated where product-quality and patient-safety risk actually sits — not less rigor on what matters."
+        ],
+        note: "Risk-based does not mean test-less-by-default. You can only reduce or leverage where a documented risk rationale and a robust engineering/quality process support it. A weak risk assessment or poor GEP turns 'leveraging' into a finding. For this app: the IQ/OQ/PQ entries are the menu of what can be verified; under E2500/BG5 you run the subset that maps to the Critical Aspects and lean on commissioning for the rest — the test definitions don't change, the selection and sourcing of evidence does."
+      }
+    ],
+    refs: [
+      { label: "ASTM E2500 — Specification, Design & Verification", link: "https://www.astm.org/e2500-13r20.html" },
+      { label: "ISPE Baseline Guide Vol 5 — Commissioning & Qualification (2nd ed)", link: "https://ispe.org/publications/guidance-documents/baseline-guide-vol-5-commissioning-qualification-2nd-edition" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" },
+      { label: "ICH Q9 — Quality Risk Management", link: "https://www.ich.org/page/quality-guidelines" }
+    ]
+  },
+
   vmodel: {
     name: "The V-Model",
     sub: "The lifecycle that drives all of this",
@@ -22395,7 +22615,7 @@ const PROCESS = {
 
 };
 
-const PROCESS_ORDER = ["vmodel", "urs", "fat", "sat", "cots", "csv"];
+const PROCESS_ORDER = ["vmodel", "cq", "risk", "urs", "fat", "sat", "cots", "csv"];
 
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
@@ -22668,7 +22888,30 @@ const JA = {
   "Acceptance criteria": "合格基準",
   "Find the standard": "規格を探す",
   "EU equivalent": "EU相当",
-  "Governing standards": "適用規格"
+  "Governing standards": "適用規格",
+  // --- C&Q comparison card ---
+  "C&Q Approaches Compared": "C&Qアプローチ比較",
+  "V-Model vs ASTM E2500 vs ISPE Baseline Guide 5": "V字モデル vs ASTM E2500 vs ISPE ベースラインガイド5",
+  // --- risk page card + equipment risk block chrome ---
+  "Approaching Risk": "リスクへのアプローチ",
+  "Quality risk management for qualification (ICH Q9)": "適格性確認のための品質リスクマネジメント（ICH Q9）",
+  "These are candidate verifications for this system. Which you run as formal qualification versus what you leverage from commissioning depends on your C&Q approach and the system\u2019s risk classification.":
+    "これらは本システムの検証候補です。どれを正式な適格性確認として実施し、どれをコミッショニングから活用するかは、C&Qアプローチとシステムのリスク分類によって決まります。",
+  "Risk assessment \u2014 questions to ask": "リスクアセスメント — 確認すべき問い",
+  "Ask first (any system)": "最初に問うこと（全システム共通）",
+  "Severity / likelihood matrices and method": "重大性／発生確率マトリクスと手法",
+  // archetype labels
+  "Controlled storage": "管理保管",
+  "Sterilization / depyrogenation": "滅菌／脱パイロジェン",
+  "Thermal process unit": "熱処理ユニット",
+  "Analytical / QC instrument": "分析／QC機器",
+  "Lab / prep equipment": "ラボ／前処理機器",
+  "Product-contact process equipment": "製品接触プロセス機器",
+  "Computerised / GxP system": "コンピュータ化／GxPシステム",
+  "Contamination-control utility / area": "汚染管理ユーティリティ／区域",
+  "Inspection / detection": "検査／検出",
+  "Cold-chain / distribution": "コールドチェーン／流通",
+  "Process analytical (PAT)": "プロセス分析（PAT）"
 };
 
 let LANG = 'en';
@@ -22705,6 +22948,119 @@ let currentDetailId = null;
 let currentProcessId = null;
 
 
+/* ---------- RISK QUESTIONS (per equipment archetype) ----------
+   Approach-neutral prompts to seed a system risk assessment.
+   RISK_COMMON applies to any system; archetype set is added by type. */
+const RISK_COMMON = [
+  "What is the impact if this system fails — on product quality, patient safety, or data integrity?",
+  "Is this a direct-impact system (qualify) or not-direct-impact (commission only)? Where is the system boundary?",
+  "Which functions are the Critical Aspects / Critical Design Elements — the few that actually protect the product?",
+  "What is the worst-case failure, how likely is it, and would we detect it before product is affected?"
+];
+
+const RISK_ARCHETYPES = {
+  storage: { label: "Controlled storage", questions: [
+    "What is the product's stability limit, and how long can it survive an excursion before quality is affected?",
+    "Where are the hot/cold spots, and is monitoring placed at the worst-case position?",
+    "On power or cooling loss, how fast does the chamber leave range, and is backup/alarm adequate?",
+    "Do load pattern, fill level, or door openings change the qualified profile?",
+    "Are mapping and monitoring sensors calibrated, traceable, and is the data captured securely?"
+  ] },
+  sterilization: { label: "Sterilization / depyrogenation", questions: [
+    "What lethality (SAL) or endotoxin reduction is required, and what is the worst-case load?",
+    "Where is the cold spot, and does the BI / endotoxin-indicator challenge sit there?",
+    "Could load configuration, wrapping, or density block heat / agent / dose penetration?",
+    "Are F₀ / dwell / temperature and (gas or radiation) dose parameters controlled and recorded?",
+    "How is a failed cycle detected and segregated before product is released?"
+  ] },
+  thermalproc: { label: "Thermal process unit", questions: [
+    "Does this step touch a CQA (drying endpoint, ashing, temperature hold), or is it support only?",
+    "What temperature uniformity / range is acceptable, and where is the worst case?",
+    "Could over- or under-processing damage the product or bias a result?",
+    "Are the controlling and recording instruments calibrated and traceable?"
+  ] },
+  analytical: { label: "Analytical / QC instrument", questions: [
+    "Does this instrument generate GMP data used for release or stability decisions?",
+    "What is the AIQ group (USP <1058>), and which method attributes depend on it?",
+    "What is the impact of an out-of-calibration or drift event on reported results?",
+    "Are audit trail, access control, and data integrity (ALCOA+) adequate for the records produced?",
+    "How would a wrong result be caught — system suitability, controls, second review?"
+  ] },
+  labequip: { label: "Lab / prep equipment", questions: [
+    "Does this step affect a product CQA, or only a non-critical prep activity?",
+    "Which parameters (speed / time / temperature) matter, and what is their acceptable range?",
+    "Could equipment failure cross-contaminate or compromise the batch / sample?",
+    "Are programmable settings controlled, and are critical instruments calibrated?"
+  ] },
+  manufacturing: { label: "Product-contact process equipment", questions: [
+    "Which CPPs drive which CQAs, and what is the proven acceptable range (design space)?",
+    "What is the impact of operating at the edge of the range on product quality?",
+    "What are the cross-contamination and cleaning (CIP / cleaning-validation) risks between products?",
+    "Does scale, load, or batch size change the qualified performance?",
+    "Are the control system, recipe, and critical instruments controlled and calibrated?"
+  ] },
+  computerised: { label: "Computerised / GxP system", questions: [
+    "What is the GAMP software category (1 / 3 / 4 / 5), and how does that scale the validation effort?",
+    "What GxP records and decisions does the system own, and what is the data-integrity risk?",
+    "Are audit trail, unique access, electronic signatures, and time sync configured and verified?",
+    "Which configured or custom functions are critical, and how are they challenged?",
+    "What are the interface, backup / restore, and disaster-recovery risks?",
+    "How are change control and periodic review kept current to maintain the validated state?"
+  ] },
+  cleanutility: { label: "Contamination-control utility / area", questions: [
+    "What grade / classification or water / gas quality must this hold, and for which products?",
+    "What is the contamination-control risk if it drifts (particulate, microbial, endotoxin, cross-contamination)?",
+    "Are the critical parameters (ΔP, air changes, conductivity, TOC, A₀) monitored at the right points?",
+    "How does it recover after an excursion, door event, or load change?",
+    "Is monitoring continuous, alarmed, and data-integrity sound?"
+  ] },
+  inspection: { label: "Inspection / detection", questions: [
+    "What defect or attribute must this reliably detect, and what is the harm if it escapes?",
+    "What are the false-accept (critical) and false-reject rates, and how are they justified?",
+    "How is detection capability challenged (defect sets, test pieces, probability of detection)?",
+    "Are reject / segregation and result recording verified and tamper-evident?"
+  ] },
+  coldchain: { label: "Cold-chain / distribution", questions: [
+    "What is the product's allowed temperature range and time-out-of-range budget?",
+    "What is the worst-case lane, season, and transit duration (plus margin)?",
+    "What is the worst-case payload / pack-out and loading configuration?",
+    "How is an excursion detected, recorded, and handled (CAPA) before use?",
+    "Are qualified packaging and calibrated monitoring devices in place per GDP?"
+  ] },
+  pat: { label: "Process analytical (PAT)", questions: [
+    "Does this measurement drive a real-time control decision or release — and what if it's wrong?",
+    "For model-based PAT, how is the chemometric model validated, maintained, and monitored for drift?",
+    "How representative and stable is the sampling / probe interface in-process?",
+    "What is the data-integrity and audit-trail risk for the acquired data?",
+    "How is a bad reading detected before it affects the batch?"
+  ] }
+};
+
+const RISK_MAP = {
+  incubator:"storage", co2incubator:"storage", fridge:"storage", freezer:"storage", ult:"storage",
+  coldroom:"storage", warehouse:"storage", stability:"storage", photostability:"storage", ln2:"storage", cryochamber:"storage",
+  autoclave:"sterilization", etosterilizer:"sterilization", gammasterilizer:"sterilization", watercascade:"sterilization",
+  depyrooven:"sterilization", depyrotunnel:"sterilization", dryoven:"sterilization",
+  vacuumoven:"thermalproc", mufflefurnace:"thermalproc", waterbath:"thermalproc", hotplate:"thermalproc",
+  balance:"analytical", ph:"analytical", osmometer:"analytical", refractometer:"analytical", hplc:"analytical", gc:"analytical",
+  dissolution:"analytical", uvvis:"analytical", ftir:"analytical", karlfischer:"analytical", particlecounter:"analytical",
+  pipette:"analytical", conductivitytoc:"analytical", elementalanalyzer:"analytical", tablettester:"analytical",
+  centrifuge:"labequip", homogenizer:"labequip",
+  lyophilizer:"manufacturing", bioreactor:"manufacturing", granulator:"manufacturing", fbd:"manufacturing", blender:"manufacturing",
+  mill:"manufacturing", tabletpress:"manufacturing", coater:"manufacturing", capsulefiller:"manufacturing", mixingvessel:"manufacturing",
+  fillingline:"manufacturing", blisterline:"manufacturing", chromskid:"manufacturing", tffskid:"manufacturing",
+  filterintegrity:"manufacturing", singleuse:"manufacturing", reactor:"manufacturing", filterdryer:"manufacturing",
+  processcentrifuge:"manufacturing", jetmill:"manufacturing", spraydryer:"manufacturing",
+  plc:"computerised", scada:"computerised", deltav:"computerised", bmsems:"computerised", mes:"computerised",
+  historian:"computerised", lims:"computerised", cds:"computerised",
+  cleanroom:"cleanutility", hvac:"cleanutility", watersystem:"cleanutility", compressedair:"cleanutility", bsc:"cleanutility",
+  isolator:"cleanutility", cipsip:"cleanutility", puresteam:"cleanutility", rowater:"cleanutility", dispensingbooth:"cleanutility",
+  partswasher:"cleanutility", vialwasher:"cleanutility",
+  visualinspection:"inspection", ccittester:"inspection", checkweigher:"inspection",
+  shipper:"coldchain", transportlane:"coldchain", refrigeratedvehicle:"coldchain",
+  patanalyzer:"pat", inlineprobe:"pat", onlinetoc:"pat", flowcontroller:"pat"
+};
+
 const CATEGORIES = [
   { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","freezer","ult","coldroom","warehouse","stability","photostability"] },
   { key: "ovens",      label: "Ovens & Furnaces",                     members: ["dryoven","depyrooven","depyrotunnel","vacuumoven","mufflefurnace"] },
@@ -22737,7 +23093,8 @@ const PROC_ICONS = {
   factory: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c08bf0" stroke-width="1.7"><path d="M3 21h18M4 21V9l5 3V9l5 3V9l5 3v9"/><path d="M7 21v-4h2v4M15 21v-4h2v4"/></svg>',
   site: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6885a" stroke-width="1.7"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6M9 10h2M13 10h2"/></svg>',
   box: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8b98a9" stroke-width="1.7"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>',
-  chip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>'
+  chip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>',
+  scale: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6c45a" stroke-width="1.7"><path d="M12 3v18M7 21h10M5 7h14l-3.5 6a3 3 0 0 1-7 0z" opacity="0.5"/><path d="M12 3v18M7 21h10M3 7l3.5 7a3 3 0 0 0 5 0L8 7M16 7l3.5 7a3 3 0 0 0 5 0L21 7M5 7h14" transform="translate(-1,0)"/></svg>'
 };
 
 function renderProcessCards() {
@@ -22773,6 +23130,10 @@ function openProcess(id) {
     let inner = '';
     if (s.body) inner += `<p class="ps-body">${TR(s.body)}</p>`;
     if (s.steps) inner += `<ol class="ps-steps">${s.steps.map(x => `<li>${TR(x)}</li>`).join('')}</ol>`;
+    if (s.bullets) inner += `<ul class="ps-bullets">${s.bullets.map(x => `<li>${TR(x)}</li>`).join('')}</ul>`;
+    if (s.cols) inner += `<div class="ps-cols">${s.cols.map(c => `<div class="ps-col ${c.kind || ''}"><div class="ps-col-h">${TR(c.h)}</div><ul>${c.items.map(it => `<li>${TR(it)}</li>`).join('')}</ul></div>`).join('')}</div>`;
+    if (s.table) inner += `<div class="ps-tablewrap"><table class="ps-table"><thead><tr>${s.table.cols.map(c => `<th>${TR(c)}</th>`).join('')}</tr></thead><tbody>${s.table.rows.map(r => `<tr>${r.map((cell, ci) => ci === 0 ? `<th>${TR(cell)}</th>` : `<td>${TR(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+    if (s.matrix) inner += `<div class="ps-tablewrap"><table class="ps-table ps-matrix"><thead><tr><th></th>${s.matrix.cols.map(c => `<th>${TR(c)}</th>`).join('')}</tr></thead><tbody>${s.matrix.rows.map(r => `<tr><th>${TR(r.label)}</th>${r.cells.map(c => `<td class="m-${c.lvl}">${TR(c.v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     if (s.note) inner += `<div class="ps-note">${TR(s.note)}</div>`;
     return `<section class="ps-sec"><h3 class="ps-title">${TR(s.title)}</h3>${inner}</section>`;
   }).join('');
@@ -22861,6 +23222,25 @@ function openDetail(id) {
   currentDetailId = id;
   document.getElementById('dName').textContent = TR(e.name);
   document.getElementById('dDesc').textContent = TR(e.desc);
+  // risk block: approach-neutral framing + type-specific questions
+  const rb = document.getElementById('riskBlock');
+  if (rb) {
+    const arche = RISK_MAP[id];
+    const a = arche ? RISK_ARCHETYPES[arche] : null;
+    const common = RISK_COMMON.map(q => `<li>${TR(q)}</li>`).join('');
+    const typed = a ? a.questions.map(q => `<li>${TR(q)}</li>`).join('') : '';
+    rb.innerHTML = `
+      <p class="cand-note">${TR('These are candidate verifications for this system. Which you run as formal qualification versus what you leverage from commissioning depends on your C&Q approach and the system\u2019s risk classification.')}</p>
+      <details class="risk-card">
+        <summary><span class="risk-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v18M7 21h10M3 8l4 7a3 3 0 0 0 5 0L8 8M16 8l4 7a3 3 0 0 0 5 0L21 8M6 8h12"/></svg></span>${TR('Risk assessment \u2014 questions to ask')}<span class="risk-tw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span></summary>
+        <div class="risk-body">
+          <div class="risk-sub">${TR('Ask first (any system)')}</div>
+          <ul class="risk-q">${common}</ul>
+          ${a ? `<div class="risk-sub">${TR(a.label)}</div><ul class="risk-q">${typed}</ul>` : ''}
+          <a class="risk-link" href="#" onclick="gotoProcess('risk');return false;">${TR('Severity / likelihood matrices and method')} <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></a>
+        </div>
+      </details>`;
+  }
   const phasesEl = document.getElementById('phases');
   phasesEl.innerHTML = ['IQ','OQ','PQ'].map(p => {
     const tests = e.phases[p] || [];
@@ -22905,6 +23285,12 @@ function backToList() {
   listView.classList.remove('hidden');
   document.querySelector('.search-wrap').style.display = '';
   window.scrollTo(0,0);
+}
+
+function gotoProcess(id) {
+  detailView.classList.remove('active');
+  listView.classList.remove('hidden');
+  openProcess(id);
 }
 
 /* ---------- SOURCE SHEET ---------- */
@@ -23007,7 +23393,7 @@ applyStaticI18n();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v19';
+    const C = 'cqv-v21';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
