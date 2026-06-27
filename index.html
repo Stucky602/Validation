@@ -22201,6 +22201,79 @@ function resolveHowto(entry) {
 
 const PROCESS = {
 
+  fs: {
+    name: "FS",
+    sub: "Functional Specification",
+    desc: "The FS describes how the system will function to meet each user requirement — the behaviours, sequences, and control functions, derived from the URS. It is the second document on the V-Model's left arm and the specification OQ verifies: OQ challenges these functions across their operating ranges. Usually vendor-authored against the URS and approved by the owner.",
+    accent: "#5ec98f",
+    icon: "fspec",
+    sections: [
+      { title: "When you write it",
+        body: "After the URS, before the detailed build/design. The URS says what is needed; the FS says how the system will behave to deliver it. The vendor typically writes the FS against your URS, and you review and approve it — confirming each requirement has been translated into a defined, testable function before anything is built." },
+      { title: "What goes in it",
+        steps: [
+          "Functional descriptions: what each function does, each mapped to the URS requirement it satisfies.",
+          "Operating modes & sequences: start-up, normal run, hold, alarm, shutdown; recipe/phase behaviour.",
+          "Control functions: setpoints, control loops, ranges, and tolerances the system will hold.",
+          "Alarms & interlocks: trigger conditions, system responses, required operator actions.",
+          "User interface & access: screens, user roles/permissions, what each role can and can't do.",
+          "Data & records: what is logged, recording intervals, reports, audit-trail behaviour.",
+          "Interfaces: connections to other systems/equipment and what data passes across them."
+        ] },
+      { title: "How to write each function",
+        steps: [
+          "Trace every function back to a URS requirement (forward traceability); flag any function with no URS parent.",
+          "Make each function testable — OQ must be able to challenge it across its operating range.",
+          "Describe behaviour, not the hardware build — the how-it's-built belongs in the DS.",
+          "Number every function so it carries into the traceability matrix.",
+          "Carry criticality down from the URS so risk drives how deeply OQ exercises each function."
+        ] },
+      { title: "What verifies it",
+        body: "The FS is the specification OQ tests against — OQ challenges the system's functions across their operating ranges and limits. FAT and SAT exercise the same functional behaviour earlier at the vendor and on site. This is the FS↔OQ rung of the V-Model.",
+        note: "The FS sits between the URS (what is needed) and the DS (how it's built). Keep all three under change control: a change to a function must trace up to the URS it serves and down to the DS that implements it." }
+    ],
+    refs: [
+      { label: "ISPE GAMP 5 (2nd ed) — Functional Specification", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" }
+    ]
+  },
+
+  ds: {
+    name: "DS",
+    sub: "Design Specification",
+    desc: "The DS is the detailed build — the hardware, software, components, and configuration that deliver the functions in the FS. It is the third (bottom) document on the V-Model's left arm, at the turn into build, and the specification IQ verifies: IQ confirms the system is installed and configured exactly as designed. Vendor-authored; reviewed by the owner at Design Qualification.",
+    accent: "#5bb8b8",
+    icon: "dspec",
+    sections: [
+      { title: "When you write it",
+        body: "After the FS, at the bottom of the V — where specification becomes a buildable, configurable design. The FS says how the system functions; the DS says how it is actually built and set up to do so. The vendor authors it; you review it against the URS at Design Qualification (DQ) before fabrication begins." },
+      { title: "What goes in it",
+        steps: [
+          "Equipment & component design: P&IDs, general-arrangement drawings, bill of materials, instrument list.",
+          "Software / automation design: control-system architecture, I/O list, code/configuration design, network and interfaces.",
+          "Configured parameters: the actual setpoints, alarm limits, and control-loop tuning as built.",
+          "Components, make & model: the specific instruments, valves, sensors — the list IQ checks against.",
+          "Software/firmware versions and configuration: what is installed, so IQ can confirm and CSV can baseline it.",
+          "Utilities & installation: services, connections, layout, and environmental requirements."
+        ] },
+      { title: "How to write the design",
+        steps: [
+          "Trace every design element to the FS function it delivers (and through it back to the URS).",
+          "For computerised parts, identify each component's GAMP category — it scales design rigour and testing.",
+          "Make it installation-verifiable — IQ confirms the system is built/installed exactly as the DS states.",
+          "Number design elements for the traceability matrix; mark Critical Design Elements (BG5) that deliver a Critical Aspect.",
+          "Keep as-designed and as-built reconciled — IQ is where any difference surfaces."
+        ] },
+      { title: "What verifies it",
+        body: "The DS is the specification IQ tests against — IQ confirms the system is installed and configured as designed (components, drawings, software versions, utilities). Design Qualification reviews the DS against the URS before build. This is the DS↔IQ rung of the V-Model.",
+        note: "The DS is the bottom of the V: below it is the physical build, then verification climbs back up (IQ → OQ → PQ). A change to the DS must trace up through the FS to the URS, and may require re-verifying the affected IQ." }
+    ],
+    refs: [
+      { label: "ISPE GAMP 5 (2nd ed) — Design Specification", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" },
+      { label: "EU GMP Annex 15 — Qualification & Validation", link: "https://health.ec.europa.eu/system/files/2016-11/2015-10_annex15_0.pdf" }
+    ]
+  },
+
   e2500: {
     name: "ASTM E2500",
     sub: "Science- & risk-based verification",
@@ -22742,7 +22815,7 @@ const PROCESS = {
 
 };
 
-const PROCESS_ORDER = ["vmodel", "e2500", "bg5", "cq", "risk", "urs", "fat", "sat", "cots", "csv"];
+const PROCESS_ORDER = ["vmodel", "e2500", "bg5", "cq", "risk", "urs", "fs", "ds", "fat", "sat", "cots", "csv"];
 
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
@@ -23043,7 +23116,10 @@ const JA = {
   "ASTM E2500": "ASTM E2500",
   "Science- & risk-based verification": "サイエンス・リスクベース検証",
   "ISPE Baseline Guide 5": "ISPE ベースラインガイド5",
-  "Commissioning & Qualification (2nd ed)": "コミッショニング＆クオリフィケーション（第2版）"
+  "Commissioning & Qualification (2nd ed)": "コミッショニング＆クオリフィケーション（第2版）",
+  // --- FS / DS spec cards ---
+  "Functional Specification": "機能仕様書",
+  "Design Specification": "設計仕様書"
 };
 
 let LANG = 'en';
@@ -23228,7 +23304,9 @@ const PROC_ICONS = {
   chip: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg>',
   scale: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e6c45a" stroke-width="1.7"><path d="M12 3v18M7 21h10M5 7h14l-3.5 6a3 3 0 0 1-7 0z" opacity="0.5"/><path d="M12 3v18M7 21h10M3 7l3.5 7a3 3 0 0 0 5 0L8 7M16 7l3.5 7a3 3 0 0 0 5 0L21 7M5 7h14" transform="translate(-1,0)"/></svg>',
   verify: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4fd1c5" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.6-3 7.6-7 9-4-1.4-7-4.4-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
-  guide: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b48be6" stroke-width="1.7"><path d="M12 6C9.5 4.2 5.5 4.2 3 5v14c2.5-0.8 6.5-0.8 9 1 2.5-1.8 6.5-1.8 9-1V5c-2.5-0.8-6.5-0.8-9 1z"/><path d="M12 6v14"/></svg>'
+  guide: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b48be6" stroke-width="1.7"><path d="M12 6C9.5 4.2 5.5 4.2 3 5v14c2.5-0.8 6.5-0.8 9 1 2.5-1.8 6.5-1.8 9-1V5c-2.5-0.8-6.5-0.8-9 1z"/><path d="M12 6v14"/></svg>',
+  fspec: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ec98f" stroke-width="1.7"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><circle cx="11.5" cy="14" r="2"/><path d="M11.5 10.7v1.3M11.5 16v1.3M8 14h1.3M13.7 14h1.3"/></svg>',
+  dspec: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5bb8b8" stroke-width="1.7"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 17l3-6 3 6M10.1 14.8h3.8"/></svg>'
 };
 
 function renderProcessCards() {
@@ -23527,7 +23605,7 @@ applyStaticI18n();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v23';
+    const C = 'cqv-v24';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
