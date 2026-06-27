@@ -180,6 +180,105 @@
   .howto-chip[aria-expanded="true"] { background: rgba(88,230,168,0.12); }
   .howto-chip[aria-expanded="true"] .howto-tw { transform: rotate(90deg); }
 
+  .test-chips { display: flex; gap: 7px; flex-wrap: wrap; align-self: flex-start; }
+  .exv-chip {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 8px 4px 7px; border-radius: 6px; cursor: pointer;
+    border: 1px solid rgba(111,182,216,0.34); background: rgba(111,182,216,0.07);
+    color: #6fb6d8; display: inline-flex; align-items: center; gap: 5px;
+    transition: all 0.12s; -webkit-tap-highlight-color: transparent;
+  }
+  .exv-chip:active { transform: scale(0.96); }
+  .exv-chip .exv-tw { display: inline-flex; transition: transform 0.18s; }
+  .exv-chip[aria-expanded="true"] { background: rgba(111,182,216,0.14); }
+  .exv-chip[aria-expanded="true"] .exv-tw { transform: rotate(90deg); }
+  .exv-panel { margin-top: 1px; }
+  .exv { border: 1px solid rgba(111,182,216,0.3); border-radius: 9px; background: var(--bg); padding: 12px 13px; }
+  .exv-row1 { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; }
+  .exv-tag { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6fb6d8; font-weight: 700; }
+  .exv-copyall, .exv-copy {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase;
+    border: 1px solid rgba(111,182,216,0.34); background: rgba(111,182,216,0.07); color: #6fb6d8;
+    border-radius: 6px; padding: 3px 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: all 0.12s;
+  }
+  .exv-copyall { margin-left: auto; }
+  .exv-copy:active, .exv-copyall:active { transform: scale(0.96); }
+  .exv-copied { background: rgba(88,230,168,0.16); color: var(--accent); border-color: rgba(88,230,168,0.4); }
+  .exv-block { margin-bottom: 12px; }
+  .exv-block:last-of-type { margin-bottom: 0; }
+  .exv-bh, .exv-bh-row .exv-bh { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; margin-bottom: 5px; }
+  .exv-bh-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 5px; }
+  .exv-bh-row .exv-bh { margin-bottom: 0; }
+  .exv-text { font-size: 12.5px; line-height: 1.5; color: var(--ink); }
+  .exv-hint { font-size: 11.5px; line-height: 1.45; color: var(--ink-dim); margin-bottom: 7px; font-style: italic; }
+  .exv-list { margin: 0; padding-left: 16px; }
+  .exv-list li { font-size: 12px; line-height: 1.5; color: var(--ink-dim); margin-bottom: 2px; }
+  .exv-tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 7px; }
+  .exv-table { border-collapse: collapse; width: 100%; font-size: 11px; }
+  .exv-table th { text-align: left; font-family: var(--mono); font-size: 9px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink-faint); padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--panel); }
+  .exv-table td { padding: 6px 8px; border-bottom: 1px solid color-mix(in srgb, var(--line) 50%, transparent); border-right: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
+  .exv-table td:last-child { border-right: none; }
+  .exv-table tr:last-child td { border-bottom: none; }
+  .exv-blank { height: 22px; }
+  .exv-accept { font-size: 12.5px; line-height: 1.5; color: var(--ink); background: var(--panel); border-left: 3px solid #6fb6d8; border-radius: 6px; padding: 8px 11px; }
+  .exv-caveat { margin-top: 11px; font-size: 10.5px; font-style: italic; color: var(--ink-faint); line-height: 1.45; }
+  .exv-note { font-size: 12px; line-height: 1.5; color: var(--ink-dim); background: rgba(88,230,168,0.06); border-left: 3px solid var(--accent); border-radius: 6px; padding: 8px 11px; }
+  .exv-authored { border-color: rgba(88,230,168,0.34); }
+  .exv-authored .exv-tag { color: var(--accent); }
+  .exv-authored .exv-accept { border-left-color: var(--accent); }
+  .exv-authored .exv-copyall, .exv-authored .exv-copy { border-color: rgba(88,230,168,0.36); background: rgba(88,230,168,0.07); color: var(--accent); }
+
+  /* Safety system (red theme) */
+  #safetyBanner:empty { display: none; }
+  .sf-card {
+    margin-bottom: 14px; border: 1px solid rgba(230,90,90,0.4); border-radius: 12px;
+    background: color-mix(in srgb, #e65a5a 7%, transparent); overflow: hidden;
+  }
+  .sf-card > summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    padding: 12px 14px; font-size: 13px; font-weight: 700; color: #f08a8a;
+    -webkit-tap-highlight-color: transparent; flex-wrap: wrap;
+  }
+  .sf-card > summary::-webkit-details-marker { display: none; }
+  .sf-ico { display: inline-flex; color: #e65a5a; }
+  .sf-sum-txt { letter-spacing: 0.01em; }
+  .sf-tags { display: inline-flex; gap: 5px; flex-wrap: wrap; }
+  .sf-tag {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.03em; text-transform: uppercase;
+    color: #e88; background: rgba(230,90,90,0.12); border: 1px solid rgba(230,90,90,0.28);
+    border-radius: 5px; padding: 2px 6px; font-weight: 600;
+  }
+  .sf-tw { margin-left: auto; color: #e65a5a; display: inline-flex; transition: transform 0.18s; }
+  .sf-card[open] .sf-tw { transform: rotate(90deg); }
+  .sf-body { padding: 0 14px 13px; }
+  .sf-item { padding: 11px 0; border-top: 1px solid rgba(230,90,90,0.18); }
+  .sf-item:first-child { border-top: none; }
+  .sf-it-h { font-size: 12.5px; font-weight: 700; color: #f0a0a0; margin-bottom: 4px; }
+  .sf-it-haz { font-size: 12.5px; line-height: 1.5; color: var(--ink-dim); margin-bottom: 6px; }
+  .sf-it-ctl { font-size: 12px; line-height: 1.5; color: var(--ink-dim); }
+  .sf-ctl-k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: #e88; font-weight: 700; display: block; margin-bottom: 2px; }
+  .sf-caveat { margin-top: 11px; font-size: 10.5px; font-style: italic; color: var(--ink-faint); line-height: 1.45; }
+  .sfx-chip {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 8px 4px 7px; border-radius: 6px; cursor: pointer;
+    border: 1px solid rgba(230,90,90,0.42); background: rgba(230,90,90,0.09);
+    color: #f08a8a; display: inline-flex; align-items: center; gap: 5px;
+    transition: all 0.12s; -webkit-tap-highlight-color: transparent; font-weight: 600;
+  }
+  .sfx-chip:active { transform: scale(0.96); }
+  .sfx-chip .sfx-tw { display: inline-flex; transition: transform 0.18s; }
+  .sfx-chip[aria-expanded="true"] { background: rgba(230,90,90,0.16); }
+  .sfx-chip[aria-expanded="true"] .sfx-tw { transform: rotate(90deg); }
+  .sfx-panel { margin-top: 1px; }
+  .sfx {
+    border: 1px solid rgba(230,90,90,0.38); border-left: 3px solid #e65a5a; border-radius: 9px;
+    background: color-mix(in srgb, #e65a5a 7%, transparent); padding: 11px 13px;
+  }
+  .sfx-h { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #f08a8a; font-weight: 700; margin-bottom: 6px; }
+  .sfx-txt { font-size: 12.5px; line-height: 1.5; color: var(--ink); }
+  .sfx-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+  .sfx-caveat { margin-top: 9px; font-size: 10.5px; font-style: italic; color: var(--ink-faint); line-height: 1.4; }
+
   .howto-panel {
     border: 1px solid var(--line); border-radius: 9px;
     background: var(--bg); padding: 13px 14px 12px; margin-top: 1px;
@@ -618,6 +717,7 @@
       <h2 id="dName"></h2>
       <p class="desc" id="dDesc"></p>
     </div>
+    <div id="safetyBanner"></div>
     <div id="riskBlock"></div>
     <div id="phases"></div>
     <div id="acronymBlock"></div>
@@ -22322,6 +22422,68 @@ function resolveHowto(entry) {
 
 const PROCESS = {
 
+  vlms: {
+    name: "Validation Software",
+    sub: "Paperless validation (VLMS)",
+    desc: "Validation Lifecycle Management Systems (VLMS) are software platforms that digitize the whole validation lifecycle \u2014 authoring protocols, routing reviews and approvals, executing tests with electronic signatures, managing exceptions, and keeping a live traceability matrix \u2014 replacing the paper-and-spreadsheet way of running IQ/OQ/PQ and CSV. This page explains what they are and how they're used, not which to buy.",
+    accent: "#6fb6d8",
+    icon: "vlms",
+    sections: [
+      { title: "What a VLMS is",
+        body: "A VLMS is a validated, 21 CFR Part 11 / EU Annex 11-compliant environment for running validation electronically end to end: write the protocol, route it for review and approval, execute it on a tablet on the floor with electronic signatures, capture deviations/exceptions inline, and generate the report \u2014 all in one system of record, with a full audit trail. It is the paperless replacement for printed protocols, wet-ink initials, and the binder. Note the difference from THIS app: a VLMS is a system of record that holds your live GxP data; this reference tool deliberately is not (it's a drafting/teaching companion). The executable test views here are meant to be pasted INTO your VLMS or template, not to replace it." },
+      { title: "What it does across the lifecycle",
+        steps: [
+          "Authoring: build protocols from reusable templates, test libraries, and standard entities (systems, equipment, tests, risks).",
+          "Review & approval: electronic routing, comments, and e-signatures replace physical sign-off chains.",
+          "Execution: testers run protocols on-screen, enter results, attach evidence, and e-sign each step contemporaneously (ALCOA+ by design).",
+          "Exceptions/deviations: out-of-spec results and protocol changes are captured, routed, and resolved inside the record.",
+          "Traceability: a live Requirements Traceability Matrix (RTM) links every URS requirement to the test that verifies it \u2014 built as you go, not assembled afterward.",
+          "Reporting & audit: summary reports generate from the captured data; auditors get real-time, searchable access."
+        ] },
+      { title: "Why companies move off paper",
+        bullets: [
+          "Cycle time: vendors and case studies commonly cite ~50% reductions in validation cycle time versus paper.",
+          "Data integrity: built-in audit trail, access control, and contemporaneous capture make ALCOA+ the default instead of a discipline you enforce by hand.",
+          "Consistency: shared templates and test libraries standardize how validation is done across sites.",
+          "Audit readiness: live status, searchable records, and an always-current RTM replace the scramble to compile binders.",
+          "Less rework: structured data and reuse cut the transcription errors and duplicated effort that plague paper."
+        ] },
+      { title: "The main platforms (market context, not a recommendation)",
+        bullets: [
+          "Kneat Gx \u2014 a configurable, document-centric VLMS; known for flexibility and a no-code approach to digitizing existing processes.",
+          "ValGenesis VLMS \u2014 an established enterprise suite; object/process-driven, lifecycle-of-the-asset approach, strong pre-validated templates and governance.",
+          "Veeva Vault Validation Management \u2014 validation inside the Veeva Vault ecosystem (attractive if you already run Vault QMS/QualityDocs).",
+          "MasterControl, GoVal, and others \u2014 QMS-plus-validation or purpose-built VLMS options.",
+          "All compliant ones share the same job: a validated, Part 11/Annex 11 environment that turns validation into structured, traceable, paperless data. The right fit depends on company size, existing stack, and validation maturity."
+        ],
+        note: "A VLMS is itself a GAMP-category computerised system that must be validated before it holds GxP records \u2014 'who validates the validation system' is a real vendor-qualification question. Ask to see the platform's own IQ/OQ/PQ, and whether the RTM is built live during execution or assembled afterward (retroactive RTM assembly is a common inspection finding)." },
+      { title: "How it relates to everything else in this app",
+        body: "A VLMS is the container; the content is everything this reference covers. The equipment IQ/OQ/PQ tests, the risk-based C&Q strategy, the spec-and-qualification chain, the protocols, deviations, and change controls \u2014 those are the work a VLMS digitizes. Computer System Validation (CSV/GAMP 5) is also how the VLMS itself gets qualified. Using a VLMS doesn't change WHAT you verify or the science behind the acceptance criteria; it changes how you author, execute, and document it."
+      }
+    ],
+    refs: [
+      { label: "FDA 21 CFR Part 11 \u2014 Electronic Records & Signatures", link: "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" },
+      { label: "EU GMP Annex 11 \u2014 Computerised Systems", link: "https://health.ec.europa.eu/system/files/2016-11/2015-11_annex11_en_0.pdf" },
+      { label: "ISPE GAMP 5 (2nd ed) \u2014 the VLMS is itself a validated system", link: "https://ispe.org/publications/guidance-documents/gamp-5-guide-2nd-edition" }
+    ],
+    example: {
+      label: "What the digital workflow looks like",
+      docTitle: "VLMS workflow \u2014 OQ protocol lifecycle (illustrative)",
+      meta: [["System", "Validated VLMS"], ["Compliance", "Part 11 / Annex 11"]],
+      blocks: [
+        { h: "Protocol states", cols: ["Stage", "Who", "Action", "Record"],
+          rows: [
+            ["Draft", "Author", "Build from template + test library", "Versioned, audit-trailed"],
+            ["Approved", "QA", "e-signature pre-execution", "Locked baseline"],
+            ["In execution", "Tester", "Enter results, attach evidence, e-sign step", "Contemporaneous, ALCOA+"],
+            ["Exception", "Tester/QA", "Log deviation, route, resolve", "Linked to the step"],
+            ["Approved/closed", "QA", "Review, approve report", "RTM auto-updated"]
+          ] },
+        { h: "Note", text: "Each transition is captured with who/what/when and an e-signature. The RTM updates live as tests pass \u2014 no end-of-project binder assembly." }
+      ]
+    }
+  },
+
   dq: {
     name: "DQ",
     sub: "Design Qualification",
@@ -23551,7 +23713,7 @@ const PROCESS = {
 
 };
 
-const PROCESS_ORDER = ["gmp", "gep", "vmodel", "e2500", "bg5", "cq", "risk", "urs", "fs", "ds", "dq", "iq", "oq", "pq", "bg5x", "pv", "cleaning", "protocol", "change", "capa", "fat", "sat", "cots", "gamp", "di", "csv"];
+const PROCESS_ORDER = ["gmp", "gep", "vmodel", "e2500", "bg5", "cq", "risk", "urs", "fs", "ds", "dq", "iq", "oq", "pq", "bg5x", "pv", "cleaning", "protocol", "change", "capa", "fat", "sat", "cots", "gamp", "di", "csv", "vlms"];
 
 /* ---------- RENDER ---------- */
 const eqList = document.getElementById('eqList');
@@ -24056,7 +24218,8 @@ const PROC_ICONS = {
   pdq: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5bb8b8" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h10M7 17h4"/><path d="M16 8l2 2-2 2" opacity="0.6"/></svg>',
   piq: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5aa9e6" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/><path d="M19 5l1.5 1.5M19 10l1.5 1.5M19 15l1.5 1.5" opacity="0.6"/></svg>',
   poq: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4fd1c5" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
-  ppq: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#58e6a8" stroke-width="1.7"><path d="M4 18l4-5 3 3 5-7 4 5"/><path d="M4 20h16"/></svg>'
+  ppq: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#58e6a8" stroke-width="1.7"><path d="M4 18l4-5 3 3 5-7 4 5"/><path d="M4 20h16"/></svg>',
+  vlms: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6fb6d8" stroke-width="1.7"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M7 21h10M12 18v3"/><path d="M6.5 6.5h.01M9 6.5h.01"/></svg>'
 };
 
 // Process pages grouped into thematic sections (home screen no longer one long scroll).
@@ -24067,7 +24230,7 @@ const PROCESS_GROUPS = [
   { key: 'approach',label: 'C&Q Approaches',         accent: '#4fd1c5', ids: ['vmodel', 'e2500', 'bg5', 'cq'],            open: true  },
   { key: 'riskspec',label: 'Risk, Specs & Qualification', accent: '#e69a5a', ids: ['risk', 'urs', 'fs', 'ds', 'dq', 'iq', 'oq', 'pq'], open: false },
   { key: 'exec',    label: 'Execution & Governance',  accent: '#9b8bea', ids: ['bg5x', 'pv', 'cleaning', 'protocol', 'change', 'capa'], open: false },
-  { key: 'verify',  label: 'Verification & Systems', accent: '#5aa9e6', ids: ['fat', 'sat', 'cots', 'gamp', 'di', 'csv'], open: false }
+  { key: 'verify',  label: 'Verification & Systems', accent: '#5aa9e6', ids: ['fat', 'sat', 'cots', 'gamp', 'di', 'csv', 'vlms'], open: false }
 ];
 
 function procGroupState(key, def) {
@@ -24280,6 +24443,761 @@ function toggleCat(key) {
 }
 
 
+
+/* ---------- HAND-AUTHORED EXECUTABLE OVERRIDES (TCU) ---------- */
+/* Hand-authored executable (protocol) overrides for TCU equipment.
+   Keyed by "id|PHASE|index". Each override: {objective?, pre[], fields:{cols,rows,hint}, accept, note?}
+   Only signature tests are authored; routine IQ doc/inventory checks keep the generated view.
+   buildExecutable() prefers DATA[id].phases[ph][i].exec when present. */
+const EXEC_OVERRIDES = {
+
+  /* ===================== INCUBATORS ===================== */
+  "incubator|OQ|0": { // empty-chamber mapping
+    pre: ["Chamber empty, clean, door closed; stabilized at setpoint before data capture",
+          "Calibrated mapping sensors (typ. 9-15) within cal date; reference at coldest/hottest expected zones",
+          "Setpoint and acceptance band defined in protocol (e.g. 37 °C ± 1 °C)"],
+    fields: { cols: ["Sensor / position", "Location", "Min (°C)", "Max (°C)", "Mean (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Distribute sensors across the working volume incl. corners, center, near door and shelves. Record over the stabilized window (e.g. 24 h)." },
+    accept: "All sensors remain within the defined uniformity band over the observation period (e.g. 37 °C ± 1 °C); spatial gradient and stability meet the protocol limit. Identify hottest/coldest positions for routine-probe placement.",
+    note: "Uniformity is the spread across sensors at one time; stability is each sensor over time. Capture both. The worst-case position found here drives PQ probe placement." },
+  "incubator|OQ|1": { // alarms
+    pre: ["Chamber at setpoint and stable", "Alarm setpoints configured per URS", "Independent reference to confirm actual condition at alarm"],
+    fields: { cols: ["Alarm", "Configured setpoint", "Observed activation", "Delay", "Local / remote", "Pass/Fail"], rows: 4,
+      hint: "Challenge each alarm by driving the parameter to its limit (or simulating). One row per alarm: over-temp, door-open, CO₂ (if fitted)." },
+    accept: "Each alarm activates at its configured setpoint within the specified delay, with correct local annunciation and remote/BMS signal." },
+  "incubator|OQ|2": { // CO2 control + recovery
+    pre: ["Chamber at temperature setpoint and stable", "CO₂ supply connected, regulator set", "Calibrated CO₂ reference (e.g. Fyrite or NDIR analyzer)"],
+    fields: { cols: ["Event", "Setpoint", "Pre-open", "Post-open low", "Recovery time", "Pass/Fail"], rows: 3,
+      hint: "Record CO₂ at setpoint, open door for the defined interval, then time return to the control band." },
+    accept: "CO₂ controls to setpoint (e.g. 5 % ± 0.5 %) and recovers to the control band within the defined recovery time after a standardized door-open event." },
+  "incubator|OQ|3": { // door-open recovery
+    pre: ["Chamber loaded state per protocol (empty or representative)", "Defined open interval (e.g. 30 s)", "Reference sensor at worst-case position"],
+    fields: { cols: ["Open interval", "Peak excursion", "Setpoint", "Recovery time", "Pass/Fail"], rows: 3,
+      hint: "Open door for the defined interval, record peak deviation and time to return to the control band." },
+    accept: "Temperature recovers to the control band within the defined recovery time after a standardized door-open event; peak excursion does not exceed the product-defined limit." },
+  "incubator|PQ|0": { // loaded mapping
+    pre: ["Representative / worst-case load installed per the defined loading pattern", "Mapping sensors positioned incl. within-load and worst-case spots", "Run over the defined period (e.g. 24-72 h)"],
+    fields: { cols: ["Sensor / position", "In-load / air", "Min (°C)", "Max (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Repeat mapping under load. Include sensors within the product/vessels, not just air spaces." },
+    accept: "Loaded chamber maintains the required uniformity and stability under representative load and routine access over the defined period; results consistent with (or bounding) the empty-chamber study.",
+    note: "Load changes airflow and thermal mass — loaded hot/cold spots can differ from empty. This is the study that proves real-use performance." },
+
+  /* ===================== CO₂ INCUBATORS ===================== */
+  "co2incubator|OQ|0": { // empty mapping at 37
+    pre: ["Chamber empty, stabilized at setpoint (typ. 37 °C)", "Calibrated mapping sensors within cal date", "Uniformity band defined in protocol"],
+    fields: { cols: ["Sensor / position", "Location", "Min (°C)", "Max (°C)", "Mean (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Distribute across working volume incl. near water tray and door. Record over the stabilized window." },
+    accept: "All sensors within the defined band (e.g. 37 °C ± 1 °C); gradient and stability meet protocol limits." },
+  "co2incubator|OQ|1": { // CO2 control + recovery
+    pre: ["At temperature setpoint and stable", "CO₂ regulator set; humidity tray filled if used", "Calibrated CO₂ reference analyzer"],
+    fields: { cols: ["Event", "Setpoint", "Pre-open", "Post-open low", "Recovery time", "Pass/Fail"], rows: 3,
+      hint: "Record CO₂ at setpoint, perform defined door-open, time return to band." },
+    accept: "CO₂ controls to setpoint (e.g. 5 % ± 0.5 %) and recovers within the defined time after a standardized door-open event." },
+  "co2incubator|OQ|2": { // alarms
+    pre: ["Chamber at setpoint", "Alarm setpoints configured", "Independent references for T and CO₂"],
+    fields: { cols: ["Alarm", "Configured setpoint", "Observed activation", "Local / remote", "Pass/Fail"], rows: 4,
+      hint: "Challenge high/low temp, CO₂, and door alarms." },
+    accept: "Each alarm activates at its configured setpoint with correct local and remote/BMS signal." },
+  "co2incubator|OQ|5": { // humidity
+    pre: ["Water reservoir/tray filled per SOP", "At temperature setpoint and stable", "Calibrated RH reference"],
+    fields: { cols: ["Parameter", "Required range", "Observed range", "Time to reach", "Pass/Fail"], rows: 2,
+      hint: "Record RH reaching and holding the required range (commonly ≥ 90 % RH for cell culture)." },
+    accept: "Humidity reaches and holds the required range (e.g. ≥ 90 % RH) under control at the study setpoint." },
+  "co2incubator|PQ|0": { // loaded performance
+    pre: ["Representative cell-culture loading pattern installed", "Sensors incl. within-load positions", "Run over representative period with normal access"],
+    fields: { cols: ["Parameter", "Sensor / position", "Observed range", "Within spec? (Y/N)"], rows: 6,
+      hint: "Track T, CO₂, and RH together under load and routine access." },
+    accept: "Temperature, CO₂, and humidity hold within spec under representative load and access over the defined period." },
+
+  /* ===================== REFRIGERATORS (2-8 °C) ===================== */
+  "fridge|OQ|2": { // empty mapping + pulldown
+    pre: ["Chamber empty, door closed, stabilized at setpoint", "Calibrated mapping sensors (rated for range) within cal date", "Uniformity band defined (e.g. 2-8 °C with target ~5 °C)"],
+    fields: { cols: ["Sensor / position", "Location", "Min (°C)", "Max (°C)", "Mean (°C)", "Within 2-8? (Y/N)"], rows: 9,
+      hint: "Include top/bottom shelves, corners, door, near fan/evaporator. Capture pull-down from ambient and steady-state." },
+    accept: "All positions remain within 2-8 °C (or the tighter protocol band) at steady state; pull-down from ambient completes within the defined time. No sensor breaches limits.",
+    note: "Door and top-shelf positions are common warm spots; near-evaporator can be a cold spot / freeze risk for 2-8 storage." },
+  "fridge|OQ|3": { // alarms
+    pre: ["At setpoint and stable", "High/low alarm setpoints + delay configured", "Independent reference"],
+    fields: { cols: ["Alarm", "Configured limit", "Observed activation", "Delay", "Audible/visual + remote", "Pass/Fail"], rows: 2,
+      hint: "Challenge high and low temperature alarms; confirm delay prevents nuisance trips but catches real excursions." },
+    accept: "High and low alarms activate at configured limits within the set delay, with correct audible/visual indication and remote/BMS signal." },
+  "fridge|OQ|4": { // door-open excursion
+    pre: ["At setpoint and stable", "Defined open interval", "Reference at worst-case (warmest) position"],
+    fields: { cols: ["Open interval", "Time to exceed 8 °C", "Peak temp", "Recovery time to band", "Pass/Fail"], rows: 2,
+      hint: "Open door for the defined interval; record time to breach limit and time to recover." },
+    accept: "After a standardized door-open, time to exceed 8 °C and recovery time are within product-acceptable limits; mean kinetic impact assessed if required." },
+  "fridge|OQ|5": { // defrost excursion
+    pre: ["Unit running normal defrost schedule", "Reference logging through a full defrost cycle"],
+    fields: { cols: ["Defrost event", "Peak temp", "Limit", "Duration above band", "Recovery", "Pass/Fail"], rows: 2,
+      hint: "Capture temperature through a complete defrost cycle at the worst-case position." },
+    accept: "Temperature stays within limit through defrost, or excursion magnitude/duration and recovery are within the product-acceptable limit." },
+  "fridge|OQ|6": { // power loss
+    pre: ["At setpoint and stable", "Defined outage duration", "Backup (if fitted) armed; reference logging continuously"],
+    fields: { cols: ["Outage duration", "Rise rate (°C/h)", "Peak temp", "Time to exceed 8 °C", "Recovery time", "Pass/Fail"], rows: 1,
+      hint: "Simulate a power outage of the defined duration; record rise rate and recovery on restoration." },
+    accept: "Temperature rise rate and time-to-breach during the defined outage, and recovery on restoration, are within product-acceptable limits. Backup (if fitted) activates as designed.",
+    note: "Rise rate is the number stability/excursion risk assessments actually use — capture °C/h, not just peak." },
+  "fridge|PQ|1": { // loaded mapping
+    pre: ["Defined load (min and/or max) installed", "Mapping sensors incl. in-load positions", "Run over representative period with normal door-opening pattern"],
+    fields: { cols: ["Sensor / position", "In-load / air", "Min (°C)", "Max (°C)", "Within 2-8? (Y/N)"], rows: 9,
+      hint: "Repeat mapping under load with realistic access. Worst-case load (min and max) may both be required." },
+    accept: "Loaded unit maintains 2-8 °C under representative load and routine access over the defined period; worst-case position confirmed for routine monitoring." },
+
+  /* ===================== FREEZERS (−20 °C) ===================== */
+  "freezer|OQ|2": { // empty mapping + pulldown
+    pre: ["Chamber empty, door closed, stabilized at setpoint (typ. −20 °C)", "Mapping sensors rated and calibrated for sub-zero range", "Uniformity band defined"],
+    fields: { cols: ["Sensor / position", "Location", "Min (°C)", "Max (°C)", "Mean (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Sub-zero-rated sensors only. Include door, corners, near evaporator. Capture pull-down from ambient." },
+    accept: "All positions within the defined band (e.g. −20 °C ± 5 °C or product spec) at steady state; pull-down completes within the defined time.",
+    note: "Door perimeter and upper zones are typical warm spots; frost build-up over time can shift them — note for requalification." },
+  "freezer|OQ|3": { // alarms
+    pre: ["At setpoint and stable", "Alarm setpoints + delay configured", "Sub-zero reference"],
+    fields: { cols: ["Alarm", "Configured limit", "Observed activation", "Delay", "Audible/visual + remote", "Pass/Fail"], rows: 2,
+      hint: "Challenge high and low alarms at the sub-zero limits." },
+    accept: "High/low alarms activate at configured limits within delay, with correct local and remote signal." },
+  "freezer|OQ|4": { // door-open excursion
+    pre: ["At setpoint and stable", "Defined open interval", "Reference at warmest position"],
+    fields: { cols: ["Open interval", "Peak temp", "Limit", "Recovery time", "Pass/Fail"], rows: 2,
+      hint: "Open for defined interval; record peak and recovery." },
+    accept: "Peak excursion and recovery after a standardized door-open are within product-acceptable limits." },
+  "freezer|OQ|6": { // power loss
+    pre: ["At setpoint and stable", "Defined outage duration", "Continuous reference logging"],
+    fields: { cols: ["Outage duration", "Rise rate (°C/h)", "Peak temp", "Recovery time", "Pass/Fail"], rows: 1,
+      hint: "Simulate outage; record rise rate and recovery." },
+    accept: "Rise rate during the defined outage and recovery on restoration are within product-acceptable limits." },
+  "freezer|PQ|1": { // loaded mapping
+    pre: ["Defined load installed", "In-load and air sensors", "Representative period + access pattern"],
+    fields: { cols: ["Sensor / position", "In-load / air", "Min (°C)", "Max (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Loaded mapping with realistic access." },
+    accept: "Loaded freezer maintains the required band under representative load and access; worst-case position confirmed." }
+
+};
+
+/* TCU exec overrides part 2: ult, coldroom, warehouse, stability, photostability. */
+const EXEC_OVERRIDES_2 = {
+
+  /* ===================== ULTRA-LOW FREEZERS (−80 °C) ===================== */
+  "ult|OQ|0": { // empty mapping at -80 + pulldown
+    pre: ["Chamber empty, lid/door closed, stabilized at −80 °C", "Sensors rated and calibrated for −80 °C range (T-type or RTD rated to ≤ −90 °C), traceable", "Uniformity band and pull-down time defined in protocol"],
+    fields: { cols: ["Sensor / position", "Compartment", "Min (°C)", "Max (°C)", "Mean (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Use sensors rated for the range. Map each compartment/drawer. Capture pull-down from ambient to −80 °C and steady-state spread." },
+    accept: "All positions within the defined band (e.g. −80 °C ± 10 °C or product spec) at steady state; pull-down from ambient completes within the defined time. Compartment-to-compartment gradient within limit.",
+    note: "ULT gradients are large near the door/lid and between compartments; ambient heat-rejection clearance materially affects performance. Sensor range rating is a real gotcha — standard probes saturate." },
+  "ult|OQ|1": { // high-temp alarm + backup activation
+    pre: ["At −80 °C and stable", "High-temp alarm setpoint configured", "Backup system (CO₂/LN₂, if fitted) armed", "Reference logging continuously"],
+    fields: { cols: ["Function", "Configured setpoint", "Observed activation", "Backup engaged?", "Local / remote", "Pass/Fail"], rows: 2,
+      hint: "Drive temperature up (or simulate) to the high-temp alarm point; confirm alarm and any backup-system activation." },
+    accept: "High-temp alarm activates at its configured setpoint with correct local + remote signal; backup system (if fitted) engages as designed and arrests the rise." },
+  "ult|OQ|2": { // door/lid open excursion + recovery
+    pre: ["At −80 °C and stable", "Defined open interval (kept short — ULT excursions are fast)", "Reference at worst-case position"],
+    fields: { cols: ["Open interval", "Peak temp", "Time to exceed limit", "Recovery time to −80", "Pass/Fail"], rows: 2,
+      hint: "Open for the defined interval; ULT warms quickly, so capture at short logging interval." },
+    accept: "Peak excursion and recovery time after a standardized open event are within product-acceptable limits. Recovery to −80 °C completes within the defined time.",
+    note: "ULT recovery can take far longer than the open event itself — pull-down after opening is the limiting factor, capture it fully." },
+  "ult|PQ|0": { // loaded performance incl. retrievals
+    pre: ["Representative sample inventory loaded per the defined pattern", "In-rack and air sensors", "Run over representative period including routine sample-retrieval openings"],
+    fields: { cols: ["Sensor / position", "Drawer / rack", "Min (°C)", "Max (°C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Loaded mapping with realistic retrieval openings (frequency per actual use)." },
+    accept: "Loaded ULT maintains the required band under representative inventory and routine retrievals over the defined period; worst-case position confirmed for routine monitoring." },
+
+  /* ===================== COLD ROOMS ===================== */
+  "coldroom|OQ|0": { // 3-D mapping
+    pre: ["Room empty, door(s) closed, stabilized at setpoint", "3-D sensor array sized to room volume (incl. corners, center, door, return/supply air, vertical levels)", "Uniformity band defined"],
+    fields: { cols: ["Sensor #", "X-Y position", "Height level", "Min (°C)", "Max (°C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Build a 3-D grid: floor/mid/ceiling levels × plan positions incl. all corners, center, door, and return-air. Sensor count scales with volume (e.g. one per ~5-10 m as guidance)." },
+    accept: "All grid positions within the defined band over the observation period; vertical stratification and door-zone gradient within limits. Hot/cold zones identified for monitoring placement.",
+    note: "Cold rooms stratify vertically and run warm near doors/returns — the 3-D array exists to catch exactly those zones. Corners and ceiling are usual worst cases." },
+  "coldroom|OQ|1": { // door + defrost excursion
+    pre: ["At setpoint and stable", "Defined door-open interval and a full defrost cycle captured", "References at door-zone and worst-case positions"],
+    fields: { cols: ["Event", "Peak temp", "Limit", "Duration above band", "Recovery time", "Pass/Fail"], rows: 3,
+      hint: "Capture both a standardized door-open and a complete defrost cycle." },
+    accept: "Door-open and defrost excursions stay within limit, or magnitude/duration and recovery are within product-acceptable limits." },
+  "coldroom|OQ|2": { // power loss
+    pre: ["At setpoint and stable", "Defined outage duration", "Backup power (if present) armed; continuous reference logging"],
+    fields: { cols: ["Outage duration", "Rise rate (°C/h)", "Peak temp", "Time to exceed limit", "Recovery time", "Pass/Fail"], rows: 1,
+      hint: "Simulate outage of the defined duration; record rise rate and recovery." },
+    accept: "Rise rate, time-to-breach, and recovery during/after the defined outage are within product-acceptable limits; backup engages as designed." },
+  "coldroom|OQ|6": { // alarms
+    pre: ["At setpoint and stable", "Alarm setpoints + door-ajar timing configured", "Independent reference"],
+    fields: { cols: ["Alarm", "Configured limit", "Observed activation", "Local / remote", "Pass/Fail"], rows: 3,
+      hint: "Challenge high/low temp and door-ajar alarms; confirm signal routing." },
+    accept: "High/low temp and door-ajar alarms activate at configured limits with correct routing to local and remote/BMS." },
+  "coldroom|PQ|0": { // loaded mapping
+    pre: ["Representative stock load and traffic profile in place", "Sensors incl. in-stock and worst-case zones from OQ", "Run over representative period incl. routine traffic/door openings"],
+    fields: { cols: ["Sensor / zone", "In-stock / air", "Min (°C)", "Max (°C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Loaded 3-D mapping with realistic traffic. Focus density on OQ-identified worst zones." },
+    accept: "Loaded room holds the band under representative stock and traffic over the defined period; permanent monitoring positions confirmed at worst-case zones." },
+
+  /* ===================== WAREHOUSES ===================== */
+  "warehouse|OQ|0": { // seasonal empty mapping
+    pre: ["Warehouse empty (or defined baseline), HVAC running normally", "Sensor array sized to volume and zoned (incl. dock doors, near HVAC supply/return, height levels, dead zones)", "Study spans seasonal extremes (summer + winter) or worst-case design condition"],
+    fields: { cols: ["Sensor #", "Zone", "Height", "Min (°C)", "Max (°C)", "MKT", "Within band? (Y/N)"], rows: 14,
+      hint: "Large-volume grid. Capture across seasons (or at design extremes). Compute MKT per zone where required. Identify stratification and hot/cold zones." },
+    accept: "All zones remain within the labeled storage band across seasonal extremes; MKT (where applied) within limit. Hot/cold zones, stratification, and dock-door influence characterized.",
+    note: "USP <1079> expects mapping at seasonal extremes and MKT per zone. Near-dock and high-rack zones are usual worst cases. This is squarely the USP 1079.2 territory worth flagging." },
+  "warehouse|OQ|2": { // dock door / HVAC failure impact
+    pre: ["At controlled condition, stable", "Reference sensors in near-door and adjacent zones", "Defined dock-door-open and/or HVAC-failure scenario"],
+    fields: { cols: ["Scenario", "Zone affected", "Peak deviation", "Limit", "Recovery time", "Pass/Fail"], rows: 3,
+      hint: "Open dock door(s) for the defined interval and/or simulate HVAC failure; record near-door zone impact and recovery." },
+    accept: "Near-door / affected-zone excursions during dock-door-open or HVAC failure are within product-acceptable limits, or mitigations (buffer zones, exclusion) are defined and justified." },
+  "warehouse|OQ|6": { // HVAC recovery
+    pre: ["Defined HVAC-failure or dock-open event", "Continuous zone reference logging"],
+    fields: { cols: ["Event", "Max deviation", "Recovery time", "Limit", "Pass/Fail"], rows: 2,
+      hint: "Capture recovery to band after the disturbance is removed." },
+    accept: "Affected zones recover to the labeled band within the defined time after HVAC restoration / door closure." },
+  "warehouse|PQ|0": { // loaded seasonal mapping
+    pre: ["Representative stock load in place", "Permanent + study sensors at worst-case zones from OQ", "Run over a defined (often seasonal) period under live operation"],
+    fields: { cols: ["Sensor / zone", "Height", "Min (°C)", "Max (°C)", "MKT", "Within band? (Y/N)"], rows: 14,
+      hint: "Loaded mapping under live stock and traffic, spanning the representative/worst-case season." },
+    accept: "Loaded warehouse maintains the labeled band (and MKT limit where applied) under representative stock and operation over the defined period; permanent monitoring sited at worst-case zones." },
+
+  /* ===================== STABILITY CHAMBERS ===================== */
+  "stability|OQ|1": { // T + RH empty mapping
+    pre: ["Chamber empty, stabilized at the study condition (e.g. 25 °C / 60 % RH or 40 °C / 75 % RH)", "Calibrated T and RH mapping sensors within cal date", "Uniformity bands for BOTH T and RH defined"],
+    fields: { cols: ["Sensor / position", "Temp min", "Temp max", "RH min", "RH max", "Within bands? (Y/N)"], rows: 12,
+      hint: "Map temperature AND humidity together across the working volume. ICH conditions have tight RH bands — distribute sensors incl. near inlet/return and door." },
+    accept: "All positions within both the temperature band (e.g. ± 2 °C) and the humidity band (e.g. ± 5 % RH) over the observation period; gradients and stability within protocol limits.",
+    note: "Stability chambers must hold two parameters at once — RH uniformity is usually the harder one and often the limiting result. Map both, report both." },
+  "stability|OQ|2": { // T + RH alarms
+    pre: ["At study condition and stable", "High/low T and RH alarm setpoints configured", "Independent T and RH references"],
+    fields: { cols: ["Alarm", "Configured limit", "Observed activation", "Local / remote", "Pass/Fail"], rows: 4,
+      hint: "Challenge high/low temperature and high/low humidity alarms." },
+    accept: "All T and RH alarms activate at configured limits with correct local and remote/BMS signal." },
+  "stability|OQ|3": { // door-open recovery T + RH
+    pre: ["At study condition and stable", "Defined open interval", "T and RH references at worst-case position"],
+    fields: { cols: ["Parameter", "Peak excursion", "Setpoint band", "Recovery time", "Pass/Fail"], rows: 2,
+      hint: "After a standardized door-open, record recovery of BOTH temperature and humidity to band." },
+    accept: "Both temperature and humidity recover to their setpoint bands within the defined recovery time after a standardized door-open event." },
+  "stability|OQ|5": { // power loss + data continuity
+    pre: ["At study condition and stable", "Defined outage duration", "Logging system on UPS or with documented gap behavior"],
+    fields: { cols: ["Outage duration", "T peak", "RH peak", "Safe restart?", "Data continuity?", "Pass/Fail"], rows: 1,
+      hint: "Simulate outage; confirm safe restart to setpoint and that the data record handles the gap correctly (no silent loss)." },
+    accept: "Chamber restarts safely to the study condition after the defined outage; the logging system preserves data integrity across the gap (gap recorded, not overwritten).",
+    note: "For stability, the DATA record matters as much as the chamber — an unrecorded excursion can invalidate a study. Confirm gap handling explicitly." },
+  "stability|PQ|0": { // loaded mapping
+    pre: ["Representative sample load per the defined pattern", "T and RH sensors incl. within-load positions", "Run over the defined period"],
+    fields: { cols: ["Sensor / position", "Temp range", "RH range", "Within bands? (Y/N)"], rows: 12,
+      hint: "Loaded T+RH mapping. Samples affect airflow and local RH — include in-load sensors." },
+    accept: "Loaded chamber holds both T and RH bands under representative load over the defined period; worst-case position confirmed for routine monitoring." },
+
+  /* ===================== PHOTOSTABILITY CHAMBERS ===================== */
+  "photostability|OQ|0": { // light mapping
+    pre: ["Chamber empty, lamps warmed/stabilized", "Calibrated lux meter and near-UV (W/m²) radiometer, traceable", "Sample-plane grid defined"],
+    fields: { cols: ["Position", "Visible (lux)", "Near-UV (W/m²)", "Within uniformity? (Y/N)"], rows: 9,
+      hint: "Map both visible illuminance (lux) and near-UV irradiance (W/m²) across the sample plane. Edges/corners typically read lower." },
+    accept: "Visible and near-UV intensity are uniform across the sample plane within the defined tolerance; lowest-intensity positions identified for worst-case sample placement.",
+    note: "Two spectral bands, two instruments. Corner/edge fall-off defines worst-case sample positions for the dose calculation." },
+  "photostability|OQ|1": { // ICH Q1B dose
+    pre: ["Mapping complete; worst-case (lowest-intensity) position known", "Calibrated radiometry or chemical actinometry per ICH Q1B", "Exposure duration set to deliver the minimum dose"],
+    fields: { cols: ["Band", "Measured intensity", "Exposure time", "Delivered dose", "ICH Q1B minimum", "Pass/Fail"], rows: 2,
+      hint: "Confirm delivered dose at the worst-case position: visible ≥ 1.2 million lux·h AND near-UV ≥ 200 W·h/m²." },
+    accept: "Delivered dose at the worst-case sample position meets BOTH ICH Q1B minimums: ≥ 1.2 million lux·h (visible) and ≥ 200 W·h/m² (near-UV).",
+    note: "ICH Q1B Option 1/Option 2 sources differ — confirm which lamp configuration the chamber uses. Dose is intensity × time; verify at the LOWEST-intensity position, not the average." },
+  "photostability|OQ|2": { // T (+RH) at setpoint
+    pre: ["Lamps operating (they add heat)", "Calibrated T (and RH if controlled) references", "Setpoint band defined"],
+    fields: { cols: ["Sensor / position", "Temp (°C)", "RH (%)", "Within band? (Y/N)"], rows: 6,
+      hint: "Map temperature with lamps ON — lamp heat load is the realistic condition. Include RH if controlled." },
+    accept: "Temperature (and RH if controlled) at the sample plane stays within the defined band with lamps operating at the study condition." },
+  "photostability|PQ|0": { // loaded dose confirmation
+    pre: ["Representative samples / actinometry at defined sample positions", "Exposure per the qualified protocol", "Radiometry or actinometry at sample positions"],
+    fields: { cols: ["Sample position", "Visible dose", "Near-UV dose", "Meets Q1B min? (Y/N)"], rows: 6,
+      hint: "Confirm delivered dose at actual loaded sample positions (chemical actinometry validates the physical measurement)." },
+    accept: "Delivered dose at all qualified sample positions meets the ICH Q1B minimums under representative loading; actinometry (if used) corroborates the radiometric dose." }
+
+};
+
+/* ---------- HAND-AUTHORED EXECUTABLE OVERRIDES (Sterilizers) ---------- */
+/* Hand-authored executable overrides for Sterilizers — part 1: autoclave, etosterilizer.
+   Keyed "id|PHASE|index". buildExecutable prefers these. */
+const EXEC_OVERRIDES_3 = {
+
+  /* ===================== AUTOCLAVES / STEAM STERILIZERS ===================== */
+  "autoclave|OQ|2": { // steam quality
+    pre: ["Clean/pure steam supply at operating pressure, steady state", "Sampling per EN 285 (sample line from the steam main, correct cooling/condensate handling)", "Calibrated test kit: NCG measurement set, dryness/superheat thermometry"],
+    fields: { cols: ["Test", "Method", "Result", "EN 285 limit", "Pass/Fail"], rows: 3,
+      hint: "Run the three steam-quality tests per EN 285: non-condensable gases (NCG), dryness value (dryness fraction), and superheat. Repeat per EN 285 replicate requirement." },
+    accept: "Non-condensable gases \u2264 3.5 % (v/v); dryness value \u2265 0.95 (\u2265 0.90 for metal loads); superheat \u2264 25 \u00b0C, per EN 285. All within limit on the required number of replicates.",
+    note: "Poor steam quality is the silent killer of porous-load sterilization \u2014 wet steam and NCG both block heat transfer to the load. EN 285 is the steam-quality reference; confirm the edition your site has adopted." },
+  "autoclave|OQ|3": { // leak rate / vacuum hold
+    pre: ["Chamber empty, dry, at ambient", "Vacuum drawn to the test pressure", "Calibrated pressure/vacuum gauge; timer"],
+    fields: { cols: ["Phase", "Start pressure", "End pressure", "Elapsed time", "Leak rate", "Pass/Fail"], rows: 2,
+      hint: "Draw vacuum, isolate, hold for the defined period; record pressure rise. Compute leak rate (mbar/min)." },
+    accept: "Pressure rise does not exceed the specified leak rate (commonly \u2264 1.3 mbar/min per EN 285) over the hold period; chamber/door seal integrity confirmed.",
+    note: "A failing leak rate means air re-enters during the conditioning vacuum \u2014 directly compromises air removal and steam penetration. Run before Bowie-Dick." },
+  "autoclave|OQ|4": { // Bowie-Dick
+    pre: ["Sterilizer pre-warmed (a cold sterilizer can fail a good cycle)", "Bowie-Dick PCD / test pack per ISO 11140 placed in the worst-case position (typically over the drain)", "Dynamic-air-removal cycle selected (typ. 134 \u00b0C, short exposure)"],
+    fields: { cols: ["Run", "Cycle / temp", "PCD result", "Uniform change? (Y/N)", "Pass/Fail"], rows: 3,
+      hint: "Run the Bowie-Dick PCD in an otherwise empty dynamic-air-removal cycle. Read the indicator for complete, uniform colour change." },
+    accept: "Uniform, complete colour change across the Bowie-Dick indicator (no central pale/uneven area), indicating complete air removal and rapid steam penetration. Indicators classified per ISO 11140-1.",
+    note: "Bowie-Dick tests AIR REMOVAL, not lethality \u2014 a non-uniform change means an air pocket where steam never reached. Pre-warming matters; first-cycle-of-day failures are often just a cold chamber." },
+  "autoclave|OQ|5": { // empty-chamber heat distribution
+    pre: ["Chamber empty, door closed", "Distributed sensor array (typ. 10-12+ calibrated TCs incl. over the drain and geometric extremes)", "Reference TC adjacent to the chamber control sensor"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Distribute TCs through the empty chamber incl. the drain (usual cold spot). Record across the exposure plateau; assess spread between sensors and vs the control probe." },
+    accept: "During exposure, all chamber sensors are within the sterilization band and the spread between sensors meets the protocol limit (commonly \u2264 \u00b11 \u00b0C, or \u22123/+? per the cycle); none below the lower sterilization limit.",
+    note: "Empty-chamber distribution finds the chamber cold spot (often the drain) before product is involved. The cold spot found here informs where penetration TCs and BIs go in PQ." },
+  "autoclave|OQ|6": { // equilibration time
+    pre: ["Distributed sensor array in place", "Cycle running to the exposure plateau", "Time-stamped logging at adequate interval"],
+    fields: { cols: ["Reference point", "Time setpoint signaled", "Time all sensors in band", "Equilibration time", "Limit", "Pass/Fail"], rows: 1,
+      hint: "Measure from the moment the reference reaches the band to the moment the slowest sensor reaches it." },
+    accept: "Equilibration time (slowest chamber sensor to reach the sterilization band) is within the EN 285 limit (commonly \u2264 15 s for chambers \u2264 800 L, \u2264 30 s above), confirming rapid, even steam penetration." },
+  "autoclave|OQ|7": { // P/T saturated steam relationship
+    pre: ["Calibrated independent T and P references logging together", "Cycle run through exposure"],
+    fields: { cols: ["Time point", "Measured temp", "Measured pressure", "Saturated-steam temp at P", "Deviation", "Pass/Fail"], rows: 4,
+      hint: "Compare measured chamber temperature against the saturated-steam temperature for the measured pressure at several points across exposure." },
+    accept: "Measured temperature tracks the saturated-steam temperature for the measured pressure throughout exposure (deviation within limit), confirming saturated (not superheated/wet) conditions.",
+    note: "Divergence between actual temp and the steam-table temp for that pressure signals superheat or air/NCG \u2014 corroborates the steam-quality result." },
+  "autoclave|OQ|8": { // alarms/interlocks
+    pre: ["Sterilizer in a known state", "Alarm/interlock setpoints configured", "Means to provoke each condition safely (simulate where needed)"],
+    fields: { cols: ["Condition", "Expected response", "Observed", "Pass/Fail"], rows: 5,
+      hint: "Provoke low-temperature, low-steam, door, and cycle-abort conditions; confirm the cycle aborts/holds and annunciates correctly." },
+    accept: "Each fault condition produces the correct response (cycle abort/hold, alarm, no false sterile declaration) and the load is flagged non-sterile where applicable." },
+  "autoclave|PQ|1": { // F0 heat penetration
+    pre: ["Defined load pattern installed (worst-case: max load / densest / hardest-to-penetrate)", "Penetration TCs in the hardest-to-heat points (inside containers/packs, at the chamber cold spot)", "Calibrated TCs + F\u2080 integration on the data system"],
+    fields: { cols: ["TC / position", "In-load point", "Min temp", "Exposure time", "F\u2080 delivered", "Meets target? (Y/N)"], rows: 12,
+      hint: "Place TCs at the slowest-to-heat points within the load. Integrate F\u2080 (base 121.1 \u00b0C, z=10) at each. Identify the load cold spot." },
+    accept: "F\u2080 at the load cold spot meets or exceeds the required value (e.g. \u2265 the target F\u2080, commonly \u2265 8-15 min depending on the cycle/SAL basis) on every qualified position.",
+    note: "F\u2080 at the COLD SPOT is the whole game for a moist-heat cycle \u2014 it's the integrated lethality the slowest point actually received. Overkill cycles target a large margin; bioburden/biovalidation cycles justify a lower F\u2080 with BIs." },
+  "autoclave|PQ|2": { // loaded uniformity
+    pre: ["Loaded configuration from PQ0", "Chamber distribution sensors retained"],
+    fields: { cols: ["Metric", "Acceptance", "Observed", "Pass/Fail"], rows: 2,
+      hint: "Record max sensor-to-sensor spread within the loaded chamber during exposure." },
+    accept: "Maximum temperature spread across the loaded chamber during exposure is within the protocol limit; no sensor falls below the lower sterilization limit." },
+  "autoclave|PQ|3": { // BI challenge
+    pre: ["BIs (e.g. Geobacillus stearothermophilus, stated D-value/population) placed at cold-spot and worst-case load positions, paired with penetration TCs", "Defined cycle (often a reduced/half cycle for overkill demonstration)", "Validated incubation + positive/negative controls"],
+    fields: { cols: ["BI position", "Population / D-value", "TC F\u2080 at position", "BI result (growth?)", "Pass/Fail"], rows: 6,
+      hint: "Co-locate BIs with penetration TCs at worst-case spots. Incubate per BI instructions with controls." },
+    accept: "Complete kill (no growth) of all BIs at worst-case positions, with positive controls growing and negative controls sterile, demonstrating the targeted SAL (typically 10\u207b\u2076).",
+    note: "BIs are the biological proof that the F\u2080 you measured actually delivered lethality. Co-location with TCs is essential \u2014 a BI without a paired temperature record can't be interpreted." },
+  "autoclave|PQ|5": { // post-cycle dryness
+    pre: ["Porous/wrapped load completed the full cycle incl. drying phase", "Pre/post weigh or visual+tactile inspection per SOP"],
+    fields: { cols: ["Load item", "Acceptance", "Observed (visual/weight)", "Pass/Fail"], rows: 4,
+      hint: "Inspect wrapped/porous items for residual moisture; weight-gain method gives an objective limit." },
+    accept: "No visible moisture and (weight method) moisture uptake within the EN 285 limit (commonly \u2264 1 % for textile, \u2264 0.2 % for metal loads); load is dry and sterile-barrier intact." },
+
+  /* ===================== ETHYLENE OXIDE STERILIZERS ===================== */
+  "etosterilizer|OQ|0": { // temp + humidity distribution
+    pre: ["Empty chamber at cycle conditioning conditions", "Calibrated T and RH sensors distributed (incl. geometric extremes)", "Worst-case location to be identified"],
+    fields: { cols: ["Sensor / position", "Temp (\u00b0C)", "RH (%)", "Within band? (Y/N)"], rows: 9,
+      hint: "Map temperature and humidity together at the preconditioning/conditioning condition. Humidity is a critical EtO process parameter, not an afterthought." },
+    accept: "Temperature and humidity uniform across the chamber within the defined bands at the cycle condition; worst-case (driest/coolest) location identified for BI/load placement.",
+    note: "EtO lethality depends on a quartet: temperature, HUMIDITY, gas concentration, and time. Humidity hydrates spores so EtO can act \u2014 a dry pocket is a sterilization-failure risk, which is why humidity distribution is mapped like temperature." },
+  "etosterilizer|OQ|1": { // gas conc + pressure control
+    pre: ["Chamber leak-tested and at conditioning condition", "Calibrated EtO concentration measurement (e.g. gas chromatography or in-line analyzer)", "Calibrated pressure/vacuum references"],
+    fields: { cols: ["Parameter", "Setpoint", "Observed (run 1)", "Observed (run 2)", "Observed (run 3)", "Within band? (Y/N)"], rows: 4,
+      hint: "Verify gas concentration, pressure/vacuum profile, and cycle-parameter accuracy across repeat runs for repeatability." },
+    accept: "Gas concentration, pressure/vacuum control, and cycle parameters are accurate to setpoint and repeatable across runs within the defined tolerances." },
+  "etosterilizer|OQ|3": { // alarms/interlocks/safety
+    pre: ["Chamber in known state", "Alarm/interlock/safety setpoints configured", "EtO gas-detection and door-safety systems active"],
+    fields: { cols: ["Condition", "Expected response", "Observed", "Pass/Fail"], rows: 5,
+      hint: "Challenge process alarms, interlocks, door/safety, and EtO leak-detection. Operator-safety interlocks are critical for EtO." },
+    accept: "All alarms, interlocks, and door/safety functions (incl. EtO exposure protection) activate at configured limits with the correct response." },
+  "etosterilizer|PQ|0": { // microbial half-cycle overkill
+    pre: ["BIs (e.g. B. atrophaeus, stated population/D-value) at worst-case positions within worst-case load", "HALF-cycle run (half the routine exposure time)", "Validated incubation + controls"],
+    fields: { cols: ["BI position", "Population", "Cycle (half/full)", "BI result", "Pass/Fail"], rows: 6,
+      hint: "Half-cycle overkill: demonstrate complete kill at HALF the routine exposure, so the full cycle carries a large safety margin." },
+    accept: "Complete kill of all BIs at worst-case positions in the HALF cycle (with valid controls), demonstrating the routine full cycle achieves \u2265 a 10\u207b\u2076 SAL with overkill margin.",
+    note: "Half-cycle overkill is the standard EtO PQ logic: if half the exposure already sterilizes, the routine full cycle has a 2\u00d7 (or greater) margin. Worst-case load + driest BI location is the real challenge." },
+  "etosterilizer|PQ|1": { // physical PQ
+    pre: ["Worst-case load configured", "Calibrated sensors at all load positions", "Three consecutive full cycles"],
+    fields: { cols: ["Run", "Temp range", "RH range", "Gas conc", "All positions in band? (Y/N)"], rows: 3,
+      hint: "Three consecutive full cycles confirming the four parameters hold at every load position." },
+    accept: "Three consecutive full cycles meet temperature, humidity, gas concentration, and time at all load positions, demonstrating reproducibility." },
+  "etosterilizer|PQ|2": { // residuals
+    pre: ["Representative product taken through the full cycle + defined aeration", "Validated analytical method (GC) for EtO and ECH residuals", "Aeration time/temperature defined"],
+    fields: { cols: ["Residual", "Product/site", "Measured", "ISO 10993-7 limit", "Pass/Fail"], rows: 3,
+      hint: "After aeration, measure EtO and ethylene chlorohydrin (ECH) residuals on representative product against the ISO 10993-7 patient-contact limits." },
+    accept: "EtO and ECH residuals on representative product after aeration are within the ISO 10993-7 limits for the device's contact category and duration.",
+    note: "EtO sterilizes but leaves toxic residuals \u2014 aeration is part of the validated process, not an afterthought. ISO 10993-7 limits depend on contact type/duration; the aeration cycle is what gets residuals under the limit." }
+
+};
+
+/* Sterilizer exec overrides part 2: gammasterilizer, watercascade. */
+const EXEC_OVERRIDES_4 = {
+
+  /* ===================== GAMMA / RADIATION STERILIZERS ===================== */
+  "gammasterilizer|OQ|0": { // installation dose mapping
+    pre: ["Reference/homogeneous load of defined, uniform density", "Calibrated dosimeters (traceable to a national standard) placed on a defined 3-D grid", "Fixed, documented process settings (timer/conveyor speed, source activity decay-corrected)"],
+    fields: { cols: ["Dosimeter / position", "Grid location", "Dose (kGy)", "Dose ratio vs ref", "Notes"], rows: 12,
+      hint: "Map the dose distribution through a homogeneous reference load on a 3-D grid. Identify Dmin and Dmax positions and the Dmax/Dmin ratio." },
+    accept: "Dose distribution characterized; minimum-dose (Dmin) and maximum-dose (Dmax) positions located and the Dmax/Dmin ratio established for the reference load, decay-corrected for source activity.",
+    note: "Gamma sterilization is governed by DOSE, not temperature \u2014 there is no thermocouple here, dosimetry is everything. Installation mapping in a homogeneous load characterizes the irradiator before real product variability is added." },
+  "gammasterilizer|OQ|1": { // dose reproducibility
+    pre: ["Fixed process settings", "Dosimeters at reference positions", "Replicate runs per protocol"],
+    fields: { cols: ["Run", "Dmin position dose", "Dmax position dose", "Within tolerance? (Y/N)"], rows: 3,
+      hint: "Repeat the reference run at fixed settings; confirm dose reproducibility at the reference positions." },
+    accept: "Delivered dose at reference positions is reproducible across replicate runs within the defined tolerance, confirming consistent irradiator performance." },
+  "gammasterilizer|PQ|0": { // product dose mapping
+    pre: ["Actual product in its real packaging/configuration and density", "Dosimeters distributed through the real product load incl. expected extremes", "Process settings from OQ"],
+    fields: { cols: ["Dosimeter / position", "Product location", "Dose (kGy)", "Dmin / Dmax?", "Notes"], rows: 12,
+      hint: "Map dose in the ACTUAL product load (density and geometry differ from the reference). Locate the true Dmin and Dmax in real product." },
+    accept: "Minimum-dose and maximum-dose positions located in the actual product load; Dmin sufficient for the sterilization dose and Dmax within the material limit (see PQ dose-setting and material steps).",
+    note: "Product density drives attenuation \u2014 the real product Dmin/Dmax can differ markedly from the homogeneous reference. This map is what routine dosimeter placement and load patterns are built on." },
+  "gammasterilizer|PQ|1": { // dose setting for SAL
+    pre: ["Bioburden data (or conservative assumption) for the product", "Method selected per ISO 11137-2 (VDmax25, VDmax15, or Method 1)", "Verification dose experiment run and sterility-tested"],
+    fields: { cols: ["Input", "Value", "Source / method", "Result"], rows: 5,
+      hint: "Establish the sterilization dose for a 10\u207b\u2076 SAL using the chosen ISO 11137-2 method (VDmax or Method 1), including the verification-dose sterility test." },
+    accept: "Sterilization dose established for a 10\u207b\u2076 SAL per the selected ISO 11137-2 method; the verification-dose experiment meets the acceptance (\u2264 the allowed number of positives), confirming the dose.",
+    note: "VDmax25/VDmax15 substantiate a preset 25 or 15 kGy dose against bioburden; Method 1 derives the dose from bioburden + a dose-response. The method choice depends on bioburden level and dose target \u2014 state which and why." },
+  "gammasterilizer|PQ|2": { // max dose vs material limit
+    pre: ["Dmax from product dose mapping", "Material/functional qualification limit established (package + device)"],
+    fields: { cols: ["Item", "Dmax delivered", "Material qualified limit", "Margin", "Pass/Fail"], rows: 3,
+      hint: "Confirm the maximum dose the product receives does not exceed the qualified material/functional limit." },
+    accept: "Dmax in the product load does not exceed the qualified material limit for the device and packaging; functional and package integrity remain acceptable at Dmax.",
+    note: "Radiation has an upper bound too \u2014 polymers embrittle, packaging degrades. The qualified window is Dmin (sterility) \u2264 dose \u2264 Dmax (material). Both ends are validated." },
+
+  /* ===================== WATER CASCADE STERILIZERS ===================== */
+  "watercascade|OQ|0": { // empty heat distribution
+    pre: ["Chamber empty, cascade/spray system running", "Distributed calibrated TCs incl. expected cold spot", "Reference TC near control sensor"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Map the empty chamber at the cycle setpoint with the cascade running; identify the cold spot. Spray/cascade coverage drives uniformity here, unlike pure-steam autoclaves." },
+    accept: "All chamber sensors within the sterilization band during exposure; spread meets the protocol limit and the cold spot is identified for penetration/BI placement.",
+    note: "Water cascade (superheated water spray) heats by water contact, not condensing steam \u2014 uniformity depends on spray coverage reaching every surface. The cold spot is wherever coverage is weakest." },
+  "watercascade|OQ|1": { // counter-pressure control
+    pre: ["Cycle configured with the counter-pressure / over-pressure profile", "Calibrated chamber pressure reference logging through heat-up, exposure, cool-down", "Representative sealed container (if used) for context"],
+    fields: { cols: ["Phase", "Target over-pressure", "Observed", "Container integrity", "Pass/Fail"], rows: 3,
+      hint: "Verify counter-pressure is controlled through heat-up, exposure, AND cool-down \u2014 the phases where sealed containers are most at risk." },
+    accept: "Counter-pressure (over-pressure) is controlled to the defined profile through all cycle phases, protecting sealed-container integrity; no container deformation or breach.",
+    note: "Counter-pressure is the defining feature of cascade/air-overpressure sterilizers \u2014 it balances the internal pressure of sealed flexible/glass containers (IV bags, vials) so they don't burst or leak during heat-up and cool-down. This is the test that protects the container-closure system." },
+  "watercascade|OQ|2": { // spray coverage / recirculation flow
+    pre: ["Cascade/spray and recirculation pump running at setpoint", "Calibrated flow reference (where fitted); coverage assessment method per SOP"],
+    fields: { cols: ["Parameter", "Acceptance", "Observed", "Pass/Fail"], rows: 2,
+      hint: "Verify recirculation flow and spray/cascade coverage are adequate and repeatable (coverage underpins heat uniformity)." },
+    accept: "Recirculation flow and spray/cascade coverage meet the defined limits and are repeatable, supporting uniform heat transfer to the load." },
+  "watercascade|PQ|0": { // loaded F0 heat penetration
+    pre: ["Worst-case load installed per defined pattern", "Penetration TCs at product cold spots (inside containers, slowest-to-heat positions)", "F\u2080 integration on the data system"],
+    fields: { cols: ["TC / position", "In-container point", "Min temp", "F\u2080 delivered", "Meets target? (Y/N)"], rows: 12,
+      hint: "Place penetration TCs inside representative containers at the slowest-to-heat points. Integrate F\u2080 at each; identify the product cold spot." },
+    accept: "F\u2080 at the product cold spot meets or exceeds the target across all qualified positions, with counter-pressure maintained throughout (no container damage).",
+    note: "Cascade cycles are common for terminal sterilization of liquids in sealed containers \u2014 F\u2080 at the coldest container is the lethality measure, exactly as in steam, but here counter-pressure must hold simultaneously." },
+  "watercascade|PQ|1": { // BI confirmation
+    pre: ["BIs (stated population/D-value) co-located with penetration TCs at cold-spot/worst-case positions", "Validated incubation + controls"],
+    fields: { cols: ["BI position", "Population / D-value", "TC F\u2080 at position", "BI result", "Pass/Fail"], rows: 6,
+      hint: "Where BIs are used, co-locate with penetration TCs at worst-case positions; incubate with controls." },
+    accept: "Complete kill of BIs at worst-case positions (with valid controls) supports the targeted SAL, corroborating the F\u2080 result." },
+  "watercascade|PQ|2": { // container-closure integrity
+    pre: ["Qualified load completed the full cycle incl. cool-down under counter-pressure", "CCI / damage inspection method per SOP (visual, dye, or instrumental)"],
+    fields: { cols: ["Container type", "Acceptance", "Observed", "Pass/Fail"], rows: 3,
+      hint: "Inspect representative containers post-cycle for deformation, leakage, or closure damage." },
+    accept: "No container deformation, leakage, or closure damage after the cycle for the qualified load; container-closure integrity maintained." }
+
+};
+
+/* ---------- HAND-AUTHORED EXECUTABLE OVERRIDES (Ovens & Cryo) ---------- */
+/* Hand-authored executable overrides — Ovens & Furnaces.
+   dryoven, depyrooven, depyrotunnel, vacuumoven, mufflefurnace. */
+const EXEC_OVERRIDES_5 = {
+
+  /* ===================== DRY HEAT OVENS ===================== */
+  "dryoven|OQ|0": { // empty heat distribution
+    pre: ["Chamber empty, door closed, airflow/HEPA running", "Distributed calibrated TCs (typ. 9-12+) incl. corners, center, near door and supply/return", "Reference TC adjacent to the control sensor; uniformity band defined"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Map the empty chamber at each operating setpoint; record across the plateau. Identify hot and cold spots. Dry-heat ovens stratify more than steam \u2014 airflow pattern matters." },
+    accept: "All TCs within the defined uniformity band at the setpoint plateau; sensor-to-sensor spread meets the protocol limit. Hot/cold spots identified for load-penetration and (depyrogenation) endotoxin-indicator placement.",
+    note: "Dry heat transfers far less efficiently than steam, so gradients and equilibration are larger \u2014 expect a wider spread than an autoclave and map accordingly. The cold spot drives PQ." },
+  "dryoven|OQ|4": { // equilibration/recovery after door
+    pre: ["TC array in place, chamber at setpoint", "Defined door-open interval", "Time-stamped logging"],
+    fields: { cols: ["Event", "Time setpoint reached", "Time all TCs in band", "Recovery time", "Limit", "Pass/Fail"], rows: 2,
+      hint: "Measure equilibration to band and recovery after a defined door-open." },
+    accept: "Equilibration and post-door recovery to the operating band complete within the defined time limits." },
+  "dryoven|PQ|0": { // loaded heat penetration
+    pre: ["Worst-case load installed per defined pattern", "Penetration TCs at slowest-to-heat load positions + the chamber cold spot", "F_H integration where the cycle is lethality/depyrogenation-based"],
+    fields: { cols: ["TC / position", "Load item", "Min temp", "Time-at-temp", "Meets requirement? (Y/N)"], rows: 12,
+      hint: "Place TCs at the hardest-to-heat load positions. Confirm every location meets the cycle time-at-temperature (and F_H where applicable)." },
+    accept: "Every load location reaches the required time-at-temperature (and F_H target where lethality-based) at the cold spot across the qualified load.",
+    note: "Dry-heat lethality uses F_H (reference 160 \u00b0C, z=20) \u2014 NOT the F\u2080 of moist heat (121.1 \u00b0C, z=10). Different reference and z-value; don't mix them." },
+  "dryoven|PQ|1": { // depyrogenation 3-log endotoxin
+    pre: ["Endotoxin indicators (ELI/spiked vials, stated challenge \u2265 1000 EU) at the cold spot and worst-case load positions", "Validated LAL/recovery method", "Positive controls (unprocessed spiked indicators)"],
+    fields: { cols: ["Indicator position", "Spike (EU)", "Recovered post-cycle (EU)", "Log reduction", "Pass/Fail"], rows: 6,
+      hint: "Place endotoxin indicators at the cold spot; recover and assay by LAL after the cycle. Compute log reduction vs the positive control." },
+    accept: "\u2265 3-log (1000-fold) reduction of bacterial endotoxin demonstrated at the cold spot and all challenge positions, with valid positive controls, per USP <85> / dry-heat depyrogenation expectations.",
+    note: "Depyrogenation is about destroying ENDOTOXIN, not just killing organisms \u2014 a 3-log endotoxin reduction is a far harder target than sterilization, which is why depyrogenation runs ~250 \u00b0C. The endotoxin indicator, not a BI, is the challenge." },
+
+  /* ===================== DEPYROGENATION OVENS ===================== */
+  "depyrooven|OQ|0": { // empty heat distribution at depyro setpoint
+    pre: ["Chamber empty, HEPA airflow running, stabilized at the depyrogenation setpoint (typ. \u2265 250 \u00b0C)", "TCs rated for \u2265 250 \u00b0C, calibrated/traceable, distributed incl. cold-spot candidates", "Reference TC near control sensor"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 12,
+      hint: "Map at the depyrogenation setpoint with high-temp-rated TCs. Identify the cold spot \u2014 this is where the endotoxin challenge goes." },
+    accept: "All TCs within the uniformity band at the depyrogenation setpoint; cold spot identified for the endotoxin challenge and load-penetration study.",
+    note: "TC rating is a real gotcha at \u2265 250 \u00b0C \u2014 standard probes drift or fail. Use high-temp-rated, traceably calibrated sensors." },
+  "depyrooven|OQ|1": { // time-at-temp control
+    pre: ["At setpoint and stable", "Cycle timer / time-at-temperature control configured", "Reference logging"],
+    fields: { cols: ["Function", "Setpoint", "Observed", "Pass/Fail"], rows: 3,
+      hint: "Verify time-at-temperature control and over-temperature protection govern the cycle correctly." },
+    accept: "Cycle time-at-temperature control and over-temperature protection function to setpoint; the hold period is controlled and recorded." },
+  "depyrooven|PQ|0": { // endotoxin challenge at cold spot
+    pre: ["Endotoxin indicators (challenge \u2265 1000 EU, e.g. ELI) at the cold spot and worst-case positions", "Validated LAL method + positive controls", "Routine cycle parameters"],
+    fields: { cols: ["Indicator position", "Spike (EU)", "Recovered (EU)", "Log reduction (LRV)", "Pass/Fail"], rows: 6,
+      hint: "Recover endotoxin indicators by LAL after the cycle; compute LRV vs positive control at the cold spot." },
+    accept: "LRV \u2265 3 (\u2265 3-log / 1000-fold endotoxin reduction) demonstrated at the cold spot and all challenge positions with valid controls, per USP <85>.",
+    note: "This is THE depyrogenation acceptance \u2014 a 3-log endotoxin reduction at the worst-case position. The cold spot from OQ mapping is where it must be proven." },
+  "depyrooven|PQ|1": { // loaded heat penetration
+    pre: ["Worst-case load per defined pattern", "Penetration TCs (\u2265 250 \u00b0C rated) at slowest-to-heat positions", "Time-at-temperature requirement defined"],
+    fields: { cols: ["TC / position", "Item", "Min temp", "Time-at-temp", "Meets requirement? (Y/N)"], rows: 12,
+      hint: "Confirm all item positions meet the time-at-temperature (and F_H where used) at the cold spot under load." },
+    accept: "All item locations meet the required time-at-temperature at the cold spot under the qualified load, supporting the endotoxin-reduction result." },
+
+  /* ===================== DEPYROGENATION TUNNELS ===================== */
+  "depyrotunnel|OQ|0": { // belt heat distribution across width
+    pre: ["Tunnel empty, HEPA airflow and zones running, heating zone at setpoint", "TCs (\u2265 250 \u00b0C rated) across the BELT WIDTH and along travel through the heating zone", "Belt at qualified speed"],
+    fields: { cols: ["TC / position", "Belt position (L/C/R)", "Peak temp", "Time-at-temp", "Within band? (Y/N)"], rows: 9,
+      hint: "Map across the belt width (left/center/right) and through the heating zone \u2014 edges typically run cooler. Identify the cold position across the width." },
+    accept: "Temperature uniform across the belt width within the band; the cold position (usually an edge) identified for the endotoxin challenge and loaded study.",
+    note: "Unlike a batch oven, a tunnel's cold spot is a POSITION ON THE MOVING BELT (often an edge) at a given dwell \u2014 it's a continuous process, so belt speed and width uniformity are the variables, not a static chamber map." },
+  "depyrotunnel|OQ|1": { // belt speed / dwell
+    pre: ["Belt running; calibrated means to verify speed/dwell", "Heating zone at setpoint"],
+    fields: { cols: ["Parameter", "Setpoint", "Observed", "Tolerance", "Pass/Fail"], rows: 2,
+      hint: "Verify belt speed / dwell-time accuracy \u2014 dwell at temperature is what delivers the depyrogenation." },
+    accept: "Belt speed / dwell time is accurate to setpoint within tolerance; the resulting time-at-temperature meets the cycle requirement." },
+  "depyrotunnel|OQ|4": { // zone pressure cascade
+    pre: ["Tunnel running with zones balanced", "Calibrated differential-pressure references between zones"],
+    fields: { cols: ["Zone transition", "Required \u0394P", "Observed \u0394P", "Direction", "Pass/Fail"], rows: 3,
+      hint: "Verify the pressure cascade from infeed toward the sterile outfeed maintains the correct direction and magnitude." },
+    accept: "Zone-to-zone pressure cascade is correct in direction and magnitude (positive toward the clean/sterile outfeed), protecting the cooled, depyrogenated outfeed from contamination.",
+    note: "The pressure cascade keeps the cooling/outfeed (clean side) protected \u2014 air must flow toward the dirty infeed, never the reverse, or you recontaminate depyrogenated containers." },
+  "depyrotunnel|PQ|0": { // endotoxin challenge at cold position
+    pre: ["Endotoxin indicators (\u2265 1000 EU) on containers at the cold belt position, run at production speed", "Validated LAL + positive controls"],
+    fields: { cols: ["Container position", "Spike (EU)", "Recovered (EU)", "LRV", "Pass/Fail"], rows: 6,
+      hint: "Place indicators on containers at the cold belt position; run at production belt speed; recover and assay." },
+    accept: "LRV \u2265 3 (\u2265 3-log endotoxin reduction) at the cold belt position at production speed, with valid controls, per USP <85>." },
+  "depyrotunnel|PQ|1": { // loaded heat penetration at production speed
+    pre: ["Representative container load on the belt at production speed", "Penetration TCs on/in containers at worst-case positions and load types"],
+    fields: { cols: ["TC / position", "Container type", "Peak temp", "Time-at-temp", "Meets requirement? (Y/N)"], rows: 9,
+      hint: "Confirm time-at-temperature at all belt positions and container types at production speed." },
+    accept: "All container positions and types meet the required time-at-temperature at production belt speed, supporting the endotoxin result." },
+
+  /* ===================== VACUUM OVENS ===================== */
+  "vacuumoven|OQ|0": { // vacuum control + leak rate
+    pre: ["Chamber empty, sealed, cold trap in service", "Calibrated vacuum gauge; timer", "Target pressure and leak-rate limit defined"],
+    fields: { cols: ["Test", "Target", "Observed", "Limit", "Pass/Fail"], rows: 3,
+      hint: "Verify the chamber reaches the target vacuum, holds it, and the leak-up (rise) rate is within limit when isolated." },
+    accept: "Chamber reaches and holds the target pressure; isolated leak-up rate is within the specified limit, confirming seal integrity.",
+    note: "Under vacuum, lower pressure lets solvents/moisture evaporate at lower temperature \u2014 vacuum control IS a process-critical parameter here, not a utility. Leak-up rate is the seal-integrity test." },
+  "vacuumoven|OQ|1": { // heat distribution under vacuum
+    pre: ["At target vacuum and setpoint", "TCs distributed incl. cold-spot candidates", "Stabilized before data capture"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Map heat distribution AT the target vacuum (conduction/radiation dominate \u2014 no convection), identify the cold spot." },
+    accept: "Temperature uniform within the band at the operating setpoint under vacuum; cold spot identified for the loaded drying study.",
+    note: "Under vacuum there's little air to convect heat, so distribution relies on conduction/radiation \u2014 gradients differ from an atmospheric oven; map under the actual vacuum condition, not at atmosphere." },
+  "vacuumoven|OQ|5": { // pump-down + leak-up
+    pre: ["Chamber sealed", "Calibrated vacuum gauge, timer"],
+    fields: { cols: ["Metric", "Target", "Observed", "Pass/Fail"], rows: 2,
+      hint: "Record pump-down time to target pressure and the chamber leak-up rate." },
+    accept: "Pump-down to target pressure completes within the defined time and leak-up rate is within limit." },
+  "vacuumoven|PQ|0": { // loaded drying
+    pre: ["Representative load installed", "TCs + (where used) endpoint method (e.g. LOD, pressure-rise, residual solvent)", "Defined drying endpoint"],
+    fields: { cols: ["Position / sample", "Temp", "Endpoint metric", "Acceptance", "Pass/Fail"], rows: 6,
+      hint: "Confirm uniformity under load and that the process endpoint (dryness / residual solvent / LOD) is met at all positions." },
+    accept: "Loaded chamber holds uniformity and the drying endpoint is met at all positions under the qualified load." },
+
+  /* ===================== MUFFLE FURNACES ===================== */
+  "mufflefurnace|OQ|1": { // empty heat distribution high temp
+    pre: ["Chamber empty, stabilized at the operating setpoint(s) (often 500-1000 \u00b0C+)", "High-temperature-rated TCs (e.g. Type K/S/R) calibrated and traceable for the range", "Reference TC near control sensor"],
+    fields: { cols: ["TC / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Map at the operating setpoint(s) with range-rated TCs. Identify hot and cold spots for crucible placement." },
+    accept: "All TCs within the uniformity band at the operating setpoint(s); hot/cold spots identified for crucible placement in the loaded study.",
+    note: "At 500-1000 \u00b0C+, thermocouple TYPE and rating matter (Type K to ~1260 \u00b0C, Type S/R for higher) \u2014 a mis-rated probe reads wrong or degrades. Uniformity in radiant-heated muffle chambers is position-sensitive." },
+  "mufflefurnace|OQ|4": { // ramp-up / equilibration
+    pre: ["TCs in place", "Defined ramp profile to setpoint", "Time-stamped logging"],
+    fields: { cols: ["Stage", "Target", "Time to band", "Limit", "Pass/Fail"], rows: 2,
+      hint: "Record ramp-up / equilibration time to reach the operating band. High-mass furnaces ramp slowly." },
+    accept: "Ramp-up / equilibration to the operating band completes within the defined time." },
+  "mufflefurnace|PQ|0": { // loaded performance
+    pre: ["Defined crucible load and placement", "TCs at crucible positions incl. the cold spot", "Time-at-temperature requirement defined (e.g. for ashing / loss-on-ignition)"],
+    fields: { cols: ["TC / crucible position", "Min temp", "Time-at-temp", "Meets requirement? (Y/N)"], rows: 9,
+      hint: "Confirm every crucible position reaches the required time-at-temperature under the qualified load." },
+    accept: "All crucible positions reach the required time-at-temperature under the qualified load; result reproducible per the consecutive-run requirement." }
+
+};
+
+/* Hand-authored executable overrides — Cryogenic: ln2, cryochamber. */
+const EXEC_OVERRIDES_6 = {
+
+  /* ===================== LIQUID NITROGEN VESSELS ===================== */
+  "ln2|OQ|0": { // vapor-phase vertical gradient mapping
+    pre: ["Vessel at normal operating fill (and worst-case low fill for a second run)", "Cryogenic-rated sensors (calibrated/traceable to the working range) on a vertical string from just above the liquid surface to the top of the storage space", "Lid/closure in normal position"],
+    fields: { cols: ["Sensor / height", "Distance above liquid", "Temp (\u00b0C)", "Within storage limit? (Y/N)"], rows: 9,
+      hint: "Map the VERTICAL temperature gradient from the liquid surface up to the top of the racks. Vapor-phase storage is all about how warm the top sample positions run." },
+    accept: "The warmest mapped position (top of the storage space at worst-case low fill) stays at or below the required storage limit (commonly \u2264 \u2212150 \u00b0C for vapor-phase cell storage); the vertical gradient is characterized.",
+    note: "Vapor-phase LN\u2082 storage protects samples ABOVE the liquid \u2014 the danger zone is the top of the rack at low fill, where it's warmest. That worst-case warm position is what the whole qualification hinges on; \u2212150 \u00b0C (glass-transition of water) is the usual line." },
+  "ln2|OQ|1": { // low-level alarm + auto-fill
+    pre: ["Level monitoring and auto-fill configured", "LN\u2082 supply available", "Calibrated level reference"],
+    fields: { cols: ["Function", "Setpoint", "Observed activation", "Pass/Fail"], rows: 3,
+      hint: "Verify low-level alarm and auto-fill activate at the configured level setpoints, and auto-fill terminates at the high setpoint." },
+    accept: "Low-level alarm activates at its setpoint; auto-fill initiates and terminates at the configured level setpoints, maintaining liquid above the minimum." },
+  "ln2|OQ|2": { // O2-depletion safety alarm
+    pre: ["O\u2082-depletion monitor installed and powered", "Calibrated test gas / bump-test means per the monitor's procedure", "Area ventilation in normal state"],
+    fields: { cols: ["Check", "Setpoint", "Observed", "Local / remote", "Pass/Fail"], rows: 2,
+      hint: "Bump-test or verify the O\u2082-depletion alarm activates at its configured threshold (commonly ~19.5 % O\u2082) with correct local + remote annunciation." },
+    accept: "O\u2082-depletion alarm activates at its configured threshold (e.g. 19.5 % O\u2082) with correct local and remote annunciation, protecting personnel against asphyxiation.",
+    note: "SAFETY-CRITICAL: LN\u2082 boil-off displaces oxygen and can cause rapid asphyxiation with no warning \u2014 the O\u2082 monitor is a life-safety device, not a process alarm. This verification protects people, not product." },
+  "ln2|PQ|0": { // loaded worst-case
+    pre: ["Worst-case fill (low) and full sample inventory loaded", "Sensors incl. the warmest occupied rack position", "Representative access/retrieval frequency over the run period"],
+    fields: { cols: ["Position", "Rack / height", "Warmest temp", "Storage limit", "Pass/Fail"], rows: 6,
+      hint: "Confirm the warmest OCCUPIED sample position stays within the storage limit at worst-case fill with routine lid-opening/retrievals." },
+    accept: "The warmest occupied sample position remains within the storage limit over the representative period at worst-case fill and routine access; auto-fill maintains level throughout.",
+    note: "Routine lid-opening and sample retrieval warm the top of the rack transiently \u2014 the loaded study with realistic access is what proves real-use protection, not the static empty map." },
+
+  /* ===================== CRYOGENIC CHAMBERS ===================== */
+  "cryochamber|OQ|0": { // empty mapping + pulldown
+    pre: ["Chamber empty, stabilized at the cryogenic setpoint", "Cryogenic-rated sensors calibrated/traceable across the range", "Uniformity band and pull-down time defined"],
+    fields: { cols: ["Sensor / position", "Location", "Min (\u00b0C)", "Max (\u00b0C)", "Within band? (Y/N)"], rows: 9,
+      hint: "Map the empty chamber at setpoint; capture pull-down from ambient to the cryogenic target. Use range-rated sensors." },
+    accept: "All positions within the uniformity band at the cryogenic setpoint; pull-down from ambient completes within the defined time.",
+    note: "Cryogenic-rated sensors are essential \u2014 standard probes saturate well before these temperatures. Pull-down rate matters for both throughput and (controlled-rate units) the freezing profile." },
+  "cryochamber|OQ|1": { // controlled-rate cooling profile
+    pre: ["Controlled-rate unit programmed with the target cooling profile", "Calibrated sample-probe(s) (and chamber probe) logging together", "Thermally representative dummy load where required"],
+    fields: { cols: ["Profile stage", "Programmed rate (\u00b0C/min)", "Observed rate", "Tolerance", "Pass/Fail"], rows: 4,
+      hint: "Verify the chamber (and sample, if controlled-rate freezing) follows the programmed cooling-rate profile through each stage, incl. the latent-heat/seeding plateau if applicable." },
+    accept: "The chamber follows the programmed cooling-rate profile within tolerance at each stage, including any controlled latent-heat release / seeding step.",
+    note: "Controlled-rate freezing (e.g. for cells: ~ \u22121 \u00b0C/min) is profile-driven \u2014 too fast causes intracellular ice, too slow causes osmotic damage. The PROFILE is the critical parameter, not just the endpoint." },
+  "cryochamber|OQ|2": { // alarms
+    pre: ["At setpoint and stable", "High-temperature/fault alarm setpoints configured", "Independent reference"],
+    fields: { cols: ["Alarm", "Setpoint", "Observed", "Local / remote", "Pass/Fail"], rows: 2,
+      hint: "Challenge high-temperature/fault alarms; confirm routing." },
+    accept: "High-temperature/fault alarms activate at configured setpoints with correct local and remote routing." },
+  "cryochamber|PQ|0": { // loaded freezing profile
+    pre: ["Thermally representative load (or real product) installed", "Sample probes at representative and worst-case positions", "Real freezing profile programmed"],
+    fields: { cols: ["Position", "Programmed profile", "Observed profile", "Within tolerance? (Y/N)"], rows: 6,
+      hint: "Reproduce the real freezing profile under load; confirm the load follows the temperature/rate requirement at all positions." },
+    accept: "Under representative load, all positions follow the programmed freezing profile within tolerance and meet the temperature/rate requirement; result reproducible across the required runs.",
+    note: "A thermally representative load is essential \u2014 product mass and packaging change the achieved cooling rate versus an empty chamber. PQ proves the PROFILE is delivered to the actual product." }
+
+};
+
+/* ---------- SAFETY SYSTEM DATA ----------
+   Page-level hazard banner (per-equipment, via shared HAZARD archetypes) +
+   per-test red chip where a specific test ADDS a hazard beyond the baseline.
+   Concise hazard + key controls/PPE, always deferring to site EHS/SOP. */
+
+/* Hazard archetypes — shared profiles equipment maps to (like risk archetypes). */
+const HAZARDS = {
+  pressure: { label: "Pressure / stored energy", icon: "pressure",
+    hazard: "Operates under pressure or vacuum; sudden release, door/seal failure, or implosion can cause serious injury.",
+    controls: "Confirm pressure relief and door-interlock function before testing. Never defeat an interlock to open under pressure. Stand clear of doors/sight glasses during pressurized phases. Follow lockout/tagout (LOTO) for any intrusive work." },
+  thermal_hot: { label: "High temperature / burns / fire", icon: "flame",
+    hazard: "Surfaces, steam, loads, or chamber reach temperatures that cause severe burns; high-temperature units carry fire risk.",
+    controls: "High-temp gloves and face/eye protection when handling hot loads or probes. Allow cooldown before contact; treat surfaces as hot. Keep combustibles clear. Use rated thermocouples and lead feed-throughs." },
+  steam: { label: "Steam / scald", icon: "steam",
+    hazard: "Live or pure steam and hot condensate can scald instantly; released steam fills the work area.",
+    controls: "Verify no pressure/temperature before opening. Crack doors slowly to vent. Eye protection and heat-resistant gloves. Keep clear of steam vents and condensate drains." },
+  cryo: { label: "Cryogenic / asphyxiation", icon: "cryo",
+    hazard: "Cryogenic liquid/vapor causes severe cold burns and frostbite; LN₂ boil-off displaces oxygen and can cause rapid asphyxiation with no warning.",
+    controls: "Cryo gloves, face shield, closed shoes; never seal cryogen in a closed container. Confirm the O₂-depletion monitor works before entry; ensure room ventilation. Treat O₂ alarms as evacuate-now. Follow confined-space rules where applicable." },
+  toxic_gas: { label: "Toxic / flammable gas", icon: "gas",
+    hazard: "Process gas is toxic, carcinogenic, and/or flammable/explosive (e.g. ethylene oxide); leaks endanger operators and the facility.",
+    controls: "Confirm gas detection, exhaust/abatement, and interlocks before any cycle. Personal gas monitoring and the site EtO (or relevant gas) exposure controls. No ignition sources. Aeration per procedure before access; never bypass safety interlocks." },
+  radiation: { label: "Ionizing radiation", icon: "radiation",
+    hazard: "Radioactive source or beam delivers a lethal dose; access during operation is fatal.",
+    controls: "Radiation-protection program governs all work; only trained, authorized personnel. Verify source position, interlocks, and area monitors before entry. Dosimetry badges required. Never override access interlocks — RSO authority applies." },
+  chemical: { label: "Hazardous chemicals / solvents", icon: "chemical",
+    hazard: "Flammable, corrosive, or toxic solvents/reagents; vapor, splash, or spill hazards (e.g. mobile phases, acids, organic solvents).",
+    controls: "Review SDS for every chemical. Appropriate gloves, eye protection, and ventilation/fume extraction. Bonding/grounding and no ignition sources for flammables. Spill kit accessible; waste handled per procedure." },
+  rotating: { label: "High-speed rotating / mechanical", icon: "rotating",
+    hazard: "High-speed rotors, mills, presses, or agitators can cause crush, entanglement, or ejected-fragment injuries; rotor failure releases large energy.",
+    controls: "Confirm guards, lid-interlocks, and rotor/tooling condition before running. LOTO before access. Keep hands/clothing/tools clear of moving parts; respect run-up/run-down times. Never defeat an interlock to reach inside." },
+  highvoltage: { label: "Electrical / high voltage", icon: "electrical",
+    hazard: "High-amperage or high-voltage supplies and exposed control wiring present shock and arc-flash risk during installation/intrusive testing.",
+    controls: "LOTO and qualified-electrician involvement for any work inside enclosures. Verify earthing/grounding. Treat circuits as live until proven dead. Arc-flash PPE per the site electrical-safety program." },
+  biohazard: { label: "Biohazard / containment", icon: "biohazard",
+    hazard: "Equipment handles biological agents or maintains containment; breach risks exposure or environmental release.",
+    controls: "Containment/BSL level governs all work; decontaminate per procedure before intrusive testing. Appropriate PPE and (where used) VHP/sporicidal decon cycles complete before access. Validate airflow/containment before relying on it." },
+  vhp: { label: "Decontaminant exposure (VHP / sporicide)", icon: "vhp",
+    hazard: "Vaporized hydrogen peroxide or sporicidal agents used for bio-decontamination are irritant/toxic at exposure; residual gas is a hazard.",
+    controls: "Confirm aeration to a safe level (gas monitor) before access. Do not enter or breach during a decon cycle. Appropriate respiratory/skin protection per the agent SDS." },
+  confined: { label: "Walk-in / confined-space access", icon: "confined",
+    hazard: "Walk-in chambers, cold rooms, and large vessels can trap personnel; cold, low-O₂, or door-latch failures are life-threatening.",
+    controls: "Verify inside-release door hardware and any personnel alarm before entry. Never enter a walk-in alone without a check-in procedure. Confined-space program applies to vessels; confirm atmosphere before entry." }
+};
+
+/* Equipment -> hazard archetype(s). Order = display order in the banner.
+   Only equipment with a genuine hazard is listed; benign instruments are omitted (no banner). */
+const HAZARD_MAP = {
+  // Sterilizers
+  autoclave: ["pressure", "steam", "thermal_hot"],
+  watercascade: ["pressure", "thermal_hot"],
+  etosterilizer: ["toxic_gas", "pressure"],
+  gammasterilizer: ["radiation"],
+  // Ovens & furnaces
+  dryoven: ["thermal_hot"],
+  depyrooven: ["thermal_hot"],
+  depyrotunnel: ["thermal_hot"],
+  vacuumoven: ["thermal_hot", "pressure"],
+  mufflefurnace: ["thermal_hot", "highvoltage"],
+  // Cryogenic
+  ln2: ["cryo"],
+  cryochamber: ["cryo"],
+  // TCUs with walk-in / confined access
+  coldroom: ["confined"],
+  warehouse: ["confined"],
+  // Analytical with solvents / high energy
+  hplc: ["chemical"],
+  gc: ["chemical", "thermal_hot"],
+  karlfischer: ["chemical"],
+  elementalanalyzer: ["chemical", "highvoltage"],
+  // Lab equipment
+  centrifuge: ["rotating"],
+  homogenizer: ["rotating"],
+  lyophilizer: ["pressure", "cryo"],
+  hotplate: ["thermal_hot"],
+  // Bioprocess
+  bioreactor: ["biohazard", "pressure"],
+  filterintegrity: ["pressure"],
+  // Solid-dose manufacturing
+  granulator: ["rotating", "chemical"],
+  fbd: ["chemical", "rotating"],
+  blender: ["rotating"],
+  mill: ["rotating"],
+  tabletpress: ["rotating"],
+  coater: ["rotating", "chemical"],
+  // Sterile / liquid
+  fillingline: ["rotating", "biohazard"],
+  blisterline: ["rotating", "thermal_hot"],
+  // API / chemical synthesis (highest chemical hazard)
+  reactor: ["chemical", "pressure", "thermal_hot"],
+  filterdryer: ["chemical", "rotating", "pressure"],
+  processcentrifuge: ["rotating", "chemical"],
+  jetmill: ["rotating", "chemical"],
+  spraydryer: ["thermal_hot", "chemical"],
+  // Utilities
+  puresteam: ["steam", "pressure"],
+  compressedair: ["pressure"],
+  cipsip: ["chemical", "steam", "pressure"],
+  bsc: ["biohazard"],
+  isolator: ["biohazard", "vhp"],
+  watersystem: ["chemical"],
+  partswasher: ["chemical", "thermal_hot"]
+};
+
+/* Per-test ESCALATIONS — keyed "id|PHASE|index" — where a specific test adds a hazard
+   beyond the equipment baseline (e.g. defeating an interlock, exposing the operator). */
+const SAFETY_ESCALATIONS = {
+  // Autoclave: leak/vacuum & alarm-interlock challenge involve pressure & defeating safeties
+  "autoclave|OQ|3": { add: "Leak-rate / vacuum testing pressurizes and evacuates the chamber — confirm relief and interlocks first; stand clear of the door.", tags: ["pressure"] },
+  "autoclave|OQ|8": { add: "Provoking low-temp/low-steam/door/abort faults may require challenging interlocks — do it per a controlled procedure, never by physically defeating a safety device while pressurized.", tags: ["pressure", "steam"] },
+  "autoclave|PQ|1": { add: "Loaded heat-penetration uses live cycles at full temperature/pressure with thermocouple lead feed-throughs — verify seal integrity and avoid burns on hot loads/probes.", tags: ["thermal_hot", "steam"] },
+  // EtO: residuals/aeration and any access involve toxic-gas exposure
+  "etosterilizer|OQ|1": { add: "Verifying gas concentration means working with live EtO — confirm gas detection, exhaust, and personal monitoring; no ignition sources.", tags: ["toxic_gas"] },
+  "etosterilizer|PQ|0": { add: "BI placement/retrieval risks EtO exposure — ensure aeration to a safe level and gas-monitor clearance before opening; full exposure controls.", tags: ["toxic_gas"] },
+  "etosterilizer|PQ|2": { add: "Residual sampling handles EtO/ECH-bearing product — handle per exposure controls; aeration must be complete before access.", tags: ["toxic_gas"] },
+  // Gamma: any mapping is under a radiation-protection program
+  "gammasterilizer|OQ|0": { add: "Dose mapping occurs in the irradiation field — all work under the radiation-protection program; verify source position and interlocks; dosimetry required.", tags: ["radiation"] },
+  "gammasterilizer|PQ|0": { add: "Product dose mapping places dosimeters in the field — RSO-authorized access only, source-safe state confirmed before entry.", tags: ["radiation"] },
+  // LN2: the O2 alarm test IS the life-safety verification
+  "ln2|OQ|2": { add: "This is a life-safety verification — LN₂ boil-off can asphyxiate without warning. Confirm room ventilation and treat any real O₂ alarm as immediate evacuation.", tags: ["cryo"] },
+  "ln2|OQ|0": { add: "Vapor-phase mapping opens the vessel and handles cryogenic-cold probes — cryo PPE; ensure O₂ monitoring is active during extended openings.", tags: ["cryo"] },
+  // Cold room / walk-in: mapping means entering the space
+  "coldroom|OQ|0": { add: "3-D mapping requires entering a cold walk-in — confirm the inside-release latch and personnel alarm; do not enter alone without check-in.", tags: ["confined"] },
+  // Muffle / depyro: handling near 250-1000C
+  "mufflefurnace|PQ|0": { add: "Loading/retrieving crucibles near 500-1000 °C — high-temp PPE, face protection, and tongs; never reach into a hot chamber.", tags: ["thermal_hot"] },
+  "depyrooven|PQ|1": { add: "Loaded penetration runs at ~250 °C with probe feed-throughs — burn risk on loads and leads; allow cooldown before contact.", tags: ["thermal_hot"] },
+  // Reactor: intrusive work on chemical pressure vessels
+  "reactor|OQ|2": { add: "Pressure/vacuum and charge-rate testing involves stored energy and reactive charges — confirm relief and interlocks first; purge/clean and LOTO before any intrusive work.", tags: ["pressure", "chemical"] },
+  "reactor|OQ|3": { add: "Challenging over-pressure/over-temp relief and interlocks must follow a controlled procedure — never physically defeat a safety device on a live chemical vessel.", tags: ["pressure", "chemical"] },
+  // Centrifuge: speed and imbalance/interlock tests are the rotating hazard
+  "centrifuge|OQ|0": { add: "Speed verification runs the rotor at full RPM — confirm lid-interlock and rotor condition first; never open during run-down; respect rotor speed/imbalance limits.", tags: ["rotating"] },
+  "centrifuge|OQ|7": { add: "Challenging the lid-cannot-open-while-spinning interlock tests a guard that prevents serious injury — verify by procedure, never by defeating it on a spinning rotor.", tags: ["rotating"] }
+};
 
 /* ---------- WORKED EXAMPLES (existing pages) ---------- */
 /* Worked examples to attach to existing pages. Keyed by page id.
@@ -24669,6 +25587,7 @@ function openDetail(id) {
   currentDetailId = id;
   document.getElementById('dName').textContent = TR(e.name);
   document.getElementById('dDesc').textContent = TR(e.desc);
+  renderSafetyBanner(id);
   // risk block: approach-neutral framing + type-specific questions
   const rb = document.getElementById('riskBlock');
   if (rb) {
@@ -24724,6 +25643,17 @@ function openDetail(id) {
             How to<span class="howto-tw" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
           </button>`
         : '';
+      const execChip = `<button class="exv-chip" id="xc-${hk}" aria-expanded="false" onclick="toggleExec('${id}','${p}',${i})">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4M9 13h6M9 17h4"/></svg>
+            ${TR('Protocol view')}<span class="exv-tw" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>`;
+      const hasEsc = typeof SAFETY_ESCALATIONS !== 'undefined' && SAFETY_ESCALATIONS[hk];
+      const safetyChip = hasEsc
+        ? `<button class="sfx-chip" id="sc-${hk}" aria-expanded="false" onclick="toggleSafety('${id}','${p}',${i})">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>
+            ${TR('Safety')}<span class="sfx-tw" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>`
+        : '';
       return `<div class="test-row${ho ? ' has-howto' : ''}">
         <div class="test-main">
           <span class="test-txt">${TR(test.t)}</span>
@@ -24731,8 +25661,10 @@ function openDetail(id) {
             <span class="dot"></span>${label}
           </button>
         </div>
-        ${howtoChip}
+        <div class="test-chips">${howtoChip}${execChip}${safetyChip}</div>
         ${ho ? `<div class="howto-panel" id="hp-${hk}" hidden>${renderHowto(ho)}</div>` : ''}
+        <div class="exv-panel" id="xp-${hk}" hidden></div>
+        ${hasEsc ? `<div class="sfx-panel" id="sp-${hk}" hidden></div>` : ''}
       </div>`;
     }).join('');
     return `<section class="phase">
@@ -24820,6 +25752,243 @@ function toggleHowto(id, phase, i) {
   }
 }
 
+/* ---------- EXECUTABLE (PROTOCOL) VIEW ----------
+   Generates a protocol-ready, copy-pasteable expansion of a test: objective,
+   pre-conditions, a data-entry table shaped for the test's archetype, and the
+   acceptance criterion. NOT a protocol generator (clients have their own templates)
+   — it produces the fillable skeleton you paste INTO your template. */
+
+const EXEC_ARCHETYPES = [
+  { key: 'mapping', re: /uniformit|distribut|mapping|gradient|hot.?spot|cold.?spot|penetrat|profile across|sensor placement/i,
+    fields: { cols: ['Sensor / position', 'Reading', 'Within limit? (Y/N)'], rows: 6, hint: 'Add a row per mapping sensor / position; record the stabilized reading at each.' } },
+  { key: 'alarm', re: /alarm|interlock|emergency stop|e-stop|trip|fail.?safe|safety (system|device|function)|warning|annunciat/i,
+    fields: { cols: ['Alarm / interlock', 'Setpoint / trigger', 'Observed at', 'Annunciation (local/remote)', 'Pass/Fail'], rows: 4, hint: 'One row per alarm or interlock challenged.' } },
+  { key: 'calib', re: /calibrat|accuracy|as.?found|as.?left|traceab|tolerance|reference (standard|weight|thermometer)|loop check/i,
+    fields: { cols: ['Instrument / point', 'Reference', 'As-found', 'As-left', 'Tolerance', 'Pass/Fail'], rows: 5, hint: 'Record reference value, as-found and as-left readings against tolerance.' } },
+  { key: 'control', re: /setpoint|control (loop|of|the)|PID|stability|recover|response time|ramp|hold (temperature|at)|maintain .* at/i,
+    fields: { cols: ['Setpoint', 'Acceptance band', 'Observed range', 'Duration', 'Pass/Fail'], rows: 4, hint: 'Record observed control performance at each setpoint over the observation period.' } },
+  { key: 'leak', re: /leak|integrity test|vacuum (test|hold|leak)|pressure (decay|hold|drop)|PUPSIT|CCIT|bubble point|diffusion/i,
+    fields: { cols: ['Test condition', 'Acceptance', 'Observed', 'Pass/Fail'], rows: 3, hint: 'Record the integrity/leak result against the pre-defined limit.' } },
+  { key: 'challenge', re: /biological indicator|\bBI\b|\bBIs\b|endotoxin|spike|spore|microbial|kill|log reduction|\bLRV\b|sterility|depyrogenation|F0/i,
+    fields: { cols: ['Challenge / location', 'Challenge level', 'Result', 'Acceptance', 'Pass/Fail'], rows: 5, hint: 'One row per challenge location (e.g. worst-case / cold spot).' } },
+  { key: 'doc', re: /document|manual|drawing|certificate|\bSOP\b|inventory|as.?built|nameplate|spare part|P&ID|material of construction|verify .* present|confirm .* present|list .* instrument/i,
+    fields: { cols: ['Item', 'Reference / ID', 'Present & correct? (Y/N)'], rows: 5, hint: 'One row per document, drawing, or component verified.' } },
+  { key: 'security', re: /audit trail|access (control|level)|password|user (account|role|login)|electronic (record|signature)|part 11|data integrity|backup|restore|time.?stamp/i,
+    fields: { cols: ['Control / function', 'Expected behaviour', 'Observed', 'Pass/Fail'], rows: 4, hint: 'One row per Part 11 / data-integrity control verified.' } },
+  { key: 'utility', re: /utilit|power supply|gas supply|water (supply|quality)|drainage|HVAC|compressed air|connection|voltage|earth|ground/i,
+    fields: { cols: ['Utility / connection', 'Required', 'Verified', 'Pass/Fail'], rows: 4, hint: 'One row per utility or service connection.' } },
+  { key: 'visual', re: /visual|cosmetic|finish|surface (finish|roughness)|Ra |weld|polish|hygienic design|dead.?leg/i,
+    fields: { cols: ['Feature / location', 'Acceptance', 'Observed', 'Pass/Fail'], rows: 4, hint: 'One row per feature or location inspected.' } }
+];
+const EXEC_DEFAULT = { cols: ['Parameter / check', 'Acceptance', 'Observed result', 'Pass/Fail'], rows: 4, hint: 'Record the observed result against the acceptance criterion for each parameter.' };
+
+function classifyExec(testText) {
+  for (const a of EXEC_ARCHETYPES) if (a.re.test(testText)) return a;
+  return { key: 'general', fields: EXEC_DEFAULT };
+}
+
+function execAcceptanceText(src) {
+  if (!src || typeof src !== 'object') return 'Per approved acceptance criteria (define in your protocol against the URS/SOP).';
+  if (src.crit) return src.crit;
+  return 'Per approved acceptance criteria (define in your protocol against the URS/SOP).';
+}
+
+// Build a plain-text version of the table for clipboard (tab-separated, paste-friendly into Word/Excel).
+function execTableText(fields) {
+  const lines = [fields.cols.join('\t')];
+  for (let r = 0; r < fields.rows; r++) lines.push(fields.cols.map(() => '').join('\t'));
+  return lines.join('\n');
+}
+
+function buildExecutable(id, phase, i) {
+  const test = DATA[id].phases[phase][i];
+  const src = test.s === 'gmp' ? GMP_INFO : test.s;
+  const objective = test.t || '';
+
+  // Prefer a hand-authored override (map key, then inline test.exec), else generate.
+  const ovKey = id + '|' + phase + '|' + i;
+  const ov = (typeof EXEC_OVERRIDES !== 'undefined' && EXEC_OVERRIDES[ovKey])
+    || (typeof EXEC_OVERRIDES_2 !== 'undefined' && EXEC_OVERRIDES_2[ovKey])
+    || (typeof EXEC_OVERRIDES_3 !== 'undefined' && EXEC_OVERRIDES_3[ovKey])
+    || (typeof EXEC_OVERRIDES_4 !== 'undefined' && EXEC_OVERRIDES_4[ovKey])
+    || (typeof EXEC_OVERRIDES_5 !== 'undefined' && EXEC_OVERRIDES_5[ovKey])
+    || (typeof EXEC_OVERRIDES_6 !== 'undefined' && EXEC_OVERRIDES_6[ovKey])
+    || test.exec || null;
+
+  let f, accept, pre, note, authored;
+  if (ov) {
+    authored = true;
+    f = ov.fields;
+    accept = ov.accept || execAcceptanceText(src);
+    pre = ov.pre || ['Calibrated test instruments listed and within cal date', 'Prior phase(s) complete and approved; system in the required state', 'Acceptance criteria approved before execution'];
+    note = ov.note || '';
+  } else {
+    authored = false;
+    f = classifyExec(objective).fields;
+    accept = execAcceptanceText(src);
+    pre = ['Calibrated test instruments listed and within cal date', 'Prior phase(s) complete and approved; system in the required state', 'Acceptance criteria approved before execution'];
+    note = '';
+  }
+
+  const headCells = f.cols.map(c => `<th>${TR(c)}</th>`).join('');
+  const bodyRows = Array.from({ length: f.rows }).map(() =>
+    `<tr>${f.cols.map(() => '<td class="exv-blank"></td>').join('')}</tr>`).join('');
+
+  // whole-test plain text for copy
+  const whole = [
+    'TEST: ' + objective,
+    'PHASE: ' + phase + '  (' + (PHASE_LABELS[phase] || '') + ')',
+    '',
+    'PRE-CONDITIONS:',
+    ...pre.map(p => '- ' + p),
+    '',
+    'PROCEDURE: ' + (f.hint || ''),
+    '',
+    'DATA:',
+    execTableText(f),
+    '',
+    'ACCEPTANCE CRITERION:',
+    accept,
+    ...(note ? ['', 'NOTE: ' + note] : []),
+    '',
+    'RESULT: Pass / Fail ___    Executed by/date ___    Reviewed by/date ___'
+  ].join('\n');
+
+  const tag = authored ? TR('Hand-authored protocol view') : TR('Protocol-ready skeleton');
+  const caveat = authored
+    ? TR('Hand-authored for this test. Field structure and acceptance reflect common practice \u2014 confirm exact limits and wording against your URS/SOP and paste into your own protocol template before use.')
+    : TR('Generated skeleton from the test and its cited acceptance basis. Confirm wording and limits against your URS/SOP and paste into your own protocol template before use.');
+
+  return `
+    <div class="exv${authored ? ' exv-authored' : ''}">
+      <div class="exv-row1">
+        <span class="exv-tag">${tag}</span>
+        <button class="exv-copyall" onclick='execCopy(this, ${JSON.stringify(whole)})'>${TR('Copy whole test')}</button>
+      </div>
+      <div class="exv-block">
+        <div class="exv-bh">${TR('Objective')}</div>
+        <div class="exv-text">${TR(objective)}</div>
+      </div>
+      <div class="exv-block">
+        <div class="exv-bh">${TR('Pre-conditions')}</div>
+        <ul class="exv-list">${pre.map(p => `<li>${TR(p)}</li>`).join('')}</ul>
+      </div>
+      <div class="exv-block">
+        <div class="exv-bh-row">
+          <span class="exv-bh">${TR('Data entry')}</span>
+          <button class="exv-copy" onclick='execCopy(this, ${JSON.stringify(execTableText(f))})'>${TR('Copy table')}</button>
+        </div>
+        <div class="exv-hint">${TR(f.hint)}</div>
+        <div class="exv-tablewrap"><table class="exv-table"><thead><tr>${headCells}</tr></thead><tbody>${bodyRows}</tbody></table></div>
+      </div>
+      <div class="exv-block">
+        <div class="exv-bh-row">
+          <span class="exv-bh">${TR('Acceptance criterion')}</span>
+          <button class="exv-copy" onclick='execCopy(this, ${JSON.stringify(accept)})'>${TR('Copy')}</button>
+        </div>
+        <div class="exv-accept">${TR(accept)}</div>
+      </div>
+      ${note ? `<div class="exv-block"><div class="exv-bh">${TR('Field note')}</div><div class="exv-note">${TR(note)}</div></div>` : ''}
+      <div class="exv-caveat">${caveat}</div>
+    </div>`;
+}
+
+function execCopy(btn, text) {
+  const done = () => { const o = btn.textContent; btn.textContent = TR('Copied'); btn.classList.add('exv-copied'); setTimeout(() => { btn.textContent = o; btn.classList.remove('exv-copied'); }, 1400); };
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done)); }
+    else fallbackCopy(text, done);
+  } catch (e) { fallbackCopy(text, done); }
+}
+function fallbackCopy(text, done) {
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta); done();
+  } catch (e) { /* no-op */ }
+}
+
+function toggleExec(id, phase, i) {
+  const hk = id + '|' + phase + '|' + i;
+  const panel = document.getElementById('xp-' + hk);
+  const chip = document.getElementById('xc-' + hk);
+  if (!panel) return;
+  if (!panel.dataset.built) { panel.innerHTML = buildExecutable(id, phase, i); panel.dataset.built = '1'; }
+  const open = !panel.hasAttribute('hidden');
+  if (open) {
+    panel.setAttribute('hidden', '');
+    chip.setAttribute('aria-expanded', 'false');
+    chip.closest('.test-row').classList.remove('exv-open');
+  } else {
+    panel.removeAttribute('hidden');
+    chip.setAttribute('aria-expanded', 'true');
+    chip.closest('.test-row').classList.add('exv-open');
+  }
+}
+
+/* ---------- SAFETY (page banner + per-test escalation) ---------- */
+var SAFETY_WARN_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg>';
+
+function renderSafetyBanner(id) {
+  const el = document.getElementById('safetyBanner');
+  if (!el) return;
+  const hz = (typeof HAZARD_MAP !== 'undefined' && HAZARD_MAP[id]) || null;
+  if (!hz || !hz.length) { el.innerHTML = ''; return; }
+  const items = hz.filter(k => HAZARDS[k]).map(k => {
+    const hzd = HAZARDS[k];
+    return `<div class="sf-item">
+      <div class="sf-it-h">${TR(hzd.label)}</div>
+      <div class="sf-it-haz">${TR(hzd.hazard)}</div>
+      <div class="sf-it-ctl"><span class="sf-ctl-k">${TR('Controls / PPE')}</span> ${TR(hzd.controls)}</div>
+    </div>`;
+  }).join('');
+  const tags = hz.filter(k => HAZARDS[k]).map(k => `<span class="sf-tag">${TR(HAZARDS[k].label)}</span>`).join('');
+  el.innerHTML = `
+    <details class="sf-card">
+      <summary>
+        <span class="sf-ico">${SAFETY_WARN_SVG}</span>
+        <span class="sf-sum-txt">${TR('Safety considerations')}</span>
+        <span class="sf-tags">${tags}</span>
+        <span class="sf-tw"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></span>
+      </summary>
+      <div class="sf-body">
+        ${items}
+        <div class="sf-caveat">${TR('General hazard awareness only \u2014 not a substitute for the equipment\u2019s safety manual, your site EHS program, LOTO, or task risk assessment. Follow your site SOPs and permits.')}</div>
+      </div>
+    </details>`;
+}
+
+function buildSafetyEsc(id, phase, i) {
+  const key = id + '|' + phase + '|' + i;
+  const esc = (typeof SAFETY_ESCALATIONS !== 'undefined' && SAFETY_ESCALATIONS[key]) || null;
+  if (!esc) return '';
+  const tags = (esc.tags || []).filter(k => HAZARDS[k]).map(k => `<span class="sf-tag">${TR(HAZARDS[k].label)}</span>`).join('');
+  return `
+    <div class="sfx">
+      <div class="sfx-h"><span class="sf-ico">${SAFETY_WARN_SVG}</span>${TR('Added hazard for this test')}</div>
+      <div class="sfx-txt">${TR(esc.add)}</div>
+      ${tags ? `<div class="sfx-tags">${tags}</div>` : ''}
+      <div class="sfx-caveat">${TR('Follow your site EHS / SOP / permit \u2014 this is awareness, not authorization.')}</div>
+    </div>`;
+}
+
+function toggleSafety(id, phase, i) {
+  const hk = id + '|' + phase + '|' + i;
+  const panel = document.getElementById('sp-' + hk);
+  const chip = document.getElementById('sc-' + hk);
+  if (!panel) return;
+  if (!panel.dataset.built) { panel.innerHTML = buildSafetyEsc(id, phase, i); panel.dataset.built = '1'; }
+  const open = !panel.hasAttribute('hidden');
+  if (open) {
+    panel.setAttribute('hidden', '');
+    chip.setAttribute('aria-expanded', 'false');
+  } else {
+    panel.removeAttribute('hidden');
+    chip.setAttribute('aria-expanded', 'true');
+  }
+}
+
 function openSheet(id, phase, i) {
   const test = DATA[id].phases[phase][i];
   const src = test.s === 'gmp' ? GMP_INFO : test.s;
@@ -24881,7 +26050,7 @@ applyStaticI18n();
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v31';
+    const C = 'cqv-v36';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {
