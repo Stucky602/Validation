@@ -1945,13 +1945,13 @@ renderList();
 applyStaticI18n();
 
 /* ---------- version badge (bumped with cache C on each ship) ---------- */
-const APP_VERSION = 'v166';
+const APP_VERSION = 'v171';
 { const vb = document.getElementById('verBadge'); if (vb) vb.textContent = APP_VERSION; }
 
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v166';
+    const C = 'cqv-v171';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {

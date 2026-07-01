@@ -1,5 +1,5 @@
 /* cqv-taxonomy.js  (auto-split from index.html)  5 consts */
-const PROCESS_ORDER = ['gmp', 'gep', 'vmodel', 'e2500', 'bg5', 'cq', 'risk', 'urs', 'fs', 'ds', 'dq', 'iq', 'oq', 'pq', 'tempmap', 'calibration', 'sterilization', 'bg5x', 'pv', 'cleaning', 'protocol', 'change', 'capa', 'fat', 'sat', 'cots', 'gamp', 'di', 'csv', 'vlms'];
+const PROCESS_ORDER = ['vmp', 'vsr', 'gmp', 'gep', 'vmodel', 'e2500', 'bg5', 'cq', 'risk', 'urs', 'fs', 'ds', 'rtm', 'dq', 'iq', 'oq', 'pq', 'tempmap', 'calibration', 'sterilization', 'bg5x', 'pv', 'cleaning', 'protocol', 'change', 'requal', 'capa', 'fat', 'sat', 'cots', 'gamp', 'di', 'csv', 'vlms'];
 
 const CATEGORIES = [
   { key: "tcu",        label: "Temperature-Controlled Units (TCUs)", members: ["incubator","co2incubator","fridge","freezer","ult","coldroom","warehouse","stability","photostability"] },
@@ -26,11 +26,12 @@ const CATEGORIES = [
 ];
 
 const PROCESS_GROUPS = [
+  { key: 'planning',label: 'Planning & Program',       accent: '#c7923f', ids: ['vmp', 'vsr'],                             open: true  },
   { key: 'found',   label: 'Foundations',            accent: '#c08bf0', ids: ['gmp', 'gep'],                              open: true  },
   { key: 'approach',label: 'C&Q Approaches',         accent: '#4fd1c5', ids: ['vmodel', 'e2500', 'bg5', 'cq'],            open: true  },
-  { key: 'riskspec',label: 'Risk, Specs & Qualification', accent: '#e0935a', ids: ['risk', 'impact', 'urs', 'fs', 'ds', 'dq', 'iq', 'oq', 'pq'], open: false },
+  { key: 'riskspec',label: 'Risk, Specs & Qualification', accent: '#e0935a', ids: ['risk', 'impact', 'urs', 'fs', 'ds', 'rtm', 'dq', 'iq', 'oq', 'pq'], open: false },
   { key: 'methods',  label: 'Methods & Metrology',    accent: '#d2a85e', ids: ['tempmap', 'calibration', 'sterilization'],               open: false },
-  { key: 'exec',    label: 'Execution & Governance',  accent: '#9b8bea', ids: ['bg5x', 'pv', 'cleaning', 'protocol', 'change', 'capa'], open: false },
+  { key: 'exec',    label: 'Execution & Governance',  accent: '#9b8bea', ids: ['bg5x', 'pv', 'cleaning', 'protocol', 'change', 'requal', 'capa'], open: false },
   { key: 'verify',  label: 'Verification & Systems', accent: '#5aa9e6', ids: ['commissioning', 'fat', 'sat', 'cots', 'gamp', 'di', 'csv', 'vlms'], open: false },
   { key: 'reg',     label: 'Regulations & Guidance', accent: '#9b8cf0', ids: ['landscape', 'authorities', 'regs', 'bodies'], open: false }
 ];
