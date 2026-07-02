@@ -1345,8 +1345,16 @@ function execAcceptanceText(src) {
 
 // Build a plain-text version of the table for clipboard (tab-separated, paste-friendly into Word/Excel).
 function execTableText(fields) {
+  const rl = Array.isArray(fields.rowLabels) ? fields.rowLabels : null;
+  const cells = Array.isArray(fields.cells) ? fields.cells : null;
+  const n = rl ? rl.length : (cells ? cells.length : fields.rows);
   const lines = [fields.cols.join('\t')];
-  for (let r = 0; r < fields.rows; r++) lines.push(fields.cols.map(() => '').join('\t'));
+  for (let r = 0; r < n; r++) lines.push(fields.cols.map((c, ci) => {
+    if (rl && ci === 0) return rl[r];
+    const cell = cells && cells[r] ? cells[r][ci] : null;
+    const v = execCellValue(cell);
+    return v === '' ? '' : (execCellIsURS(cell) ? v + ' *' : v);
+  }).join('\t'));
   return lines.join('\n');
 }
 
@@ -1511,7 +1519,7 @@ function buildExecutable(id, phase, i) {
 
   // Prefer a hand-authored override (map key, then inline test.exec), else generate.
   const ovKey = id + '|' + phase + '|' + i;
-  const ov = (typeof EXEC_OVERRIDES_35 !== 'undefined' && EXEC_OVERRIDES_35[ovKey])
+  const ovRaw = (typeof EXEC_OVERRIDES_35 !== 'undefined' && EXEC_OVERRIDES_35[ovKey])
     || (typeof EXEC_OVERRIDES_34 !== 'undefined' && EXEC_OVERRIDES_34[ovKey])
     || (typeof EXEC_OVERRIDES_33 !== 'undefined' && EXEC_OVERRIDES_33[ovKey])
     || (typeof EXEC_OVERRIDES_32 !== 'undefined' && EXEC_OVERRIDES_32[ovKey])
@@ -1548,6 +1556,24 @@ function buildExecutable(id, phase, i) {
   || (typeof EXEC_OVERRIDES_30 !== 'undefined' && EXEC_OVERRIDES_30[ovKey])
     || test.exec || null;
 
+  // Prefilled data-table patch layer (v172+): EXEC_OVERRIDES_36 carries per-key table patches.
+  //   summaryCells    -> prefilled cell values (aligned to the effective cols x rows)
+  //   summaryCols     -> optional replacement column headers (e.g. richer IQ install-verification form)
+  //   summaryRowLabels-> optional replacement first-column row labels (when a redesign changes rows)
+  // Merged WITHOUT mutating the source object, so base authored content stays a single source of truth.
+  let ov = ovRaw;
+  if (ovRaw && ovRaw.summary && typeof EXEC_OVERRIDES_36 !== 'undefined' && EXEC_OVERRIDES_36[ovKey]) {
+    const patch = EXEC_OVERRIDES_36[ovKey];
+    if (patch && (Array.isArray(patch.summaryCells) || Array.isArray(patch.summaryCols) || Array.isArray(patch.summaryRowLabels))) {
+      ov = Object.assign({}, ovRaw);
+      const sm = Object.assign({}, ovRaw.summary);
+      if (Array.isArray(patch.summaryCols)) sm.cols = patch.summaryCols;
+      if (Array.isArray(patch.summaryRowLabels)) sm.rowLabels = patch.summaryRowLabels;
+      if (Array.isArray(patch.summaryCells)) sm.cells = patch.summaryCells;
+      ov.summary = sm;
+    }
+  }
+
   const authored = !!ov;
   const isStepSchema = authored && Array.isArray(ov.steps);
   if (isStepSchema) return buildExecutableSteps(id, phase, i, ov, objective, src);
@@ -1566,8 +1592,10 @@ function buildExecutable(id, phase, i) {
   }
 
   const headCells = f.cols.map(c => `<th>${TR(c)}</th>`).join('');
-  const bodyRows = Array.from({ length: f.rows }).map(() =>
-    `<tr>${f.cols.map(() => '<td class="exv-blank"></td>').join('')}</tr>`).join('');
+  const fCells = Array.isArray(f.cells) ? f.cells : null;
+  const fRowLabels = Array.isArray(f.rowLabels) ? f.rowLabels : null;
+  const fNRows = fRowLabels ? fRowLabels.length : (fCells ? fCells.length : f.rows);
+  const bodyRows = execTableRows(f.cols, fNRows, fRowLabels, fCells);
 
   // whole-test plain text for copy
   const whole = [
@@ -1629,14 +1657,55 @@ function buildExecutable(id, phase, i) {
     </div>`;
 }
 
+/* Prefilled data-table support (v172+).
+   A summary/override table may carry an optional `cells` 2-D array parallel to its rows.
+   Each cell can be:
+     - null / undefined / ''   -> blank entry field (data captured during execution)
+     - "text"                  -> prefilled fixed value (black ink: standards, defaults, headers)
+     - { v:"text", urs:true }  -> prefilled but URS/spec-dependent -> amber flag (confirm vs URS)
+     - { v:"text" }            -> same as plain prefilled string
+   Columns with no `cells` entry fall back to blank, so existing tables are unaffected. */
+function execCellValue(cell) {
+  if (cell == null) return '';
+  if (typeof cell === 'string') return cell;
+  if (typeof cell === 'object' && 'v' in cell) return cell.v == null ? '' : String(cell.v);
+  return '';
+}
+function execCellIsURS(cell) { return !!(cell && typeof cell === 'object' && cell.urs); }
+/* Render one <td> for the interactive table. rowLabel handles the legacy rowLabels first column. */
+function execCellTD(cell, ci, isRowLabel, rowLabelText) {
+  if (isRowLabel) return `<td class="exv-rowlabel">${TR(rowLabelText)}</td>`;
+  const v = execCellValue(cell);
+  if (v === '') return '<td class="exv-blank"></td>';
+  const cls = execCellIsURS(cell) ? 'exv-fill exv-fill-urs' : 'exv-fill';
+  const title = execCellIsURS(cell) ? ' title="Default value — confirm against your URS/spec"' : '';
+  return `<td class="${cls}"${title}>${TR(v)}</td>`;
+}
+/* Build tbody rows for a summary/override table, honouring rowLabels + cells. */
+function execTableRows(cols, nRows, rl, cells) {
+  return Array.from({ length: nRows }).map((_, r) =>
+    `<tr>${cols.map((c, ci) => {
+      const isRL = rl && ci === 0;
+      const cell = cells && cells[r] ? cells[r][ci] : null;
+      return execCellTD(cell, ci, isRL, isRL ? rl[r] : '');
+    }).join('')}</tr>`).join('');
+}
+
 /* Summary/data table text (tab-separated) for copy: header + rows.
-   If summary.rowLabels is present, the first column is pre-filled with the labels. */
+   If summary.rowLabels is present, the first column is pre-filled with the labels.
+   If summary.cells is present, prefilled values are included (URS-flagged values get a * marker). */
 function execSummaryText(summary) {
   if (!summary || !summary.cols) return '';
   const rl = Array.isArray(summary.rowLabels) ? summary.rowLabels : null;
-  const n = rl ? rl.length : (summary.rows || 3);
+  const cells = Array.isArray(summary.cells) ? summary.cells : null;
+  const n = rl ? rl.length : (cells ? cells.length : (summary.rows || 3));
   const lines = [summary.cols.join('\t')];
-  for (let r = 0; r < n; r++) lines.push(summary.cols.map((c, ci) => (rl && ci === 0) ? rl[r] : '').join('\t'));
+  for (let r = 0; r < n; r++) lines.push(summary.cols.map((c, ci) => {
+    if (rl && ci === 0) return rl[r];
+    const cell = cells && cells[r] ? cells[r][ci] : null;
+    const v = execCellValue(cell);
+    return v === '' ? '' : (execCellIsURS(cell) ? v + ' *' : v);
+  }).join('\t'));
   return lines.join('\n');
 }
 
@@ -1720,10 +1789,10 @@ function buildExecutableSteps(id, phase, i, ov, objective, src) {
   const aj = s => JSON.stringify(s).replace(/'/g, '&#39;');
 
   const rl = summary && Array.isArray(summary.rowLabels) ? summary.rowLabels : null;
-  const nRows = rl ? rl.length : (summary ? (summary.rows || 3) : 0);
+  const sCells = summary && Array.isArray(summary.cells) ? summary.cells : null;
+  const nRows = rl ? rl.length : (sCells ? sCells.length : (summary ? (summary.rows || 3) : 0));
   const summaryHead = summary ? summary.cols.map(c => `<th>${TR(c)}</th>`).join('') : '';
-  const summaryRows = summary ? Array.from({ length: nRows }).map((_, r) =>
-    `<tr>${summary.cols.map((c, ci) => (rl && ci === 0) ? `<td class="exv-rowlabel">${TR(rl[r])}</td>` : '<td class="exv-blank"></td>').join('')}</tr>`).join('') : '';
+  const summaryRows = summary ? execTableRows(summary.cols, nRows, rl, sCells) : '';
 
   const whole = [
     'OBJECTIVE: ' + objective,
@@ -1945,13 +2014,13 @@ renderList();
 applyStaticI18n();
 
 /* ---------- version badge (bumped with cache C on each ship) ---------- */
-const APP_VERSION = 'v171';
+const APP_VERSION = 'v174';
 { const vb = document.getElementById('verBadge'); if (vb) vb.textContent = APP_VERSION; }
 
 /* ---------- OFFLINE: cache self via service worker ---------- */
 if ('serviceWorker' in navigator) {
   const swCode = `
-    const C = 'cqv-v171';
+    const C = 'cqv-v174';
     self.addEventListener('install', e => { self.skipWaiting(); });
     self.addEventListener('activate', e => { self.clients.claim(); });
     self.addEventListener('fetch', e => {

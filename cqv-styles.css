@@ -284,6 +284,10 @@
   .exv-table tr:last-child td { border-bottom: none; }
   .exv-blank { height: 22px; }
   .exv-rowlabel { padding: 6px 8px; font-size: 11px; color: var(--ink-dim); white-space: nowrap; border-bottom: 1px solid color-mix(in srgb, var(--line) 50%, transparent); border-right: 1px solid color-mix(in srgb, var(--line) 50%, transparent); background: color-mix(in srgb, var(--panel) 55%, transparent); }
+  /* Prefilled data-table cells (v172+): fixed defaults in ink; URS/spec-dependent defaults flagged amber. */
+  .exv-fill { font-size: 11px; color: var(--ink); white-space: nowrap; }
+  .exv-fill-urs { color: var(--flagged); background: color-mix(in srgb, var(--flagged) 12%, transparent); font-weight: 600; }
+  .exv-table td.exv-fill-urs { border-bottom-color: color-mix(in srgb, var(--flagged) 30%, var(--line)); }
   .exv-chart { margin-top: 8px; border: 1px solid var(--line); border-radius: 7px; padding: 8px 8px 4px; background: var(--panel); }
   .exv-chart svg { display: block; }
   .exv-chartcap { font-size: 11px; color: var(--ink-faint); line-height: 1.45; margin-top: 5px; padding: 0 2px; }
